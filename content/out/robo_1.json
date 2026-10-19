@@ -1,0 +1,1156 @@
+[
+ {
+  "id": "robo-01",
+  "track": "robo",
+  "unit": "What robots are",
+  "order": 1,
+  "title": "What Is a Robot",
+  "title_vi": "Thế nào thì được gọi là robot",
+  "level": 1,
+  "minutes": 8,
+  "body": "Nghe chữ robot, nhiều người nghĩ ngay tới người máy trong phim. Nhưng trong ngành, định nghĩa rộng hơn và cũng thực tế hơn nhiều. Một cái máy được gọi là robot khi nó làm được ba việc liên tục: cảm nhận thế giới xung quanh, tự quyết định nên làm gì, rồi hành động để thay đổi thế giới đó.\n\n## Vòng lặp sense-think-act\n\nBa việc trên có tên chung là sense-think-act loop (vòng lặp cảm nhận - suy nghĩ - hành động). Hãy tưởng tượng một bạn shipper Grab chạy xe trong Sài Gòn giờ cao điểm:\n\n- **Sense**: mắt nhìn xe phía trước, tai nghe còi, tay cảm nhận tay lái rung. Ở robot, phần này là sensor (cảm biến): camera, lidar, cảm biến đo góc quay bánh xe...\n- **Think**: não tính toán \"xe trước đang thắng, mình phải giảm tốc, rẽ trái thì kịp không\". Ở robot, đây là phần mềm chạy trên máy tính: thuật toán định vị, lập kế hoạch đường đi, đôi khi là mô hình AI.\n- **Act**: tay bóp phanh, chân chống, vặn ga. Ở robot là actuator (bộ phận tạo chuyển động): motor, xi lanh, cánh quạt.\n\nĐiểm quan trọng là vòng lặp này chạy liên tục, nhiều lần mỗi giây. Một cánh tay robot trong nhà máy có thể đọc cảm biến và chỉnh lệnh motor hàng trăm đến hàng nghìn lần mỗi giây. Hành động xong thì thế giới thay đổi, robot lại cảm nhận lại, rồi quyết định tiếp. Đây gọi là closed loop (vòng kín): kết quả của hành động được đưa ngược trở lại làm đầu vào.\n\n## Cái gì là robot, cái gì không\n\nThử áp vòng lặp vào vài thứ quen thuộc:\n\n- Máy giặt đời cũ chạy theo chương trình cố định, không đo xem quần áo đã sạch chưa. Nó gần với automation (tự động hoá theo kịch bản) hơn là robot.\n- Robot hút bụi trong nhà có cảm biến va chạm, camera hoặc lidar, tự vẽ bản đồ phòng và tự tránh chân bàn. Đủ cả ba bước, đây là robot thật.\n- ChatGPT hay Claude chỉ có \"think\", không có thân thể để tác động vào thế giới vật lý. Đó là phần mềm AI, chưa phải robot. Khi gắn một mô hình AI vào cánh tay máy để nó nhìn và gắp đồ, lúc đó mới thành robot.\n- Xe tự lái là robot, dù trông như ô tô bình thường.\n\nRanh giới không phải lúc nào cũng rõ, và người trong ngành cũng tranh luận. Nhưng câu hỏi \"nó có tự cảm nhận, tự quyết định và tự hành động không\" là thước đo tốt nhất để bắt đầu.\n\n## Vì sao robotics khó hơn phần mềm thuần\n\nVới một app, nếu code sai thì bấm lại hoặc sửa bản cập nhật. Với robot, sai một lệnh có thể làm gãy đồ, làm hỏng máy hoặc gây nguy hiểm cho người. Thế giới thật lại đầy nhiễu: ánh sáng thay đổi, sàn trơn, pin yếu làm motor quay chậm hơn. Vì vậy robotics là chỗ gặp nhau của nhiều ngành: cơ khí, điện tử, điều khiển, lập trình và ngày càng nhiều AI.\n\nTrong track này, bạn sẽ đi lần lượt qua từng mảnh của vòng lặp. Chương này nói về robot là gì và có những loại nào. Chương sau nói về thân thể và chuyển động (phần act). Chương tiếp theo nói về cảm biến (phần sense). Phần think như lập kế hoạch và điều khiển sẽ đến ở các bài sau.",
+  "terms": [
+   {
+    "en": "robot",
+    "vi": "máy tự cảm nhận, tự quyết định và tự hành động trong thế giới vật lý"
+   },
+   {
+    "en": "sense-think-act loop",
+    "vi": "vòng lặp cảm nhận - suy nghĩ - hành động"
+   },
+   {
+    "en": "sensor",
+    "vi": "cảm biến"
+   },
+   {
+    "en": "actuator",
+    "vi": "bộ phận tạo chuyển động, ví dụ motor"
+   },
+   {
+    "en": "closed loop",
+    "vi": "vòng kín, kết quả hành động được đo lại làm đầu vào"
+   },
+   {
+    "en": "automation",
+    "vi": "tự động hoá theo kịch bản cố định"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Theo vòng lặp sense-think-act, thứ nào dưới đây gần với robot nhất?",
+    "choices": [
+     "Robot hút bụi tự vẽ bản đồ phòng và tránh chân bàn",
+     "Máy giặt chạy chương trình 40 phút cố định",
+     "Chatbot trả lời câu hỏi trên web",
+     "Đèn giao thông đổi màu theo giờ cố định"
+    ],
+    "answer": 0,
+    "why": "Robot hút bụi có đủ ba bước: cảm biến đo môi trường, phần mềm quyết định đường đi, motor di chuyển. Các thứ còn lại thiếu sense hoặc thiếu act."
+   },
+   {
+    "q": "Trong ví dụ shipper chạy xe, việc bóp phanh tương ứng với phần nào của robot?",
+    "choices": [
+     "Sensor, bộ phận cảm nhận",
+     "Actuator, bộ phận hành động",
+     "Bản đồ",
+     "Pin"
+    ],
+    "answer": 1,
+    "why": "Bóp phanh là tác động vào thế giới, đúng vai trò của actuator như motor hay xi lanh."
+   },
+   {
+    "q": "Closed loop (vòng kín) nghĩa là gì trong thực tế?",
+    "choices": [
+     "Robot chỉ chạy trong phòng kín",
+     "Robot tắt máy khi hoàn thành nhiệm vụ",
+     "Robot đo lại kết quả sau khi hành động rồi điều chỉnh tiếp",
+     "Robot không cần cảm biến nữa"
+    ],
+    "answer": 2,
+    "why": "Vòng kín là đưa kết quả hành động quay lại làm đầu vào, giống người lái xe liên tục nhìn đường và chỉnh tay lái."
+   },
+   {
+    "q": "Vì sao làm robot thường khó hơn làm một app thuần phần mềm?",
+    "choices": [
+     "Robot không dùng code",
+     "Robot không cần máy tính",
+     "App không bao giờ có lỗi",
+     "Thế giới thật nhiều nhiễu và sai sót có thể gây hư hỏng vật lý"
+    ],
+    "answer": 3,
+    "why": "Robot phải đối mặt với ánh sáng, ma sát, pin yếu... và một lỗi có thể làm gãy đồ hay gây nguy hiểm, không chỉ là bấm thử lại."
+   }
+  ],
+  "takeaway": "Robot là máy chạy liên tục vòng lặp cảm nhận, suy nghĩ, hành động trong thế giới vật lý."
+ },
+ {
+  "id": "robo-02",
+  "track": "robo",
+  "unit": "What robots are",
+  "order": 2,
+  "title": "Types of Robots",
+  "title_vi": "Các loại robot bạn sẽ gặp",
+  "level": 1,
+  "minutes": 10,
+  "body": "Robot có rất nhiều hình dạng, và hình dạng thường đi theo công việc. Hiểu các nhóm chính giúp bạn đọc tin tức, nói chuyện với khách hàng hoặc chọn hướng nghề dễ hơn.\n\n## Industrial arm (cánh tay robot công nghiệp)\n\nĐây là loại robot lâu đời và phổ biến nhất trong nhà máy. Một cánh tay thường có 6 khớp xoay, gắn cố định trên sàn, cuối tay là end effector (dụng cụ ở đầu tay robot) như kẹp, đầu hàn, súng phun sơn hoặc giác hút. Nó làm việc lặp lại với độ chính xác rất cao: hàn khung ô tô, gắp linh kiện điện tử, đóng gói hàng. Vì mạnh và nhanh, cánh tay công nghiệp truyền thống thường được đặt trong lồng an toàn, người không được vào khi nó chạy.\n\n## Cobot (robot cộng tác)\n\nCobot là viết tắt của collaborative robot (robot làm việc cạnh con người). Nó cũng là cánh tay, nhưng nhỏ hơn, chậm hơn, có cảm biến lực để dừng lại khi chạm vào người. Một xưởng nhỏ có thể đặt cobot ngay cạnh công nhân để cùng lắp ráp, không cần lồng. Cobot còn dễ lập trình: nhiều loại cho phép cầm tay robot kéo theo đường đi mong muốn để nó \"học\" lại. Đây là lý do cobot hợp với doanh nghiệp vừa và nhỏ.\n\n## Mobile robot và AMR\n\nMobile robot (robot di chuyển được) có bánh xe hoặc chân để đi lại. Trong kho hàng, bạn sẽ gặp hai kiểu:\n\n- AGV (xe tự hành dẫn đường): chạy theo vạch kẻ, băng từ hoặc mã QR dán trên sàn, giống tàu chạy trên ray.\n- AMR (autonomous mobile robot, robot di động tự hành): tự dùng lidar và camera để biết mình đang ở đâu, tự tìm đường và vòng qua người hay xe đẩy chắn lối.\n\nHãy nghĩ tới kho của một sàn thương mại điện tử mùa sale: hàng nghìn đơn mỗi giờ, AMR chở kệ hàng tới chỗ nhân viên đóng gói thay vì nhân viên đi bộ khắp kho.\n\n## Drone\n\nDrone là robot bay, phổ biến nhất là loại 4 cánh quạt (quadcopter). Nó giữ thăng bằng bằng cách thay đổi tốc độ từng cánh quạt hàng trăm lần mỗi giây dựa trên cảm biến. Ở Việt Nam, drone phun thuốc nông nghiệp đã khá quen thuộc ở đồng bằng sông Cửu Long, ngoài ra còn dùng để quay phim, khảo sát công trình, kiểm tra đường dây điện.\n\n## Humanoid (robot hình người)\n\nHumanoid có hai chân, hai tay, đầu và thân giống người. Ý tưởng là thế giới được thiết kế cho người (cầu thang, tay nắm cửa, dụng cụ), nên robot hình người có thể làm việc ở đó mà không cần sửa lại nhà xưởng. Tính đến 2026, đây là mảng nóng nhất: nhiều công ty ở Mỹ và Trung Quốc gọi vốn lớn, thử nghiệm trong nhà máy và kho. Nhưng humanoid vẫn còn đắt, pin chưa bền, và khả năng làm việc ổn định ngoài phòng thử nghiệm vẫn đang được chứng minh. Tin tức về mảng này thay đổi rất nhanh.\n\n## Còn nhiều loại khác\n\n- Robot bốn chân (quadruped) như \"chó robot\" dùng để tuần tra, kiểm tra nhà máy.\n- Robot phẫu thuật giúp bác sĩ mổ chính xác hơn.\n- Xe tự lái và robot giao hàng chạy trên vỉa hè.\n\nMột mẹo nhỏ: khi gặp robot mới, hãy hỏi ba câu. Nó di chuyển hay đứng yên? Nó làm việc tách biệt hay cạnh người? Nó làm một việc lặp lại hay nhiều việc khác nhau? Ba câu này gần như xếp được mọi robot vào đúng nhóm.",
+  "terms": [
+   {
+    "en": "industrial arm",
+    "vi": "cánh tay robot công nghiệp"
+   },
+   {
+    "en": "end effector",
+    "vi": "dụng cụ gắn ở đầu tay robot"
+   },
+   {
+    "en": "cobot",
+    "vi": "robot cộng tác làm việc an toàn cạnh người"
+   },
+   {
+    "en": "AMR",
+    "vi": "robot di động tự hành, tự định vị và tìm đường"
+   },
+   {
+    "en": "AGV",
+    "vi": "xe tự hành chạy theo vạch hoặc mốc cố định"
+   },
+   {
+    "en": "humanoid",
+    "vi": "robot hình người"
+   },
+   {
+    "en": "drone",
+    "vi": "robot bay"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Khác biệt chính giữa AGV và AMR là gì?",
+    "choices": [
+     "AGV bay được còn AMR thì không",
+     "AMR luôn có hình người",
+     "AMR tự định vị và tự tìm đường, AGV chạy theo vạch hoặc mốc cố định",
+     "AGV chỉ dùng trong bệnh viện"
+    ],
+    "answer": 2,
+    "why": "AGV giống tàu chạy trên ray, còn AMR dùng lidar và camera để tự biết vị trí và vòng qua vật cản."
+   },
+   {
+    "q": "Một xưởng may nhỏ muốn đặt robot ngay cạnh công nhân để hỗ trợ, không có chỗ dựng lồng an toàn. Loại nào hợp nhất?",
+    "choices": [
+     "Cobot",
+     "Cánh tay công nghiệp lớn tốc độ cao",
+     "Drone",
+     "Xe tự lái"
+    ],
+    "answer": 0,
+    "why": "Cobot được thiết kế để làm việc cạnh người, có cảm biến lực để dừng khi va chạm và dễ lập trình."
+   },
+   {
+    "q": "Lý do chính người ta đầu tư vào humanoid là gì?",
+    "choices": [
+     "Humanoid rẻ hơn mọi loại robot khác",
+     "Humanoid không cần pin",
+     "Humanoid chính xác hơn cánh tay công nghiệp",
+     "Thế giới được thiết kế cho người nên robot hình người có thể dùng lại nhà xưởng và dụng cụ sẵn có"
+    ],
+    "answer": 3,
+    "why": "Cầu thang, tay nắm cửa, dụng cụ đều hợp với dáng người. Dù vậy humanoid vẫn còn đắt và đang được chứng minh."
+   },
+   {
+    "q": "End effector của một cánh tay robot là gì?",
+    "choices": [
+     "Bộ nguồn của robot",
+     "Dụng cụ ở đầu tay như kẹp, đầu hàn, giác hút",
+     "Phần mềm điều khiển",
+     "Chân đế gắn xuống sàn"
+    ],
+    "answer": 1,
+    "why": "End effector là phần trực tiếp làm việc với vật thể, thay đổi tuỳ nhiệm vụ."
+   }
+  ],
+  "takeaway": "Hình dạng robot đi theo công việc: tay cố định, cobot cạnh người, AMR trong kho, drone trên trời, humanoid cho môi trường của người."
+ },
+ {
+  "id": "robo-03",
+  "track": "robo",
+  "unit": "What robots are",
+  "order": 3,
+  "title": "The Robotics Industry",
+  "title_vi": "Ngành robotics và vị trí của Việt Nam",
+  "level": 1,
+  "minutes": 9,
+  "body": "Robotics không chỉ là kỹ thuật mà còn là một ngành kinh tế với chuỗi giá trị riêng. Hiểu bức tranh này giúp bạn biết cơ hội nghề nghiệp nằm ở đâu, nhất là với người có nền product và kinh doanh.\n\n## Chuỗi giá trị của một con robot\n\nMột robot đến được tay khách hàng phải qua nhiều lớp:\n\n- **Linh kiện**: motor, hộp số, cảm biến, chip, pin. Đây là phần khó làm và tạo lợi thế lớn, ví dụ hộp số chính xác cho khớp robot chỉ vài nước làm tốt.\n- **Nhà sản xuất robot**: thiết kế và lắp ráp cánh tay, AMR, drone.\n- **Phần mềm và AI**: hệ điều hành robot, mô phỏng, mô hình nhận diện hình ảnh, phần mềm quản lý đội robot (fleet management, quản lý nhiều robot cùng lúc).\n- **System integrator** (đơn vị tích hợp hệ thống): công ty nhận đơn từ nhà máy, chọn robot, thiết kế dây chuyền, lắp đặt và bảo trì. Đây là mắt xích hay bị bỏ quên nhưng chiếm nhiều việc làm, vì mỗi nhà máy một kiểu.\n- **Khách hàng cuối**: nhà máy ô tô, điện tử, kho logistics, nông trại, bệnh viện.\n\n## Châu Á là trung tâm\n\nTheo các báo cáo hằng năm của Liên đoàn Robot Quốc tế (IFR), phần lớn robot công nghiệp mới lắp đặt trên thế giới nằm ở châu Á, và Trung Quốc là thị trường lớn nhất, chiếm khoảng một nửa số lắp đặt mới trong những năm gần đây. Một vài điểm chung, các con số cụ thể thay đổi theo từng năm:\n\n- **Nhật Bản**: lâu đời trong sản xuất cánh tay công nghiệp và linh kiện chính xác.\n- **Hàn Quốc**: có robot density (mật độ robot, số robot trên mỗi 10.000 công nhân) thuộc hàng cao nhất thế giới, nhờ ngành ô tô và điện tử.\n- **Trung Quốc**: vừa là nơi mua nhiều robot nhất, vừa có nhiều hãng nội địa đang lớn rất nhanh, từ drone, AMR đến robot bốn chân và humanoid giá rẻ hơn.\n- **Đông Nam Á**: Singapore và Thái Lan tự động hoá sớm, các nước khác đang tăng tốc khi chuỗi cung ứng dịch chuyển khỏi Trung Quốc.\n\n## Việt Nam đứng ở đâu\n\nViệt Nam hiện chủ yếu là nơi **sử dụng** robot hơn là nơi **sản xuất** robot. Robot xuất hiện nhiều trong các nhà máy điện tử, ô tô, thực phẩm có vốn nước ngoài, và ngày càng nhiều trong kho của các công ty logistics và thương mại điện tử. Drone nông nghiệp là mảng phát triển rõ. Một số tập đoàn và startup trong nước đã bắt đầu tự làm robot, kể cả công bố dự án robot hình người, nhưng quy mô còn nhỏ so với các nước đi trước.\n\nĐiều này nghĩa là gì với người muốn vào ngành:\n\n- Nhu cầu lớn nhất trước mắt nằm ở tích hợp, vận hành, bảo trì và tối ưu robot cho nhà máy, kho bãi.\n- Lương nhân công còn tương đối thấp nên bài toán đầu tư robot ở Việt Nam khác Hàn Quốc. Câu hỏi khách hàng hay hỏi là ROI (lợi tức đầu tư, bao lâu thì robot \"trả lại tiền\"). Người có nền tài chính và product rất hợp để trả lời câu này.\n- Phần mềm và AI cho robot là chỗ người Việt có thể làm việc remote cho công ty nước ngoài, giống cách nhiều kỹ sư phần mềm đang làm.\n\n## Xu hướng đáng theo dõi\n\nTính đến 2026, ba chủ đề nổi bật là: đưa mô hình AI lớn vào robot để chúng hiểu lệnh bằng ngôn ngữ tự nhiên, humanoid bước ra khỏi phòng thí nghiệm, và mô phỏng (simulation) để huấn luyện robot trên máy tính trước khi chạy thật. Cả ba đều đang chuyển động nhanh, nên hãy đọc tin với tâm thế tò mò nhưng tỉnh táo: demo đẹp chưa chắc đã là sản phẩm chạy ổn mỗi ngày.",
+  "terms": [
+   {
+    "en": "system integrator",
+    "vi": "đơn vị tích hợp, thiết kế và lắp đặt hệ thống robot cho khách hàng"
+   },
+   {
+    "en": "robot density",
+    "vi": "mật độ robot trên 10.000 công nhân"
+   },
+   {
+    "en": "fleet management",
+    "vi": "phần mềm quản lý nhiều robot cùng lúc"
+   },
+   {
+    "en": "ROI",
+    "vi": "lợi tức đầu tư, bao lâu khoản đầu tư hoàn vốn"
+   },
+   {
+    "en": "simulation",
+    "vi": "mô phỏng robot trên máy tính"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Vai trò của system integrator trong ngành robot là gì?",
+    "choices": [
+     "Sản xuất chip cho robot",
+     "Chọn robot, thiết kế và lắp đặt hệ thống phù hợp cho từng nhà máy",
+     "Bán robot đồ chơi",
+     "Viết luật về robot"
+    ],
+    "answer": 1,
+    "why": "Mỗi nhà máy một kiểu, nên cần đơn vị tích hợp biến robot chung chung thành dây chuyền chạy được."
+   },
+   {
+    "q": "Câu nào mô tả đúng nhất vị trí hiện tại của Việt Nam?",
+    "choices": [
+     "Là nước sản xuất robot công nghiệp lớn nhất thế giới",
+     "Gần như không có robot nào",
+     "Có mật độ robot cao nhất thế giới",
+     "Chủ yếu là nơi sử dụng robot, sản xuất robot trong nước mới bắt đầu"
+    ],
+    "answer": 3,
+    "why": "Robot có nhiều trong nhà máy vốn nước ngoài và kho logistics, còn sản xuất trong nước đang ở giai đoạn đầu."
+   },
+   {
+    "q": "Vì sao bài toán ROI của robot ở Việt Nam khác Hàn Quốc?",
+    "choices": [
+     "Lương nhân công thấp hơn nên robot cần lâu hơn để hoàn vốn so với thuê người",
+     "Robot ở Việt Nam miễn phí",
+     "Hàn Quốc cấm robot",
+     "Việt Nam không có điện"
+    ],
+    "answer": 0,
+    "why": "Robot thay thế chi phí nhân công; nhân công càng rẻ thì thời gian hoàn vốn càng dài, nên phải tính kỹ hơn."
+   },
+   {
+    "q": "Robot density đo cái gì?",
+    "choices": [
+     "Khối lượng của robot",
+     "Số khớp của cánh tay robot",
+     "Số robot trên mỗi 10.000 công nhân",
+     "Tốc độ tối đa của robot"
+    ],
+    "answer": 2,
+    "why": "Đây là chỉ số so sánh mức độ tự động hoá giữa các nước, không phụ thuộc quy mô dân số."
+   }
+  ],
+  "takeaway": "Chuỗi giá trị robot có nhiều lớp, châu Á là trung tâm, và cơ hội gần nhất ở Việt Nam nằm ở tích hợp, vận hành và phần mềm."
+ },
+ {
+  "id": "robo-04",
+  "track": "robo",
+  "unit": "Bodies and motion",
+  "order": 4,
+  "title": "Coordinate Frames",
+  "title_vi": "Hệ toạ độ và phép xoay",
+  "level": 2,
+  "minutes": 12,
+  "body": "Muốn robot gắp cái ly trên bàn, câu hỏi đầu tiên là: cái ly đang ở đâu? Và \"ở đâu\" luôn phải trả lời kèm một câu nữa: so với cái gì?\n\n## Coordinate frame là gì\n\nCoordinate frame (hệ toạ độ gắn với một vật) là một điểm gốc cộng với các trục x, y (và z trong không gian 3D). Trong một robot có rất nhiều frame cùng lúc:\n\n- World frame: gốc ở góc phòng hoặc góc nhà máy.\n- Base frame: gốc ở chân đế robot.\n- Camera frame: gốc ở ống kính camera, trục nhìn thẳng ra trước.\n- Tool frame: gốc ở đầu kẹp.\n\nVí dụ đời thường: bạn hẹn bạn bè ở quán cà phê. Bạn nói \"quán nằm bên phải mình 50 mét\". Câu này đúng với bạn, nhưng người đứng đối diện bạn sẽ thấy quán ở bên trái. Cùng một quán, toạ độ khác nhau tuỳ người nhìn. Camera thấy cái ly ở \"trước mặt 30 cm\", nhưng motor ở chân robot cần biết cái ly ở đâu so với chân đế.\n\n## Transform: đổi từ frame này sang frame khác\n\nTransform (phép biến đổi toạ độ) là công thức đổi toạ độ từ frame này sang frame khác. Trong mặt phẳng 2D, một transform gồm hai phần:\n\n- **Rotation** (phép xoay): frame này xoay một góc θ so với frame kia.\n- **Translation** (phép tịnh tiến): gốc frame này dời đi một đoạn (tx, ty).\n\nPhép xoay một điểm (x, y) quanh gốc một góc θ (ngược chiều kim đồng hồ) có công thức:\n\n- x' = x·cos θ - y·sin θ\n- y' = x·sin θ + y·cos θ\n\nThử với điểm (1, 0) xoay 90°: cos 90° = 0, sin 90° = 1, nên x' = 0, y' = 1. Điểm nằm trên trục x chuyển lên trục y, đúng như ta hình dung khi quay kim đồng hồ ngược lại một phần tư vòng.\n\nSau khi xoay, cộng thêm tịnh tiến: x'' = x' + tx, y'' = y' + ty. Vậy là đổi xong frame.\n\n## Góc tính bằng radian\n\nMáy tính thường dùng radian (đơn vị đo góc theo bán kính) thay vì độ. Một vòng tròn là 360° = 2π radian, nên 180° = π và 90° = π/2. Trong Python, math.cos và math.sin nhận radian, nên phải đổi bằng math.radians(goc_do). Quên bước này là lỗi kinh điển của người mới: robot quay sai hoàn toàn mà code vẫn chạy không báo lỗi.\n\n```\nimport math\ntheta = math.radians(90)\nprint(round(math.cos(theta), 3))  # 0.0\n```\n\n## Vì sao chuyện này quan trọng\n\nToàn bộ robotics đứng trên transform. Xe tự lái thấy người đi bộ qua camera, phải đổi sang frame của xe để biết người đó cách bao xa, rồi đổi sang frame bản đồ để lập đường đi. Cánh tay robot tính vị trí đầu kẹp bằng cách nối các transform của từng khớp lại với nhau, đó chính là bài forward kinematics ở bài sau. Trong 3D, người ta gói rotation và translation vào một ma trận 4x4 gọi là homogeneous transform, nhưng ý tưởng vẫn y hệt bản 2D bạn sắp tự viết.",
+  "terms": [
+   {
+    "en": "coordinate frame",
+    "vi": "hệ toạ độ gắn với một vật"
+   },
+   {
+    "en": "transform",
+    "vi": "phép đổi toạ độ giữa hai frame"
+   },
+   {
+    "en": "rotation",
+    "vi": "phép xoay"
+   },
+   {
+    "en": "translation",
+    "vi": "phép tịnh tiến, dời gốc"
+   },
+   {
+    "en": "radian",
+    "vi": "đơn vị đo góc, 180° = π radian"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Camera báo cái ly ở 'trước mặt 30 cm'. Vì sao motor ở chân robot chưa dùng ngay được con số này?",
+    "choices": [
+     "Vì camera luôn đo sai",
+     "Vì motor chỉ hiểu đơn vị inch",
+     "Vì robot không có chân đế",
+     "Vì đó là toạ độ trong camera frame, cần transform sang base frame"
+    ],
+    "answer": 3,
+    "why": "Cùng một vật có toạ độ khác nhau tuỳ frame. Phải đổi sang frame của chân đế thì motor mới tính được góc khớp."
+   },
+   {
+    "q": "Xoay điểm (0, 1) thêm 90° ngược chiều kim đồng hồ quanh gốc thì được điểm nào?",
+    "choices": [
+     "(1, 0)",
+     "(0, -1)",
+     "(-1, 0)",
+     "(0, 1)"
+    ],
+    "answer": 2,
+    "why": "x' = 0·0 - 1·1 = -1, y' = 0·1 + 1·0 = 0. Điểm trên trục y dương chuyển sang trục x âm."
+   },
+   {
+    "q": "Code dùng math.cos(90) để tính cos 90° và cho kết quả lạ. Lỗi nằm ở đâu?",
+    "choices": [
+     "math.cos chỉ nhận số âm",
+     "math.cos nhận radian, phải dùng math.cos(math.radians(90))",
+     "Python không tính được cos",
+     "Phải viết cos 90 trong ngoặc kép"
+    ],
+    "answer": 1,
+    "why": "90 bị hiểu là 90 radian, khoảng 5157 độ. Quên đổi đơn vị là lỗi phổ biến vì code vẫn chạy mà không báo lỗi."
+   },
+   {
+    "q": "Một transform 2D đầy đủ gồm những phần nào?",
+    "choices": [
+     "Một phép xoay và một phép tịnh tiến",
+     "Chỉ một phép phóng to",
+     "Chỉ màu sắc và kích thước",
+     "Một danh sách cảm biến"
+    ],
+    "answer": 0,
+    "why": "Frame mới có thể vừa xoay một góc vừa dời gốc đi một đoạn, nên transform gồm rotation và translation."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm rotate_point(x, y, theta_deg) xoay điểm (x, y) quanh gốc toạ độ một góc theta_deg (độ, ngược chiều kim đồng hồ) và trả về tuple (x_moi, y_moi). Dùng x' = x·cos θ - y·sin θ, y' = x·sin θ + y·cos θ, nhớ đổi độ sang radian. Ví dụ: rotate_point(1, 0, 90) trả về khoảng (0.0, 1.0); rotate_point(2, 0, 180) trả về khoảng (-2.0, 0.0).",
+   "starter": "import math\n\ndef rotate_point(x, y, theta_deg):\n    # TODO: convert degrees to radians, then apply the rotation formula\n    return (x, y)\n",
+   "solution": "import math\n\ndef rotate_point(x, y, theta_deg):\n    t = math.radians(theta_deg)\n    c, s = math.cos(t), math.sin(t)\n    return (x * c - y * s, x * s + y * c)\n",
+   "tests": "def close(a, b):\n    return abs(a[0] - b[0]) < 1e-6 and abs(a[1] - b[1]) < 1e-6\n\nassert close(rotate_point(1, 0, 90), (0, 1)), 'rotate_point(1, 0, 90) phải gần (0, 1)'\nassert close(rotate_point(2, 0, 180), (-2, 0)), 'rotate_point(2, 0, 180) phải gần (-2, 0)'\nassert close(rotate_point(3, 4, 0), (3, 4)), 'xoay 0 độ thì điểm giữ nguyên'\nassert close(rotate_point(0, 0, 45), (0, 0)), 'gốc toạ độ xoay góc nào cũng vẫn là gốc'\nassert close(rotate_point(1, 1, -90), (1, -1)), 'góc âm là xoay theo chiều kim đồng hồ: (1, 1) -> (1, -1)'\nassert close(rotate_point(1, 0, 360), (1, 0)), 'xoay đủ 360 độ thì quay về chỗ cũ'\n",
+   "hint": "math.cos và math.sin nhận radian. Đổi góc bằng math.radians trước, rồi tính hai toạ độ mới theo công thức trong đề."
+  },
+  "takeaway": "Vị trí luôn phải gắn với một frame, và transform (xoay rồi tịnh tiến) là cách đổi toạ độ giữa các frame."
+ },
+ {
+  "id": "robo-05",
+  "track": "robo",
+  "unit": "Bodies and motion",
+  "order": 5,
+  "title": "Degrees of Freedom",
+  "title_vi": "Bậc tự do: robot cử động được bao nhiêu kiểu",
+  "level": 1,
+  "minutes": 8,
+  "body": "Khi đọc thông số một cánh tay robot, bạn sẽ gặp dòng \"6-DOF\". DOF là viết tắt của degrees of freedom (bậc tự do, số cách độc lập mà một vật có thể chuyển động). Hiểu khái niệm này giúp bạn hiểu ngay robot làm được gì và không làm được gì.\n\n## Bậc tự do của một vật tự do\n\nCầm một cái điện thoại lên. Bạn có thể:\n\n- Dời nó sang trái phải (trục x), lên xuống (trục z), ra trước ra sau (trục y): 3 kiểu tịnh tiến.\n- Xoay nó quanh ba trục đó: nghiêng sang bên (roll, lăn), cúi lên cúi xuống (pitch, chúc ngóc), quay như kim la bàn (yaw, xoay hướng): 3 kiểu xoay.\n\nTổng cộng 6 bậc tự do. Mô tả đầy đủ vị trí và hướng của một vật trong không gian 3D cần đúng 6 con số. Cả cụm vị trí cộng hướng này gọi là pose (tư thế: vị trí và hướng của vật).\n\nTrên mặt phẳng 2D, như một con robot hút bụi trên sàn nhà, chỉ cần 3 con số: x, y và góc quay θ.\n\n## Bậc tự do của robot\n\nVới robot, DOF thường bằng số khớp mà motor điều khiển độc lập. Có hai kiểu khớp chính:\n\n- Revolute joint (khớp xoay): quay quanh một trục, như khuỷu tay người. Phổ biến nhất trên cánh tay robot.\n- Prismatic joint (khớp trượt): trượt thẳng, như ngăn kéo hoặc cần cẩu nâng hạ.\n\nVì sao cánh tay công nghiệp hay có 6 khớp? Vì muốn đặt đầu kẹp vào **bất kỳ** vị trí nào với **bất kỳ** hướng nào trong vùng làm việc, robot cần ít nhất 6 bậc tự do, khớp với 6 con số của pose. Ít hơn thì có những tư thế không đạt được. Ví dụ robot 4 khớp kiểu SCARA rất nhanh trong việc gắp linh kiện từ trên xuống trên bàn phẳng, nhưng không thể nghiêng đầu kẹp để vặn vít xiên.\n\n## Nhiều hơn 6 thì sao\n\nCánh tay người, tính từ vai tới cổ tay, có khoảng 7 bậc tự do. Thử giữ cố định lòng bàn tay trên mặt bàn: bạn vẫn xoay được khuỷu tay lên xuống. Đó là redundancy (dư bậc tự do): cùng một tư thế của tay có vô số cách đặt các khớp. Robot 7 khớp cũng vậy, giúp nó luồn qua vật cản hoặc tránh va vào người, đổi lại việc tính toán khó hơn.\n\n## Ví dụ ngoài cánh tay\n\n- Ô tô đi trên đường có 3 bậc tự do trên mặt phẳng (x, y, hướng), nhưng chỉ điều khiển trực tiếp được 2 (ga và vô lăng). Đó là lý do bạn không thể cho xe đi ngang sang trái để đỗ, phải lùi tới lui nhiều lần.\n- Drone có 6 bậc tự do trong không trung nhưng chỉ có 4 cánh quạt. Nó phải nghiêng thân để bay sang ngang.\n- Humanoid có thể có vài chục bậc tự do, tính cả hai tay, hai chân, eo, cổ và các ngón tay. Càng nhiều khớp càng linh hoạt, nhưng càng khó điều khiển và càng tốn tiền.\n\nKhi chọn robot cho một công việc, người ta luôn hỏi: việc này cần bao nhiêu bậc tự do? Chọn thừa thì tốn tiền và phức tạp, chọn thiếu thì không làm được việc.",
+  "terms": [
+   {
+    "en": "degrees of freedom (DOF)",
+    "vi": "bậc tự do, số cách chuyển động độc lập"
+   },
+   {
+    "en": "pose",
+    "vi": "tư thế, gồm vị trí và hướng"
+   },
+   {
+    "en": "roll, pitch, yaw",
+    "vi": "ba góc xoay: lăn, chúc ngóc, xoay hướng"
+   },
+   {
+    "en": "revolute joint",
+    "vi": "khớp xoay"
+   },
+   {
+    "en": "prismatic joint",
+    "vi": "khớp trượt thẳng"
+   },
+   {
+    "en": "redundancy",
+    "vi": "dư bậc tự do, nhiều cách đặt khớp cho cùng một tư thế"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Vì sao cánh tay công nghiệp đa năng thường có 6 khớp?",
+    "choices": [
+     "Vì 6 là con số may mắn",
+     "Pose trong 3D cần 6 con số, nên cần ít nhất 6 bậc tự do để đặt đầu kẹp ở mọi vị trí và hướng",
+     "Vì motor chỉ bán theo bộ 6 cái",
+     "Vì robot ít khớp hơn sẽ nặng hơn"
+    ],
+    "answer": 1,
+    "why": "3 tịnh tiến cộng 3 xoay là 6 con số. Muốn đạt mọi tư thế thì cần ít nhất ngần ấy bậc tự do độc lập."
+   },
+   {
+    "q": "Một robot hút bụi trên sàn nhà cần mấy con số để mô tả pose?",
+    "choices": [
+     "3: x, y và góc quay",
+     "1: tốc độ",
+     "6: như vật trong không gian 3D",
+     "12"
+    ],
+    "answer": 0,
+    "why": "Trên mặt phẳng, chỉ cần vị trí x, y và hướng θ là biết robot ở đâu và quay về phía nào."
+   },
+   {
+    "q": "Vì sao ô tô không thể đi ngang thẳng vào chỗ đỗ?",
+    "choices": [
+     "Vì luật giao thông cấm",
+     "Vì bánh xe quá nhỏ",
+     "Vì xe không có cảm biến",
+     "Xe có 3 bậc tự do trên mặt phẳng nhưng chỉ điều khiển trực tiếp được 2"
+    ],
+    "answer": 3,
+    "why": "Ga và vô lăng không tạo được chuyển động ngang trực tiếp, nên phải tiến lùi nhiều lần để đổi vị trí."
+   },
+   {
+    "q": "Redundancy ở robot 7 khớp mang lại lợi ích gì?",
+    "choices": [
+     "Robot không cần điện",
+     "Robot chạy nhanh gấp đôi",
+     "Cùng một tư thế đầu kẹp có nhiều cách đặt khớp, giúp né vật cản",
+     "Robot không cần lập trình"
+    ],
+    "answer": 2,
+    "why": "Bậc tự do dư cho robot thêm lựa chọn, ví dụ nâng khuỷu tay lên để tránh va vào thứ khác, đổi lại tính toán khó hơn."
+   }
+  ],
+  "takeaway": "DOF là số kiểu chuyển động độc lập; pose 3D cần 6 con số nên cánh tay đa năng thường có 6 khớp."
+ },
+ {
+  "id": "robo-06",
+  "track": "robo",
+  "unit": "Bodies and motion",
+  "order": 6,
+  "title": "Forward Kinematics",
+  "title_vi": "Biết góc khớp, tính ra đầu tay ở đâu",
+  "level": 2,
+  "minutes": 12,
+  "body": "Kinematics (động học, nghiên cứu chuyển động mà chưa tính tới lực) trả lời câu hỏi: các khớp đặt ở góc này thì đầu tay robot nằm ở đâu? Bài này đi theo chiều xuôi, gọi là forward kinematics (động học thuận): biết góc các khớp, tính ra vị trí đầu tay.\n\n## Cánh tay 2 khớp trên mặt phẳng\n\nHãy tưởng tượng cánh tay của bạn đặt trên mặt bàn, nhìn từ trên xuống:\n\n- Vai là khớp 1, gắn cố định ở gốc toạ độ (0, 0).\n- Cánh tay trên là link 1 (đoạn nối cứng giữa hai khớp), dài l1.\n- Khuỷu tay là khớp 2.\n- Cẳng tay là link 2, dài l2. Cuối cẳng tay là bàn tay, chính là end effector.\n\nGóc θ1 là góc của link 1 so với trục x. Góc θ2 là góc của link 2 so với hướng của link 1, tức là góc khuỷu tay gập thêm. Đây là điểm người mới hay nhầm: θ2 là góc **tương đối**, không phải so với trục x.\n\n## Tính từng đoạn một\n\nBước 1, vị trí khuỷu tay. Link 1 xuất phát từ gốc, dài l1, hướng theo góc θ1:\n\n- x_khuyu = l1·cos θ1\n- y_khuyu = l1·sin θ1\n\nBước 2, vị trí bàn tay. Link 2 xuất phát từ khuỷu, dài l2, nhưng hướng thực của nó so với trục x là θ1 + θ2 (góc vai cộng góc khuỷu):\n\n- x = l1·cos θ1 + l2·cos(θ1 + θ2)\n- y = l1·sin θ1 + l2·sin(θ1 + θ2)\n\nThử số: l1 = l2 = 1, θ1 = 90°, θ2 = -90°. Khuỷu nằm ở (0, 1). Hướng link 2 là 0°, nên bàn tay ở (1, 1). Hình dung: cánh tay trên giơ thẳng lên, cẳng tay gập ngang sang phải. Đúng như hình.\n\n## Đây chính là nối các transform\n\nNhìn lại bài trước: mỗi khớp là một phép xoay, mỗi link là một phép tịnh tiến. Forward kinematics chỉ là nối các transform lại: xoay θ1, đi l1, xoay thêm θ2, đi l2. Robot 6 khớp ngoài đời làm y hệt, chỉ là 6 lần thay vì 2 và trong 3D. Người ta có cách ghi chuẩn hoá các thông số này (ví dụ quy ước Denavit-Hartenberg), nhưng ý tưởng gốc vẫn là nối từng đoạn.\n\n## Workspace\n\nTập hợp mọi điểm mà đầu tay chạm tới được gọi là workspace (vùng làm việc). Với cánh tay 2 link, khi duỗi thẳng thì đầu tay cách gốc l1 + l2, khi gập hết cỡ thì cách gốc |l1 - l2|. Vùng làm việc là một hình vành khuyên giữa hai vòng tròn đó. Điểm nào ngoài vành khuyên thì robot không với tới, dù đặt góc thế nào.\n\nForward kinematics luôn có đúng một đáp án: cho góc khớp, vị trí đầu tay là duy nhất. Chiều ngược lại thì không đơn giản như vậy, và đó là bài sau.\n\nTrong lab robot-arm, bạn kéo hai góc θ1, θ2 và xem đầu tay di chuyển. Thử để ý xem khi nào đầu tay chạm mép ngoài và mép trong của workspace.",
+  "terms": [
+   {
+    "en": "kinematics",
+    "vi": "động học, chuyển động khi chưa xét lực"
+   },
+   {
+    "en": "forward kinematics",
+    "vi": "động học thuận: từ góc khớp tính ra vị trí đầu tay"
+   },
+   {
+    "en": "link",
+    "vi": "đoạn nối cứng giữa hai khớp"
+   },
+   {
+    "en": "joint angle",
+    "vi": "góc khớp"
+   },
+   {
+    "en": "workspace",
+    "vi": "vùng làm việc, mọi điểm đầu tay với tới được"
+   }
+  ],
+  "lab": "robot-arm",
+  "quiz": [
+   {
+    "q": "Với l1 = l2 = 1, θ1 = 0°, θ2 = 90°, đầu tay ở đâu?",
+    "choices": [
+     "(0, 2)",
+     "(2, 0)",
+     "(1, 1)",
+     "(1, 0)"
+    ],
+    "answer": 2,
+    "why": "Khuỷu ở (1, 0). Hướng link 2 là 0° + 90° = 90°, nên đầu tay đi lên thêm 1: (1, 1)."
+   },
+   {
+    "q": "Vì sao trong công thức link 2 dùng cos(θ1 + θ2) chứ không phải cos(θ2)?",
+    "choices": [
+     "Vì θ2 luôn bằng 0",
+     "Vì cos không cộng được",
+     "Vì link 2 luôn dài hơn link 1",
+     "Vì θ2 đo so với hướng link 1, hướng thật của link 2 là tổng hai góc"
+    ],
+    "answer": 3,
+    "why": "Khuỷu tay gập thêm θ2 so với cánh tay trên, nên so với trục x thì cẳng tay nghiêng θ1 + θ2."
+   },
+   {
+    "q": "Cánh tay có l1 = 3, l2 = 1. Điểm nào nằm ngoài workspace?",
+    "choices": [
+     "Điểm cách gốc 1",
+     "Điểm cách gốc 2",
+     "Điểm cách gốc 3",
+     "Điểm cách gốc 4"
+    ],
+    "answer": 0,
+    "why": "Workspace là vành khuyên từ |3 - 1| = 2 tới 3 + 1 = 4. Điểm cách gốc 1 nằm trong lỗ giữa, không với tới được."
+   },
+   {
+    "q": "Câu nào đúng về forward kinematics?",
+    "choices": [
+     "Luôn có hai đáp án",
+     "Cho góc khớp thì vị trí đầu tay là duy nhất",
+     "Chỉ tính được khi robot đang đứng yên hoàn toàn",
+     "Cần biết khối lượng của robot"
+    ],
+    "answer": 1,
+    "why": "Đi xuôi từ góc ra vị trí luôn chỉ có một kết quả. Kinematics cũng không cần khối lượng vì chưa xét lực."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm forward_kinematics(l1, l2, theta1_deg, theta2_deg) cho cánh tay 2 link trên mặt phẳng, vai ở gốc (0, 0). theta1_deg là góc link 1 so với trục x, theta2_deg là góc khuỷu so với hướng link 1 (đơn vị độ). Trả về tuple (x, y) của đầu tay theo công thức x = l1·cos θ1 + l2·cos(θ1 + θ2), y = l1·sin θ1 + l2·sin(θ1 + θ2). Ví dụ: forward_kinematics(1, 1, 0, 0) -> (2.0, 0.0); forward_kinematics(1, 1, 90, -90) -> khoảng (1.0, 1.0).",
+   "starter": "import math\n\ndef forward_kinematics(l1, l2, theta1_deg, theta2_deg):\n    # TODO: compute elbow position, then add the second link\n    return (0.0, 0.0)\n",
+   "solution": "import math\n\ndef forward_kinematics(l1, l2, theta1_deg, theta2_deg):\n    t1 = math.radians(theta1_deg)\n    t12 = math.radians(theta1_deg + theta2_deg)\n    x = l1 * math.cos(t1) + l2 * math.cos(t12)\n    y = l1 * math.sin(t1) + l2 * math.sin(t12)\n    return (x, y)\n",
+   "tests": "def close(a, b):\n    return abs(a[0] - b[0]) < 1e-6 and abs(a[1] - b[1]) < 1e-6\n\nassert close(forward_kinematics(1, 1, 0, 0), (2, 0)), 'duỗi thẳng theo trục x thì đầu tay ở (2, 0)'\nassert close(forward_kinematics(1, 1, 90, -90), (1, 1)), 'tay trên dựng đứng, cẳng tay gập ngang: (1, 1)'\nassert close(forward_kinematics(2, 1, 0, 180), (1, 0)), 'gập ngược hết cỡ thì đầu tay cách gốc |l1 - l2| = 1'\nassert close(forward_kinematics(1, 1, 90, 0), (0, 2)), 'duỗi thẳng lên trên thì đầu tay ở (0, 2)'\nassert close(forward_kinematics(1, 1, 0, 90), (1, 1)), 'theta2 là góc tương đối: (0, 90) cho (1, 1)'\nassert close(forward_kinematics(1.5, 0.5, 180, 0), (-2, 0)), 'duỗi sang trái thì đầu tay ở (-2, 0)'\n",
+   "hint": "Hướng thật của link 2 so với trục x là θ1 + θ2, không phải θ2. Đổi cả hai góc sang radian trước khi gọi cos, sin."
+  },
+  "takeaway": "Forward kinematics nối từng link: x = l1·cos θ1 + l2·cos(θ1 + θ2), y tương tự với sin."
+ },
+ {
+  "id": "robo-07",
+  "track": "robo",
+  "unit": "Bodies and motion",
+  "order": 7,
+  "title": "Inverse Kinematics",
+  "title_vi": "Muốn đầu tay tới đây thì khớp phải xoay bao nhiêu",
+  "level": 3,
+  "minutes": 15,
+  "body": "Trong thực tế, ta hiếm khi bắt đầu từ góc khớp. Ta bắt đầu từ mục tiêu: cái ly ở toạ độ (1.2, 0.8), hãy đưa tay tới đó. Bài toán ngược này gọi là inverse kinematics, viết tắt IK (động học nghịch: từ vị trí mong muốn tính ra góc khớp).\n\n## Vì sao khó hơn chiều xuôi\n\nForward kinematics luôn có đúng một đáp án. IK thì có thể:\n\n- **Hai đáp án**: với cánh tay 2 khớp, cùng một điểm có thể tới bằng tư thế khuỷu cong lên (elbow-up) hoặc khuỷu cong xuống (elbow-down). Thử chạm ngón tay vào một điểm trên bàn: bạn có thể nâng khuỷu lên hoặc hạ khuỷu xuống, ngón tay vẫn ở đúng chỗ.\n- **Một đáp án**: khi điểm nằm đúng mép workspace, tay duỗi thẳng hoặc gập hết cỡ.\n- **Không có đáp án**: khi điểm nằm ngoài workspace.\n- **Vô số đáp án**: với robot dư bậc tự do như robot 7 khớp.\n\n## Giải bằng law of cosines\n\nVới cánh tay 2 link, ta giải được bằng hình học cấp 3. Nối vai, khuỷu và đầu tay thành một tam giác. Ba cạnh là l1, l2 và d, trong đó d là khoảng cách từ vai tới điểm đích: d² = x² + y².\n\nLaw of cosines (định lý cos trong tam giác) cho ta:\n\n- cos θ2 = (x² + y² - l1² - l2²) / (2·l1·l2)\n\nNếu kết quả lớn hơn 1 hoặc nhỏ hơn -1 thì điểm nằm ngoài tầm với, không có lời giải. Ngược lại, θ2 = acos(giá trị đó). Lấy θ2 dương là một tư thế, lấy θ2 âm là tư thế kia.\n\nCó θ2 rồi, tính θ1 bằng hai góc:\n\n- Góc từ vai nhìn tới đích: atan2(y, x).\n- Góc lệch do khuỷu gập gây ra: atan2(l2·sin θ2, l1 + l2·cos θ2).\n- θ1 = góc thứ nhất trừ góc thứ hai.\n\nHàm atan2(y, x) (arctan hai đối số) trả về góc của điểm (x, y) và tự biết điểm đó ở góc phần tư nào, an toàn hơn atan(y/x) vốn chia cho 0 khi x = 0 và nhầm dấu ở phía bên trái trục toạ độ.\n\n## Kiểm tra bằng forward kinematics\n\nMẹo của dân trong nghề: giải IK xong, đưa góc vừa tìm vào forward kinematics. Nếu ra đúng điểm đích thì lời giải đúng. Đây cũng là cách viết test cho code IK.\n\n```\ncos_t2 = (x*x + y*y - l1*l1 - l2*l2) / (2*l1*l2)\nif cos_t2 > 1 or cos_t2 < -1:\n    print(\"out of reach\")\n```\n\nMột chi tiết thực tế: do sai số dấu phẩy động, điểm nằm đúng mép có thể cho cos θ2 = 1.0000000002. Code tốt sẽ kẹp giá trị về đoạn [-1, 1] khi nó chỉ lệch rất nhỏ.\n\n## Ngoài đời thì sao\n\nRobot 6 khớp có những công thức giải tích riêng cho từng kiểu thiết kế, còn robot phức tạp hơn thường dùng phương pháp số: đoán một bộ góc, xem đầu tay lệch bao nhiêu, chỉnh dần cho tới khi đủ gần. Ý tưởng này giống gradient descent bên track ML: đi từng bước nhỏ theo hướng làm sai số giảm. Ngoài ra robot còn phải chọn giữa các đáp án sao cho khớp không vượt giới hạn, không va vào chính mình và chuyển động mượt từ tư thế hiện tại.\n\nTrong lab robot-arm, chuyển sang chế độ IK, kéo điểm đích và quan sát hai tư thế elbow-up và elbow-down. Thử kéo điểm ra ngoài workspace xem chuyện gì xảy ra.",
+  "terms": [
+   {
+    "en": "inverse kinematics (IK)",
+    "vi": "động học nghịch: từ vị trí mong muốn tính ra góc khớp"
+   },
+   {
+    "en": "law of cosines",
+    "vi": "định lý cos trong tam giác"
+   },
+   {
+    "en": "elbow-up / elbow-down",
+    "vi": "hai tư thế khuỷu cong lên hoặc cong xuống"
+   },
+   {
+    "en": "atan2",
+    "vi": "hàm arctan hai đối số, trả góc đúng góc phần tư"
+   },
+   {
+    "en": "reachability",
+    "vi": "điểm có nằm trong tầm với hay không"
+   }
+  ],
+  "lab": "robot-arm",
+  "quiz": [
+   {
+    "q": "Cánh tay 2 khớp cần chạm một điểm ở giữa workspace. Thường có bao nhiêu bộ góc khớp làm được?",
+    "choices": [
+     "Chỉ một",
+     "Không có",
+     "Luôn vô số",
+     "Hai: elbow-up và elbow-down"
+    ],
+    "answer": 3,
+    "why": "Khuỷu có thể cong lên hoặc cong xuống mà đầu tay vẫn ở cùng chỗ, nên IK của tay 2 khớp thường có hai nghiệm."
+   },
+   {
+    "q": "Tính ra cos θ2 = 1.7. Điều đó nghĩa là gì?",
+    "choices": [
+     "Robot cần quay nhanh hơn",
+     "Điểm đích nằm ngoài tầm với, không có lời giải",
+     "Có ba nghiệm",
+     "Phải đổi sang độ"
+    ],
+    "answer": 1,
+    "why": "Cos của một góc chỉ nằm trong [-1, 1]. Giá trị 1.7 nghĩa là tam giác vai, khuỷu, đích không thể tồn tại."
+   },
+   {
+    "q": "Vì sao nên dùng atan2(y, x) thay cho atan(y / x)?",
+    "choices": [
+     "atan2 nhanh hơn gấp 10 lần",
+     "atan không có trong Python",
+     "atan2 xử lý được x = 0 và trả góc đúng góc phần tư",
+     "atan2 trả kết quả bằng độ"
+    ],
+    "answer": 2,
+    "why": "atan(y/x) chia cho 0 khi x = 0 và không phân biệt được (1, 1) với (-1, -1). atan2 dùng dấu của cả hai để ra góc đúng."
+   },
+   {
+    "q": "Cách tốt để kiểm tra code IK của bạn là gì?",
+    "choices": [
+     "Đưa góc tìm được vào forward kinematics xem có ra lại điểm đích không",
+     "Chạy code thật nhiều lần",
+     "Đổi tên biến",
+     "In ra màn hình rồi nhìn"
+    ],
+    "answer": 0,
+    "why": "Forward kinematics dễ và chắc chắn, nên dùng nó làm 'đáp án' để kiểm tra chiều ngược là cách chuẩn trong nghề."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm inverse_kinematics(l1, l2, x, y) cho cánh tay 2 link, vai ở gốc. Trả về tuple (theta1_deg, theta2_deg) bằng độ, chọn nghiệm có theta2 >= 0. Nếu điểm (x, y) ngoài tầm với thì trả về None. Các bước: cos θ2 = (x² + y² - l1² - l2²) / (2·l1·l2); nếu lệch khỏi [-1, 1] quá 1e-9 thì trả None, nếu lệch rất ít thì kẹp về [-1, 1]; θ2 = acos(...); θ1 = atan2(y, x) - atan2(l2·sin θ2, l1 + l2·cos θ2). Ví dụ: inverse_kinematics(1, 1, 2, 0) -> (0.0, 0.0); inverse_kinematics(1, 1, 5, 0) -> None. Hàm forward_kinematics đã có sẵn trong starter để bạn tự kiểm tra.",
+   "starter": "import math\n\ndef forward_kinematics(l1, l2, theta1_deg, theta2_deg):\n    t1 = math.radians(theta1_deg)\n    t12 = math.radians(theta1_deg + theta2_deg)\n    return (l1 * math.cos(t1) + l2 * math.cos(t12), l1 * math.sin(t1) + l2 * math.sin(t12))\n\ndef inverse_kinematics(l1, l2, x, y):\n    # TODO: law of cosines for theta2, then atan2 for theta1\n    # return None when the point is out of reach\n    return (0.0, 0.0)\n",
+   "solution": "import math\n\ndef forward_kinematics(l1, l2, theta1_deg, theta2_deg):\n    t1 = math.radians(theta1_deg)\n    t12 = math.radians(theta1_deg + theta2_deg)\n    return (l1 * math.cos(t1) + l2 * math.cos(t12), l1 * math.sin(t1) + l2 * math.sin(t12))\n\ndef inverse_kinematics(l1, l2, x, y):\n    c2 = (x * x + y * y - l1 * l1 - l2 * l2) / (2 * l1 * l2)\n    if c2 > 1 + 1e-9 or c2 < -1 - 1e-9:\n        return None\n    c2 = max(-1.0, min(1.0, c2))\n    t2 = math.acos(c2)\n    t1 = math.atan2(y, x) - math.atan2(l2 * math.sin(t2), l1 + l2 * math.cos(t2))\n    return (math.degrees(t1), math.degrees(t2))\n",
+   "tests": "def close(a, b):\n    return abs(a[0] - b[0]) < 1e-6 and abs(a[1] - b[1]) < 1e-6\n\nr = inverse_kinematics(1, 1, 2, 0)\nassert r is not None and close(r, (0, 0)), 'điểm (2, 0) với l1 = l2 = 1 phải cho góc (0, 0)'\nassert inverse_kinematics(1, 1, 5, 0) is None, 'điểm (5, 0) ngoài tầm với phải trả None'\nassert inverse_kinematics(2, 0.5, 0.5, 0) is None, 'điểm quá gần gốc (trong lỗ vành khuyên) phải trả None'\nr = inverse_kinematics(1, 1, 1, 1)\nassert r is not None and r[1] >= 0, 'phải trả nghiệm có theta2 >= 0'\nassert close(forward_kinematics(1, 1, r[0], r[1]), (1, 1)), 'đưa góc vào forward_kinematics phải ra lại (1, 1)'\nr = inverse_kinematics(1.5, 1.0, -0.8, 1.2)\nassert r is not None and close(forward_kinematics(1.5, 1.0, r[0], r[1]), (-0.8, 1.2)), 'điểm bên trái trục y cũng phải giải đúng'\n",
+   "hint": "Tính cos θ2 trước và kiểm tra tầm với. Dùng math.acos cho θ2, math.atan2 cho hai góc của θ1, cuối cùng đổi radian sang độ bằng math.degrees."
+  },
+  "takeaway": "Inverse kinematics đi từ vị trí đích ra góc khớp, có thể có nhiều, một hoặc không có nghiệm; tay 2 khớp giải được bằng định lý cos."
+ },
+ {
+  "id": "robo-08",
+  "track": "robo",
+  "unit": "Bodies and motion",
+  "order": 8,
+  "title": "Motors and Actuators",
+  "title_vi": "Motor, servo và các cơ bắp của robot",
+  "level": 1,
+  "minutes": 10,
+  "body": "Nếu cảm biến là giác quan và máy tính là bộ não, thì actuator là cơ bắp của robot. Chọn sai actuator thì thuật toán hay đến đâu robot cũng không làm được việc.\n\n## Các loại motor điện phổ biến\n\n- **DC motor** (motor một chiều): cấp điện là quay, điện áp càng cao quay càng nhanh. Rẻ, đơn giản, có trong đồ chơi và quạt nhỏ. Nhược điểm: tự nó không biết mình đang ở góc nào.\n- **Brushless DC motor**, gọi tắt BLDC (motor một chiều không chổi than): bền hơn, hiệu suất cao hơn, dùng trong drone, xe điện, khớp robot hiện đại. Cần mạch điều khiển riêng để đảo dòng điện đúng lúc.\n- **Stepper motor** (motor bước): quay theo từng bước nhỏ cố định, ví dụ 200 bước một vòng. Ra lệnh \"đi 50 bước\" là nó quay đúng một phần tư vòng mà không cần đo lại, miễn tải không quá nặng. Hay gặp trong máy in 3D và máy CNC.\n- **Servo motor**: thực chất là motor cộng cảm biến vị trí cộng mạch điều khiển đóng gói chung. Bạn ra lệnh \"quay tới 45°\", servo tự đo góc hiện tại và tự chỉnh cho tới khi đúng. Servo đồ chơi giá vài đô, servo công nghiệp có thể đắt hơn rất nhiều lần.\n\nServo chính là một vòng lặp sense-think-act thu nhỏ nằm trong một cái hộp. Ý tưởng điều khiển vòng kín bên trong nó, thường là PID controller (bộ điều khiển tính lệnh dựa trên sai số hiện tại, sai số tích luỹ và tốc độ thay đổi sai số), sẽ được học kỹ ở bài sau.\n\n## Hộp số: đổi tốc độ lấy lực\n\nMotor điện thường quay rất nhanh nhưng yếu. Khớp robot thì cần quay chậm nhưng khoẻ. Gearbox (hộp số) giải quyết chuyện này: tỉ số truyền 100:1 nghĩa là motor quay 100 vòng thì khớp quay 1 vòng, nhưng torque (mô men xoắn, \"độ khoẻ\" khi vặn xoay) tăng gần 100 lần. Giống xe máy về số 1 khi leo dốc: bánh quay chậm mà khoẻ.\n\nĐổi lại, hộp số có backlash (độ rơ, khe hở nhỏ giữa các bánh răng) làm khớp lắc lư một chút, và làm khớp \"cứng\" khi bị đẩy từ ngoài. Hộp số chính xác ít rơ là linh kiện đắt và khó làm trong ngành robot.\n\n## Ngoài motor điện\n\n- **Hydraulic actuator** (truyền động thuỷ lực): dùng dầu áp suất cao, cực khoẻ, có trong máy xúc và một số robot cũ rất mạnh. Nặng, có thể rò dầu.\n- **Pneumatic actuator** (truyền động khí nén): dùng khí nén, nhanh và rẻ, hay gặp ở kẹp gắp đóng mở trong nhà máy. Khó dừng chính xác ở giữa chừng.\n- **Soft actuator**: làm bằng vật liệu mềm, phồng lên khi bơm khí, dùng để gắp đồ dễ vỡ như trái cây, trứng.\n\n## Ba con số cần hỏi\n\nKhi đọc thông số một actuator, hãy để ý:\n\n- Torque hoặc lực tối đa: nó nâng được bao nhiêu.\n- Tốc độ: nó quay hoặc di chuyển nhanh cỡ nào.\n- Độ chính xác và độ lặp lại: dừng đúng chỗ tới mức nào, và lặp lại 1000 lần có cùng chỗ không.\n\nBa con số này luôn giằng co nhau với giá tiền, khối lượng và mức tiêu thụ pin. Thiết kế robot phần lớn là chọn điểm cân bằng giữa chúng cho đúng công việc.",
+  "terms": [
+   {
+    "en": "DC motor",
+    "vi": "motor điện một chiều"
+   },
+   {
+    "en": "stepper motor",
+    "vi": "motor bước, quay theo từng bước cố định"
+   },
+   {
+    "en": "servo motor",
+    "vi": "motor có sẵn cảm biến vị trí và mạch tự chỉnh góc"
+   },
+   {
+    "en": "gearbox",
+    "vi": "hộp số, đổi tốc độ lấy lực"
+   },
+   {
+    "en": "torque",
+    "vi": "mô men xoắn, độ khoẻ khi vặn xoay"
+   },
+   {
+    "en": "backlash",
+    "vi": "độ rơ giữa các bánh răng"
+   },
+   {
+    "en": "PID controller",
+    "vi": "bộ điều khiển vòng kín dựa trên sai số"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Bạn cần một khớp nhận lệnh 'quay tới 45°' rồi tự giữ ở đó. Loại nào hợp nhất?",
+    "choices": [
+     "Servo motor",
+     "DC motor trần không cảm biến",
+     "Bóng đèn",
+     "Pin"
+    ],
+    "answer": 0,
+    "why": "Servo có sẵn cảm biến vị trí và mạch điều khiển, tự đo và chỉnh cho tới khi đạt góc yêu cầu."
+   },
+   {
+    "q": "Hộp số 50:1 gắn vào motor làm thay đổi điều gì?",
+    "choices": [
+     "Khớp quay nhanh hơn 50 lần",
+     "Motor tốn ít điện hơn 50 lần",
+     "Khớp quay chậm hơn khoảng 50 lần nhưng torque lớn hơn nhiều",
+     "Không thay đổi gì"
+    ],
+    "answer": 2,
+    "why": "Hộp số đổi tốc độ lấy lực, giống về số thấp khi leo dốc."
+   },
+   {
+    "q": "Nhà máy cần kẹp gắp đóng mở thật nhanh, rẻ, chỉ có hai trạng thái mở và đóng. Lựa chọn hợp lý là gì?",
+    "choices": [
+     "Hydraulic actuator cỡ lớn",
+     "Pneumatic actuator dùng khí nén",
+     "Humanoid",
+     "Stepper motor 10.000 bước một vòng"
+    ],
+    "answer": 1,
+    "why": "Khí nén nhanh, rẻ và hợp với việc chỉ cần đóng hoặc mở, không cần dừng chính xác giữa chừng."
+   },
+   {
+    "q": "Backlash gây ra vấn đề gì?",
+    "choices": [
+     "Robot hết pin nhanh hơn",
+     "Camera bị mờ",
+     "Robot không kết nối được mạng",
+     "Khớp có khe hở nhỏ nên vị trí đầu tay kém chính xác"
+    ],
+    "answer": 3,
+    "why": "Khe hở giữa bánh răng làm khớp lắc lư một chút, sai lệch này cộng dồn ra tới đầu tay."
+   }
+  ],
+  "takeaway": "Actuator là cơ bắp của robot; servo là motor có vòng kín bên trong, và hộp số đổi tốc độ lấy lực."
+ },
+ {
+  "id": "robo-09",
+  "track": "robo",
+  "unit": "Bodies and motion",
+  "order": 9,
+  "title": "Robot Dynamics",
+  "title_vi": "Động lực học bằng lời thường",
+  "level": 2,
+  "minutes": 10,
+  "body": "Kinematics chỉ hỏi \"đi tới đâu\". Dynamics (động lực học, nghiên cứu chuyển động có tính tới lực, khối lượng và quán tính) hỏi thêm: \"cần bao nhiêu lực để đi tới đó, và đi nhanh cỡ nào thì an toàn\". Bài này không có công thức nặng, chỉ có trực giác, vì trực giác này là thứ bạn cần nhất khi nói chuyện với kỹ sư.\n\n## Ba ý tưởng nền của Newton\n\n- **Muốn đổi chuyển động thì cần lực**. F = m·a: lực bằng khối lượng nhân gia tốc. Cùng một cú tăng tốc, robot chở 50 kg cần lực gấp đôi robot chở 25 kg.\n- **Quán tính**: vật đang chạy thì muốn chạy tiếp. Một chiếc AMR chở đầy hàng đang chạy nhanh không thể dừng ngay lập tức, giống xe máy chở hai người thắng gấp vẫn trượt thêm một đoạn.\n- **Với chuyển động xoay**, thay lực bằng torque, thay khối lượng bằng moment of inertia (mô men quán tính, độ \"khó xoay\" của vật). Khối lượng càng nằm xa trục xoay thì càng khó xoay. Đó là lý do vận động viên trượt băng thu tay vào người thì xoay nhanh hơn.\n\n## Áp vào cánh tay robot\n\nCầm một chai nước bằng tay duỗi thẳng ra trước, rồi cầm sát người. Duỗi thẳng mỏi hơn nhiều, dù chai nước vẫn nặng như cũ. Lý do: torque do trọng lực = lực x khoảng cách tới khớp. Tay càng dài, vật càng xa vai, torque ở vai càng lớn.\n\nĐiều này giải thích nhiều chuyện thực tế:\n\n- Thông số payload (tải trọng tối đa robot mang được) luôn đi kèm điều kiện về khoảng cách. Robot ghi 5 kg chỉ đảm bảo trong một vùng nhất định.\n- Motor ở vai luôn to hơn motor ở cổ tay, vì vai phải đỡ cả cánh tay phía sau nó.\n- Nhà thiết kế cố làm phần ngoài cánh tay thật nhẹ, đôi khi đặt motor gần chân đế rồi truyền lực ra ngoài bằng dây đai.\n\n## Gravity compensation và chuyển động mượt\n\nNgay cả khi đứng yên, robot vẫn phải tạo torque để không bị sụp xuống. Phần mềm tính trước lực trọng trường ở mỗi tư thế rồi bù vào, gọi là gravity compensation (bù trọng lực). Nhờ vậy motor chỉ cần lo phần chuyển động, điều khiển chính xác hơn.\n\nKhi chuyển động, gia tốc quá đột ngột làm robot rung, đồ trên kẹp có thể văng ra, và motor quá tải. Vì vậy robot hiếm khi đi từ đứng yên lên tốc độ tối đa ngay. Nó tăng tốc từ từ, chạy đều, rồi giảm tốc từ từ, giống tài xế xe buýt giỏi để hành khách không ngã. Việc lập kế hoạch tốc độ theo thời gian như vậy gọi là trajectory (quỹ đạo chuyển động theo thời gian).\n\n## Vì sao người làm product cũng nên biết\n\n- Khi khách hàng muốn robot \"chạy nhanh gấp đôi\", lực cần thiết tăng nhiều hơn bạn nghĩ, vì gia tốc phải tăng để kịp đạt tốc độ. Có khi phải đổi sang robot lớn hơn.\n- Robot làm việc cạnh người bị giới hạn tốc độ và lực va chạm để an toàn. Đó là đánh đổi giữa năng suất và an toàn mà cobot phải chọn.\n- Robot humanoid đi bộ là bài toán dynamics rất khó: nó liên tục \"ngã có kiểm soát\" rồi đỡ lại bằng bước chân tiếp theo.\n\nBạn không cần tự giải phương trình dynamics, các thư viện mô phỏng làm việc đó. Nhưng hiểu được lực, quán tính và torque giúp bạn đặt đúng câu hỏi và hiểu vì sao kỹ sư nói \"không được\".",
+  "terms": [
+   {
+    "en": "dynamics",
+    "vi": "động lực học, chuyển động có tính lực và khối lượng"
+   },
+   {
+    "en": "inertia",
+    "vi": "quán tính, xu hướng giữ nguyên chuyển động"
+   },
+   {
+    "en": "moment of inertia",
+    "vi": "mô men quán tính, độ khó xoay của vật"
+   },
+   {
+    "en": "payload",
+    "vi": "tải trọng tối đa robot mang được"
+   },
+   {
+    "en": "gravity compensation",
+    "vi": "bù trọng lực để robot không bị sụp"
+   },
+   {
+    "en": "trajectory",
+    "vi": "quỹ đạo chuyển động theo thời gian"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Vì sao motor ở vai robot thường to hơn motor ở cổ tay?",
+    "choices": [
+     "Vì vai quay nhanh hơn",
+     "Vì cổ tay không cần điện",
+     "Vai phải đỡ cả phần cánh tay phía sau, torque do trọng lực ở đó lớn nhất",
+     "Vì để robot trông cân đối"
+    ],
+    "answer": 2,
+    "why": "Torque bằng lực nhân khoảng cách, và vai chịu khối lượng của mọi thứ ở xa nó."
+   },
+   {
+    "q": "Robot ghi payload 5 kg. Câu nào hiểu đúng?",
+    "choices": [
+     "Mang được 5 kg ở mọi tư thế và mọi tốc độ",
+     "Mang được 5 kg trong vùng khoảng cách nhà sản xuất quy định, xa hơn có thể không được",
+     "Robot nặng 5 kg",
+     "Robot chỉ mang được đúng 5 kg, không ít hơn"
+    ],
+    "answer": 1,
+    "why": "Cùng một vật, đặt càng xa khớp thì torque càng lớn, nên payload luôn gắn với điều kiện vị trí."
+   },
+   {
+    "q": "Vì sao robot thường tăng tốc từ từ thay vì lao ngay lên tốc độ tối đa?",
+    "choices": [
+     "Vì robot không biết tốc độ tối đa",
+     "Vì luật cấm robot chạy nhanh",
+     "Vì cảm biến chỉ hoạt động ở tốc độ thấp",
+     "Gia tốc đột ngột cần lực lớn, gây rung và có thể làm văng đồ"
+    ],
+    "answer": 3,
+    "why": "Theo F = m·a, gia tốc lớn đòi lực lớn. Lập trajectory mượt giúp motor không quá tải và vật không văng."
+   },
+   {
+    "q": "Kinematics khác dynamics ở chỗ nào?",
+    "choices": [
+     "Dynamics tính thêm lực, khối lượng và quán tính",
+     "Kinematics chỉ dùng cho drone",
+     "Dynamics không dùng toán",
+     "Hai cái là một"
+    ],
+    "answer": 0,
+    "why": "Kinematics chỉ quan tâm vị trí và góc, dynamics hỏi thêm cần bao nhiêu lực để tạo ra chuyển động đó."
+   }
+  ],
+  "takeaway": "Dynamics là chuyện lực, khối lượng và quán tính: vật càng xa khớp càng khó giữ, và chuyển động phải tăng giảm tốc mượt."
+ },
+ {
+  "id": "robo-10",
+  "track": "robo",
+  "unit": "Sensing",
+  "order": 10,
+  "title": "Robot Sensors",
+  "title_vi": "Giác quan của robot",
+  "level": 1,
+  "minutes": 13,
+  "body": "Robot chỉ biết về thế giới qua cảm biến. Mỗi loại cảm biến giỏi một việc và có điểm yếu riêng, nên robot thật thường dùng nhiều loại cùng lúc.\n\n## Encoder: đếm vòng quay\n\nEncoder (bộ mã hoá vòng quay) gắn vào trục motor hoặc bánh xe, đếm xem trục đã quay bao nhiêu. Mỗi vòng sinh ra một số \"tick\" cố định, ví dụ 1000 tick. Biết bán kính bánh xe r, quãng đường bánh đã lăn là:\n\n- d = 2π·r · (số tick / số tick mỗi vòng)\n\nTừ quãng đường hai bánh trái phải, robot tính ra mình đã đi bao xa và quay bao nhiêu. Cách ước lượng vị trí này gọi là wheel odometry (đo hành trình bằng bánh xe), giống đồng hồ km trên xe máy nhưng tính cả hướng. Điểm yếu: nếu bánh trượt trên sàn ướt, encoder vẫn đếm tick nhưng robot không thật sự đi. Sai số cộng dồn theo thời gian gọi là drift (trôi dần).\n\n## IMU: cảm nhận gia tốc và xoay\n\nIMU (inertial measurement unit, bộ đo quán tính) có trong mọi điện thoại. Nó gồm:\n\n- Accelerometer (gia tốc kế): đo gia tốc, kể cả trọng lực, nên biết đâu là hướng xuống.\n- Gyroscope (con quay hồi chuyển): đo tốc độ xoay.\n- Đôi khi có magnetometer (từ kế) để biết hướng bắc.\n\nIMU đo rất nhanh, rất hợp để drone giữ thăng bằng. Nhưng muốn ra vị trí từ gia tốc thì phải cộng dồn hai lần, nên sai số nhỏ cũng phình to rất nhanh. IMU tốt cho chuyện ngắn hạn, kém cho chuyện dài hạn.\n\n## Camera\n\nCamera rẻ, cho nhiều thông tin nhất: màu sắc, chữ, biển báo, khuôn mặt. Nhưng một camera thường chỉ cho ảnh 2D, không trực tiếp cho biết vật cách bao xa, và kém khi trời tối hoặc chói nắng. Phải có phần mềm thị giác máy tính mới biến điểm ảnh thành hiểu biết, đó là bài cuối của chương này.\n\n## Lidar\n\nLidar (đo khoảng cách bằng tia laser) phóng tia laser ra và đo thời gian tia phản xạ quay về. Quay tia một vòng, robot có point cloud (đám điểm, tập hợp các điểm toạ độ đo được) mô tả hình dạng căn phòng. Lidar đo khoảng cách chính xác, không phụ thuộc ánh sáng, nên AMR và xe tự lái rất hay dùng. Nhược điểm: đắt hơn camera, không thấy màu, gặp kính hoặc gương thì dễ đo sai, và mưa lớn làm nhiễu.\n\n## Depth camera\n\nDepth camera (camera đo độ sâu) cho ra ảnh mà mỗi điểm ảnh mang thêm khoảng cách. Có loại dùng hai ống kính như hai mắt người (stereo), có loại chiếu mẫu ánh sáng hồng ngoại rồi đo độ méo. Nó rẻ hơn lidar, hợp với cánh tay robot gắp đồ ở tầm gần, nhưng tầm xa kém và có thể bị ánh nắng mạnh làm nhiễu.\n\n## Kết hợp nhiều cảm biến\n\nKhông cảm biến nào hoàn hảo, nên robot dùng sensor fusion (hợp nhất cảm biến): IMU cho phản ứng nhanh, encoder cho quãng đường, lidar hoặc camera để chỉnh lại khi drift tích luỹ. Giống bạn đi trong hẻm tối: vừa đếm bước, vừa sờ tường, thỉnh thoảng nhìn thấy ánh đèn quen là biết chắc mình đang ở đâu.\n\nTrong lab sensors, bạn sẽ thấy lidar quét căn phòng và những chỗ nó \"mù\". Bài tập code dưới đây là bước đầu của odometry: đổi tick thành quãng đường rồi cập nhật vị trí robot.",
+  "terms": [
+   {
+    "en": "encoder",
+    "vi": "bộ đếm vòng quay của trục hoặc bánh xe"
+   },
+   {
+    "en": "wheel odometry",
+    "vi": "ước lượng vị trí từ quãng đường các bánh xe"
+   },
+   {
+    "en": "drift",
+    "vi": "sai số cộng dồn, trôi dần theo thời gian"
+   },
+   {
+    "en": "IMU",
+    "vi": "bộ đo quán tính: gia tốc kế và con quay hồi chuyển"
+   },
+   {
+    "en": "lidar",
+    "vi": "cảm biến đo khoảng cách bằng tia laser"
+   },
+   {
+    "en": "point cloud",
+    "vi": "đám điểm toạ độ đo được"
+   },
+   {
+    "en": "depth camera",
+    "vi": "camera cho thêm khoảng cách ở mỗi điểm ảnh"
+   },
+   {
+    "en": "sensor fusion",
+    "vi": "kết hợp nhiều cảm biến để bù điểm yếu cho nhau"
+   }
+  ],
+  "lab": "sensors",
+  "quiz": [
+   {
+    "q": "Robot chạy trên sàn ướt, bánh bị trượt. Cảm biến nào bị ảnh hưởng trực tiếp nhất?",
+    "choices": [
+     "Camera",
+     "Encoder ở bánh xe, vì vẫn đếm tick dù robot không thật sự đi",
+     "Lidar",
+     "Microphone"
+    ],
+    "answer": 1,
+    "why": "Encoder chỉ đếm vòng quay của bánh, nên trượt làm odometry tưởng robot đã đi xa trong khi thực tế không."
+   },
+   {
+    "q": "Vì sao không thể chỉ dùng IMU để biết vị trí robot sau một giờ chạy?",
+    "choices": [
+     "IMU không đo được gì",
+     "IMU chỉ chạy được 1 phút",
+     "Phải cộng dồn gia tốc hai lần nên sai số nhỏ phình to rất nhanh",
+     "IMU chỉ đo màu sắc"
+    ],
+    "answer": 2,
+    "why": "IMU rất tốt cho ngắn hạn, nhưng mọi sai số đều bị cộng dồn qua tích phân, gây drift lớn về lâu dài."
+   },
+   {
+    "q": "Một AMR cần đo khoảng cách chính xác tới tường trong kho thiếu sáng. Cảm biến nào hợp nhất?",
+    "choices": [
+     "Lidar",
+     "Camera màu thường",
+     "Accelerometer",
+     "Magnetometer"
+    ],
+    "answer": 0,
+    "why": "Lidar tự phát tia laser nên không phụ thuộc ánh sáng và đo khoảng cách chính xác."
+   },
+   {
+    "q": "Sensor fusion có ý nghĩa gì?",
+    "choices": [
+     "Hàn nhiều cảm biến dính vào nhau",
+     "Chỉ dùng cảm biến đắt nhất",
+     "Tắt bớt cảm biến cho đỡ tốn pin",
+     "Kết hợp nhiều cảm biến để điểm mạnh của cái này bù điểm yếu của cái kia"
+    ],
+    "answer": 3,
+    "why": "Không cảm biến nào hoàn hảo; IMU nhanh, encoder đo quãng đường, lidar hoặc camera chỉnh lại drift."
+   }
+  ],
+  "code": {
+   "prompt": "Robot hai bánh (differential drive). Viết 2 hàm: (1) ticks_to_distance(ticks, ticks_per_rev, wheel_radius) trả quãng đường bánh đã lăn = 2π·r·ticks/ticks_per_rev. (2) update_pose(x, y, theta, d_left, d_right, wheel_base) nhận pose hiện tại (theta bằng radian), quãng đường bánh trái d_left, bánh phải d_right và khoảng cách hai bánh wheel_base, trả về tuple (x_moi, y_moi, theta_moi) theo công thức: d = (d_left + d_right)/2, dθ = (d_right - d_left)/wheel_base, x_moi = x + d·cos(theta + dθ/2), y_moi = y + d·sin(theta + dθ/2), theta_moi = theta + dθ. Ví dụ: ticks_to_distance(1000, 1000, 0.05) -> khoảng 0.314; update_pose(0, 0, 0, 1, 1, 0.5) -> (1.0, 0.0, 0.0).",
+   "starter": "import math\n\ndef ticks_to_distance(ticks, ticks_per_rev, wheel_radius):\n    # TODO: fraction of a revolution times wheel circumference\n    return 0.0\n\ndef update_pose(x, y, theta, d_left, d_right, wheel_base):\n    # TODO: average distance, change of heading, then move along the mid heading\n    return (x, y, theta)\n",
+   "solution": "import math\n\ndef ticks_to_distance(ticks, ticks_per_rev, wheel_radius):\n    return 2 * math.pi * wheel_radius * ticks / ticks_per_rev\n\ndef update_pose(x, y, theta, d_left, d_right, wheel_base):\n    d = (d_left + d_right) / 2\n    dtheta = (d_right - d_left) / wheel_base\n    mid = theta + dtheta / 2\n    return (x + d * math.cos(mid), y + d * math.sin(mid), theta + dtheta)\n",
+   "tests": "def close(a, b):\n    return all(abs(p - q) < 1e-6 for p, q in zip(a, b))\n\nassert abs(ticks_to_distance(1000, 1000, 0.05) - 2 * math.pi * 0.05) < 1e-9, 'một vòng đủ phải bằng chu vi bánh 2πr'\nassert abs(ticks_to_distance(0, 1000, 0.05)) < 1e-12, 'không có tick thì quãng đường bằng 0'\nassert abs(ticks_to_distance(-500, 1000, 0.1) + math.pi * 0.1) < 1e-9, 'tick âm (quay lùi) cho quãng đường âm'\nassert close(update_pose(0, 0, 0, 1, 1, 0.5), (1, 0, 0)), 'hai bánh đi bằng nhau thì robot đi thẳng'\nassert close(update_pose(0, 0, 0, -0.1, 0.1, 0.4), (0, 0, 0.5)), 'hai bánh ngược chiều thì robot xoay tại chỗ'\nassert close(update_pose(1, 2, math.pi / 2, 0.5, 0.5, 0.3), (1, 2.5, math.pi / 2)), 'quay mặt lên trên thì đi thẳng làm tăng y'\nr = update_pose(0, 0, 0, 0.9, 1.1, 0.5)\nassert r[2] > 0 and r[1] > 0, 'bánh phải đi xa hơn thì robot rẽ trái: theta và y đều tăng'\n",
+   "hint": "Tính quãng đường trung bình và góc thay đổi trước. Robot di chuyển theo hướng ở giữa quãng, tức là theta + dθ/2."
+  },
+  "takeaway": "Mỗi cảm biến giỏi một việc và có điểm mù riêng; robot thật kết hợp encoder, IMU, camera, lidar để bù cho nhau."
+ },
+ {
+  "id": "robo-11",
+  "track": "robo",
+  "unit": "Sensing",
+  "order": 11,
+  "title": "Noise and Filtering",
+  "title_vi": "Nhiễu, bất định và bộ lọc trung bình trượt",
+  "level": 2,
+  "minutes": 11,
+  "body": "Đặt robot đứng yên trước bức tường cách đúng 2 mét, đọc cảm biến khoảng cách 10 lần. Bạn sẽ không nhận được 10 con số 2.00. Bạn sẽ thấy 1.98, 2.03, 2.01, 1.96, 2.04... Đó là noise (nhiễu, dao động ngẫu nhiên trong phép đo). Mọi cảm biến thật đều có nhiễu, và robot phải sống chung với nó.\n\n## Nhiễu đến từ đâu\n\n- Điện tử: dòng điện trong mạch luôn có dao động nhỏ.\n- Môi trường: rung động của sàn, ánh sáng thay đổi, bụi trên ống kính.\n- Giới hạn của chính cảm biến: encoder chỉ đếm được số nguyên tick, camera có độ phân giải hữu hạn.\n\nNgoài nhiễu ngẫu nhiên còn có bias (sai lệch hệ thống, lệch đều về một phía). Ví dụ cân điện tử lúc nào cũng hiện thêm 0.2 kg. Bias không tự triệt tiêu khi lấy trung bình, phải hiệu chỉnh riêng, gọi là calibration (hiệu chuẩn).\n\n## Uncertainty: biết mình không chắc chắn\n\nVì có nhiễu, robot giỏi không nói \"tường cách 2.01 mét\" mà nói \"tường cách khoảng 2.01 mét, sai lệch tầm ±0.03 mét\". Phần ±0.03 đó là uncertainty (độ bất định). Người ta thường đo nó bằng variance (phương sai, độ phân tán của các lần đo quanh giá trị trung bình) hoặc standard deviation (độ lệch chuẩn, căn bậc hai của phương sai). Phương sai lớn nghĩa là cảm biến kém tin cậy.\n\nBiết mình không chắc chắn bao nhiêu là kỹ năng sống còn: robot đỡ chắc chắn về vị trí thì đi chậm lại, thận trọng hơn, giống bạn chạy xe chậm lại khi trời mưa to nhìn không rõ đường.\n\n## Moving average: cách lọc đơn giản nhất\n\nFilter (bộ lọc) là thuật toán làm mượt dữ liệu nhiễu để lấy ra giá trị thật. Bộ lọc dễ nhất là moving average (trung bình trượt): mỗi thời điểm, lấy trung bình của N lần đo gần nhất.\n\nVí dụ với cửa sổ N = 3 và các lần đo [2, 4, 6, 8]:\n\n- Lần 1: chỉ có [2] -> 2\n- Lần 2: [2, 4] -> 3\n- Lần 3: [2, 4, 6] -> 4\n- Lần 4: [4, 6, 8] -> 6\n\nLấy trung bình giúp các dao động lên xuống triệt tiêu lẫn nhau. Bạn có thể đã gặp ý tưởng này trong tài chính: đường MA 20 ngày trên biểu đồ giá chứng khoán chính là moving average.\n\n## Đánh đổi: mượt hay nhanh\n\nCửa sổ càng lớn, kết quả càng mượt, nhưng càng chậm phản ứng. Nếu robot đột ngột tiến lại gần tường, trung bình 50 lần đo cũ vẫn kéo con số về giá trị xa, robot \"nhận ra\" muộn. Trong thực tế đó là chuyện an toàn: phát hiện chướng ngại muộn nửa giây có thể là va chạm.\n\nĐây gọi là lag (độ trễ của bộ lọc so với thay đổi thật). Mọi bộ lọc đều phải cân giữa lọc sạch nhiễu và phản ứng nhanh. Moving average còn một điểm yếu: nó coi mọi lần đo như nhau, kể cả khi ta biết cảm biến lúc này đáng tin hơn lúc khác. Bài sau, Kalman filter giải quyết chính điểm này bằng cách cân trọng số theo độ tin cậy.\n\nBài tập dưới đây: tự viết moving average. Hãy để ý các lần đo đầu tiên khi chưa đủ N giá trị.",
+  "terms": [
+   {
+    "en": "noise",
+    "vi": "nhiễu, dao động ngẫu nhiên trong phép đo"
+   },
+   {
+    "en": "bias",
+    "vi": "sai lệch hệ thống, lệch đều về một phía"
+   },
+   {
+    "en": "calibration",
+    "vi": "hiệu chuẩn cảm biến"
+   },
+   {
+    "en": "uncertainty",
+    "vi": "độ bất định, mức không chắc chắn"
+   },
+   {
+    "en": "variance",
+    "vi": "phương sai, độ phân tán của dữ liệu"
+   },
+   {
+    "en": "filter",
+    "vi": "bộ lọc làm mượt dữ liệu nhiễu"
+   },
+   {
+    "en": "moving average",
+    "vi": "trung bình trượt của N lần đo gần nhất"
+   },
+   {
+    "en": "lag",
+    "vi": "độ trễ của bộ lọc"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Cân điện tử luôn hiện nhiều hơn thật 0.2 kg. Lấy trung bình 100 lần cân có sửa được không?",
+    "choices": [
+     "Có, trung bình luôn khử mọi sai số",
+     "Có, nếu cân vào buổi sáng",
+     "Không, vì phải lấy 1000 lần",
+     "Không, đó là bias, cần calibration riêng"
+    ],
+    "answer": 3,
+    "why": "Bias lệch đều về một phía nên trung bình vẫn lệch y như vậy. Chỉ nhiễu ngẫu nhiên mới triệt tiêu khi lấy trung bình."
+   },
+   {
+    "q": "Tăng cửa sổ moving average từ 5 lên 50 thì điều gì xảy ra?",
+    "choices": [
+     "Mượt hơn nhưng phản ứng chậm hơn với thay đổi thật",
+     "Vừa mượt hơn vừa nhanh hơn",
+     "Không thay đổi gì",
+     "Nhiễu tăng lên"
+    ],
+    "answer": 0,
+    "why": "Cửa sổ lớn làm dao động triệt tiêu tốt hơn, nhưng các lần đo cũ níu kết quả lại, gây lag."
+   },
+   {
+    "q": "Moving average với cửa sổ 2 trên dữ liệu [10, 20, 30] cho kết quả gì?",
+    "choices": [
+     "[10, 20, 30]",
+     "[15, 25, 30]",
+     "[10, 15, 25]",
+     "[20, 20, 20]"
+    ],
+    "answer": 2,
+    "why": "Lần 1 chỉ có 10; lần 2 trung bình 10 và 20 là 15; lần 3 trung bình 20 và 30 là 25."
+   },
+   {
+    "q": "Vì sao robot cần biết uncertainty chứ không chỉ một con số đo?",
+    "choices": [
+     "Để màn hình hiển thị đẹp hơn",
+     "Để điều chỉnh hành vi, ví dụ đi chậm và thận trọng khi đo không chắc chắn",
+     "Vì luật bắt buộc",
+     "Uncertainty không có ích gì"
+    ],
+    "answer": 1,
+    "why": "Biết mình không chắc bao nhiêu giúp robot ra quyết định an toàn, giống người lái xe chậm lại khi trời mưa."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm moving_average(values, window) nhận list số đo và kích thước cửa sổ window (số nguyên >= 1). Trả về list cùng độ dài, phần tử thứ i là trung bình của tối đa window giá trị gần nhất tính tới i (gồm cả values[i]). Khi chưa đủ window giá trị thì lấy trung bình những gì đang có. List rỗng trả về list rỗng. Ví dụ: moving_average([2, 4, 6, 8], 3) -> [2.0, 3.0, 4.0, 6.0].",
+   "starter": "def moving_average(values, window):\n    # TODO: for each index, average the last `window` values up to it\n    return list(values)\n",
+   "solution": "def moving_average(values, window):\n    out = []\n    for i in range(len(values)):\n        start = max(0, i - window + 1)\n        chunk = values[start:i + 1]\n        out.append(sum(chunk) / len(chunk))\n    return out\n",
+   "tests": "def close(a, b):\n    return len(a) == len(b) and all(abs(p - q) < 1e-9 for p, q in zip(a, b))\n\nassert close(moving_average([2, 4, 6, 8], 3), [2, 3, 4, 6]), 'ví dụ trong đề phải ra [2, 3, 4, 6]'\nassert moving_average([], 3) == [], 'list rỗng thì trả list rỗng'\nassert close(moving_average([5, 7, 9], 1), [5, 7, 9]), 'cửa sổ 1 thì giữ nguyên dữ liệu'\nassert close(moving_average([1, 2, 3], 10), [1, 1.5, 2]), 'cửa sổ lớn hơn dữ liệu thì lấy trung bình tất cả những gì đang có'\nassert close(moving_average([2.0, 2.2, 1.8, 2.0], 2), [2.0, 2.1, 2.0, 1.9]), 'cửa sổ 2 với số thập phân phải đúng'\nassert len(moving_average([1] * 50, 7)) == 50, 'kết quả phải cùng độ dài với đầu vào'\n",
+   "hint": "Với mỗi chỉ số i, cắt list từ max(0, i - window + 1) tới i + 1, rồi chia tổng cho độ dài đoạn vừa cắt."
+  },
+  "takeaway": "Mọi phép đo đều nhiễu; bộ lọc như moving average làm mượt dữ liệu nhưng luôn phải đánh đổi giữa mượt và nhanh."
+ },
+ {
+  "id": "robo-12",
+  "track": "robo",
+  "unit": "Sensing",
+  "order": 12,
+  "title": "Kalman Filter Intuition",
+  "title_vi": "Kalman filter: tin bao nhiêu thì nghe bấy nhiêu",
+  "level": 3,
+  "minutes": 14,
+  "body": "Kalman filter (bộ lọc Kalman, cách kết hợp dự đoán và phép đo theo độ tin cậy của mỗi bên) là một trong những thuật toán quan trọng nhất của robotics. Nó có trong GPS điện thoại, drone, xe tự lái và đã từng giúp dẫn đường tàu vũ trụ. Nghe đáng sợ, nhưng trực giác của nó rất đời thường.\n\n## Câu chuyện đi tìm quán\n\nBạn đi bộ tới một quán cà phê. Bạn đếm bước và đoán: \"mình đi được khoảng 100 mét\". Đếm bước không chuẩn lắm. Rồi bạn mở Google Maps, nó báo 110 mét, nhưng GPS trong phố nhiều nhà cao tầng cũng hay nhảy.\n\nTin cái nào? Câu trả lời khôn ngoan: tin cả hai, nhưng tin theo mức độ đáng tin của mỗi bên. Nếu GPS hôm nay ổn định, nghiêng về 110. Nếu GPS đang nhảy loạn, nghiêng về 100. Đó chính là Kalman filter.\n\n## Hai bước lặp lại mãi\n\nKalman filter giữ hai thứ: estimate (ước lượng hiện tại, ký hiệu x) và variance của ước lượng đó (ký hiệu P, độ không chắc chắn của chính mình). Rồi lặp hai bước:\n\n- **Predict** (dự đoán): dựa trên chuyển động, đoán trạng thái mới. Ví dụ robot ra lệnh đi tới 0.5 mét thì x tăng 0.5. Vì chuyển động không hoàn hảo, độ không chắc chắn P tăng lên thêm một lượng Q (nhiễu của quá trình chuyển động).\n- **Update** (cập nhật): nhận phép đo z từ cảm biến, có độ nhiễu R. Trộn dự đoán với phép đo.\n\n## Kalman gain: núm vặn độ tin\n\nPhần trộn dùng Kalman gain (hệ số Kalman, quyết định nghe phép đo bao nhiêu phần), ký hiệu K:\n\n- K = P / (P + R)\n- x_moi = x + K·(z - x)\n- P_moi = (1 - K)·P\n\nĐọc bằng lời:\n\n- (z - x) là độ \"bất ngờ\": cảm biến nói khác dự đoán bao nhiêu.\n- Nếu cảm biến rất nhiễu (R lớn) thì K gần 0, ta gần như bỏ qua phép đo.\n- Nếu chính mình đang rất mù mờ (P lớn) thì K gần 1, ta tin gần hết vào phép đo.\n- Sau mỗi lần cập nhật, P luôn nhỏ đi: có thêm thông tin thì bớt không chắc chắn.\n\nThử số: x = 100, P = 4 (đếm bước sai tầm ±2 mét), GPS báo z = 110 với R = 4. Hai bên tin cậy ngang nhau nên K = 4 / 8 = 0.5. Ước lượng mới là 100 + 0.5·10 = 105, P mới là 2. Kết quả nằm giữa, và ta chắc chắn hơn cả hai nguồn riêng lẻ. Nếu GPS kém, R = 12, thì K = 0.25 và ước lượng mới là 102.5, nghiêng về phía đếm bước.\n\n## So với moving average\n\nMoving average coi mọi lần đo như nhau và luôn trễ. Kalman filter biết lúc nào nên nghe cảm biến nhiều, lúc nào nên tin vào mô hình chuyển động, nên vừa lọc nhiễu tốt vừa phản ứng nhanh hơn. Đổi lại, nó cần ta mô tả được robot chuyển động thế nào và cảm biến nhiễu cỡ nào. Chọn Q và R cho đúng là một phần \"tay nghề\" của kỹ sư.\n\nBản bạn vừa học là Kalman 1D cho một con số. Ngoài đời, trạng thái thường là cả vector (vị trí, vận tốc, góc...), công thức dùng ma trận, và với chuyển động cong người ta dùng biến thể như Extended Kalman Filter. Nhưng ý tưởng \"trộn dự đoán với phép đo theo độ tin\" vẫn y nguyên.\n\nTrong lab kalman, bạn chỉnh R và Q rồi xem đường ước lượng bám theo giá trị thật ra sao giữa đám điểm đo nhiễu.",
+  "terms": [
+   {
+    "en": "Kalman filter",
+    "vi": "bộ lọc trộn dự đoán và phép đo theo độ tin cậy"
+   },
+   {
+    "en": "estimate",
+    "vi": "giá trị ước lượng hiện tại"
+   },
+   {
+    "en": "predict step",
+    "vi": "bước dự đoán dựa trên chuyển động"
+   },
+   {
+    "en": "update step",
+    "vi": "bước cập nhật bằng phép đo"
+   },
+   {
+    "en": "Kalman gain",
+    "vi": "hệ số quyết định nghe phép đo bao nhiêu phần"
+   },
+   {
+    "en": "measurement noise (R)",
+    "vi": "độ nhiễu của cảm biến"
+   },
+   {
+    "en": "process noise (Q)",
+    "vi": "độ nhiễu của quá trình chuyển động"
+   }
+  ],
+  "lab": "kalman",
+  "quiz": [
+   {
+    "q": "Cảm biến đang rất nhiễu (R rất lớn so với P). Kalman gain K sẽ thế nào?",
+    "choices": [
+     "Gần 0, ước lượng gần như bỏ qua phép đo",
+     "Gần 1, tin hẳn phép đo",
+     "Bằng đúng R",
+     "Âm"
+    ],
+    "answer": 0,
+    "why": "K = P / (P + R). R lớn làm mẫu số lớn nên K nhỏ, nghĩa là ít nghe cảm biến."
+   },
+   {
+    "q": "x = 50, P = 1, phép đo z = 60, R = 1. Ước lượng mới là bao nhiêu?",
+    "choices": [
+     "60",
+     "50",
+     "52",
+     "55"
+    ],
+    "answer": 3,
+    "why": "K = 1 / 2 = 0.5, nên x mới = 50 + 0.5·10 = 55."
+   },
+   {
+    "q": "Sau bước predict, vì sao P tăng lên?",
+    "choices": [
+     "Vì cảm biến bị hỏng",
+     "Vì chuyển động không hoàn hảo, đoán vị trí mới thì kém chắc chắn hơn",
+     "Vì robot đứng yên",
+     "Vì K luôn bằng 1"
+    ],
+    "answer": 1,
+    "why": "Mỗi lần di chuyển có thêm sai số Q (trượt bánh, motor lệch), nên độ không chắc chắn của ước lượng tăng."
+   },
+   {
+    "q": "Ưu điểm chính của Kalman filter so với moving average là gì?",
+    "choices": [
+     "Không cần phép đo nào",
+     "Luôn cho kết quả chính xác tuyệt đối",
+     "Biết cân trọng số giữa dự đoán và phép đo theo độ tin cậy",
+     "Không cần tính toán"
+    ],
+    "answer": 2,
+    "why": "Moving average coi mọi lần đo như nhau, còn Kalman điều chỉnh mức nghe cảm biến dựa trên P và R."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm kalman_update(x, P, z, R) thực hiện bước update của Kalman filter 1D. x là ước lượng hiện tại, P là variance của ước lượng, z là phép đo mới, R là variance của nhiễu cảm biến (P + R > 0). Tính K = P / (P + R), x_moi = x + K·(z - x), P_moi = (1 - K)·P và trả về tuple (x_moi, P_moi). Ví dụ: kalman_update(100, 4, 110, 4) -> (105.0, 2.0); kalman_update(100, 4, 110, 12) -> (102.5, 3.0). Viết thêm kalman_predict(x, P, u, Q) trả (x + u, P + Q) cho bước dự đoán.",
+   "starter": "def kalman_predict(x, P, u, Q):\n    # TODO: move the estimate by u, grow the uncertainty by Q\n    return (x, P)\n\ndef kalman_update(x, P, z, R):\n    # TODO: compute the Kalman gain, then blend prediction and measurement\n    return (x, P)\n",
+   "solution": "def kalman_predict(x, P, u, Q):\n    return (x + u, P + Q)\n\ndef kalman_update(x, P, z, R):\n    K = P / (P + R)\n    return (x + K * (z - x), (1 - K) * P)\n",
+   "tests": "def close(a, b):\n    return abs(a[0] - b[0]) < 1e-9 and abs(a[1] - b[1]) < 1e-9\n\nassert close(kalman_update(100, 4, 110, 4), (105, 2)), 'tin cậy ngang nhau thì ra giữa: (105, 2)'\nassert close(kalman_update(100, 4, 110, 12), (102.5, 3)), 'cảm biến nhiễu hơn thì nghiêng về dự đoán: (102.5, 3)'\nassert close(kalman_update(5, 0, 9, 1), (5, 0)), 'P = 0 (hoàn toàn chắc chắn) thì bỏ qua phép đo'\nassert close(kalman_update(5, 1, 9, 0), (9, 0)), 'R = 0 (cảm biến hoàn hảo) thì tin hẳn phép đo'\nassert kalman_update(0, 3, 1, 2)[1] < 3, 'sau update thì P phải nhỏ đi'\nassert close(kalman_predict(2, 1, 0.5, 0.1), (2.5, 1.1)), 'predict: x cộng u, P cộng Q'\nx, P = kalman_predict(0, 1, 1, 1)\nassert close(kalman_update(x, P, 2, 2), (1.5, 1)), 'predict rồi update: (0,1) -> (1,2) -> (1.5, 1)'\n",
+   "hint": "Tính K trước. Khi P lớn so với R thì K gần 1, khi R lớn so với P thì K gần 0. Kiểm tra lại bằng ví dụ x = 100, P = 4, z = 110, R = 4."
+  },
+  "takeaway": "Kalman filter lặp predict rồi update, trộn dự đoán với phép đo theo Kalman gain K = P / (P + R)."
+ },
+ {
+  "id": "robo-13",
+  "track": "robo",
+  "unit": "Sensing",
+  "order": 13,
+  "title": "Computer Vision for Robots",
+  "title_vi": "Robot nhìn và hiểu hình ảnh",
+  "level": 2,
+  "minutes": 11,
+  "body": "Camera cho robot hàng triệu điểm ảnh mỗi khung hình, nhưng điểm ảnh tự nó chỉ là những con số màu sắc. Computer vision (thị giác máy tính, phần mềm biến hình ảnh thành hiểu biết) là cầu nối giữa \"thấy\" và \"hiểu\". Với robot, câu hỏi không chỉ là \"trong ảnh có gì\" mà còn là \"nó ở đâu và mình cầm nó thế nào\".\n\n## Object detection: cái gì, ở đâu trong ảnh\n\nObject detection (phát hiện vật thể) tìm các vật trong ảnh và vẽ một bounding box (khung chữ nhật bao quanh vật) kèm nhãn và độ tự tin, ví dụ \"hộp sữa, 0.93\". Ngày nay việc này chủ yếu do các mạng neural đã huấn luyện trên rất nhiều ảnh đảm nhận. Những mô hình kiểu YOLO chạy đủ nhanh để xử lý video theo thời gian thực trên máy tính nhỏ gắn trong robot.\n\nMột bước sâu hơn là segmentation (phân vùng ảnh): thay vì khung chữ nhật, mô hình tô chính xác từng điểm ảnh thuộc về vật nào. Robot gắp đồ cần điều này khi các món hàng nằm chồng lên nhau trong thùng, vì khung chữ nhật quá thô.\n\n## Từ ảnh 2D ra vị trí 3D\n\nBiết hộp sữa nằm ở góc trái ảnh chưa đủ để gắp. Robot cần toạ độ 3D. Có vài cách:\n\n- Dùng depth camera: mỗi điểm ảnh đã có khoảng cách, kết hợp với vị trí trong ảnh là ra toạ độ 3D trong camera frame.\n- Dùng hai camera (stereo) và so sánh độ lệch giữa hai ảnh, giống hai mắt người.\n- Biết trước kích thước thật của vật, đo xem nó trông to hay nhỏ trong ảnh để suy ra khoảng cách.\n\nSau đó robot dùng transform đã học ở bài coordinate frames để đổi từ camera frame sang base frame, rồi giải inverse kinematics để đưa tay tới. Bạn thấy đấy, các bài trong track này nối với nhau thành một chuỗi.\n\nMuốn đổi chính xác, camera phải được hiệu chuẩn: biết tiêu cự, độ méo ống kính và vị trí chính xác của camera so với robot. Lệch vài milimét ở bước này là robot gắp hụt.\n\n## Pose estimation: vật đang xoay thế nào\n\nPose estimation (ước lượng tư thế) tìm cả vị trí lẫn hướng của vật, tức đủ 6 con số của pose. Cái cốc nằm nghiêng hay đứng, quai cốc quay về phía nào, ảnh hưởng trực tiếp tới cách kẹp. Có một nhánh khác cũng tên pose estimation nhưng cho con người: tìm các điểm khớp như vai, khuỷu, đầu gối trong ảnh. Cobot dùng nó để biết người đang đứng đâu và giơ tay ra sao, từ đó giảm tốc để an toàn.\n\nRobot còn dùng thị giác để định vị chính mình. Visual SLAM (vừa vẽ bản đồ vừa tự định vị bằng camera) theo dõi các điểm đặc trưng trong cảnh qua nhiều khung hình để biết robot đã di chuyển thế nào, bổ sung cho odometry.\n\n## Khó khăn thật sự\n\n- Ánh sáng: nhà kho tối, nắng chiếu xiên, đèn nhấp nháy.\n- Vật trong suốt hoặc bóng loáng như chai nhựa, giấy bạc làm cả camera lẫn depth camera bối rối.\n- Vật bị che khuất một phần.\n- Độ trễ: mô hình chạy chậm thì robot phản ứng chậm.\n- Dữ liệu: mô hình học từ ảnh ở nhà máy này có thể kém ở nhà máy khác, gọi là domain shift (dữ liệu thực tế khác dữ liệu huấn luyện).\n\nTính đến 2026, xu hướng lớn là dùng các mô hình nền tảng vừa hiểu ảnh vừa hiểu ngôn ngữ, cho phép ra lệnh kiểu \"nhặt cái cốc màu xanh cạnh laptop\" mà không cần huấn luyện riêng cho từng vật. Mảng này tiến rất nhanh, nhưng các bước nền như detection, chuyển sang 3D, transform và hiệu chuẩn vẫn là xương sống mà mọi hệ thống phải có.",
+  "terms": [
+   {
+    "en": "computer vision",
+    "vi": "thị giác máy tính"
+   },
+   {
+    "en": "object detection",
+    "vi": "phát hiện vật thể và vị trí trong ảnh"
+   },
+   {
+    "en": "bounding box",
+    "vi": "khung chữ nhật bao quanh vật"
+   },
+   {
+    "en": "segmentation",
+    "vi": "phân vùng ảnh theo từng điểm ảnh"
+   },
+   {
+    "en": "pose estimation",
+    "vi": "ước lượng vị trí và hướng của vật hoặc người"
+   },
+   {
+    "en": "visual SLAM",
+    "vi": "vừa vẽ bản đồ vừa tự định vị bằng camera"
+   },
+   {
+    "en": "domain shift",
+    "vi": "dữ liệu thực tế khác dữ liệu huấn luyện"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Robot đã phát hiện hộp sữa với bounding box trong ảnh. Vì sao vẫn chưa gắp được ngay?",
+    "choices": [
+     "Vì bounding box luôn sai",
+     "Vì robot không có motor",
+     "Cần thêm toạ độ 3D và đổi từ camera frame sang base frame",
+     "Vì hộp sữa quá nhẹ"
+    ],
+    "answer": 2,
+    "why": "Bounding box chỉ là vị trí 2D trong ảnh. Robot cần độ sâu, transform sang frame của mình rồi mới giải IK để đưa tay tới."
+   },
+   {
+    "q": "Các món hàng chồng lên nhau lộn xộn trong thùng. Kỹ thuật nào giúp tách từng món chính xác nhất?",
+    "choices": [
+     "Moving average",
+     "Gearbox",
+     "Wheel odometry",
+     "Segmentation"
+    ],
+    "answer": 3,
+    "why": "Segmentation tô chính xác từng điểm ảnh thuộc vật nào, tốt hơn khung chữ nhật khi vật chồng lấn."
+   },
+   {
+    "q": "Mô hình nhận diện chạy tốt ở nhà máy A nhưng kém ở nhà máy B có ánh sáng khác. Hiện tượng này gọi là gì?",
+    "choices": [
+     "Backlash",
+     "Domain shift",
+     "Redundancy",
+     "Payload"
+    ],
+    "answer": 1,
+    "why": "Dữ liệu thực tế ở B khác dữ liệu huấn luyện ở A, nên mô hình không tổng quát hoá tốt."
+   },
+   {
+    "q": "Cobot dùng human pose estimation để làm gì?",
+    "choices": [
+     "Biết người đang đứng đâu và cử động ra sao để giảm tốc hoặc dừng cho an toàn",
+     "Đo nhiệt độ phòng",
+     "Đếm vòng quay bánh xe",
+     "Sạc pin nhanh hơn"
+    ],
+    "answer": 0,
+    "why": "Nhận biết vị trí tay chân người giúp robot làm việc cạnh người mà không gây va chạm nguy hiểm."
+   }
+  ],
+  "takeaway": "Computer vision cho robot đi từ phát hiện vật trong ảnh tới vị trí và tư thế 3D, rồi nối vào transform và inverse kinematics để hành động."
+ }
+]

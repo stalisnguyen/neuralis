@@ -1,0 +1,1173 @@
+[
+ {
+  "id": "robo-14",
+  "track": "robo",
+  "unit": "Control and planning",
+  "order": 14,
+  "title": "Feedback control and PID",
+  "title_vi": "Điều khiển phản hồi và bộ PID",
+  "level": 2,
+  "minutes": 14,
+  "lab": "pid",
+  "body": "Bạn đã biết robot đo thế giới bằng sensor và lọc nhiễu bằng filter. Bài này trả lời câu tiếp theo: đo xong rồi thì robot quyết định đẩy motor mạnh hay yếu bao nhiêu?\n\n## Vòng lặp phản hồi\nHãy nghĩ tới việc tắm nước nóng bằng bình nóng lạnh. Bạn vặn vòi, thử nước, thấy lạnh thì vặn nóng thêm, thấy bỏng thì vặn lại. Bạn đang làm **feedback control** (điều khiển phản hồi: đo kết quả rồi chỉnh hành động dựa trên kết quả đó). Robot làm y như vậy, chỉ là lặp lại vài chục tới vài nghìn lần mỗi giây.\n\nVòng lặp có bốn phần:\n- setpoint (giá trị mục tiêu): ví dụ drone muốn bay ở độ cao 10 m.\n- measurement (giá trị đo được): sensor báo đang ở 7 m.\n- error (sai số) = setpoint - measurement = 3 m.\n- control output (lệnh điều khiển): lực đẩy gửi xuống cánh quạt.\n\nNếu chỉ ra lệnh cố định mà không đo lại, đó là open-loop (vòng hở), giống nấu cơm bằng cách canh đồng hồ mà không bao giờ mở nồi xem. Gặp gió, pin yếu hay thêm tải là sai ngay. Closed-loop (vòng kín) luôn đo lại nên tự sửa được.\n\n## Ba thành phần của PID\n**PID controller** là bộ điều khiển phổ biến nhất trong công nghiệp, từ máy lạnh, cruise control trên ô tô tới khớp tay robot. Nó cộng ba phần:\n\n- P (proportional, tỉ lệ): output = Kp × error. Sai nhiều thì đẩy mạnh, sai ít thì đẩy nhẹ. Giống tài xế Grab thấy còn xa điểm đón thì chạy nhanh, gần tới thì chạy chậm.\n- I (integral, tích phân): cộng dồn error theo thời gian, nhân với Ki. Nếu robot cứ hụt một chút mãi không hết (ví dụ drone nặng hơn dự tính, luôn lơ lửng ở 9.8 m), phần I lớn dần và đẩy thêm cho tới khi hết hụt. Sai số dai dẳng đó gọi là steady-state error (sai số còn lại khi hệ đã ổn định).\n- D (derivative, đạo hàm): nhìn tốc độ thay đổi của error, nhân với Kd. Nếu error đang giảm rất nhanh, nghĩa là sắp lao qua mục tiêu, phần D hãm lại. Giống bạn thấy xe phía trước sắp dừng thì nhả ga sớm thay vì đợi sát mới phanh.\n\nCông thức gọn: u = Kp×e + Ki×Σ(e×dt) + Kd×(e - e_cũ)/dt, với dt là khoảng thời gian giữa hai lần đo.\n\n## PID trong code\nTrên máy tính, PID chạy theo từng bước rời rạc. Mỗi bước: đo, tính error, cập nhật tổng tích phân, tính đạo hàm từ error lần trước, rồi trả về output.\n\n```\nclass PID:\n    def step(self, setpoint, measurement):\n        error = setpoint - measurement\n        self.integral += error * self.dt\n        derivative = (error - self.prev_error) / self.dt\n        self.prev_error = error\n        return self.kp * error + self.ki * self.integral + self.kd * derivative\n```\n\nỞ bước đầu tiên chưa có error cũ, nên người ta thường cho phần D bằng 0 để tránh một cú giật lớn.\n\n## Vì sao PID sống lâu như vậy\nPID không cần biết mô hình vật lý chính xác của robot. Bạn không cần viết phương trình khí động học của drone, chỉ cần chỉnh ba con số Kp, Ki, Kd. Đổi lại, PID không \"thông minh\": nó chỉ phản ứng với sai số, không lập kế hoạch trước. Robot hiện đại thường xếp tầng: tầng trên (planner, AI) quyết định đi đâu, tầng dưới (PID chạy rất nhanh) lo bám theo lệnh đó thật chính xác. Ngay cả robot humanoid chạy model AI lớn, khớp tay chân của nó bên dưới vẫn thường có một vòng PID hoặc biến thể của nó.\n\nTrong bài tập, bạn sẽ viết class PID và cho nó điều khiển một hệ rất đơn giản: vị trí x thay đổi theo lệnh u mỗi bước. Mở lab pid để thấy drone giữ độ cao ra sao khi bạn bật tắt từng phần P, I, D.",
+  "terms": [
+   {
+    "en": "feedback control",
+    "vi": "điều khiển phản hồi (đo kết quả rồi chỉnh hành động)"
+   },
+   {
+    "en": "setpoint",
+    "vi": "giá trị mục tiêu"
+   },
+   {
+    "en": "error",
+    "vi": "sai số giữa mục tiêu và giá trị đo"
+   },
+   {
+    "en": "PID controller",
+    "vi": "bộ điều khiển tỉ lệ, tích phân, đạo hàm"
+   },
+   {
+    "en": "open-loop / closed-loop",
+    "vi": "vòng hở (không đo lại) / vòng kín (luôn đo lại)"
+   },
+   {
+    "en": "steady-state error",
+    "vi": "sai số còn sót lại khi hệ đã ổn định"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Drone muốn bay ở 10 m nhưng luôn lơ lửng ở 9.7 m dù đã chờ lâu. Thành phần nào của PID sinh ra để xử lý đúng tình huống này?",
+    "choices": [
+     "P, vì sai số càng lớn đẩy càng mạnh",
+     "I, vì nó cộng dồn sai số nhỏ kéo dài cho tới khi hết hụt",
+     "D, vì nó nhìn tốc độ thay đổi của sai số",
+     "Không thành phần nào, phải đổi sensor"
+    ],
+    "answer": 1,
+    "why": "Sai số nhỏ nhưng dai dẳng là steady-state error. Phần I cộng dồn nó theo thời gian nên lực đẩy tăng dần cho tới khi drone lên đúng 10 m."
+   },
+   {
+    "q": "Máy giặt chạy theo hẹn giờ cố định 40 phút, không kiểm tra quần áo sạch chưa. Đây là kiểu điều khiển gì?",
+    "choices": [
+     "Open-loop, vì không đo lại kết quả",
+     "Closed-loop, vì có hẹn giờ",
+     "PID, vì có thời gian",
+     "Feedback control, vì có motor"
+    ],
+    "answer": 0,
+    "why": "Không có bước đo kết quả để chỉnh hành động nên đây là vòng hở. Có hẹn giờ không làm nó thành vòng kín."
+   },
+   {
+    "q": "Robot đang tiến về mục tiêu rất nhanh, error giảm vùn vụt. Phần D sẽ làm gì?",
+    "choices": [
+     "Đẩy mạnh thêm cho tới nhanh hơn",
+     "Không làm gì vì error vẫn dương",
+     "Tạo lực hãm, vì error đang giảm nhanh nghĩa là sắp lao qua mục tiêu",
+     "Reset phần I về 0"
+    ],
+    "answer": 2,
+    "why": "Đạo hàm của error âm và lớn, nhân Kd cho ra lực ngược chiều, giống nhả ga sớm trước khi tới đèn đỏ."
+   },
+   {
+    "q": "Vì sao robot hiện đại vẫn dùng PID ở tầng dưới dù tầng trên đã có AI?",
+    "choices": [
+     "Vì AI không chạy được trên robot",
+     "Vì PID tự lập kế hoạch đường đi",
+     "Vì PID đã được luật bắt buộc",
+     "Vì PID đơn giản, chạy rất nhanh và không cần mô hình vật lý chính xác để bám theo lệnh"
+    ],
+    "answer": 3,
+    "why": "Tầng trên quyết định đi đâu, tầng dưới cần phản ứng hàng trăm lần mỗi giây. PID làm việc đó rẻ và ổn định mà không cần phương trình chi tiết của robot."
+   }
+  ],
+  "code": {
+   "prompt": "Hoàn thiện class PID với hàm step(setpoint, measurement): error = setpoint - measurement, integral cộng thêm error*dt, derivative = (error - prev_error)/dt (bước đầu tiên derivative = 0), trả về kp*error + ki*integral + kd*derivative. Sau đó viết simulate(pid, setpoint, steps, x0=0.0): mỗi bước lấy u = pid.step(setpoint, x), cập nhật x = x + u*pid.dt, lưu x vào list và trả về list. Ví dụ PID(2,0,0,0.1).step(10,4) trả về 12.",
+   "starter": "class PID:\n    def __init__(self, kp, ki, kd, dt):\n        self.kp = kp\n        self.ki = ki\n        self.kd = kd\n        self.dt = dt\n        self.integral = 0.0\n        self.prev_error = None\n\n    def step(self, setpoint, measurement):\n        # TODO: compute error, update integral, compute derivative\n        # return kp*error + ki*integral + kd*derivative\n        return 0.0\n\n\ndef simulate(pid, setpoint, steps, x0=0.0):\n    # TODO: x changes by u * dt each step (x = x + u * pid.dt)\n    # return the list of x after each step\n    return []\n",
+   "solution": "class PID:\n    def __init__(self, kp, ki, kd, dt):\n        self.kp = kp\n        self.ki = ki\n        self.kd = kd\n        self.dt = dt\n        self.integral = 0.0\n        self.prev_error = None\n\n    def step(self, setpoint, measurement):\n        error = setpoint - measurement\n        self.integral += error * self.dt\n        if self.prev_error is None:\n            derivative = 0.0\n        else:\n            derivative = (error - self.prev_error) / self.dt\n        self.prev_error = error\n        return self.kp * error + self.ki * self.integral + self.kd * derivative\n\n\ndef simulate(pid, setpoint, steps, x0=0.0):\n    x = x0\n    history = []\n    for _ in range(steps):\n        u = pid.step(setpoint, x)\n        x = x + u * pid.dt\n        history.append(x)\n    return history\n",
+   "tests": "p = PID(2, 0, 0, 0.1)\nassert abs(p.step(10, 4) - 12) < 1e-9, 'Chỉ có P: kp=2, error=6 thì output phải là 12'\ni = PID(0, 1, 0, 0.5)\nassert abs(i.step(10, 0) - 5) < 1e-9, 'Bước 1: integral = 10*0.5 = 5'\nassert abs(i.step(10, 0) - 10) < 1e-9, 'Bước 2: integral cộng dồn thành 10'\nd = PID(0, 0, 1, 0.1)\nassert abs(d.step(5, 0)) < 1e-9, 'Bước đầu tiên chưa có error cũ nên phần D phải bằng 0'\nassert abs(d.step(5, 2) - (-20)) < 1e-9, 'error từ 5 xuống 3 trong 0.1s thì D = -20'\nh = simulate(PID(1, 0, 0, 0.1), 10, 200)\nassert len(h) == 200, 'simulate phải trả về đúng số bước'\nassert abs(h[-1] - 10) < 0.01, 'Sau 200 bước, x phải tiến sát setpoint 10'\nassert h[0] < h[-1], 'x phải tăng dần về phía setpoint'\n",
+   "hint": "Lưu error của bước này vào self.prev_error ở cuối hàm step để bước sau dùng. Kiểm tra prev_error có phải None không để biết đây là bước đầu."
+  },
+  "takeaway": "PID đo sai số rồi phản ứng theo hiện tại (P), quá khứ (I) và xu hướng (D), nên nó bám mục tiêu tốt mà không cần hiểu sâu vật lý của robot."
+ },
+ {
+  "id": "robo-15",
+  "track": "robo",
+  "unit": "Control and planning",
+  "order": 15,
+  "title": "Tuning PID by feel",
+  "title_vi": "Chỉnh PID bằng cảm giác",
+  "level": 2,
+  "minutes": 12,
+  "lab": "pid",
+  "body": "Viết class PID chỉ mất mười dòng. Phần khó là chọn ba con số Kp, Ki, Kd. Việc này gọi là tuning (tinh chỉnh tham số). Có phương pháp toán học bài bản, nhưng ngoài đời rất nhiều kỹ sư chỉnh bằng cách quan sát và thử, giống nêm nồi canh: thêm một chút, nếm, rồi thêm tiếp.\n\n## Bốn con số để \"nếm\"\nKhi cho robot đi từ trạng thái cũ tới mục tiêu mới (gọi là step response, phản ứng khi mục tiêu đổi đột ngột), ta nhìn bốn thứ:\n- rise time (thời gian lên): mất bao lâu để chạm gần mục tiêu lần đầu.\n- overshoot (vọt lố): vượt quá mục tiêu bao nhiêu phần trăm. Mục tiêu 10, đỉnh lên 11 nghĩa là vọt lố 10%.\n- settling time (thời gian ổn định): bao lâu thì nằm yên trong một dải nhỏ quanh mục tiêu, ví dụ trong khoảng ±2%.\n- steady-state error: cuối cùng còn lệch bao nhiêu.\n\nKhông có bộ số nào tốt nhất cho mọi việc. Cánh tay gắp trứng cần gần như không vọt lố. Drone đua chấp nhận vọt lố một chút để phản ứng thật nhanh.\n\n## Quy trình thử tay phổ biến\n1. Đặt Ki = 0, Kd = 0. Tăng Kp từ nhỏ lên. Kp nhỏ thì robot lờ đờ, Kp lớn thì nhanh hơn nhưng bắt đầu dao động qua lại quanh mục tiêu. Dừng ở mức nhanh mà chỉ hơi dao động.\n2. Thêm Kd từ từ. Phần D hãm lại nên dao động giảm và overshoot nhỏ đi. Kd quá lớn thì robot trở nên giật cục, vì D rất nhạy với nhiễu sensor. Đây là lý do bài lọc nhiễu trước đó quan trọng: tín hiệu càng sạch thì D càng dùng được.\n3. Cuối cùng thêm một chút Ki để xoá phần lệch còn sót lại. Ki quá lớn thì robot vọt lố to và dao động chậm, kiểu như người đã lỡ vặn nước quá nóng rồi lại vặn quá lạnh.\n\n## Các triệu chứng và cách chữa\n- Chậm, lì: tăng Kp.\n- Rung, lắc qua lại nhanh: giảm Kp hoặc tăng Kd.\n- Giật cục, kêu rè rè ở motor: Kd quá cao hoặc sensor nhiễu, giảm Kd hoặc lọc tín hiệu.\n- Cuối cùng vẫn lệch một chút: tăng Ki.\n- Vọt lố lớn sau khi bị kẹt lâu: hiện tượng integral windup (phần tích phân tích quá nhiều khi motor đã chạy hết công suất mà vẫn chưa tới). Cách chữa là giới hạn trần cho integral.\n\n## Đo overshoot bằng code\nKhi chỉnh tay, bạn nên ghi lại số liệu thay vì chỉ nhìn bằng mắt. Ví dụ có danh sách các lần đo độ cao [0, 5, 11, 10.2, 10] với mục tiêu 10: đỉnh là 11, vọt lố (11 - 10)/10 = 10%. So sánh con số này giữa các lần thử sẽ biết thay đổi có tốt lên không, giống A/B test trong marketing: đổi một biến mỗi lần, đo lại, giữ cái tốt hơn.\n\n## Khi nào không chỉnh tay\nVới hệ nguy hiểm hoặc đắt tiền (máy công nghiệp lớn, robot mang người), người ta mô phỏng trước hoặc dùng phương pháp có hệ thống như Ziegler-Nichols, hay để phần mềm tự tune. Nguyên tắc an toàn khi thử thật: bắt đầu với số nhỏ, có nút dừng khẩn cấp, và chỉ đổi một tham số mỗi lần.\n\nMở lab pid, cố tình làm drone dao động bằng Kp lớn, rồi dùng Kd để dập nó. Bạn sẽ \"cảm\" được từng núm vặn rất nhanh.",
+  "terms": [
+   {
+    "en": "tuning",
+    "vi": "tinh chỉnh tham số"
+   },
+   {
+    "en": "step response",
+    "vi": "phản ứng của hệ khi mục tiêu đổi đột ngột"
+   },
+   {
+    "en": "overshoot",
+    "vi": "vọt lố qua mục tiêu"
+   },
+   {
+    "en": "settling time",
+    "vi": "thời gian để nằm yên quanh mục tiêu"
+   },
+   {
+    "en": "oscillation",
+    "vi": "dao động qua lại quanh mục tiêu"
+   },
+   {
+    "en": "integral windup",
+    "vi": "phần tích phân tích luỹ quá nhiều gây vọt lố lớn"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Cánh tay robot rung qua lại quanh vị trí mục tiêu khá nhanh. Bước thử đầu tiên hợp lý nhất là gì?",
+    "choices": [
+     "Tăng Ki thật nhiều",
+     "Giảm Kp hoặc tăng Kd một chút",
+     "Tăng Kp gấp đôi",
+     "Tắt sensor"
+    ],
+    "answer": 1,
+    "why": "Dao động nhanh thường do phần P quá mạnh. Giảm Kp hoặc thêm D để hãm là cách chữa quen thuộc."
+   },
+   {
+    "q": "Mục tiêu là 50, các lần đo là [0, 30, 60, 52, 50]. Overshoot là bao nhiêu?",
+    "choices": [
+     "10%",
+     "12%",
+     "4%",
+     "20%"
+    ],
+    "answer": 3,
+    "why": "Đỉnh 60, vượt 10 so với 50, tức 10/50 = 20%."
+   },
+   {
+    "q": "Tăng Kd lên cao thì motor bắt đầu kêu rè rè và giật. Nguyên nhân hợp lý nhất?",
+    "choices": [
+     "Phần D khuếch đại nhiễu của sensor",
+     "Phần I bị windup",
+     "Kp quá nhỏ",
+     "Setpoint bị sai"
+    ],
+    "answer": 0,
+    "why": "D dựa vào tốc độ thay đổi của sai số, mà nhiễu là những thay đổi nhỏ rất nhanh, nên D phóng đại nhiễu thành lệnh giật cục."
+   },
+   {
+    "q": "Vì sao khi chỉnh tay nên đổi một tham số mỗi lần?",
+    "choices": [
+     "Vì PID chỉ cho phép đổi một số",
+     "Vì đổi nhiều sẽ làm hỏng code",
+     "Để biết chính xác thay đổi nào gây ra kết quả tốt hay xấu",
+     "Để tiết kiệm pin"
+    ],
+    "answer": 2,
+    "why": "Giống A/B test: đổi một biến thì mới quy được kết quả cho biến đó. Đổi ba núm cùng lúc thì không biết núm nào có công."
+   }
+  ],
+  "code": {
+   "prompt": "Viết overshoot_percent(readings, setpoint) trả về phần trăm vọt lố, làm tròn 1 chữ số thập phân. Nếu không lần đo nào vượt setpoint, hoặc readings rỗng, trả về 0.0. Ví dụ overshoot_percent([0, 5, 11, 10.2, 10], 10) trả về 10.0.",
+   "starter": "def overshoot_percent(readings, setpoint):\n    # TODO: how far did the highest reading go above the setpoint, in percent?\n    # return 0.0 if it never went above, or if readings is empty\n    pass\n",
+   "solution": "def overshoot_percent(readings, setpoint):\n    if not readings or setpoint == 0:\n        return 0.0\n    peak = max(readings)\n    if peak <= setpoint:\n        return 0.0\n    return round((peak - setpoint) / setpoint * 100, 1)\n",
+   "tests": "assert overshoot_percent([0, 5, 11, 10.2, 10], 10) == 10.0, 'Đỉnh 11 với mục tiêu 10 là vọt lố 10%'\nassert overshoot_percent([0, 15, 8, 10], 10) == 50.0, 'Đỉnh 15 với mục tiêu 10 là vọt lố 50%'\nassert overshoot_percent([0, 4, 8, 9.9], 10) == 0.0, 'Không vượt mục tiêu thì vọt lố là 0'\nassert overshoot_percent([], 10) == 0.0, 'Danh sách rỗng thì trả về 0.0'\nassert overshoot_percent([0, 2.5, 2.1, 2], 2) == 25.0, 'Đỉnh 2.5 với mục tiêu 2 là 25%'\n",
+   "hint": "Tìm giá trị lớn nhất trong readings bằng max(). So với setpoint trước khi tính phần trăm, và nhớ xử lý list rỗng trước khi gọi max()."
+  },
+  "takeaway": "Chỉnh PID theo thứ tự P rồi D rồi I, đổi một núm mỗi lần và đo overshoot, settling time thay vì chỉ nhìn bằng mắt."
+ },
+ {
+  "id": "robo-16",
+  "track": "robo",
+  "unit": "Control and planning",
+  "order": 16,
+  "title": "Grid path planning: BFS and A*",
+  "title_vi": "Tìm đường trên lưới với BFS và A*",
+  "level": 2,
+  "minutes": 15,
+  "lab": "pathfinding",
+  "body": "PID giúp robot bám theo lệnh. Nhưng lệnh đó đến từ đâu? Robot hút bụi muốn từ góc phòng khách sang gầm bàn ăn mà không đâm vào ghế. Việc tìm ra con đường đó gọi là **path planning** (lập kế hoạch đường đi).\n\n## Biến căn phòng thành lưới\nCách đơn giản nhất là chia sàn nhà thành ô vuông, giống bàn cờ hay bản đồ trong game. Ô trống ghi \".\", ô có vật cản ghi \"#\". Bản đồ này gọi là occupancy grid (lưới chiếm chỗ: mỗi ô cho biết có vật cản hay không), thường dựng từ dữ liệu lidar mà bạn đã học. Robot đứng ở một ô, mỗi bước đi sang ô kề bên trên, dưới, trái, phải. Câu hỏi trở thành: đi ít bước nhất từ ô A tới ô B là bao nhiêu và đi qua những ô nào?\n\n## BFS: loang đều như vết dầu\n**BFS** (breadth-first search, tìm kiếm theo chiều rộng) giống thả một giọt mực xuống giấy thấm. Từ ô xuất phát, nó thăm tất cả ô cách 1 bước, rồi tất cả ô cách 2 bước, rồi 3 bước... cho tới khi chạm đích. Vì loang đều theo từng vòng, lần đầu chạm đích chắc chắn là đường ngắn nhất (khi mọi bước có chi phí bằng nhau).\n\nCông cụ chính là một queue (hàng đợi: vào trước ra trước, như xếp hàng mua trà sữa). Thuật toán:\n- Cho ô start vào queue, ghi khoảng cách của nó là 0.\n- Lấy ô đầu hàng ra. Nếu là goal thì xong.\n- Với mỗi ô kề chưa thăm và không phải tường: ghi khoảng cách = khoảng cách ô hiện tại + 1, cho vào cuối hàng.\n- Queue rỗng mà chưa thấy goal nghĩa là không có đường, trả về -1.\n\nNhược điểm: BFS loang ra mọi hướng, kể cả hướng ngược với đích. Trên bản đồ lớn nó tốn rất nhiều công.\n\n## A*: loang có định hướng\nThuật toán A* (đọc là \"A star\") thêm một mẹo: ước lượng còn bao xa nữa tới đích. Với mỗi ô, nó tính:\n- g = số bước đã đi từ start tới ô này.\n- h = heuristic (ước lượng nhanh khoảng cách còn lại), ở đây dùng khoảng cách Manhattan: |chênh hàng| + |chênh cột|, giống đi trong khu phố bàn cờ chỉ rẽ vuông góc.\n- f = g + h.\n\nA* luôn ưu tiên ô có f nhỏ nhất, dùng priority queue (hàng đợi ưu tiên, ai điểm thấp được phục vụ trước, Python có sẵn module heapq). Tưởng tượng bạn đi bộ ở Quận 1 tìm Chợ Bến Thành: bạn không đi thử mọi con hẻm, bạn ưu tiên những đường vừa ngắn vừa hướng về phía chợ.\n\nĐiều kiện quan trọng: h không được ước lượng lố so với thực tế (gọi là admissible, tức \"lạc quan\"). Manhattan trên lưới 4 hướng thoả điều này, vì tường chỉ làm đường dài thêm chứ không ngắn đi. Khi đó A* vẫn tìm ra đường ngắn nhất như BFS nhưng thường thăm ít ô hơn nhiều.\n\n```\nf, g, cell = heapq.heappop(open_heap)\nfor nxt in neighbors(grid, cell):\n    heapq.heappush(open_heap, (g + 1 + manhattan(nxt, goal), g + 1, nxt))\n```\n\n## Ngoài đời thì sao\nRobot thật không đi ô vuông cứng nhắc: lưới mịn hơn, cho phép đi chéo, chi phí mỗi ô khác nhau (đi sát tường bị phạt thêm). Nav2, bộ điều hướng của ROS 2, có các planner dựa trên ý tưởng A* và các biến thể. Planner tìm đường tổng thể, sau đó tầng điều khiển bên dưới bám theo đường đó.\n\nTrong bài tập, bạn viết cả BFS và A*, rồi kiểm tra hai thuật toán ra cùng độ dài. Mở lab pathfinding để xem BFS loang tròn và A* lao thẳng về phía đích.",
+  "terms": [
+   {
+    "en": "path planning",
+    "vi": "lập kế hoạch đường đi"
+   },
+   {
+    "en": "occupancy grid",
+    "vi": "bản đồ lưới đánh dấu ô trống và ô có vật cản"
+   },
+   {
+    "en": "BFS",
+    "vi": "tìm kiếm theo chiều rộng, loang đều từng vòng"
+   },
+   {
+    "en": "A*",
+    "vi": "tìm kiếm có ước lượng khoảng cách còn lại"
+   },
+   {
+    "en": "heuristic",
+    "vi": "ước lượng nhanh, không cần chính xác tuyệt đối"
+   },
+   {
+    "en": "priority queue",
+    "vi": "hàng đợi ưu tiên phần tử có điểm nhỏ nhất"
+   },
+   {
+    "en": "admissible",
+    "vi": "ước lượng không bao giờ lố so với thực tế"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Vì sao lần đầu BFS chạm tới đích lại chắc chắn là đường ngắn nhất (khi mỗi bước tốn như nhau)?",
+    "choices": [
+     "Vì BFS đi ngẫu nhiên nên may mắn",
+     "Vì BFS dùng heuristic chính xác",
+     "Vì BFS luôn đi thẳng về đích",
+     "Vì nó thăm hết các ô cách 1 bước, rồi 2 bước... nên ô nào chạm trước là gần nhất"
+    ],
+    "answer": 3,
+    "why": "BFS loang theo từng vòng khoảng cách. Đích nằm ở vòng k thì không thể có đường ngắn hơn k, vì các vòng nhỏ hơn đã thăm hết mà chưa thấy."
+   },
+   {
+    "q": "Robot ở (2, 1), đích ở (5, 5). Khoảng cách Manhattan là bao nhiêu?",
+    "choices": [
+     "7",
+     "5",
+     "9",
+     "25"
+    ],
+    "answer": 0,
+    "why": "|5 - 2| + |5 - 1| = 3 + 4 = 7."
+   },
+   {
+    "q": "Nếu heuristic của A* ước lượng lố, ví dụ nhân Manhattan lên 5 lần, điều gì có thể xảy ra?",
+    "choices": [
+     "A* chạy chậm hơn BFS",
+     "A* có thể trả về đường không phải ngắn nhất",
+     "A* không bao giờ tìm được đường",
+     "Không đổi gì"
+    ],
+    "answer": 1,
+    "why": "Heuristic lố khiến A* tin quá mức vào hướng 'trông có vẻ gần', có thể chốt một đường dài hơn. Nó thường nhanh hơn nhưng mất đảm bảo tối ưu."
+   },
+   {
+    "q": "Trên bản đồ nhà kho rất lớn, ưu điểm thực tế chính của A* so với BFS là gì?",
+    "choices": [
+     "Tìm được đường mà BFS không tìm được",
+     "Không cần bản đồ",
+     "Thường thăm ít ô hơn nhiều vì ưu tiên hướng về đích",
+     "Không cần máy tính"
+    ],
+    "answer": 2,
+    "why": "Cả hai đều tìm ra đường ngắn nhất nếu có, nhưng A* nhờ heuristic không phí công loang về phía ngược đích."
+   }
+  ],
+  "code": {
+   "prompt": "Lưới là list các chuỗi, '#' là tường, '.' là ô trống, ô viết dạng (hàng, cột), đi 4 hướng. Hàm neighbors đã có sẵn. Viết manhattan(a, b), bfs(grid, start, goal) và astar(grid, start, goal). bfs và astar trả về số bước của đường ngắn nhất, hoặc -1 nếu không có đường. Ví dụ với grid ['....','###.','....'], đi từ (0,0) tới (2,0) mất 8 bước.",
+   "starter": "from collections import deque\nimport heapq\n\n\ndef manhattan(a, b):\n    # TODO: |row difference| + |column difference|\n    pass\n\n\ndef neighbors(grid, cell):\n    r, c = cell\n    for dr, dc in [(1, 0), (-1, 0), (0, 1), (0, -1)]:\n        nr, nc = r + dr, c + dc\n        if 0 <= nr < len(grid) and 0 <= nc < len(grid[0]) and grid[nr][nc] != '#':\n            yield (nr, nc)\n\n\ndef bfs(grid, start, goal):\n    # TODO: breadth-first search, return number of steps or -1\n    pass\n\n\ndef astar(grid, start, goal):\n    # TODO: A* with f = g + manhattan(cell, goal), return number of steps or -1\n    pass\n",
+   "solution": "from collections import deque\nimport heapq\n\n\ndef manhattan(a, b):\n    return abs(a[0] - b[0]) + abs(a[1] - b[1])\n\n\ndef neighbors(grid, cell):\n    r, c = cell\n    for dr, dc in [(1, 0), (-1, 0), (0, 1), (0, -1)]:\n        nr, nc = r + dr, c + dc\n        if 0 <= nr < len(grid) and 0 <= nc < len(grid[0]) and grid[nr][nc] != '#':\n            yield (nr, nc)\n\n\ndef bfs(grid, start, goal):\n    queue = deque([start])\n    dist = {start: 0}\n    while queue:\n        cell = queue.popleft()\n        if cell == goal:\n            return dist[cell]\n        for nxt in neighbors(grid, cell):\n            if nxt not in dist:\n                dist[nxt] = dist[cell] + 1\n                queue.append(nxt)\n    return -1\n\n\ndef astar(grid, start, goal):\n    open_heap = [(manhattan(start, goal), 0, start)]\n    best_g = {start: 0}\n    while open_heap:\n        f, g, cell = heapq.heappop(open_heap)\n        if cell == goal:\n            return g\n        if g > best_g.get(cell, float('inf')):\n            continue\n        for nxt in neighbors(grid, cell):\n            ng = g + 1\n            if ng < best_g.get(nxt, float('inf')):\n                best_g[nxt] = ng\n                heapq.heappush(open_heap, (ng + manhattan(nxt, goal), ng, nxt))\n    return -1\n",
+   "tests": "open_grid = ['....', '....', '....']\nwall_grid = ['....', '###.', '....']\nblocked = ['..#.', '..#.', '..#.']\nassert manhattan((0, 0), (2, 3)) == 5, 'manhattan((0,0),(2,3)) phải bằng 5'\nassert bfs(open_grid, (0, 0), (2, 3)) == 5, 'Lưới trống: đi 5 bước từ (0,0) tới (2,3)'\nassert bfs(wall_grid, (0, 0), (2, 0)) == 8, 'Phải đi vòng qua bức tường, tổng cộng 8 bước'\nassert bfs(blocked, (0, 0), (0, 3)) == -1, 'Tường chắn hết đường thì trả về -1'\nassert bfs(open_grid, (1, 1), (1, 1)) == 0, 'Start trùng goal thì 0 bước'\nassert astar(wall_grid, (0, 0), (2, 0)) == 8, 'A* cũng phải tìm ra đường ngắn nhất 8 bước'\nassert astar(blocked, (0, 0), (0, 3)) == -1, 'A* trả về -1 khi không có đường'\nassert astar(open_grid, (2, 3), (0, 0)) == bfs(open_grid, (2, 3), (0, 0)), 'A* và BFS phải ra cùng độ dài đường đi'\n",
+   "hint": "BFS: dùng deque và một dict lưu khoảng cách, cũng là cách đánh dấu ô đã thăm. A*: đẩy tuple (f, g, cell) vào heapq, mỗi lần pop ra ô có f nhỏ nhất, và chỉ đẩy ô kề khi tìm được g nhỏ hơn g đã biết."
+  },
+  "takeaway": "BFS loang đều nên chắc chắn ra đường ngắn nhất, A* thêm heuristic không ước lượng lố để ra cùng kết quả mà thăm ít ô hơn."
+ },
+ {
+  "id": "robo-17",
+  "track": "robo",
+  "unit": "Control and planning",
+  "order": 17,
+  "title": "Localisation and SLAM",
+  "title_vi": "Robot tự biết mình đang ở đâu",
+  "level": 2,
+  "minutes": 12,
+  "body": "A* cần biết robot đang đứng ở ô nào. Nghe hiển nhiên nhưng đây là một trong những bài toán khó nhất của robotics. Trong nhà không có GPS, bánh xe trượt trên sàn gạch, sensor thì nhiễu. Robot phải tự trả lời \"tôi đang ở đâu\" liên tục.\n\n## Localisation: tìm mình trên bản đồ có sẵn\n**Localisation** (định vị: ước lượng vị trí và hướng của robot trên một bản đồ đã biết). Vị trí cộng hướng quay gọi chung là pose (tư thế: toạ độ x, y và góc quay θ).\n\nCó hai nguồn thông tin:\n- Odometry (ước lượng quãng đường từ chuyển động của chính mình): đếm số vòng quay bánh xe, đọc IMU. Giống bạn nhắm mắt đi trong nhà và đếm bước. Đi vài bước thì ổn, đi lâu thì sai số cộng dồn, gọi là drift (trôi dần).\n- Quan sát môi trường: lidar thấy bức tường cách 2 m bên trái, camera thấy cái tủ lạnh. So với bản đồ để \"neo\" lại vị trí.\n\nHai nguồn bù cho nhau, đúng ý tưởng của Kalman filter bạn đã học: dự đoán bằng chuyển động, sửa lại bằng quan sát.\n\n## Particle filter: ném nhiều phỏng đoán\nMột cách rất trực quan là **particle filter** (bộ lọc hạt). Robot rải vài trăm \"hạt\", mỗi hạt là một phỏng đoán \"có thể tôi đang ở đây\". Mỗi lần robot di chuyển, mọi hạt cũng di chuyển theo, kèm chút nhiễu. Mỗi lần lidar quét, hạt nào mà \"nếu tôi ở đây thì lẽ ra phải thấy bức tường như vậy\" khớp với thực tế thì được giữ và nhân bản, hạt không khớp bị loại. Sau vài vòng, các hạt dồn về một cụm, đó là vị trí robot.\n\nGiống một nhóm bạn đi lạc trong chợ, mỗi người đoán một chỗ. Ai nói \"nếu ở cổng phía Đông thì phải thấy tiệm vàng bên phải\" và đúng là thấy tiệm vàng, cả nhóm tin người đó hơn. AMCL, gói định vị quen thuộc trong ROS, dùng đúng ý tưởng này.\n\n## SLAM: vừa vẽ bản đồ vừa tìm mình\nNếu chưa có bản đồ thì sao? Robot hút bụi lần đầu vào nhà mới phải làm **SLAM** (simultaneous localisation and mapping: vừa định vị vừa xây bản đồ cùng lúc). Đây là bài toán con gà quả trứng: muốn biết mình ở đâu thì cần bản đồ, muốn vẽ bản đồ đúng thì cần biết mình ở đâu.\n\nSLAM giải bằng cách làm cả hai từng chút một:\n- Bắt đầu, robot coi chỗ mình đứng là gốc toạ độ.\n- Đi một đoạn, ghi lại các điểm mốc (góc tường, cạnh tủ), gọi là landmark.\n- Ước lượng vị trí mới dựa trên odometry, rồi sửa lại khi thấy lại các mốc cũ.\n- **Loop closure** (khép vòng): khi robot đi một vòng và nhận ra \"đây là chỗ cũ mình từng qua\", nó biết sai số đã tích bao nhiêu và nắn lại cả bản đồ. Giống đi dạo quanh hồ Con Rùa, về lại đúng chỗ xuất phát thì bạn nhận ra mình đếm bước bị lệch và chỉnh lại toàn bộ trí nhớ về đường đi.\n\n## Các loại SLAM ngoài đời\n- Lidar SLAM: dùng lidar 2D hoặc 3D, phổ biến ở robot hút bụi, xe tự hành trong kho. Ví dụ các thư viện như Cartographer, slam_toolbox.\n- Visual SLAM: dùng camera, rẻ hơn, nhưng nhạy với ánh sáng và tường trơn không có hoạ tiết. ORB-SLAM là cái tên hay gặp trong nghiên cứu.\n- Kính thực tế ảo và điện thoại làm AR cũng chạy một dạng visual SLAM để biết điện thoại đang nhìn vào đâu.\n\nGần đây có nhiều nghiên cứu dùng deep learning để dựng bản đồ ba chiều đẹp và giàu ngữ nghĩa hơn (biết đây là \"ghế\", kia là \"cửa\"), nhưng tính đến 2026 phần lớn robot thương mại vẫn dựa trên các phương pháp xác suất cổ điển kết hợp thêm học máy ở từng phần.\n\nĐiều cần nhớ: định vị không bao giờ chắc chắn tuyệt đối. Robot tốt luôn giữ một ước lượng kèm mức độ không chắc chắn, và cẩn thận hơn khi không chắc.",
+  "terms": [
+   {
+    "en": "localisation",
+    "vi": "định vị robot trên bản đồ"
+   },
+   {
+    "en": "pose",
+    "vi": "vị trí x, y kèm hướng quay θ"
+   },
+   {
+    "en": "odometry",
+    "vi": "ước lượng quãng đường từ chuyển động của chính robot"
+   },
+   {
+    "en": "drift",
+    "vi": "sai số cộng dồn theo thời gian"
+   },
+   {
+    "en": "particle filter",
+    "vi": "bộ lọc dùng nhiều phỏng đoán vị trí rồi giữ cái khớp"
+   },
+   {
+    "en": "SLAM",
+    "vi": "vừa định vị vừa xây bản đồ"
+   },
+   {
+    "en": "loop closure",
+    "vi": "nhận ra chỗ cũ để nắn lại sai số bản đồ"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Robot chỉ dùng odometry (đếm vòng bánh xe) chạy suốt 30 phút. Vấn đề chính là gì?",
+    "choices": [
+     "Sai số cộng dồn khiến vị trí ước lượng trôi xa dần thực tế",
+     "Robot sẽ chạy chậm hơn",
+     "Bánh xe sẽ hỏng",
+     "Không có vấn đề gì nếu bánh xe tốt"
+    ],
+    "answer": 0,
+    "why": "Mỗi bước sai một chút, cộng dồn qua hàng nghìn bước thành drift lớn. Cần quan sát môi trường để neo lại."
+   },
+   {
+    "q": "Trong particle filter, chuyện gì xảy ra với các hạt khi lidar quét xong?",
+    "choices": [
+     "Mọi hạt được giữ nguyên",
+     "Hạt nào dự đoán khớp với dữ liệu lidar được giữ và nhân bản, hạt không khớp bị loại",
+     "Hạt được xếp theo thứ tự bảng chữ cái",
+     "Hạt bị xoá hết và rải lại từ đầu"
+    ],
+    "answer": 1,
+    "why": "Mỗi hạt là một giả thuyết vị trí. So với quan sát thật, hạt hợp lý được tăng trọng số, nhờ vậy các hạt dần tụ về vị trí đúng."
+   },
+   {
+    "q": "Vì sao SLAM được gọi là bài toán con gà quả trứng?",
+    "choices": [
+     "Vì robot cần ăn để có năng lượng",
+     "Vì SLAM chỉ chạy được ở trang trại",
+     "Vì cần bản đồ để biết vị trí, nhưng cần biết vị trí để vẽ bản đồ đúng",
+     "Vì thuật toán chạy theo vòng lặp vô hạn"
+    ],
+    "answer": 2,
+    "why": "Hai thứ phụ thuộc lẫn nhau, nên SLAM ước lượng cả hai cùng lúc và cải thiện dần."
+   },
+   {
+    "q": "Robot đi một vòng quanh kho rồi nhận ra mình đang ở đúng cửa xuất phát. Bước này có tác dụng gì?",
+    "choices": [
+     "Robot dừng lại vì đã xong việc",
+     "Robot xoá bản đồ cũ",
+     "Không có tác dụng gì đặc biệt",
+     "Loop closure giúp biết sai số đã tích bao nhiêu và nắn lại toàn bộ bản đồ"
+    ],
+    "answer": 3,
+    "why": "Khi biết chắc hai điểm là một, robot phân bổ lại sai số dọc đường đi, bản đồ trở nên khớp hơn nhiều."
+   }
+  ],
+  "takeaway": "Robot biết mình ở đâu bằng cách kết hợp chuyển động của chính nó với quan sát môi trường, và SLAM làm việc đó trong khi tự vẽ bản đồ."
+ },
+ {
+  "id": "robo-18",
+  "track": "robo",
+  "unit": "Control and planning",
+  "order": 18,
+  "title": "Motion planning for arms",
+  "title_vi": "Lập kế hoạch chuyển động cho cánh tay robot",
+  "level": 3,
+  "minutes": 12,
+  "body": "Với robot có bánh xe, tìm đường giống tìm đường trên bản đồ hai chiều. Với cánh tay robot thì khó hơn nhiều. Bạn đã học inverse kinematics: cho vị trí bàn tay mong muốn, tính góc các khớp. Nhưng IK chỉ cho biết điểm cuối. Nó không nói cánh tay nên đi đường nào để tới đó mà không quệt vào bàn, không làm đổ ly cà phê, không đập vào chính thân mình.\n\n## Configuration space: đổi bài toán sang không gian góc khớp\nÝ tưởng then chốt là **configuration space** (không gian cấu hình, viết tắt C-space: mỗi điểm là một bộ góc của tất cả các khớp). Cánh tay 2 khớp có C-space hai chiều: trục ngang là góc khớp vai θ1, trục dọc là góc khớp khuỷu θ2. Một tư thế của cánh tay chỉ là một điểm trên mặt phẳng đó.\n\nVật cản ngoài đời (cái bàn, bức tường) được \"chiếu\" sang C-space thành những vùng cấm: tập các bộ góc khiến cánh tay chạm vào vật cản. Lúc này lập kế hoạch chuyển động trở thành tìm đường cho một điểm trong C-space, tránh vùng cấm. Nghe quen không? Đó chính là bài tìm đường của bài trước.\n\nVấn đề là cánh tay công nghiệp thường có 6 hoặc 7 khớp, nên C-space có 6 hoặc 7 chiều. Chia lưới như BFS thì nổ tung: nếu mỗi khớp chia 100 nấc, 6 khớp cho 100⁶ = một nghìn tỷ ô. Không thể duyệt hết.\n\n## Sampling-based planning: rải điểm ngẫu nhiên\nGiải pháp phổ biến là **sampling-based planning** (lập kế hoạch dựa trên lấy mẫu ngẫu nhiên). Thay vì xét mọi ô, ta bốc ngẫu nhiên các tư thế và chỉ kiểm tra những tư thế đó.\n\n- RRT (rapidly-exploring random tree, cây khám phá nhanh ngẫu nhiên): bắt đầu từ tư thế hiện tại. Mỗi vòng, bốc một tư thế ngẫu nhiên, tìm nút gần nhất trên cây, mọc một nhánh ngắn về phía tư thế đó nếu đoạn đó không va chạm. Cây cứ thế lan ra khắp không gian như rễ cây tìm nước, cho tới khi chạm vùng đích.\n- PRM (probabilistic roadmap): rải sẵn nhiều tư thế an toàn rồi nối các tư thế gần nhau thành một mạng đường. Mỗi lần cần đi, chỉ việc tìm đường trên mạng đó bằng A*. Hợp khi môi trường ít thay đổi, giống làm sẵn bản đồ tuyến xe buýt rồi dùng nhiều lần.\n\nCác phương pháp này không đảm bảo đường ngắn nhất, nhưng tìm được đường khá nhanh trong không gian nhiều chiều. Đường tìm ra thường ngoằn ngoèo nên còn bước smoothing (làm mượt) để cánh tay chạy êm.\n\n## Từ đường đi tới chuyển động thật\nMột đường đi trong C-space mới chỉ là chuỗi tư thế. Robot còn cần **trajectory** (quỹ đạo: đường đi kèm thời gian, tức tại mỗi thời điểm ở đâu, nhanh bao nhiêu). Bước tạo trajectory phải tôn trọng giới hạn tốc độ và gia tốc của motor, không cho cánh tay giật mạnh làm rơi vật đang cầm. Sau đó, đúng như bài PID, mỗi khớp có bộ điều khiển riêng bám theo quỹ đạo này.\n\nChuỗi đầy đủ:\n- Nhận lệnh \"đặt hộp lên kệ\".\n- IK tính tư thế đích.\n- Planner (RRT hoặc tương tự) tìm đường không va chạm trong C-space.\n- Tạo trajectory có tốc độ hợp lý.\n- Bộ điều khiển khớp bám theo trajectory.\n\nTrong hệ ROS, MoveIt là framework hay dùng để làm toàn bộ chuỗi này, tích hợp sẵn nhiều planner và kiểm tra va chạm.\n\n## Còn AI thì sao\nCác robot dùng model học máy (sẽ học ở unit sau) đôi khi xuất thẳng chuỗi hành động từ hình ảnh, bỏ qua bước lập kế hoạch tường minh. Cách này linh hoạt với đồ vật lộn xộn ngoài đời, nhưng khó chứng minh an toàn. Tính đến 2026, nhiều hệ thống thực tế vẫn kết hợp: AI quyết định gắp cái gì và gắp kiểu gì, planner cổ điển và kiểm tra va chạm giữ cho chuyển động an toàn.",
+  "terms": [
+   {
+    "en": "configuration space",
+    "vi": "không gian mà mỗi điểm là một bộ góc khớp"
+   },
+   {
+    "en": "collision checking",
+    "vi": "kiểm tra va chạm"
+   },
+   {
+    "en": "sampling-based planning",
+    "vi": "lập kế hoạch bằng cách bốc mẫu tư thế ngẫu nhiên"
+   },
+   {
+    "en": "RRT",
+    "vi": "cây khám phá nhanh bằng các mẫu ngẫu nhiên"
+   },
+   {
+    "en": "trajectory",
+    "vi": "quỹ đạo: đường đi kèm thời gian và tốc độ"
+   },
+   {
+    "en": "smoothing",
+    "vi": "làm mượt đường đi"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Trong C-space của cánh tay 2 khớp, một điểm duy nhất biểu diễn điều gì?",
+    "choices": [
+     "Vị trí của vật cần gắp",
+     "Toàn bộ tư thế cánh tay, tức một cặp góc (θ1, θ2)",
+     "Tốc độ của motor",
+     "Một bức tường"
+    ],
+    "answer": 1,
+    "why": "Mỗi bộ góc khớp xác định trọn tư thế cánh tay, nên một điểm trong C-space là một tư thế."
+   },
+   {
+    "q": "Vì sao không dùng BFS trên lưới cho cánh tay 7 khớp?",
+    "choices": [
+     "Vì BFS chỉ chạy với robot có bánh xe",
+     "Vì BFS không tìm được đường ngắn nhất",
+     "Vì số ô tăng theo luỹ thừa số chiều, quá nhiều để duyệt",
+     "Vì cánh tay không có vật cản"
+    ],
+    "answer": 2,
+    "why": "Chia mỗi khớp 100 nấc thì 7 khớp cho 100⁷ ô. Đây là lý do người ta chuyển sang lấy mẫu ngẫu nhiên."
+   },
+   {
+    "q": "Điểm khác biệt giữa path và trajectory là gì?",
+    "choices": [
+     "Không khác gì nhau",
+     "Path dành cho xe, trajectory dành cho drone",
+     "Path luôn ngắn hơn trajectory",
+     "Trajectory thêm thông tin thời gian và tốc độ tại mỗi điểm, path chỉ là chuỗi tư thế"
+    ],
+    "answer": 3,
+    "why": "Path nói đi qua đâu, trajectory nói đi qua đó lúc nào và nhanh bao nhiêu, cần thiết để motor thực hiện êm và an toàn."
+   },
+   {
+    "q": "Nhà máy có cánh tay làm cùng một việc trong môi trường cố định suốt ngày. PRM có lợi gì ở đây?",
+    "choices": [
+     "Xây mạng đường một lần rồi dùng lại cho nhiều lần lập kế hoạch",
+     "PRM không cần kiểm tra va chạm",
+     "PRM luôn cho đường ngắn nhất tuyệt đối",
+     "PRM chạy không cần máy tính"
+    ],
+    "answer": 0,
+    "why": "Môi trường ít đổi nên roadmap dựng sẵn vẫn đúng, mỗi lần chỉ cần tìm đường trên mạng có sẵn, rất nhanh."
+   }
+  ],
+  "takeaway": "Cánh tay robot lập kế hoạch trong không gian góc khớp, thường bằng cách lấy mẫu ngẫu nhiên như RRT, rồi biến đường đi thành quỹ đạo có tốc độ để các khớp bám theo."
+ },
+ {
+  "id": "robo-19",
+  "track": "robo",
+  "unit": "Robot software",
+  "order": 19,
+  "title": "ROS 2 and the robot software stack",
+  "title_vi": "ROS 2 và các tầng phần mềm của robot",
+  "level": 2,
+  "minutes": 15,
+  "body": "Tới đây bạn đã gặp rất nhiều mảnh: đọc sensor, lọc nhiễu, định vị, tìm đường, PID. Câu hỏi thực tế là: ghép các mảnh đó lại thành một robot chạy được như thế nào, khi mỗi mảnh do một người viết, chạy ở tốc độ khác nhau, có khi trên máy tính khác nhau?\n\n## Các tầng của một robot\nMột robot tự hành trong kho hàng thường có các tầng sau, từ dưới lên:\n- Driver (trình điều khiển phần cứng): nói chuyện trực tiếp với motor, lidar, camera, pin.\n- Perception (nhận thức): biến dữ liệu thô thành thông tin có nghĩa, ví dụ \"có người ở phía trước 3 m\", \"đây là kệ số 12\".\n- Localisation và mapping: robot đang ở đâu trên bản đồ.\n- Planning: đi đường nào, cánh tay chuyển động ra sao.\n- Control: các vòng PID bám theo lệnh, chạy nhanh nhất.\n- Behaviour (hành vi): bộ não ra quyết định ở mức cao, \"đi lấy hàng, nếu pin yếu thì về sạc\".\n- Fleet và giao diện: quản lý nhiều robot, dashboard cho người vận hành.\n\nGiống một nhà hàng: phụ bếp sơ chế (driver), bếp chính nấu (planning, control), quản lý ca quyết định món nào làm trước (behaviour), chủ quán xem báo cáo cả chuỗi (fleet). Mỗi bên làm việc riêng nhưng phải truyền tin cho nhau liên tục.\n\n## ROS 2 là gì\n**ROS 2** (Robot Operating System 2) thực ra không phải hệ điều hành như Windows. Nó là một bộ thư viện và công cụ giúp các phần mềm của robot nói chuyện với nhau theo một chuẩn chung, kèm rất nhiều gói có sẵn do cộng đồng viết. Tính đến 2026, ROS 2 là lựa chọn mặc định trong nghiên cứu và nhiều công ty robot, với các bản phát hành dài hạn (LTS) như Humble và Jazzy được dùng rộng rãi. Bản ROS 1 cũ đã hết hỗ trợ.\n\nBa khái niệm cốt lõi:\n- **Node**: một chương trình nhỏ làm một việc. Ví dụ node đọc lidar, node định vị, node tìm đường. Giống mỗi nhân viên một vai.\n- **Topic**: kênh phát tin theo kiểu publish/subscribe (đăng và theo dõi). Node lidar liên tục publish dữ liệu lên topic /scan, ai cần thì subscribe. Người phát không cần biết ai đang nghe, giống một kênh Telegram: admin đăng bài, ai theo dõi thì nhận.\n- **Service**: kiểu hỏi đáp một lần (request/response). Ví dụ gọi service \"/reset_map\" và chờ trả lời \"xong\". Giống gọi điện cho tổng đài, hỏi một câu, nhận một câu trả lời.\n\nNgoài ra còn action cho việc dài có báo tiến độ (\"đi tới kệ 12\", báo dần \"còn 5 m, còn 2 m\", có thể huỷ giữa chừng) và parameter cho cấu hình như Kp, Ki, Kd.\n\nKhi chạy, bạn có thể gõ ros2 topic list để xem các kênh đang có, ros2 topic echo /scan để xem dữ liệu chảy qua, và dùng RViz để nhìn robot, bản đồ, đường đi trên màn hình. Viết node bằng Python dùng thư viện rclpy, hoặc C++ khi cần tốc độ.\n\n## Tầng hành vi: state machine\nTầng behaviour thường bắt đầu bằng một **state machine** (máy trạng thái: robot luôn ở đúng một trạng thái, và chỉ chuyển sang trạng thái khác khi có sự kiện cụ thể). Robot hút bụi là ví dụ kinh điển:\n- IDLE + \"start\" -> CLEANING\n- CLEANING + \"battery_low\" hoặc \"done\" -> RETURNING\n- RETURNING + \"docked\" -> CHARGING\n- CHARGING + \"full\" -> IDLE\n\nSự kiện không có trong bảng thì robot giữ nguyên trạng thái. Lệnh dừng khẩn thì từ đâu cũng về IDLE. Viết dưới dạng một dict ánh xạ (trạng thái, sự kiện) sang trạng thái mới giúp logic rõ ràng, dễ kiểm tra và dễ giải thích cho người không viết code, giống một bảng quy trình xử lý ticket trong CRM.\n\nKhi hành vi phức tạp hơn, người ta chuyển sang behaviour tree (cây hành vi), thứ mà Nav2 dùng để điều phối việc điều hướng. Nhưng tinh thần vẫn vậy: tách rõ các trạng thái và điều kiện chuyển.\n\nBài tập: viết state machine cho robot hút bụi với hàm next_state và run.",
+  "terms": [
+   {
+    "en": "ROS 2",
+    "vi": "bộ thư viện và công cụ chuẩn để phần mềm robot nói chuyện với nhau"
+   },
+   {
+    "en": "node",
+    "vi": "một chương trình nhỏ làm một việc"
+   },
+   {
+    "en": "topic",
+    "vi": "kênh phát tin kiểu đăng và theo dõi"
+   },
+   {
+    "en": "publish/subscribe",
+    "vi": "người phát đăng tin, người cần thì đăng ký nhận"
+   },
+   {
+    "en": "service",
+    "vi": "kiểu hỏi một lần, đáp một lần"
+   },
+   {
+    "en": "state machine",
+    "vi": "máy trạng thái: chuyển trạng thái theo sự kiện"
+   },
+   {
+    "en": "behaviour tree",
+    "vi": "cây hành vi, cách tổ chức quyết định phức tạp hơn"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Camera của robot phát 30 khung hình mỗi giây cho ba node khác nhau cùng dùng. Nên dùng cơ chế nào của ROS 2?",
+    "choices": [
+     "Service, mỗi node gọi hỏi một lần",
+     "Parameter",
+     "Topic, camera publish và các node subscribe",
+     "Gửi email"
+    ],
+    "answer": 2,
+    "why": "Dữ liệu liên tục cho nhiều người nhận là đúng kiểu publish/subscribe của topic."
+   },
+   {
+    "q": "Bạn muốn ra lệnh 'lưu bản đồ hiện tại' và chờ xác nhận đã lưu xong. Cơ chế nào hợp nhất?",
+    "choices": [
+     "Service, vì đây là một yêu cầu và một câu trả lời",
+     "Topic, vì lưu bản đồ là dữ liệu liên tục",
+     "Không cần gì, robot tự biết",
+     "Đổi tên node"
+    ],
+    "answer": 0,
+    "why": "Một việc ngắn, cần biết kết quả, đúng mô hình request/response của service."
+   },
+   {
+    "q": "Robot hút bụi đang ở IDLE thì nhận sự kiện 'docked'. Theo bảng trạng thái trong bài, robot sẽ ra sao?",
+    "choices": [
+     "Chuyển sang CHARGING",
+     "Báo lỗi và tắt máy",
+     "Chuyển sang CLEANING",
+     "Giữ nguyên IDLE vì không có quy tắc cho cặp này"
+    ],
+    "answer": 3,
+    "why": "Sự kiện không khớp quy tắc nào thì giữ trạng thái hiện tại, giúp robot không làm bậy khi nhận tín hiệu lạ."
+   },
+   {
+    "q": "Vì sao chia phần mềm robot thành nhiều node nhỏ thay vì một chương trình khổng lồ?",
+    "choices": [
+     "Vì ROS 2 cấm chương trình dài",
+     "Vì mỗi phần chạy tốc độ khác nhau, do người khác nhau viết, dễ thay thế và gỡ lỗi riêng",
+     "Vì node nhỏ thì robot nhẹ hơn",
+     "Vì Python không chạy được chương trình lớn"
+    ],
+    "answer": 1,
+    "why": "Tách node giúp thay driver lidar mà không đụng planner, khởi động lại một phần khi lỗi, và nhiều nhóm làm song song."
+   }
+  ],
+  "code": {
+   "prompt": "Dùng bảng TRANSITIONS có sẵn. Viết next_state(state, event): nếu event là 'stop' thì trả về 'IDLE'; nếu (state, event) có trong bảng thì trả về trạng thái mới; nếu không thì giữ nguyên state. Viết run(events, start='IDLE') áp dụng lần lượt các sự kiện và trả về trạng thái cuối. Ví dụ run(['start', 'done', 'docked']) trả về 'CHARGING'.",
+   "starter": "TRANSITIONS = {\n    ('IDLE', 'start'): 'CLEANING',\n    ('CLEANING', 'battery_low'): 'RETURNING',\n    ('CLEANING', 'done'): 'RETURNING',\n    ('RETURNING', 'docked'): 'CHARGING',\n    ('CHARGING', 'full'): 'IDLE',\n}\n\n\ndef next_state(state, event):\n    # TODO: look up (state, event); if no rule matches, stay in the same state\n    # special rule: 'stop' from any state goes to 'IDLE'\n    pass\n\n\ndef run(events, start='IDLE'):\n    # TODO: apply events in order, return the final state\n    pass\n",
+   "solution": "TRANSITIONS = {\n    ('IDLE', 'start'): 'CLEANING',\n    ('CLEANING', 'battery_low'): 'RETURNING',\n    ('CLEANING', 'done'): 'RETURNING',\n    ('RETURNING', 'docked'): 'CHARGING',\n    ('CHARGING', 'full'): 'IDLE',\n}\n\n\ndef next_state(state, event):\n    if event == 'stop':\n        return 'IDLE'\n    return TRANSITIONS.get((state, event), state)\n\n\ndef run(events, start='IDLE'):\n    state = start\n    for event in events:\n        state = next_state(state, event)\n    return state\n",
+   "tests": "assert next_state('IDLE', 'start') == 'CLEANING', 'IDLE + start phải sang CLEANING'\nassert next_state('CLEANING', 'battery_low') == 'RETURNING', 'Pin yếu khi đang lau thì quay về dock'\nassert next_state('IDLE', 'docked') == 'IDLE', 'Sự kiện không hợp lệ thì giữ nguyên trạng thái'\nassert next_state('CHARGING', 'stop') == 'IDLE', 'stop từ bất kỳ trạng thái nào cũng về IDLE'\nassert run(['start', 'done', 'docked']) == 'CHARGING', 'start, done, docked thì kết thúc ở CHARGING'\nassert run(['start', 'done', 'docked', 'full']) == 'IDLE', 'Sạc đầy thì về IDLE'\nassert run([]) == 'IDLE', 'Không có sự kiện thì vẫn ở IDLE'\n",
+   "hint": "dict.get(key, default) trả về default khi không có key. Key ở đây là tuple (state, event)."
+  },
+  "takeaway": "ROS 2 cho các node nhỏ nói chuyện qua topic (luồng dữ liệu) và service (hỏi đáp), còn tầng hành vi trên cùng thường bắt đầu bằng một state machine rõ ràng."
+ },
+ {
+  "id": "robo-20",
+  "track": "robo",
+  "unit": "Robot software",
+  "order": 20,
+  "title": "Simulation and sim-to-real",
+  "title_vi": "Mô phỏng và chuyển từ mô phỏng ra đời thật",
+  "level": 2,
+  "minutes": 12,
+  "body": "Robot thật đắt, dễ hỏng và chậm. Một cánh tay công nghiệp có thể tốn chi phí bằng cả chiếc xe máy hay ô tô, đâm vào bàn một lần là có thể phải sửa. Thử một thuật toán mới trên robot thật cả trăm lần là rủi ro và tốn thời gian. Vì vậy gần như mọi đội robotics đều làm việc trong **simulation** (mô phỏng: một thế giới ảo có vật lý, nơi robot ảo chạy thử) trước.\n\n## Simulator làm gì\nMột simulator robot gồm:\n- Physics engine (bộ máy vật lý): tính trọng lực, va chạm, ma sát, lực ở khớp.\n- Mô hình robot: kích thước, khối lượng, khớp, motor. Trong ROS thường mô tả bằng file URDF (định dạng mô tả cấu trúc robot).\n- Sensor ảo: camera, lidar, IMU tạo dữ liệu giả gần giống thật, có thể cộng thêm nhiễu.\n- Môi trường: phòng, kho, vật thể để gắp.\n\nLợi ích: chạy nhanh hơn thời gian thực, chạy song song hàng nghìn bản cùng lúc, thử tình huống nguy hiểm (người chạy cắt ngang đường) mà không ai bị thương, và lặp lại chính xác một tình huống để gỡ lỗi.\n\n## Ba cái tên hay gặp\n- **Gazebo**: simulator mã nguồn mở gắn bó lâu năm với ROS. Phiên bản mới (trước đây có tên Ignition) tích hợp tốt với ROS 2. Hợp để thử cả hệ thống: điều hướng, sensor, nhiều robot.\n- **Isaac Sim**: của NVIDIA, xây trên nền tảng Omniverse, hình ảnh rất chân thực, mạnh về tạo dữ liệu tổng hợp cho perception và huấn luyện song song trên GPU. Đi kèm Isaac Lab cho reinforcement learning. Cần card đồ hoạ NVIDIA khá mạnh.\n- **MuJoCo**: physics engine nhanh và chính xác cho tiếp xúc, ban đầu dùng nhiều trong nghiên cứu, sau đó được Google DeepMind mua lại và mở mã nguồn. Rất phổ biến trong nghiên cứu reinforcement learning và điều khiển robot đi bộ, cánh tay. Chạy nhẹ, cài bằng pip là dùng được.\n\nKhông có simulator nào tốt nhất cho mọi việc. Một số công ty dùng cả hai ba cái cho các mục đích khác nhau, và hệ sinh thái thay đổi khá nhanh.\n\n## Reality gap: khoảng cách giữa ảo và thật\nVấn đề lớn nhất: thế giới ảo không bao giờ giống hệt thế giới thật. Ma sát sàn khác, motor có độ trễ, camera bị chói nắng, dây cáp vướng. Một policy (chính sách điều khiển: quy tắc chọn hành động từ quan sát) chạy hoàn hảo trong sim có thể ngã ngay khi ra đời thật. Khoảng cách này gọi là **reality gap**, và việc vượt qua nó gọi là **sim-to-real** (chuyển từ mô phỏng sang thực tế).\n\nGiống tập lái xe trên game: bạn quen điều khiển, nhưng lần đầu ra đường Sài Gòn giờ cao điểm, xe máy tạt đầu từ mọi phía, mọi thứ khác hẳn.\n\n## Các mẹo sim-to-real\n- **Domain randomization** (ngẫu nhiên hoá môi trường): trong sim, mỗi lần chạy lại đổi ngẫu nhiên ma sát, khối lượng, ánh sáng, màu sắc, độ trễ motor. Robot buộc phải học cách hoạt động tốt trên cả một dải điều kiện, nên khi gặp thế giới thật, đó chỉ là thêm một biến thể nữa. Giống luyện thi bằng đủ loại đề thay vì học thuộc một đề.\n- System identification (đo đạc hệ thống): đo các thông số thật của robot (khối lượng, ma sát, độ trễ) rồi đưa vào sim cho khớp.\n- Thêm nhiễu vào sensor ảo để robot không quen với dữ liệu quá sạch.\n- Tinh chỉnh thêm trên robot thật với một ít dữ liệu thật sau khi đã học chủ yếu trong sim.\n\nNhiều robot chó và humanoid tính đến 2026 học dáng đi chủ yếu trong mô phỏng với domain randomization rồi mới chuyển sang robot thật, đây là một trong những lý do tiến bộ về đi lại của robot những năm gần đây nhanh như vậy.\n\n## Gợi ý cho người mới\nNếu laptop không có GPU mạnh, MuJoCo hoặc các môi trường đơn giản trong Python là điểm bắt đầu nhẹ nhàng. Nếu muốn học ROS 2 đầy đủ, Gazebo đi cùng ROS là con đường quen thuộc. Isaac Sim hợp khi bạn có máy mạnh hoặc dùng cloud.",
+  "terms": [
+   {
+    "en": "simulation",
+    "vi": "mô phỏng: thế giới ảo có vật lý để thử robot"
+   },
+   {
+    "en": "physics engine",
+    "vi": "bộ máy tính toán vật lý như trọng lực, va chạm"
+   },
+   {
+    "en": "URDF",
+    "vi": "định dạng file mô tả cấu trúc robot"
+   },
+   {
+    "en": "reality gap",
+    "vi": "khoảng cách giữa mô phỏng và thực tế"
+   },
+   {
+    "en": "sim-to-real",
+    "vi": "chuyển kết quả từ mô phỏng sang robot thật"
+   },
+   {
+    "en": "domain randomization",
+    "vi": "ngẫu nhiên hoá điều kiện mô phỏng để robot học bền hơn"
+   },
+   {
+    "en": "policy",
+    "vi": "chính sách: quy tắc chọn hành động từ quan sát"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Robot đi bộ hoàn hảo trong sim nhưng trượt ngã trên sàn thật. Hiện tượng này gọi là gì?",
+    "choices": [
+     "Overfitting dữ liệu ảnh",
+     "Reality gap",
+     "Integral windup",
+     "Loop closure"
+    ],
+    "answer": 1,
+    "why": "Sự khác biệt giữa vật lý mô phỏng và thật, ở đây là ma sát sàn, khiến policy không chuyển được nguyên vẹn."
+   },
+   {
+    "q": "Domain randomization giúp sim-to-real vì lý do nào?",
+    "choices": [
+     "Làm sim chạy nhanh hơn",
+     "Làm hình ảnh đẹp hơn",
+     "Robot học trên nhiều biến thể điều kiện nên thế giới thật chỉ là thêm một biến thể",
+     "Xoá bỏ hoàn toàn nhu cầu thử trên robot thật"
+    ],
+    "answer": 2,
+    "why": "Học trên dải rộng ma sát, khối lượng, ánh sáng khác nhau giúp policy không phụ thuộc vào một bộ thông số cụ thể. Vẫn nên thử trên robot thật."
+   },
+   {
+    "q": "Bạn có laptop không có GPU rời và muốn thử điều khiển cánh tay bằng Python. Lựa chọn nhẹ nhàng hợp lý là gì?",
+    "choices": [
+     "MuJoCo",
+     "Isaac Sim chạy trên laptop",
+     "Mua ngay cánh tay công nghiệp",
+     "Không thể học nếu không có GPU"
+    ],
+    "answer": 0,
+    "why": "MuJoCo nhẹ, cài qua pip, chạy tốt trên CPU. Isaac Sim cần GPU NVIDIA mạnh."
+   },
+   {
+    "q": "Lợi ích nào dưới đây KHÔNG phải là lợi ích thật của mô phỏng?",
+    "choices": [
+     "Chạy song song nhiều bản cùng lúc",
+     "Thử tình huống nguy hiểm mà không ai bị thương",
+     "Lặp lại chính xác một tình huống để gỡ lỗi",
+     "Đảm bảo robot chạy đúng 100% ngoài đời"
+    ],
+    "answer": 3,
+    "why": "Vì có reality gap, mô phỏng không bao giờ đảm bảo tuyệt đối. Vẫn phải kiểm tra trên phần cứng thật."
+   }
+  ],
+  "takeaway": "Mô phỏng giúp thử nhanh, rẻ và an toàn, nhưng luôn có reality gap, nên cần các mẹo như domain randomization và kiểm tra lại trên robot thật."
+ },
+ {
+  "id": "robo-21",
+  "track": "robo",
+  "unit": "Learning robots",
+  "order": 21,
+  "title": "Reinforcement learning basics",
+  "title_vi": "Học tăng cường: trạng thái, hành động, phần thưởng",
+  "level": 2,
+  "minutes": 13,
+  "lab": "q-learning",
+  "body": "Tới giờ, mọi hành vi của robot đều do con người viết ra: công thức PID, thuật toán A*, bảng trạng thái. Có những việc rất khó viết thành quy tắc, ví dụ giữ thăng bằng khi đi trên đá sỏi hay xoay một khối Rubik trong lòng bàn tay. **Reinforcement learning** (RL, học tăng cường: học bằng cách thử, nhận thưởng phạt, rồi điều chỉnh) là cách để robot tự tìm ra hành vi.\n\n## Năm khái niệm\nHãy nghĩ tới việc huấn luyện một chú chó ngồi:\n- Agent (tác nhân): bên học và hành động, ở đây là chú chó, hoặc robot.\n- Environment (môi trường): mọi thứ xung quanh mà agent tác động vào.\n- State (trạng thái): những gì agent biết về tình huống hiện tại, ví dụ vị trí, tốc độ, góc các khớp, hình ảnh camera.\n- Action (hành động): agent chọn làm gì, ví dụ quay bánh trái, đẩy khớp gối.\n- Reward (phần thưởng): một con số môi trường trả về sau mỗi hành động. Chó ngồi đúng thì được bánh, robot đi tới đích thì được +10.\n\nVòng lặp: agent nhìn state, chọn action, môi trường chuyển sang state mới và trả reward. Lặp đi lặp lại hàng nghìn tới hàng triệu lần. Mục tiêu của agent là tối đa hoá return (tổng phần thưởng tích luỹ về lâu dài), không chỉ phần thưởng ngay trước mắt.\n\nThứ agent học được là policy: quy tắc \"ở trạng thái này thì làm gì\".\n\n## Discount: tương lai đáng bao nhiêu\nPhần thưởng tương lai được nhân với hệ số gamma (γ, discount factor, hệ số chiết khấu), thường từ 0.9 tới 0.99. Người học tài chính sẽ thấy quen: giống chiết khấu dòng tiền, 1 triệu nhận năm sau đáng ít hơn 1 triệu hôm nay. γ gần 1 thì agent biết nhìn xa, γ nhỏ thì agent chỉ ham lợi trước mắt.\n\n## Reward design: phần khó nhất\nViết reward nghe đơn giản nhưng là chỗ dễ sai nhất. Agent sẽ tối ưu đúng con số bạn cho, không phải ý bạn muốn. Hiện tượng agent tìm kẽ hở để ăn điểm gọi là **reward hacking** (lợi dụng lỗ hổng của hàm thưởng).\n\nVí dụ có thật trong nghiên cứu: một agent đua thuyền trong game được thưởng khi ăn vật phẩm trên đường đua. Nó phát hiện ra chạy vòng tròn mãi ở một chỗ để ăn vật phẩm hồi lại được nhiều điểm hơn là về đích. Trong marketing cũng vậy: đặt KPI là số lượt click thì đội có thể làm tiêu đề giật tít, click tăng mà khách thật không tăng.\n\nMột hàm thưởng cho robot di chuyển tới đích có thể gồm:\n- Tới đích: +10, kết thúc lượt.\n- Đâm vào vật cản: -5.\n- Mỗi bước: -0.1, gọi là time penalty (phạt thời gian) để robot không lề mề.\n- Thưởng thêm theo mức lại gần đích: (khoảng cách cũ - khoảng cách mới). Đây là reward shaping (định hình phần thưởng: thêm gợi ý nhỏ giúp agent học nhanh hơn).\n\nThưởng thưa (chỉ cho điểm khi tới đích) thì đúng ý nhưng agent rất lâu mới tình cờ tới đích để học. Thưởng dày (shaping) học nhanh nhưng dễ bị hack. Thiết kế reward là sự cân bằng giữa hai thứ đó.\n\n## RL trong robotics ngoài đời\nTính đến 2026, RL thành công rõ nhất ở việc học dáng đi cho robot bốn chân và humanoid, gần như luôn được huấn luyện trong mô phỏng với domain randomization rồi chuyển ra robot thật. Với các việc thao tác đồ vật, RL thường được kết hợp với imitation learning (sẽ học ở bài sau), vì học từ đầu bằng thử sai trên robot thật quá chậm và dễ làm hỏng đồ.\n\nBài tập: viết hàm reward theo đúng thiết kế trên. Sau đó mở lab q-learning để xem agent học trong lưới, và thử đổi phần thưởng xem hành vi đổi ra sao.",
+  "terms": [
+   {
+    "en": "reinforcement learning",
+    "vi": "học tăng cường: học qua thử sai và phần thưởng"
+   },
+   {
+    "en": "agent",
+    "vi": "tác nhân học và hành động"
+   },
+   {
+    "en": "state",
+    "vi": "trạng thái hiện tại mà agent quan sát được"
+   },
+   {
+    "en": "action",
+    "vi": "hành động agent chọn"
+   },
+   {
+    "en": "reward",
+    "vi": "phần thưởng: con số đánh giá sau mỗi hành động"
+   },
+   {
+    "en": "discount factor",
+    "vi": "hệ số chiết khấu phần thưởng tương lai"
+   },
+   {
+    "en": "reward hacking",
+    "vi": "agent lợi dụng kẽ hở của hàm thưởng"
+   },
+   {
+    "en": "reward shaping",
+    "vi": "thêm phần thưởng gợi ý để học nhanh hơn"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Robot hút bụi được thưởng mỗi khi cảm biến bụi báo hút được bụi. Nó học cách đổ bụi ra rồi hút lại. Đây là ví dụ của gì?",
+    "choices": [
+     "Reality gap",
+     "Discount factor quá nhỏ",
+     "Overshoot",
+     "Reward hacking"
+    ],
+    "answer": 3,
+    "why": "Agent tối ưu đúng con số được giao chứ không phải ý định thật là nhà sạch, nên tìm ra kẽ hở để ăn điểm."
+   },
+   {
+    "q": "Đặt γ = 0.1 thay vì 0.99 sẽ khiến agent có xu hướng thế nào?",
+    "choices": [
+     "Chỉ quan tâm phần thưởng rất gần, ít tính đường dài",
+     "Nhìn xa hơn",
+     "Không thay đổi gì",
+     "Agent ngừng học"
+    ],
+    "answer": 0,
+    "why": "Phần thưởng sau k bước bị nhân γᵏ. Với γ = 0.1 thì chỉ vài bước sau giá trị gần như bằng 0, agent trở nên thiển cận."
+   },
+   {
+    "q": "Vì sao người ta thường thêm phạt -0.1 mỗi bước cho robot đi tới đích?",
+    "choices": [
+     "Để robot tiết kiệm điện cho motor",
+     "Để robot không lề mề, đường nào tới đích sớm hơn thì tổng điểm cao hơn",
+     "Vì reward bắt buộc phải âm",
+     "Để robot đâm vào vật cản ít hơn"
+    ],
+    "answer": 1,
+    "why": "Mỗi bước thừa làm mất 0.1, nên giữa hai đường cùng tới đích, đường ngắn hơn có return cao hơn."
+   },
+   {
+    "q": "Nhược điểm chính của sparse reward (chỉ thưởng khi tới đích) là gì?",
+    "choices": [
+     "Agent dễ reward hacking hơn",
+     "Không thể viết bằng code",
+     "Agent hiếm khi tình cờ tới đích lúc đầu nên học rất chậm",
+     "Agent luôn đâm vào tường"
+    ],
+    "answer": 2,
+    "why": "Không có tín hiệu trung gian, agent phải thử ngẫu nhiên rất lâu mới gặp phần thưởng đầu tiên để bắt đầu học."
+   }
+  ],
+  "code": {
+   "prompt": "Viết reward(prev_dist, new_dist, hit_obstacle, reached_goal). Tới đích thì trả về 10.0 (ưu tiên kiểm tra trước). Đâm vật cản thì -5.0. Còn lại trả về -0.1 + (prev_dist - new_dist), làm tròn 2 chữ số. Ví dụ reward(5.0, 4.0, False, False) trả về 0.9; reward(4.0, 4.5, False, False) trả về -0.6.",
+   "starter": "def reward(prev_dist, new_dist, hit_obstacle, reached_goal):\n    # TODO:\n    # reached_goal -> 10.0\n    # hit_obstacle -> -5.0\n    # otherwise -> -0.1 (time cost) + (prev_dist - new_dist)\n    # round the result to 2 decimals\n    pass\n",
+   "solution": "def reward(prev_dist, new_dist, hit_obstacle, reached_goal):\n    if reached_goal:\n        return 10.0\n    if hit_obstacle:\n        return -5.0\n    return round(-0.1 + (prev_dist - new_dist), 2)\n",
+   "tests": "assert reward(1.0, 0.0, False, True) == 10.0, 'Tới đích thì thưởng 10'\nassert reward(3.0, 3.0, True, False) == -5.0, 'Đâm vào vật cản thì phạt -5'\nassert reward(5.0, 4.0, False, False) == 0.9, 'Lại gần thêm 1m: 1 - 0.1 = 0.9'\nassert reward(4.0, 4.0, False, False) == -0.1, 'Đứng yên vẫn bị trừ chi phí thời gian -0.1'\nassert reward(4.0, 4.5, False, False) == -0.6, 'Đi xa đích 0.5m: -0.5 - 0.1 = -0.6'\nassert reward(2.0, 2.0, True, True) == 10.0, 'Nếu vừa chạm vừa tới đích thì ưu tiên tới đích'\n",
+   "hint": "Thứ tự các câu if quan trọng: kiểm tra reached_goal trước hit_obstacle. Dùng round(x, 2) để tránh số lẻ như 0.8999999."
+  },
+  "takeaway": "Trong RL, agent tối ưu đúng con số phần thưởng bạn đưa ra, nên thiết kế reward cẩn thận quan trọng không kém thuật toán."
+ },
+ {
+  "id": "robo-22",
+  "track": "robo",
+  "unit": "Learning robots",
+  "order": 22,
+  "title": "Q-learning",
+  "title_vi": "Q-learning: bảng điểm cho từng hành động",
+  "level": 3,
+  "minutes": 15,
+  "lab": "q-learning",
+  "body": "Bài trước nói agent học từ phần thưởng. Bài này xem một thuật toán cụ thể làm việc đó: **Q-learning**, một trong những thuật toán RL cổ điển và dễ hiểu nhất.\n\n## Q-table: bảng điểm kinh nghiệm\nÝ tưởng: với mỗi cặp (state, action), giữ một con số Q(s, a), nghĩa là \"nếu đang ở s mà làm a, rồi sau đó cư xử tốt, thì tổng phần thưởng về lâu dài kỳ vọng là bao nhiêu\". Bảng chứa mọi con số đó gọi là **Q-table**.\n\nVí dụ một hành lang 5 ô, đánh số 0 tới 4, đích ở ô 4. Mỗi ô có hai hành động: sang trái hoặc sang phải. Q-table có 5 hàng × 2 cột. Ban đầu toàn số 0, agent chưa biết gì. Sau khi học, ở mọi ô, cột \"sang phải\" sẽ có số lớn hơn.\n\nCó bảng rồi thì policy rất đơn giản: ở mỗi ô, chọn hành động có Q cao nhất. Gọi là greedy (tham lam: luôn chọn cái đang trông tốt nhất).\n\nGiống bạn mới chuyển tới khu nhà mới và chấm điểm các quán cơm trưa. Ban đầu quán nào cũng 0 điểm. Ăn thử, ngon thì cộng điểm, dở thì trừ. Dần dần bạn có bảng điểm, và trưa nào cũng chọn quán điểm cao nhất.\n\n## Công thức cập nhật\nMỗi lần agent làm hành động a ở trạng thái s, nhận reward r và tới trạng thái s', ta cập nhật:\n\nQ(s, a) <- Q(s, a) + α × (target - Q(s, a))\n\nvới target = r + γ × max Q(s', ·), tức phần thưởng vừa nhận cộng giá trị tốt nhất có thể đạt từ trạng thái mới, đã chiết khấu. Nếu s' là trạng thái kết thúc thì target = r.\n\n- α (alpha, learning rate, tốc độ học): mỗi lần sửa bao nhiêu phần sai lệch. α = 0.5 nghĩa là dịch nửa đường về phía target.\n- γ (gamma): hệ số chiết khấu như bài trước.\n- (target - Q(s, a)) gọi là TD error (sai lệch giữa kỳ vọng cũ và thông tin mới).\n\nVí dụ: ở ô 3, sang phải, tới ô 4 là đích, r = 1. Q cũ = 0, α = 0.5, target = 1. Q mới = 0 + 0.5 × (1 - 0) = 0.5. Lần sau cũng làm vậy, Q tiến dần về 1. Sau đó ô 2 học được \"sang phải dẫn tới ô 3, mà ô 3 giá trị cao\", nên Q(2, phải) tiến về 0.9 × 1 = 0.9. Giá trị cứ thế lan ngược từ đích về các ô xa hơn: 1, 0.9, 0.81...\n\n```\ntarget = r if done else r + gamma * max(Q[s2])\nQ[s][a] = Q[s][a] + alpha * (target - Q[s][a])\n```\n\n## Khám phá hay khai thác\nNếu lúc nào cũng chọn greedy, agent có thể mãi không thử con đường tốt hơn. Đây là thế khó **exploration vs exploitation** (khám phá cái mới hay khai thác cái đã biết). Giải pháp phổ biến là epsilon-greedy: với xác suất ε (ví dụ 0.2) chọn ngẫu nhiên, còn lại chọn greedy. Giống thỉnh thoảng thử một quán mới thay vì ăn mãi quán quen, có khi phát hiện quán ngon hơn.\n\nKhi chạy bài tập, ta cố định seed (hạt giống ngẫu nhiên) để mỗi lần chạy ra cùng một kết quả, dễ kiểm tra và gỡ lỗi. Đây là thói quen tốt trong mọi thí nghiệm machine learning.\n\n## Giới hạn của Q-table\nBảng chỉ dùng được khi số trạng thái nhỏ. Robot thật có state là ảnh camera hay hàng chục góc khớp liên tục, không thể liệt kê thành bảng. Khi đó người ta thay bảng bằng một neural network ước lượng Q, gọi là Deep Q-Network (DQN), nổi tiếng từ việc chơi game Atari. Với robot điều khiển liên tục, các thuật toán như PPO hay SAC phổ biến hơn. Nhưng ý tưởng cốt lõi vẫn giống Q-learning: học giá trị từ kinh nghiệm, cập nhật dần bằng sai lệch giữa kỳ vọng và thực tế.\n\nMở lab q-learning để xem các ô \"sáng dần\" từ đích lan ra, rồi làm bài tập với hành lang 5 ô.",
+  "terms": [
+   {
+    "en": "Q-learning",
+    "vi": "thuật toán học giá trị của từng cặp trạng thái, hành động"
+   },
+   {
+    "en": "Q-table",
+    "vi": "bảng điểm Q cho mọi cặp trạng thái, hành động"
+   },
+   {
+    "en": "learning rate",
+    "vi": "tốc độ học: mỗi lần sửa bao nhiêu"
+   },
+   {
+    "en": "TD error",
+    "vi": "sai lệch giữa kỳ vọng cũ và thông tin mới"
+   },
+   {
+    "en": "exploration vs exploitation",
+    "vi": "khám phá cái mới hay khai thác cái đã biết"
+   },
+   {
+    "en": "epsilon-greedy",
+    "vi": "thỉnh thoảng chọn ngẫu nhiên, còn lại chọn tốt nhất"
+   },
+   {
+    "en": "seed",
+    "vi": "hạt giống ngẫu nhiên để kết quả lặp lại được"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Q(s, a) = 0.4, agent nhận r = 0, trạng thái mới có max Q = 1.0, γ = 0.9, α = 0.5. Q(s, a) mới là bao nhiêu?",
+    "choices": [
+     "0.9",
+     "0.5",
+     "0.65",
+     "1.3"
+    ],
+    "answer": 2,
+    "why": "target = 0 + 0.9 × 1.0 = 0.9. Q mới = 0.4 + 0.5 × (0.9 - 0.4) = 0.4 + 0.25 = 0.65."
+   },
+   {
+    "q": "Nếu đặt ε = 0 ngay từ đầu (luôn greedy), rủi ro là gì?",
+    "choices": [
+     "Agent có thể kẹt ở lựa chọn đầu tiên và không bao giờ phát hiện đường tốt hơn",
+     "Agent học nhanh hơn trong mọi trường hợp",
+     "Q-table bị xoá",
+     "Agent luôn chọn ngẫu nhiên"
+    ],
+    "answer": 0,
+    "why": "Không khám phá thì agent chỉ biết những gì đã thử, dễ dừng ở một lựa chọn tạm được thay vì tốt nhất."
+   },
+   {
+    "q": "Trong hành lang 5 ô với γ = 0.9, sau khi học xong, vì sao Q(1, phải) nhỏ hơn Q(3, phải)?",
+    "choices": [
+     "Vì ô 1 có vật cản",
+     "Vì α ở ô 1 nhỏ hơn",
+     "Vì agent chưa bao giờ tới ô 1",
+     "Vì từ ô 1 phải đi nhiều bước hơn mới tới đích, phần thưởng bị chiết khấu nhiều lần"
+    ],
+    "answer": 3,
+    "why": "Giá trị lan ngược từ đích: 1, 0.9, 0.81... Mỗi bước xa đích nhân thêm γ."
+   },
+   {
+    "q": "Vì sao Q-table không dùng trực tiếp được cho robot nhìn bằng camera?",
+    "choices": [
+     "Vì camera không có reward",
+     "Vì số trạng thái (mọi ảnh có thể có) quá khổng lồ để liệt kê thành bảng",
+     "Vì Q-learning chỉ chạy trên Python",
+     "Vì camera không có seed"
+    ],
+    "answer": 1,
+    "why": "Bảng cần một hàng cho mỗi trạng thái. Ảnh có vô số biến thể, nên cần neural network để ước lượng Q thay cho bảng."
+   }
+  ],
+  "code": {
+   "prompt": "Hành lang 5 ô (0..4), đích ở ô 4, hành động 0 = trái, 1 = phải. Hàm step và train đã có sẵn. Viết q_update(Q, s, a, r, s2, done, alpha, gamma): target = r nếu done, ngược lại r + gamma * max(Q[s2]); rồi Q[s][a] += alpha * (target - Q[s][a]). Viết greedy_action(Q, s): trả về hành động có Q lớn nhất, hoà thì trả về 0. Sau khi train(seed=0), ở mọi ô 0..3 greedy_action phải trả về 1.",
+   "starter": "import random\n\n# Corridor with 5 cells: 0 1 2 3 4. Cell 4 is the goal.\n# Actions: 0 = left, 1 = right.\nN_STATES = 5\n\n\ndef step(s, a):\n    s2 = max(0, s - 1) if a == 0 else min(N_STATES - 1, s + 1)\n    if s2 == N_STATES - 1:\n        return s2, 1.0, True\n    return s2, 0.0, False\n\n\ndef q_update(Q, s, a, r, s2, done, alpha, gamma):\n    # TODO: target = r if done else r + gamma * max(Q[s2])\n    # Q[s][a] moves toward target by a fraction alpha\n    pass\n\n\ndef greedy_action(Q, s):\n    # TODO: return the action with the highest Q value (0 if tied)\n    return 0\n\n\ndef train(episodes=200, alpha=0.5, gamma=0.9, epsilon=0.2, seed=0):\n    rng = random.Random(seed)\n    Q = [[0.0, 0.0] for _ in range(N_STATES)]\n    for _ in range(episodes):\n        s = 0\n        for _ in range(50):\n            if rng.random() < epsilon or Q[s][0] == Q[s][1]:\n                a = rng.randrange(2)\n            else:\n                a = greedy_action(Q, s)\n            s2, r, done = step(s, a)\n            q_update(Q, s, a, r, s2, done, alpha, gamma)\n            s = s2\n            if done:\n                break\n    return Q\n",
+   "solution": "import random\n\n# Corridor with 5 cells: 0 1 2 3 4. Cell 4 is the goal.\n# Actions: 0 = left, 1 = right.\nN_STATES = 5\n\n\ndef step(s, a):\n    s2 = max(0, s - 1) if a == 0 else min(N_STATES - 1, s + 1)\n    if s2 == N_STATES - 1:\n        return s2, 1.0, True\n    return s2, 0.0, False\n\n\ndef q_update(Q, s, a, r, s2, done, alpha, gamma):\n    target = r if done else r + gamma * max(Q[s2])\n    Q[s][a] = Q[s][a] + alpha * (target - Q[s][a])\n\n\ndef greedy_action(Q, s):\n    return 0 if Q[s][0] >= Q[s][1] else 1\n\n\ndef train(episodes=200, alpha=0.5, gamma=0.9, epsilon=0.2, seed=0):\n    rng = random.Random(seed)\n    Q = [[0.0, 0.0] for _ in range(N_STATES)]\n    for _ in range(episodes):\n        s = 0\n        for _ in range(50):\n            if rng.random() < epsilon or Q[s][0] == Q[s][1]:\n                a = rng.randrange(2)\n            else:\n                a = greedy_action(Q, s)\n            s2, r, done = step(s, a)\n            q_update(Q, s, a, r, s2, done, alpha, gamma)\n            s = s2\n            if done:\n                break\n    return Q\n",
+   "tests": "Q = [[0.0, 0.0] for _ in range(5)]\nq_update(Q, 3, 1, 1.0, 4, True, 0.5, 0.9)\nassert abs(Q[3][1] - 0.5) < 1e-9, 'Tới đích (done): Q[3][1] = 0 + 0.5*(1 - 0) = 0.5'\nQ2 = [[0.0, 0.0], [0.0, 0.0], [0.0, 2.0], [0.0, 0.0], [0.0, 0.0]]\nq_update(Q2, 1, 1, 0.0, 2, False, 0.5, 0.9)\nassert abs(Q2[1][1] - 0.9) < 1e-9, 'Chưa xong: target = 0 + 0.9*2 = 1.8, Q mới = 0.5*1.8 = 0.9'\nassert greedy_action([[0.1, 0.7]], 0) == 1, 'Q bên phải lớn hơn thì chọn 1'\nassert greedy_action([[0.3, 0.3]], 0) == 0, 'Hoà nhau thì chọn 0'\nQt = train(seed=0)\nassert all(greedy_action(Qt, s) == 1 for s in range(4)), 'Sau khi train, ở mọi ô robot phải chọn đi sang phải'\nassert Qt[3][1] > Qt[2][1] > Qt[1][1], 'Càng gần đích thì giá trị Q của hành động đi phải càng cao'\n",
+   "hint": "q_update sửa trực tiếp list Q, không cần return. Với greedy_action chỉ có 2 hành động, một phép so sánh Q[s][0] với Q[s][1] là đủ."
+  },
+  "takeaway": "Q-learning giữ một bảng điểm cho từng hành động ở từng trạng thái và sửa dần bằng phần thưởng thật, với một chút khám phá ngẫu nhiên để không bỏ lỡ đường tốt hơn."
+ },
+ {
+  "id": "robo-23",
+  "track": "robo",
+  "unit": "Learning robots",
+  "order": 23,
+  "title": "Imitation learning and teleoperation",
+  "title_vi": "Học bằng cách bắt chước người",
+  "level": 2,
+  "minutes": 12,
+  "body": "Dạy robot gấp áo bằng RL thử sai thì robot phải gấp hỏng hàng triệu lần mới khá lên. Còn một cách tự nhiên hơn nhiều: cho robot xem người làm rồi bắt chước. Đó là **imitation learning** (học bắt chước: học hành vi từ các ví dụ do người thực hiện).\n\n## Behaviour cloning: chép lại người làm mẫu\nDạng đơn giản nhất là **behaviour cloning** (sao chép hành vi). Ta thu rất nhiều cặp (quan sát, hành động) từ người làm mẫu: tại thời điểm này camera thấy cảnh như vậy, góc khớp như vậy, thì người điều khiển đã ra lệnh như vậy. Sau đó huấn luyện một neural network dự đoán hành động từ quan sát, đúng kiểu supervised learning (học có giám sát: học từ dữ liệu đã có đáp án) mà bạn biết từ track ML.\n\nGiống phụ bếp học nấu phở bằng cách đứng cạnh đầu bếp: thấy nồi nước sôi tới mức này thì thả xương, thấy màu này thì nêm. Không ai cho điểm từng bước, chỉ cần làm theo.\n\nMột khung hình của mỗi bản ghi (gọi là demonstration, viết tắt demo) thường gồm:\n- Ảnh từ một hoặc vài camera, có khi gắn ngay trên cổ tay robot.\n- Trạng thái robot: góc các khớp, độ mở của kẹp.\n- Hành động người đã ra lệnh ở bước đó.\n- Có thể kèm một câu mô tả nhiệm vụ, ví dụ \"bỏ quả táo vào rổ\".\n\n## Teleoperation: lấy dữ liệu từ đâu\nMuốn có demo thì người phải điều khiển robot thật làm việc đó. Cách làm gọi là **teleoperation** (điều khiển từ xa: người điều khiển robot qua thiết bị). Có nhiều kiểu:\n- Leader-follower arms (cặp cánh tay chủ và tớ): người cầm và di chuyển một cánh tay nhỏ, cánh tay robot thật bắt chước y hệt theo thời gian thực. Bộ ALOHA từ nhóm nghiên cứu Stanford làm cách này nổi tiếng vì rẻ mà hiệu quả. Dự án LeRobot của Hugging Face cũng có thiết kế cánh tay giá rẻ dùng chung ý tưởng.\n- VR: người đeo kính thực tế ảo, tay mình cử động thế nào thì tay robot cử động thế ấy.\n- Găng tay hoặc bộ đồ cảm biến cho humanoid.\n- Ghi video người làm việc bình thường rồi suy ra hành động, rẻ hơn nhưng khó hơn vì tay người khác tay robot.\n\nTính đến 2026, nhiều công ty robot thuê đội ngũ teleoperation thu hàng nghìn giờ dữ liệu. Dữ liệu robot thật đang được coi là nút thắt lớn: Internet có hàng tỷ ảnh và văn bản để train LLM, nhưng dữ liệu \"tay robot làm việc\" thì hiếm và đắt. Các dự án chia sẻ dữ liệu như Open X-Embodiment gom dữ liệu từ nhiều phòng thí nghiệm và nhiều loại robot khác nhau để giải quyết phần nào vấn đề này.\n\n## Vấn đề kinh điển: lệch dần khỏi quỹ đạo\nBehaviour cloning có một điểm yếu gọi là **compounding error** (sai số cộng dồn). Robot bắt chước gần đúng, lệch một chút, rơi vào tình huống mà người làm mẫu chưa bao giờ gặp (vì người không lệch như vậy). Ở đó robot không biết làm gì, lệch thêm, rồi càng lúc càng xa. Giống học lái xe chỉ bằng xem video người lái giỏi: video không bao giờ có cảnh xe lệch làn và cách đánh lái cứu lại.\n\nCách chữa:\n- DAgger: cho robot tự chạy, khi nó lệch thì người chỉ ra hành động đúng trong tình huống đó, thêm vào dữ liệu.\n- Cố tình thu demo có cả cảnh \"sửa sai\".\n- Dự đoán một đoạn hành động liền (action chunking) thay vì từng bước lẻ, giúp chuyển động mượt và ít lệch hơn. Các model như ACT hay diffusion policy dùng các ý tưởng này.\n- Kết hợp với RL để tinh chỉnh sau khi đã bắt chước.\n\n## Vì sao cách này quan trọng với bạn\nThu và quản lý dữ liệu demo là một mảng công việc thật: thiết kế nhiệm vụ, đảm bảo chất lượng, gắn nhãn, theo dõi độ phủ các tình huống. Nó giống vận hành một pipeline dữ liệu khách hàng trong CRM: dữ liệu bẩn hoặc lệch thì model học sai, dù thuật toán tốt đến đâu. Người làm product và operations có lợi thế thật ở khâu này.",
+  "terms": [
+   {
+    "en": "imitation learning",
+    "vi": "học bắt chước từ ví dụ của người"
+   },
+   {
+    "en": "behaviour cloning",
+    "vi": "học có giám sát để chép lại hành động người làm mẫu"
+   },
+   {
+    "en": "demonstration",
+    "vi": "bản ghi một lần người làm mẫu nhiệm vụ"
+   },
+   {
+    "en": "teleoperation",
+    "vi": "người điều khiển robot từ xa qua thiết bị"
+   },
+   {
+    "en": "leader-follower arms",
+    "vi": "cặp cánh tay chủ và tớ, robot làm theo tay người"
+   },
+   {
+    "en": "compounding error",
+    "vi": "sai số cộng dồn khiến robot lệch ngày càng xa"
+   },
+   {
+    "en": "action chunking",
+    "vi": "dự đoán cả đoạn hành động liền thay vì từng bước"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Behaviour cloning về bản chất giống loại học máy nào nhất?",
+    "choices": [
+     "Supervised learning: học từ cặp quan sát và hành động đúng",
+     "Unsupervised clustering",
+     "Q-learning với reward",
+     "Không cần dữ liệu"
+    ],
+    "answer": 0,
+    "why": "Mỗi demo cho cặp input (quan sát) và đáp án (hành động người làm), nên model học như bài toán có nhãn."
+   },
+   {
+    "q": "Robot bắt chước rót nước, lệch tay một chút, rồi càng lúc càng lệch và đổ nước ra bàn. Đây là hiện tượng gì?",
+    "choices": [
+     "Reward hacking",
+     "Domain randomization",
+     "Compounding error",
+     "Loop closure"
+    ],
+    "answer": 2,
+    "why": "Lệch nhỏ đưa robot vào tình huống chưa có trong dữ liệu, ở đó nó đoán kém hơn, nên sai số cộng dồn."
+   },
+   {
+    "q": "Trong DAgger, người hướng dẫn làm gì?",
+    "choices": [
+     "Viết lại hàm reward",
+     "Chỉ ra hành động đúng ở những tình huống robot tự chạy và bị lệch, rồi thêm vào dữ liệu",
+     "Tắt robot mỗi khi nó lệch",
+     "Chạy thêm mô phỏng"
+    ],
+    "answer": 1,
+    "why": "DAgger bổ sung dữ liệu đúng ở chính những trạng thái mà robot hay rơi vào, lấp lỗ hổng của demo gốc."
+   },
+   {
+    "q": "Vì sao dữ liệu robot thật được coi là nút thắt so với dữ liệu train LLM?",
+    "choices": [
+     "Vì robot không có camera",
+     "Vì luật cấm thu dữ liệu robot",
+     "Vì dữ liệu robot không dùng được cho neural network",
+     "Vì phải có người điều khiển robot thật để tạo ra, nên chậm và đắt, không có sẵn trên Internet như văn bản"
+    ],
+    "answer": 3,
+    "why": "Văn bản và ảnh có sẵn hàng tỷ, còn demo robot phải tạo từng giờ bằng teleoperation trên phần cứng thật."
+   }
+  ],
+  "takeaway": "Imitation learning dạy robot bằng demo do người điều khiển qua teleoperation, nhanh hơn thử sai nhiều, nhưng cần dữ liệu tốt và cách chống lệch dần."
+ },
+ {
+  "id": "robo-24",
+  "track": "robo",
+  "unit": "Learning robots",
+  "order": 24,
+  "title": "Robot foundation models and humanoids",
+  "title_vi": "Model nền tảng cho robot và cơn sốt humanoid",
+  "level": 2,
+  "minutes": 14,
+  "body": "Trong mảng ngôn ngữ, thay vì train một model riêng cho dịch thuật, một model riêng cho tóm tắt, người ta train một LLM lớn rồi dùng cho mọi việc. Robotics đang thử đi cùng con đường đó, và đây là lý do bạn nghe rất nhiều về humanoid những năm gần đây.\n\n## Vision-language-action model\n**VLA** (vision-language-action model, model thị giác ngôn ngữ hành động) nhận vào hình ảnh từ camera cùng một câu lệnh bằng ngôn ngữ tự nhiên, và xuất ra hành động cho robot. Ví dụ: ảnh bàn bếp + \"lấy chai nước màu xanh bỏ vào tủ lạnh\" -> chuỗi lệnh di chuyển khớp tay và kẹp.\n\nCách xây thường như sau:\n- Bắt đầu từ một vision-language model (model đã hiểu ảnh và chữ nhờ train trên dữ liệu Internet khổng lồ). Nó đã biết \"chai nước\", \"màu xanh\", \"tủ lạnh\" là gì.\n- Train thêm trên dữ liệu robot (các demo teleoperation từ bài trước) để nó học cách biến hiểu biết đó thành chuyển động.\n- Phần xuất hành động có thể là token hành động rời rạc, hoặc một \"action head\" riêng sinh ra chuỗi chuyển động mượt.\n\nMột số cái tên tiêu biểu (danh sách thay đổi rất nhanh): RT-2 của Google DeepMind là một trong những VLA đầu tiên gây chú ý; OpenVLA là bản mở mã nguồn từ giới nghiên cứu; π0 (pi-zero) của startup Physical Intelligence; Gemini Robotics của Google DeepMind; GR00T của NVIDIA dành cho humanoid. Tính đến 2026, các model này đã làm được nhiều việc thao tác trong phòng thí nghiệm và một số môi trường thực tế, nhưng độ tin cậy chưa bằng robot lập trình cứng trong nhà máy.\n\n## Robot foundation model nói chung\n**Robot foundation model** (model nền tảng cho robot) là ý tưởng rộng hơn: một model train trên dữ liệu đa dạng từ nhiều loại robot, nhiều nhiệm vụ, có thể tinh chỉnh nhanh cho việc mới với ít dữ liệu. Một hướng phân chia hay gặp là hai tầng: tầng \"suy nghĩ chậm\" dùng model lớn hiểu nhiệm vụ và lập kế hoạch, tầng \"phản xạ nhanh\" là model nhỏ xuất lệnh điều khiển nhiều lần mỗi giây. Nghe giống cách bạn học: planner ở trên, controller ở dưới.\n\nThách thức lớn:\n- Dữ liệu: như bài trước, dữ liệu robot ít và đắt.\n- Embodiment (thân thể robot): mỗi robot có số khớp, kích thước, camera khác nhau, dữ liệu của robot này không dùng nguyên cho robot kia.\n- An toàn và độ tin cậy: model sai 1 lần trong 100 lần thì chấp nhận được với chatbot, nhưng không chấp nhận được với cánh tay đang cầm dao.\n\n## Vì sao ai cũng làm humanoid\n**Humanoid** (robot hình người) có hai tay, hai chân, đầu gắn camera. Tính đến 2026, có rất nhiều công ty đang làm: Tesla với Optimus, Figure, Agility Robotics với Digit, Boston Dynamics với Atlas bản điện, 1X, Apptronik, và nhiều hãng Trung Quốc như Unitree, UBTech, với giá một số mẫu nhỏ đã giảm đáng kể. Lý do hay được nêu:\n- Thế giới được xây cho người: cầu thang, tay nắm cửa, kệ hàng, dụng cụ. Robot hình người dùng được mọi thứ có sẵn mà không phải sửa nhà máy.\n- Dữ liệu: video người làm việc có rất nhiều. Thân hình giống người thì dễ học từ người hơn.\n- Một thân, nhiều việc: thay vì mua mười máy chuyên dụng, mua một robot làm nhiều việc, giống smartphone thay cho máy ảnh, máy nghe nhạc, bản đồ.\n- Vốn đầu tư và kỳ vọng: AI tạo sinh khiến nhà đầu tư tin \"bộ não\" đã sẵn sàng, chỉ thiếu \"cơ thể\".\n\nGóc nhìn phản biện cũng quan trọng: chân kém ổn định và tốn điện hơn bánh xe; nhiều việc trong kho một cánh tay gắn trên xe tự hành làm rẻ hơn. Pin thường chỉ vài giờ. Nhiều video demo được điều khiển từ xa hoặc quay nhiều lần mới đẹp. Giá thành, độ bền và an toàn khi làm cạnh người vẫn là câu hỏi mở. Tính đến 2026, humanoid đang ở giai đoạn thử nghiệm trong nhà máy và kho với số lượng nhỏ, chưa phổ biến trong gia đình.\n\nKhi đọc tin về humanoid, hãy hỏi: robot làm việc đó tự động hay có người điều khiển? Làm được bao nhiêu lần liên tục không lỗi? Chi phí so với người hoặc máy chuyên dụng là bao nhiêu?",
+  "terms": [
+   {
+    "en": "VLA",
+    "vi": "model nhận ảnh và lời lệnh, xuất ra hành động robot"
+   },
+   {
+    "en": "vision-language model",
+    "vi": "model hiểu cả hình ảnh và chữ"
+   },
+   {
+    "en": "robot foundation model",
+    "vi": "model nền tảng train trên dữ liệu robot đa dạng"
+   },
+   {
+    "en": "embodiment",
+    "vi": "thân thể cụ thể của một robot"
+   },
+   {
+    "en": "fine-tuning",
+    "vi": "tinh chỉnh model có sẵn cho việc mới"
+   },
+   {
+    "en": "humanoid",
+    "vi": "robot hình người"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Vì sao VLA thường bắt đầu từ một vision-language model đã train trên dữ liệu Internet?",
+    "choices": [
+     "Vì model đó đã biết điều khiển motor",
+     "Vì nó đã hiểu sẵn khái niệm như đồ vật, màu sắc, lời lệnh, chỉ cần học thêm cách biến hiểu biết thành chuyển động",
+     "Vì dữ liệu Internet chứa toàn video robot",
+     "Vì luật yêu cầu như vậy"
+    ],
+    "answer": 1,
+    "why": "Hiểu biết thế giới từ ảnh và chữ rất dồi dào trên Internet. Dữ liệu robot ít nên dùng để dạy phần hành động."
+   },
+   {
+    "q": "Dữ liệu demo thu từ một cánh tay 6 khớp không dùng nguyên được cho humanoid hai tay. Đây là thách thức nào?",
+    "choices": [
+     "Reality gap",
+     "Reward hacking",
+     "Integral windup",
+     "Khác biệt embodiment giữa các robot"
+    ],
+    "answer": 3,
+    "why": "Mỗi thân robot có số khớp, kích thước, camera khác nhau, nên hành động của robot này không ánh xạ thẳng sang robot kia."
+   },
+   {
+    "q": "Lập luận nào là lý do chính thường được nêu để làm robot hình người?",
+    "choices": [
+     "Môi trường quanh ta được thiết kế cho cơ thể người nên robot hình người dùng được ngay",
+     "Chân luôn tiết kiệm điện hơn bánh xe",
+     "Humanoid luôn rẻ hơn máy chuyên dụng",
+     "Humanoid không cần AI"
+    ],
+    "answer": 0,
+    "why": "Cầu thang, tay nắm cửa, dụng cụ đều cho người. Hai đáp án về điện và giá đều sai, đó chính là điểm yếu hiện tại của humanoid."
+   },
+   {
+    "q": "Xem video humanoid gấp quần áo rất khéo, câu hỏi nào quan trọng nhất trước khi tin nó đã sẵn sàng?",
+    "choices": [
+     "Robot màu gì",
+     "Video dài bao nhiêu giây",
+     "Robot làm tự động hay có người điều khiển, và làm được bao nhiêu lần liên tục không lỗi",
+     "Công ty có trụ sở ở đâu"
+    ],
+    "answer": 2,
+    "why": "Nhiều demo là teleoperation hoặc chọn lần quay đẹp nhất. Mức tự động và độ tin cậy mới cho biết robot có dùng được thật không."
+   }
+  ],
+  "takeaway": "VLA và robot foundation model ghép hiểu biết của model ảnh và chữ với dữ liệu robot để làm nhiều việc, còn humanoid hấp dẫn vì thế giới xây cho người, nhưng độ tin cậy, giá và an toàn vẫn đang được giải."
+ },
+ {
+  "id": "robo-25",
+  "track": "robo",
+  "unit": "Learning robots",
+  "order": 25,
+  "title": "Safety and ethics of robots at work",
+  "title_vi": "An toàn và đạo đức khi robot làm việc cạnh người",
+  "level": 1,
+  "minutes": 11,
+  "body": "Chatbot trả lời sai thì bạn đọc lại và bỏ qua. Robot làm sai thì có thể kẹp tay người, đổ kệ hàng, hay đâm vào ai đó. Robot là AI có thân thể, nên câu hỏi an toàn và đạo đức nặng ký hơn nhiều.\n\n## Từ lồng sắt tới cobot\nTrong nhà máy ô tô truyền thống, cánh tay robot lớn làm việc trong lồng rào, có cửa khoá liên động: mở cửa là robot dừng. Người và robot không bao giờ chung chỗ. Cách này an toàn nhưng cứng nhắc.\n\n**Cobot** (collaborative robot, robot cộng tác) được thiết kế để làm cạnh người: nhẹ hơn, chậm hơn, có cảm biến lực ở khớp để dừng khi va chạm, cạnh bo tròn. Ngành công nghiệp có các tiêu chuẩn quốc tế như ISO 10218 cho robot công nghiệp và ISO/TS 15066 hướng dẫn giới hạn lực, áp lực khi robot có thể chạm người. Bạn không cần nhớ số hiệu, chỉ cần biết: có tiêu chuẩn, và công ty nghiêm túc phải tuân theo.\n\n## Các lớp bảo vệ\nAn toàn robot giống an toàn ở công trường: không dựa vào một thứ duy nhất mà xếp nhiều lớp.\n- Emergency stop (nút dừng khẩn cấp): nút đỏ to, bấm là cắt năng lượng motor, không qua phần mềm phức tạp.\n- Speed and separation monitoring (giám sát tốc độ và khoảng cách): lidar hoặc camera đo người ở gần, người càng gần robot càng chậm, quá gần thì dừng.\n- Power and force limiting (giới hạn lực): robot không bao giờ được dùng lực vượt ngưỡng an toàn với cơ thể người.\n- Vùng làm việc: vạch sơn, rào ảo, giới hạn khớp để cánh tay không vươn ra lối đi.\n- Phần mềm: kiểm tra va chạm trong planner, giới hạn tốc độ trong trajectory, watchdog (bộ canh: nếu chương trình treo hay mất tín hiệu thì robot tự dừng).\n\nMột nguyên tắc quan trọng: lớp an toàn thấp nhất phải đơn giản và độc lập với \"bộ não\". Nếu model AI ra lệnh lạ, mạch dừng khẩn và giới hạn lực vẫn phải giữ được. Không ai muốn an toàn của mình phụ thuộc vào việc một neural network có đoán đúng hay không.\n\n## Rủi ro mới khi robot dùng AI học máy\n- Hành vi khó đoán: policy học từ dữ liệu có thể làm điều lạ ở tình huống chưa thấy bao giờ (nhớ compounding error và reality gap).\n- Khó chứng minh: với PID và A*, kỹ sư có thể phân tích chắc chắn. Với neural network, việc chứng minh \"không bao giờ làm X\" khó hơn nhiều, nên cần kiểm thử rộng trong mô phỏng và giới hạn cứng bên ngoài model.\n- Lệnh ngôn ngữ mơ hồ: \"dọn bàn đi\" có nghĩa là vứt luôn giấy tờ quan trọng? Robot cần biết khi nào nên hỏi lại.\n- Bảo mật: robot nối mạng có thể bị chiếm quyền điều khiển, khác hẳn một chatbot bị lừa.\n\n## Đạo đức và xã hội\n- Việc làm: robot thay một số công việc lặp lại, nặng nhọc, nguy hiểm, đồng thời tạo việc mới như vận hành, bảo trì, thu dữ liệu teleoperation. Quá trình chuyển đổi không tự công bằng; người lao động cần được đào tạo lại. Đây là chuyện xã hội và chính sách, không chỉ chuyện kỹ thuật.\n- Quyền riêng tư: robot trong nhà hay văn phòng mang camera, micro đi khắp nơi. Dữ liệu đó lưu ở đâu, ai xem, có dùng để train model không?\n- Trách nhiệm: robot gây tai nạn thì ai chịu, nhà sản xuất, công ty triển khai hay người vận hành? Luật ở nhiều nơi đang cập nhật, ví dụ EU có quy định về máy móc và về AI ảnh hưởng tới robot, và tính đến 2026 bức tranh pháp lý vẫn đang thay đổi.\n- Dùng sai mục đích: robot giám sát người lao động quá mức, hay robot dùng trong vũ khí, là các tranh luận lớn.\n\n## Câu hỏi nên mang theo\nKhi đánh giá một dự án robot, hãy hỏi: nếu robot sai ở mức tệ nhất thì hậu quả là gì? Có lớp bảo vệ nào không phụ thuộc AI? Ai được hỏi ý kiến trước khi đưa robot vào chỗ làm của họ? Với người làm product hay forward-deployed engineer, những câu này thuộc phần việc hằng ngày.",
+  "terms": [
+   {
+    "en": "cobot",
+    "vi": "robot cộng tác, thiết kế để làm việc cạnh người"
+   },
+   {
+    "en": "emergency stop",
+    "vi": "nút dừng khẩn cấp cắt năng lượng motor"
+   },
+   {
+    "en": "speed and separation monitoring",
+    "vi": "giảm tốc hoặc dừng khi người tới gần"
+   },
+   {
+    "en": "power and force limiting",
+    "vi": "giới hạn lực robot tác động lên người"
+   },
+   {
+    "en": "watchdog",
+    "vi": "bộ canh tự dừng robot khi chương trình treo"
+   },
+   {
+    "en": "accountability",
+    "vi": "trách nhiệm giải trình khi có sự cố"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Vì sao lớp an toàn thấp nhất như nút dừng khẩn nên độc lập với model AI điều khiển robot?",
+    "choices": [
+     "Vì model AI chạy chậm",
+     "Vì tiêu chuẩn cấm dùng AI",
+     "Để kể cả khi model ra lệnh sai, robot vẫn dừng được một cách chắc chắn",
+     "Để tiết kiệm chi phí phần cứng"
+    ],
+    "answer": 2,
+    "why": "An toàn không được phụ thuộc vào việc neural network đoán đúng. Mạch đơn giản, độc lập là lớp bảo vệ cuối cùng."
+   },
+   {
+    "q": "Một kho hàng muốn robot di chuyển trong khu có người đi bộ. Cơ chế nào phù hợp nhất?",
+    "choices": [
+     "Speed and separation monitoring: người càng gần robot càng chậm, quá gần thì dừng",
+     "Tắt hết cảm biến cho robot chạy nhanh",
+     "Chỉ dán biển cảnh báo",
+     "Dựa vào người tự tránh"
+    ],
+    "answer": 0,
+    "why": "Robot đo khoảng cách tới người và tự điều chỉnh tốc độ, đó là cách chuẩn khi phải chia sẻ không gian."
+   },
+   {
+    "q": "Robot nhận lệnh 'dọn bàn' và thấy có tập hồ sơ trên bàn. Hành vi đáng mong muốn nhất là gì?",
+    "choices": [
+     "Vứt hết vào thùng rác cho nhanh",
+     "Bỏ qua lệnh",
+     "Tắt máy",
+     "Hỏi lại hoặc để riêng những thứ không chắc chắn"
+    ],
+    "answer": 3,
+    "why": "Lệnh ngôn ngữ mơ hồ, sai thì khó sửa. Robot tốt biết khi nào nên xin xác nhận."
+   },
+   {
+    "q": "Vì sao robot dùng neural network khó chứng minh an toàn hơn robot dùng PID và A*?",
+    "choices": [
+     "Vì neural network luôn nguy hiểm",
+     "Vì hành vi của nó học từ dữ liệu, khó phân tích chắc chắn nó sẽ làm gì ở mọi tình huống",
+     "Vì PID không có tham số",
+     "Vì A* không chạy trên robot thật"
+    ],
+    "answer": 1,
+    "why": "Thuật toán cổ điển có thể phân tích bằng toán. Model học máy cần kiểm thử rộng và giới hạn cứng bên ngoài."
+   }
+  ],
+  "takeaway": "Robot là AI có thân thể, nên an toàn phải xếp nhiều lớp với lớp cuối độc lập với AI, và triển khai robot luôn kéo theo câu hỏi về việc làm, quyền riêng tư và trách nhiệm."
+ },
+ {
+  "id": "robo-26",
+  "track": "robo",
+  "unit": "Doing it for real",
+  "order": 26,
+  "title": "Your first robot hardware",
+  "title_vi": "Bắt đầu với phần cứng: mua gì, làm gì trước",
+  "level": 1,
+  "minutes": 12,
+  "body": "Học trên màn hình tới đâu thì lần đầu thấy motor quay theo code của mình vẫn là một cảm giác khác hẳn. Bài này vẽ một con đường phần cứng cho người mới, chi phí vừa phải. Mọi mức giá dưới đây là ước lượng tính đến 2026, thay đổi theo nơi bán và thời điểm, hàng clone (bản sao giá rẻ) rẻ hơn hàng chính hãng khá nhiều.\n\n## Hai bộ não: Arduino và Raspberry Pi\n- **Arduino** là microcontroller (vi điều khiển: một con chip nhỏ chạy đúng một chương trình, khởi động tức thì, rất hợp điều khiển motor và đọc sensor theo thời gian thực). Lập trình bằng C/C++ đơn giản trong Arduino IDE. Bản Uno chính hãng khoảng 20 tới 30 USD, bản clone ở Việt Nam thường chỉ vài trăm nghìn đồng. Không chạy được Python đầy đủ, không chạy ROS 2 trực tiếp.\n- **Raspberry Pi** là single-board computer (máy tính trên một bo mạch: chạy Linux, có USB, mạng, camera). Chạy Python, OpenCV, ROS 2 được. Raspberry Pi 5 tầm 60 tới 120 USD tuỳ RAM, chưa kể nguồn, thẻ nhớ, tản nhiệt. Không giỏi việc điều khiển thời gian thực chính xác bằng Arduino.\n\nCách ghép phổ biến: Raspberry Pi làm \"não lớn\" (camera, tìm đường, ROS 2), Arduino hoặc một microcontroller khác như ESP32, Raspberry Pi Pico làm \"tủy sống\" (chạy vòng PID cho motor, đọc encoder). Chúng nói chuyện qua cáp USB hoặc serial. Đúng kiến trúc tầng trên tầng dưới bạn đã học.\n\nNếu muốn chạy model AI trên robot, có các bo mạnh hơn như dòng NVIDIA Jetson, nhưng giá cao hơn nhiều, nên để sau.\n\n## Con đường gợi ý\n1. Bộ kit Arduino starter (khoảng 30 tới 60 USD, hoặc rẻ hơn với hàng clone): đèn LED, nút bấm, cảm biến siêu âm, servo. Làm đèn nhấp nháy, rồi đo khoảng cách, rồi servo quay theo khoảng cách. Học cách đọc sensor và ra lệnh motor.\n2. Robot xe hai bánh (khoảng 30 tới 100 USD): khung xe, hai motor DC có encoder, driver motor, pin, cảm biến siêu âm hoặc dò line. Dự án đầu: xe đi theo vạch đen, rồi xe tránh vật cản. Tự viết PID để xe đi thẳng và giữ khoảng cách. Đây là chỗ bài PID trở nên rất thật.\n3. Nâng cấp lên Raspberry Pi + camera (thêm khoảng 80 tới 150 USD): xe nhận diện màu hoặc đồ vật bằng OpenCV, điều khiển qua Wi-Fi, chạy thử ROS 2. Có thể gắn lidar 2D giá rẻ (khoảng 70 tới 150 USD) để thử SLAM.\n4. Cánh tay robot nhỏ: cánh tay servo cho người mới khoảng 50 tới 200 USD. Nếu muốn thử imitation learning, các thiết kế mã nguồn mở như SO-100/SO-101 trong dự án LeRobot của Hugging Face có cặp tay leader-follower, tổng chi phí linh kiện thường khoảng vài trăm USD tuỳ nơi mua và có in 3D sẵn hay không.\n\nTổng cho bước 1 và 2: khoảng 60 tới 150 USD. Cả con đường tới cánh tay: vài trăm USD, trải ra nhiều tháng.\n\n## Mẹo để không nản\n- Bắt đầu nhỏ, làm xong một dự án trước khi mua thêm đồ. Đống linh kiện chưa mở hộp là cái bẫy quen thuộc.\n- Học về điện cơ bản: điện áp, dòng, cực âm dương. Đa số lỗi người mới là nguồn điện: motor kéo dòng lớn làm bo mạch khởi động lại. Pin lithium cần sạc và cất đúng cách, có thể cháy nếu bị chập hay phồng.\n- Mua đồng hồ vạn năng (multimeter) rẻ. Nó cứu bạn rất nhiều giờ gỡ lỗi.\n- Ở Sài Gòn có nhiều cửa hàng linh kiện điện tử và cửa hàng online bán kit, có chỗ hỗ trợ cả hướng dẫn tiếng Việt. Cộng đồng Arduino, ROS và LeRobot trên mạng rất đông và nhiệt tình.\n- Ghi lại quá trình: ảnh, video, code trên GitHub, những lỗi đã gặp. Đây chính là portfolio khi đi xin việc robotics.\n- Nếu chưa muốn tốn tiền, bắt đầu bằng mô phỏng: Wokwi mô phỏng Arduino trên trình duyệt, MuJoCo hay Gazebo cho robot.\n\n## Dự án đầu tiên nên là gì\nMột chiếc xe nhỏ tự giữ khoảng cách 20 cm với bàn tay bạn: cảm biến siêu âm đo khoảng cách, PID tính tốc độ, motor chạy tới lui. Nó gom đủ sensor, lọc nhiễu, điều khiển phản hồi và tuning trong một dự án rẻ, làm được trong vài cuối tuần, và rất vui để quay video khoe.",
+  "terms": [
+   {
+    "en": "microcontroller",
+    "vi": "vi điều khiển: chip nhỏ chạy một chương trình, hợp điều khiển thời gian thực"
+   },
+   {
+    "en": "single-board computer",
+    "vi": "máy tính trên một bo mạch, chạy Linux"
+   },
+   {
+    "en": "servo",
+    "vi": "motor quay tới góc được ra lệnh"
+   },
+   {
+    "en": "encoder",
+    "vi": "bộ đếm vòng quay bánh xe hoặc motor"
+   },
+   {
+    "en": "motor driver",
+    "vi": "mạch cấp dòng cho motor theo lệnh từ bo điều khiển"
+   },
+   {
+    "en": "multimeter",
+    "vi": "đồng hồ vạn năng đo điện áp, dòng, điện trở"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Bạn cần một bo chạy camera, OpenCV và ROS 2 trên robot. Lựa chọn hợp lý hơn là gì?",
+    "choices": [
+     "Arduino Uno",
+     "Raspberry Pi",
+     "Chỉ cần servo",
+     "Một cục pin lớn"
+    ],
+    "answer": 1,
+    "why": "Raspberry Pi chạy Linux và Python đầy đủ. Arduino là microcontroller, không chạy được những thứ nặng như vậy."
+   },
+   {
+    "q": "Xe robot của bạn cứ khởi động lại mỗi lần motor bắt đầu quay mạnh. Nghi ngờ đầu tiên nên là gì?",
+    "choices": [
+     "Code PID sai công thức",
+     "Camera bị bẩn",
+     "Nguồn điện không đủ, motor kéo dòng lớn làm sụt áp bo mạch",
+     "Sai thuật toán A*"
+    ],
+    "answer": 2,
+    "why": "Đây là lỗi kinh điển của người mới. Motor nên có nguồn hoặc mạch driver riêng, đủ dòng, tách khỏi nguồn bo điều khiển."
+   },
+   {
+    "q": "Vì sao thường ghép Raspberry Pi với một microcontroller thay vì để Pi làm hết?",
+    "choices": [
+     "Microcontroller lo vòng điều khiển motor thời gian thực ổn định, Pi lo phần tính toán nặng",
+     "Vì Pi không có cổng USB",
+     "Vì Arduino chạy ROS 2 tốt hơn",
+     "Vì luật bắt buộc"
+    ],
+    "answer": 0,
+    "why": "Giống tầng planner và tầng controller: Pi chạy Linux có thể bị trễ bất chợt, microcontroller giữ vòng PID đều đặn."
+   },
+   {
+    "q": "Lời khuyên nào giúp người mới đi xa nhất với phần cứng?",
+    "choices": [
+     "Mua thật nhiều linh kiện một lần cho đủ",
+     "Mua ngay cánh tay công nghiệp",
+     "Bỏ qua phần điện vì chỉ cần code",
+     "Làm xong từng dự án nhỏ, ghi lại quá trình, rồi mới nâng cấp"
+    ],
+    "answer": 3,
+    "why": "Dự án nhỏ hoàn thành tạo đà và portfolio. Mua nhiều đồ trước thường thành đống linh kiện không dùng."
+   }
+  ],
+  "takeaway": "Bắt đầu với Arduino và một xe robot rẻ để làm PID thật, thêm Raspberry Pi khi cần camera và ROS 2, và chỉ nâng cấp sau khi đã hoàn thành dự án trước."
+ }
+]

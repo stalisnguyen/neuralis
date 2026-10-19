@@ -1,0 +1,677 @@
+[
+ {
+  "id": "career-01",
+  "track": "career",
+  "unit": "Career map",
+  "order": 1,
+  "title": "The AI Job Map",
+  "title_vi": "Bản đồ nghề AI và Robotics: ai làm gì",
+  "level": 1,
+  "minutes": 10,
+  "body": "Khi mới tìm hiểu, nhiều người nghĩ \"làm AI\" là một nghề. Thực tế đây là cả một hệ sinh thái gồm nhiều vai trò, giống một nhà hàng lớn: có người nghiên cứu công thức mới, có đầu bếp nấu mỗi ngày, có người lo bếp vận hành trơn tru, có người tiếp khách và có người quyết định thực đơn. Hiểu bản đồ này giúp bạn chọn đúng cửa để bước vào, thay vì cố gõ vào cửa khó nhất.\n\n## Nhóm 1 - Tạo ra mô hình\n- Research Scientist / Applied Research Scientist: nghĩ ra phương pháp mới, đọc và viết paper (bài báo khoa học), chạy thí nghiệm. Thường cần nền toán sâu, nhiều người có bằng thạc sĩ hoặc tiến sĩ.\n- ML Engineer: biến ý tưởng thành model (mô hình, tức chương trình học từ dữ liệu) chạy được với dữ liệu thật: train (huấn luyện), đánh giá, tối ưu tốc độ.\n- Data Scientist: dùng dữ liệu và thống kê để trả lời câu hỏi kinh doanh, ví dụ \"khách nào sắp bỏ app\", đôi khi xây model dự đoán.\n\n## Nhóm 2 - Đưa mô hình vào sản phẩm\n- AI Engineer (LLM apps): không train model từ đầu mà dùng LLM (mô hình ngôn ngữ lớn như các chatbot nổi tiếng) qua API, ghép với dữ liệu công ty, viết prompt, xây RAG, agent. Tính đến 2026 đây là nhóm được tuyển nhiều nhất.\n- Forward-Deployed AI Engineer (FDE, kỹ sư được \"cử\" sang ngồi cạnh khách hàng): hiểu quy trình của khách rồi dựng giải pháp AI chạy thật trong hệ thống của họ. Nửa kỹ sư, nửa tư vấn.\n- MLOps / AI Platform Engineer: lo \"đường ống\": server, GPU, giám sát, triển khai model để các team khác dùng ổn định.\n- Prompt & Eval Engineer: thiết kế eval (bộ bài kiểm tra chất lượng đầu ra của AI) và đo xem hệ thống tốt lên hay tệ đi sau mỗi lần sửa.\n\n## Nhóm 3 - Kết nối với kinh doanh\n- AI Product Manager: quyết định xây cái gì, cho ai, đo thành công bằng gì. Khác PM thường ở chỗ phải chấp nhận AI có lúc sai và thiết kế sản phẩm chịu được cái sai đó.\n- Solutions Engineer / Solutions Architect: giúp khách doanh nghiệp hiểu và tích hợp sản phẩm AI, làm demo, viết bản thiết kế kỹ thuật.\n- AI Growth / Lifecycle Automation: dùng AI để cá nhân hoá thông điệp, tự động hoá chiến dịch, phân khúc khách hàng.\n\n## Nhóm 4 - Robotics\n- Robotics Software Engineer: viết phần mềm điều khiển robot, thường dùng ROS 2 (bộ khung phần mềm phổ biến cho robot).\n- Perception / Computer Vision Engineer: giúp robot \"nhìn\" qua camera, lidar.\n- Robot Learning Engineer: dạy robot kỹ năng bằng học máy, ví dụ học từ dữ liệu người điều khiển làm mẫu.\n- Field / Deployment Engineer: mang robot ra nhà máy, kho hàng, cài đặt và xử lý sự cố tại chỗ.\n\n## Cách đọc bản đồ\nHãy tưởng tượng hai trục. Trục thứ nhất: gần model hay gần khách hàng. Research Scientist nằm sát model, Solutions Engineer nằm sát khách hàng. Trục thứ hai: lượng code mỗi ngày. ML Engineer code rất nhiều, AI PM code ít nhưng phải đọc hiểu được kỹ sư đang nói gì.\n\nNgười có nền product và CRM thường có lợi thế ở phía gần khách hàng: AI PM, FDE, Solutions, AI Growth. Đó không phải giới hạn, chỉ là điểm xuất phát có quãng đường ngắn nhất. Một lưu ý thực tế: mỗi công ty đặt tên chức danh một kiểu. \"AI Engineer\" ở startup này có thể làm việc y như \"ML Engineer\" ở công ty khác. Vì vậy khi đọc JD (job description, bản mô tả công việc), hãy đọc kỹ phần \"bạn sẽ làm gì hằng ngày\" và \"công cụ dùng\" thay vì chỉ nhìn tiêu đề.",
+  "terms": [
+   {
+    "en": "model",
+    "vi": "mô hình học từ dữ liệu"
+   },
+   {
+    "en": "LLM",
+    "vi": "mô hình ngôn ngữ lớn"
+   },
+   {
+    "en": "FDE",
+    "vi": "kỹ sư AI triển khai tại khách hàng"
+   },
+   {
+    "en": "MLOps",
+    "vi": "vận hành hệ thống ML"
+   },
+   {
+    "en": "eval",
+    "vi": "bộ kiểm tra chất lượng AI"
+   },
+   {
+    "en": "JD",
+    "vi": "bản mô tả công việc"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Một công ty muốn dùng LLM có sẵn để xây chatbot trả lời câu hỏi nội bộ dựa trên tài liệu của họ. Role nào hợp nhất để làm phần chính?",
+    "choices": [
+     "Research Scientist",
+     "AI Engineer (LLM apps)",
+     "Robotics Field Engineer",
+     "Data Scientist chuyên thống kê mô tả"
+    ],
+    "answer": 1,
+    "why": "Bài toán là ghép LLM có sẵn với dữ liệu công ty (RAG, prompt), đúng việc của AI Engineer. Không cần nghĩ ra phương pháp mới hay train model từ đầu."
+   },
+   {
+    "q": "Vì sao nên đọc kỹ phần việc hằng ngày trong JD thay vì chỉ nhìn chức danh?",
+    "choices": [
+     "Vì cùng một chức danh có thể làm việc rất khác nhau giữa các công ty",
+     "Vì chức danh luôn bị viết sai chính tả",
+     "Vì nhà tuyển dụng không quan tâm chức danh",
+     "Vì chức danh chỉ dành cho người có bằng tiến sĩ"
+    ],
+    "answer": 0,
+    "why": "Thị trường chưa chuẩn hoá tên gọi. Phần mô tả công việc và công cụ mới cho biết bạn thật sự sẽ làm gì."
+   },
+   {
+    "q": "Điểm khác quan trọng nhất của AI PM so với PM thông thường là gì?",
+    "choices": [
+     "Phải tự train model mỗi tuần",
+     "Phải biết lập trình robot",
+     "Phải thiết kế sản phẩm vẫn ổn khi AI có lúc trả lời sai",
+     "Không cần làm việc với kỹ sư"
+    ],
+    "answer": 2,
+    "why": "Đầu ra của AI mang tính xác suất, không đúng 100%. AI PM phải tính trước cách phát hiện, giảm và xử lý cái sai đó."
+   },
+   {
+    "q": "Một người mạnh về CRM, chưa biết code, muốn vào nghề với quãng đường ngắn nhất. Nhóm nào nên nhắm trước?",
+    "choices": [
+     "Research Scientist",
+     "Perception Engineer",
+     "MLOps Engineer",
+     "Các role gần khách hàng như AI PM, FDE, AI Growth"
+    ],
+    "answer": 3,
+    "why": "Những role này tận dụng ngay kỹ năng hiểu người dùng và quy trình kinh doanh, trong khi phần kỹ thuật có thể học dần."
+   }
+  ],
+  "takeaway": "AI là một hệ sinh thái nhiều vai trò; hãy chọn cửa vào gần với thế mạnh hiện có của mình nhất."
+ },
+ {
+  "id": "career-02",
+  "track": "career",
+  "unit": "Career map",
+  "order": 2,
+  "title": "How AI Teams Work",
+  "title_vi": "AI team phối hợp với product và business ra sao",
+  "level": 1,
+  "minutes": 10,
+  "body": "Làm một tính năng AI khác làm tính năng phần mềm thường ở một điểm cốt lõi: phần mềm thường cho kết quả đoán trước được, còn AI cho kết quả mang tính xác suất. Nút \"Thanh toán\" bấm 100 lần thì chạy giống nhau 100 lần. Còn một con chatbot được hỏi cùng một câu 100 lần có thể trả lời 100 kiểu, và vài lần trong đó có thể sai. Vì thế cách các team làm việc với nhau cũng khác.\n\n## Vòng đời một tính năng AI\nLấy ví dụ một sàn thương mại điện tử muốn thêm tính năng \"tóm tắt 500 review sản phẩm thành 3 dòng\".\n- Xác định vấn đề: PM hỏi \"người mua đang mất bao lâu để đọc review, họ cần biết gì nhất?\". Nếu không trả lời được, đừng làm AI.\n- Dữ liệu: team lấy mẫu review thật, có review tiếng lóng, review spam, review chỉ có emoji.\n- Prototype (bản thử nhanh): AI Engineer viết prompt, gọi một LLM, làm thử trong vài ngày.\n- Eval (đánh giá): cả team thống nhất \"tóm tắt tốt\" nghĩa là gì: không bịa thông tin, nêu cả điểm khen và chê, dưới 60 chữ. Sau đó chấm trên vài trăm sản phẩm.\n- Ra mắt từng phần: bật cho 5% người dùng, so với nhóm không có tính năng.\n- Monitoring (giám sát sau ra mắt): theo dõi khiếu nại, chi phí, tốc độ, và các ca AI trả lời sai.\n\n## Ba thứ luôn phải đánh đổi\nMọi cuộc họp giữa AI team và business gần như xoay quanh tam giác này:\n- Quality (chất lượng): câu trả lời đúng và hữu ích tới đâu.\n- Latency (độ trễ, thời gian chờ kết quả): người dùng chờ 1 giây hay 10 giây.\n- Cost (chi phí): mỗi lần gọi model tốn tiền theo số token (mẩu chữ mà model xử lý). Một tính năng chạy cho 10 triệu người mỗi ngày thì vài phần nhỏ của một xu cũng thành con số lớn.\nModel lớn thường giỏi hơn nhưng chậm và đắt hơn. Không có lựa chọn \"tốt nhất mọi mặt\", chỉ có lựa chọn hợp nhất với bài toán.\n\n## Ai nói gì trong phòng họp\n- Business hỏi: tính năng này tăng doanh thu hay giảm chi phí bao nhiêu?\n- Product dịch câu đó thành chỉ số đo được: tỉ lệ người đọc tóm tắt rồi bấm mua, số ticket hỗ trợ giảm.\n- AI Engineer dịch tiếp thành chỉ số kỹ thuật: tỉ lệ pass trên bộ eval, độ trễ trung bình, chi phí mỗi 1.000 lượt.\n- Legal và compliance (bộ phận pháp lý, tuân thủ) hỏi: dữ liệu khách có bị gửi ra ngoài không, AI có nói điều gì gây rủi ro pháp lý không.\n\nNgười làm tốt ở giữa là người nói được cả hai ngôn ngữ. Khi kỹ sư nói \"eval pass rate tăng từ 82% lên 90%\", bạn hiểu và giải thích cho sếp: \"trong 100 bản tóm tắt, số bản đạt chuẩn tăng từ 82 lên 90\". Khi sếp nói \"khách phàn nàn chatbot lạnh lùng\", bạn biến nó thành một tiêu chí chấm điểm cụ thể trong bộ eval.\n\n## Human-in-the-loop\nHuman-in-the-loop (có con người kiểm duyệt trong vòng lặp) là cách phổ biến để giảm rủi ro: AI soạn, người duyệt trước khi gửi. Ví dụ AI soạn trả lời email khiếu nại, nhân viên chăm sóc khách hàng xem và bấm gửi. Khi AI đã đủ tin cậy ở một nhóm việc, mới dần bỏ bước duyệt cho nhóm việc đó.\n\nTóm lại, AI team không làm việc trong phòng kín. Một tính năng thành công khi product, kỹ sư, business và pháp lý cùng thống nhất từ đầu: đo cái gì, chấp nhận sai tới đâu, và trả bao nhiêu tiền cho mỗi lần chạy.",
+  "terms": [
+   {
+    "en": "prototype",
+    "vi": "bản thử nhanh"
+   },
+   {
+    "en": "eval",
+    "vi": "bộ đánh giá chất lượng"
+   },
+   {
+    "en": "latency",
+    "vi": "độ trễ"
+   },
+   {
+    "en": "token",
+    "vi": "mẩu chữ model xử lý"
+   },
+   {
+    "en": "monitoring",
+    "vi": "giám sát sau ra mắt"
+   },
+   {
+    "en": "human-in-the-loop",
+    "vi": "có người duyệt trong vòng lặp"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Vì sao tính năng AI cần bước eval rõ ràng hơn tính năng phần mềm thường?",
+    "choices": [
+     "Vì AI luôn chạy chậm hơn",
+     "Vì đầu ra của AI mang tính xác suất, có thể khác nhau và đôi khi sai",
+     "Vì luật bắt buộc mọi tính năng phải có eval",
+     "Vì kỹ sư AI không biết viết test"
+    ],
+    "answer": 1,
+    "why": "Phần mềm thường cho kết quả đoán trước được. AI cần một bộ tiêu chí và dữ liệu chấm điểm để biết nó đúng thường xuyên tới đâu."
+   },
+   {
+    "q": "Team muốn đổi sang model lớn hơn để tăng chất lượng. Câu hỏi nào nên đặt ra trước tiên?",
+    "choices": [
+     "Model lớn có logo đẹp hơn không",
+     "Model lớn có được nhiều người nói tới không",
+     "Độ trễ và chi phí mỗi lượt tăng bao nhiêu, người dùng có chấp nhận không",
+     "Có thể bỏ bước eval không"
+    ],
+    "answer": 2,
+    "why": "Quality, latency, cost luôn kéo nhau. Chất lượng tăng nhưng chậm gấp ba và đắt gấp năm có thể làm hỏng sản phẩm."
+   },
+   {
+    "q": "Sếp nói: 'Khách phàn nàn chatbot trả lời lạnh lùng'. Cách xử lý tốt nhất là gì?",
+    "choices": [
+     "Biến góp ý thành tiêu chí chấm điểm cụ thể trong eval rồi đo trước và sau khi sửa",
+     "Đổi ngay sang model khác",
+     "Bỏ qua vì đây là cảm nhận chủ quan",
+     "Tắt chatbot"
+    ],
+    "answer": 0,
+    "why": "Biến cảm nhận thành tiêu chí đo được giúp team biết lần sửa nào thật sự cải thiện, thay vì đoán."
+   },
+   {
+    "q": "Human-in-the-loop phù hợp nhất trong tình huống nào?",
+    "choices": [
+     "Khi tính năng không có rủi ro gì",
+     "Khi muốn tiết kiệm nhân sự tuyệt đối từ ngày đầu",
+     "Khi model đã đúng 100%",
+     "Khi AI soạn nội dung quan trọng như trả lời khiếu nại và cần người duyệt trước khi gửi"
+    ],
+    "answer": 3,
+    "why": "Người duyệt chặn lỗi trước khi tới khách. Khi AI đủ tin cậy ở một nhóm việc, mới giảm dần bước duyệt."
+   }
+  ],
+  "takeaway": "Tính năng AI thành công khi các team thống nhất từ đầu đo cái gì, chấp nhận sai tới đâu và trả bao nhiêu cho mỗi lần chạy."
+ },
+ {
+  "id": "career-03",
+  "track": "career",
+  "unit": "Getting hired",
+  "order": 3,
+  "title": "A Portfolio That Gets Interviews",
+  "title_vi": "Portfolio khiến nhà tuyển dụng muốn gọi bạn",
+  "level": 2,
+  "minutes": 12,
+  "body": "Khi bạn chuyển nghề, CV thường kể chuyện của nghề cũ. Portfolio (bộ sản phẩm bạn tự làm, có thể xem và chạy thử) là cách nhanh nhất để kể chuyện của nghề mới. Với người tuyển dụng AI, một project chạy được thuyết phục hơn mười chứng chỉ.\n\n## Vì sao project hơn certificate\nCertificate (chứng chỉ khoá học) chứng minh bạn đã xem hết bài giảng. Project chứng minh bạn giải được một vấn đề khi không có ai cầm tay. Hãy hình dung tuyển một đầu bếp: một người đưa giấy chứng nhận lớp nấu ăn, người kia mời bạn nếm thử món họ nấu. Bạn sẽ tin ai hơn? Chứng chỉ vẫn có ích: nó giúp bạn học có lộ trình và có từ khoá trên LinkedIn. Nhưng hãy coi nó là gia vị, không phải món chính.\n\n## Một project tốt trông như thế nào\n- Giải một vấn đề thật, tốt nhất là vấn đề trong lĩnh vực bạn hiểu sâu. Người làm CRM có thể xây \"trợ lý viết email cá nhân hoá theo phân khúc khách hàng, có kiểm tra giọng thương hiệu\". Người làm vận hành có thể xây \"agent đọc ticket hỗ trợ và gợi ý phân loại\".\n- Có demo: một link chạy thử hoặc video 1-2 phút. Người tuyển dụng thường không clone code về chạy.\n- Có số đo: \"trên 100 email mẫu, 87 bản đạt đủ 4 tiêu chí\". Con số cho thấy bạn hiểu eval, kỹ năng mà nhiều người mới bỏ qua.\n- Nói rõ đánh đổi: vì sao chọn model này, chi phí mỗi lượt khoảng bao nhiêu, chỗ nào hệ thống còn yếu.\n- Nhỏ nhưng xong. Một project nhỏ hoàn chỉnh tốt hơn ba project dang dở.\n\n## README là trang bán hàng\nREADME (file giới thiệu ở trang đầu repo trên GitHub) là thứ được đọc nhiều nhất. Cấu trúc gợi ý:\n- Một câu: project này giải quyết vấn đề gì, cho ai.\n- Ảnh hoặc GIF demo.\n- Cách hoạt động: sơ đồ đơn giản các bước.\n- Kết quả eval và những ca còn sai.\n- Cách chạy thử trong 3 lệnh.\n- Bước tiếp theo nếu có thêm thời gian.\n\n## Viết về công việc của mình\nĐây là phần bị đánh giá thấp nhất. Sau mỗi project, viết một bài 600-1.000 chữ: vấn đề, cách tiếp cận, điều bất ngờ, sai lầm, kết quả. Đăng lên blog cá nhân, LinkedIn hoặc Medium. Lý do:\n- Viết buộc bạn hiểu thật. Chỗ nào không giải thích được là chỗ chưa hiểu.\n- Bài viết được chia sẻ, project nằm im trên GitHub thì không.\n- Phỏng vấn viên thường đọc bài trước buổi gặp, và câu hỏi sẽ xoay quanh thứ bạn đã viết, tức sân nhà của bạn.\n\n## Bao nhiêu là đủ\nBa project là con số hợp lý để bắt đầu nộp đơn: một project cho thấy nền tảng (ví dụ phân tích dữ liệu bằng Python), một project LLM có RAG (cách cho AI tra tài liệu trước khi trả lời) và eval, một project gắn chặt với lĩnh vực bạn muốn vào. Đừng chờ hoàn hảo. Portfolio là thứ sống, bạn sẽ sửa nó suốt quá trình tìm việc.\n\nMột mẹo cuối: ghim project tốt nhất lên đầu GitHub và LinkedIn, và đặt link ngay trong phần đầu CV. Người tuyển dụng thường chỉ dành vài chục giây cho mỗi hồ sơ.",
+  "terms": [
+   {
+    "en": "portfolio",
+    "vi": "bộ sản phẩm tự làm"
+   },
+   {
+    "en": "certificate",
+    "vi": "chứng chỉ khoá học"
+   },
+   {
+    "en": "README",
+    "vi": "file giới thiệu repo"
+   },
+   {
+    "en": "demo",
+    "vi": "bản chạy thử"
+   },
+   {
+    "en": "repo",
+    "vi": "kho code trên GitHub"
+   },
+   {
+    "en": "RAG",
+    "vi": "cho AI tra tài liệu trước khi trả lời"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Bạn có 2 tháng rảnh. Cách dùng thời gian nào tạo ấn tượng tốt nhất với nhà tuyển dụng AI?",
+    "choices": [
+     "Lấy 6 chứng chỉ online",
+     "Làm 1-2 project hoàn chỉnh có demo, có số eval, kèm bài viết giải thích",
+     "Đọc thật nhiều tin tức AI",
+     "Làm 10 project mỗi cái một nửa"
+    ],
+    "answer": 1,
+    "why": "Project hoàn chỉnh chứng minh năng lực giải vấn đề; số eval và bài viết cho thấy bạn hiểu sâu."
+   },
+   {
+    "q": "Vì sao nên ghi cả những ca hệ thống còn sai vào README?",
+    "choices": [
+     "Để người đọc thương hại",
+     "Vì GitHub bắt buộc",
+     "Vì nó cho thấy bạn biết đo lường và hiểu giới hạn của hệ thống",
+     "Để README dài hơn"
+    ],
+    "answer": 2,
+    "why": "Người làm AI thật luôn phải biết hệ thống sai ở đâu. Nói thẳng điều đó thể hiện tư duy kỹ sư trưởng thành."
+   },
+   {
+    "q": "Người làm CRM lâu năm nên chọn project 'gắn với lĩnh vực' như thế nào?",
+    "choices": [
+     "Một trợ lý viết email cá nhân hoá theo phân khúc, có kiểm tra giọng thương hiệu và eval",
+     "Một game rắn săn mồi",
+     "Một model nhận diện mèo chó",
+     "Một bản sao ChatGPT không có gì khác"
+    ],
+    "answer": 0,
+    "why": "Project gắn với lĩnh vực cho thấy bạn mang kiến thức ngành vào AI, thứ người chỉ biết code thường thiếu."
+   },
+   {
+    "q": "Lợi ích nào của việc viết bài về project là quan trọng nhất khi đi phỏng vấn?",
+    "choices": [
+     "Bài viết thay được CV",
+     "Bài viết giúp được lên báo",
+     "Bài viết giúp tránh câu hỏi kỹ thuật",
+     "Phỏng vấn viên hay hỏi xoay quanh bài viết, tức chủ đề bạn nắm chắc nhất"
+    ],
+    "answer": 3,
+    "why": "Bài viết dẫn dắt cuộc phỏng vấn về sân nhà của bạn, đồng thời chứng minh bạn hiểu đủ sâu để giải thích."
+   }
+  ],
+  "takeaway": "Một project nhỏ, chạy được, có số đo và có bài viết giải thích đáng giá hơn nhiều chứng chỉ."
+ },
+ {
+  "id": "career-04",
+  "track": "career",
+  "unit": "Getting hired",
+  "order": 4,
+  "title": "Moving Into AI Without an Engineering Degree",
+  "title_vi": "Vào nghề AI từ nền product, marketing, vận hành",
+  "level": 2,
+  "minutes": 13,
+  "body": "Nhiều người nghĩ không học kỹ thuật thì không vào được AI. Điều đó đúng với một số role như Research Scientist, nhưng sai với phần lớn thị trường năm 2026. Các công ty đang thiếu người hiểu cả AI lẫn cách doanh nghiệp vận hành. Bạn không cần trở thành kỹ sư giỏi nhất phòng, bạn cần trở thành người hiểu AI giỏi nhất trong số những người hiểu business.\n\n## Bước 1 - Kiểm kê thứ mình đã có\nViết ra những kỹ năng bạn đã dùng hằng ngày rồi \"dịch\" sang ngôn ngữ AI:\n- Product: viết PRD (tài liệu mô tả yêu cầu sản phẩm), ưu tiên tính năng, đo chỉ số. Trong AI, đây là định nghĩa bài toán và tiêu chí eval.\n- Marketing / CRM: phân khúc khách hàng, A/B test (chia hai nhóm để so sánh), thiết kế journey (chuỗi thông điệp theo hành vi khách). Đây chính là nền của personalization (cá nhân hoá) và đo tác động bằng nhóm đối chứng.\n- Operations (vận hành): vẽ quy trình, tìm điểm nghẽn, viết SOP (hướng dẫn thao tác chuẩn). Đây là đầu vào trực tiếp để thiết kế agent (AI tự thực hiện nhiều bước).\n\n## Bước 2 - Học đủ kỹ thuật để không bị \"lạc\"\nMục tiêu 3 tháng đầu không phải thành chuyên gia mà là đọc hiểu và tự làm được việc nhỏ:\n- Python cơ bản: biến, hàm, vòng lặp, list, dict, đọc file CSV.\n- Gọi API của một LLM, hiểu prompt, token, temperature.\n- Khái niệm ML cốt lõi: train, test, overfitting (học thuộc dữ liệu cũ), precision và recall.\n- Cách RAG và agent hoạt động ở mức sơ đồ.\n\n## Bước 3 - Tự động hoá chính công việc của mình\nĐây là bước tạo chuyển biến lớn nhất. Chọn một việc lặp lại bạn làm mỗi tuần, ví dụ tổng hợp kết quả chiến dịch, phân loại phản hồi khách, viết biến thể tiêu đề email. Dùng Python và một LLM để làm nó nhanh hơn. Bạn vừa học, vừa có câu chuyện thật để kể: \"tôi rút việc 4 tiếng mỗi tuần xuống 30 phút\".\n\n## Bước 4 - Chọn một role đích, không chọn năm\nĐọc 20 JD của một role (AI PM, FDE, AI Growth, Solutions Engineer...). Đánh dấu kỹ năng xuất hiện nhiều nhất. So với danh sách của bạn ở bước 1. Khoảng trống chính là giáo trình của bạn trong 3 tháng tiếp theo.\n\n## Bước 5 - Đi đường cầu nối\n- Bên trong công ty hiện tại: xin tham gia dự án AI, làm người viết yêu cầu, người chấm eval, người đưa tính năng tới khách. Chuyển nội bộ thường dễ hơn nộp đơn ngoài.\n- Bên ngoài: nhắm công ty làm AI cho đúng ngành bạn hiểu. Một startup làm AI cho marketing sẽ quý người từng chạy CRM hơn người chỉ biết code.\n- Freelance nhỏ: giúp một cửa hàng quen tự động hoá trả lời tin nhắn. Đó là case study thật.\n\n## Những bẫy nên tránh\n- Học mãi không làm: xem khoá thứ năm trong khi chưa có project nào.\n- Giấu nền cũ: nền business là lợi thế, hãy kể nó ngay đầu CV.\n- Nhắm role quá xa ngay lần đầu: đi từng bậc, ví dụ CRM -> AI Growth -> AI PM hoặc FDE.\n\nLộ trình này không nhanh như quảng cáo \"thành AI engineer trong 30 ngày\", nhưng nó thật. Sau 6 đến 12 tháng kiên trì, phần lớn người làm theo sẽ có đủ project và câu chuyện để bước qua cửa.",
+  "terms": [
+   {
+    "en": "PRD",
+    "vi": "tài liệu yêu cầu sản phẩm"
+   },
+   {
+    "en": "A/B test",
+    "vi": "thử nghiệm chia hai nhóm"
+   },
+   {
+    "en": "journey",
+    "vi": "chuỗi thông điệp theo hành vi"
+   },
+   {
+    "en": "personalization",
+    "vi": "cá nhân hoá"
+   },
+   {
+    "en": "agent",
+    "vi": "AI tự thực hiện nhiều bước"
+   },
+   {
+    "en": "SOP",
+    "vi": "hướng dẫn thao tác chuẩn"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Kỹ năng CRM nào chuyển sang AI trực tiếp nhất?",
+    "choices": [
+     "Thiết kế logo",
+     "Phân khúc khách hàng và đo tác động bằng nhóm đối chứng",
+     "Đàm phán giá với nhà cung cấp",
+     "Quản lý kho hàng"
+    ],
+    "answer": 1,
+    "why": "Personalization và đo tác động bằng holdout là nền của rất nhiều ứng dụng AI trong growth."
+   },
+   {
+    "q": "Vì sao bước 'tự động hoá chính công việc của mình' lại hiệu quả?",
+    "choices": [
+     "Vì không cần học gì thêm",
+     "Vì sếp sẽ tăng lương ngay",
+     "Vì vừa học bằng việc thật, vừa tạo ra câu chuyện có số liệu để kể khi phỏng vấn",
+     "Vì nó thay thế được portfolio"
+    ],
+    "answer": 2,
+    "why": "Bài toán thật cho động lực và ngữ cảnh. Kết quả đo được như 'giảm 4 tiếng xuống 30 phút' là bằng chứng mạnh."
+   },
+   {
+    "q": "Cách chọn role đích hợp lý nhất là gì?",
+    "choices": [
+     "Đọc khoảng 20 JD của một role, tìm kỹ năng lặp lại và so với kỹ năng mình có",
+     "Nộp vào mọi role có chữ AI",
+     "Chọn role lương cao nhất",
+     "Chọn role ít người ứng tuyển nhất"
+    ],
+    "answer": 0,
+    "why": "Phân tích nhiều JD cho thấy thị trường thật sự cần gì. Khoảng trống so với kỹ năng hiện tại chính là kế hoạch học."
+   },
+   {
+    "q": "Bẫy nào phổ biến nhất ở người chuyển nghề sang AI?",
+    "choices": [
+     "Làm quá nhiều project",
+     "Viết quá nhiều bài",
+     "Kể nền business quá rõ",
+     "Học hết khoá này tới khoá khác mà chưa làm project nào"
+    ],
+    "answer": 3,
+    "why": "Học thụ động tạo cảm giác tiến bộ nhưng không tạo bằng chứng năng lực. Project mới là thứ được đánh giá."
+   }
+  ],
+  "takeaway": "Không cần thành kỹ sư giỏi nhất; hãy thành người hiểu AI giỏi nhất trong số người hiểu business."
+ },
+ {
+  "id": "career-05",
+  "track": "career",
+  "unit": "AI at work",
+  "order": 5,
+  "title": "AI in Lifecycle and CRM",
+  "title_vi": "AI đang thay đổi lifecycle marketing, CRM và growth",
+  "level": 2,
+  "minutes": 12,
+  "body": "Lifecycle marketing (marketing theo vòng đời khách hàng: chào mừng, kích hoạt, giữ chân, kéo về) từ lâu đã dựa trên dữ liệu và tự động hoá. AI không thay thế nền đó, nhưng thay đổi ba thứ: tốc độ tạo nội dung, độ chi tiết của cá nhân hoá, và cách người làm nghề dành thời gian.\n\n## 1. Nội dung: từ viết từng bản sang thiết kế hệ thống\nTrước đây, một chiến dịch 5 phân khúc x 3 ngôn ngữ x 2 biến thể nghĩa là 30 bản email viết tay. Giờ một LLM có thể soạn cả 30 bản trong vài phút. Việc của người làm CRM chuyển từ \"viết\" sang:\n- Viết brief và prompt rõ: mục tiêu, giọng thương hiệu, điều cấm nói.\n- Xây guardrail (hàng rào an toàn): kiểm tra tự động xem bản soạn có hứa hẹn sai, có từ cấm theo quy định ngành, có sai tên sản phẩm không.\n- Chấm điểm và duyệt mẫu thay vì đọc hết.\n\n## 2. Cá nhân hoá sâu hơn phân khúc\nPhân khúc truyền thống chia khách thành vài nhóm lớn. AI cho phép tiến gần tới \"phân khúc một người\":\n- Propensity model (mô hình dự đoán khả năng một người làm một hành động): ai sắp rời bỏ, ai sắp nâng hạng, ai nhạy với khuyến mãi.\n- Next best action (hành động tốt nhất tiếp theo): hệ thống chọn gửi ưu đãi, gửi hướng dẫn hay im lặng với từng người.\n- Send-time optimization: gửi vào giờ mỗi người hay mở app, giống quán cà phê quen biết bạn hay ghé lúc 7 giờ sáng.\n\n## 3. Agent trong journey\nTính đến 2026, nhiều nền tảng CRM đã thêm agent: bạn mô tả mục tiêu bằng lời (\"kéo người dùng mới hoàn thành KYC trong 7 ngày\"), agent đề xuất journey, tạo nội dung, chạy thử và báo cáo. Tính năng cụ thể thay đổi rất nhanh giữa các nhà cung cấp, nên hãy học nguyên lý hơn là học thuộc nút bấm của một công cụ.\n\n## 4. Phân tích nhanh hơn\nThay vì chờ team data viết truy vấn, người làm CRM có thể hỏi bằng ngôn ngữ thường: \"so sánh tỉ lệ kích hoạt của người đăng ký qua TikTok và qua giới thiệu bạn bè trong quý này\". AI viết SQL (ngôn ngữ truy vấn dữ liệu), chạy và tóm tắt. Lưu ý: luôn kiểm tra lại truy vấn với những con số quan trọng, vì AI có thể hiểu sai định nghĩa chỉ số.\n\n## Những rủi ro không đổi\n- Hallucination (AI bịa thông tin): một email hứa \"hoàn tiền 100%\" khi chính sách không có là sự cố thật.\n- Tuân thủ: ngành tài chính, sức khoẻ có quy định chặt về lời lẽ quảng cáo.\n- Đo lường: nội dung nhiều hơn không có nghĩa hiệu quả hơn. Holdout group (nhóm giữ lại không nhận thông điệp để so sánh) vẫn là cách trung thực nhất để biết AI có thật sự tạo ra tăng trưởng.\n- Mệt mỏi của khách: gửi được nhiều hơn không có nghĩa nên gửi nhiều hơn.\n\n## Người làm nghề nên chuẩn bị gì\nKỹ năng có giá trị tăng lên: tư duy thí nghiệm, định nghĩa chỉ số, viết tiêu chí chất lượng, hiểu dữ liệu, và đủ kỹ thuật để dựng một workflow (chuỗi bước tự động) với API. Kỹ năng giảm giá trị: thao tác lặp lại như dựng từng email, sao chép nội dung qua nhiều ngôn ngữ. Người làm CRM biết thiết kế hệ thống AI an toàn, đo được, sẽ đứng ở vị trí rất tốt trong vài năm tới.",
+  "terms": [
+   {
+    "en": "lifecycle marketing",
+    "vi": "marketing theo vòng đời khách"
+   },
+   {
+    "en": "guardrail",
+    "vi": "hàng rào an toàn"
+   },
+   {
+    "en": "propensity model",
+    "vi": "mô hình dự đoán khả năng hành động"
+   },
+   {
+    "en": "next best action",
+    "vi": "hành động tốt nhất tiếp theo"
+   },
+   {
+    "en": "hallucination",
+    "vi": "AI bịa thông tin"
+   },
+   {
+    "en": "holdout group",
+    "vi": "nhóm đối chứng không nhận thông điệp"
+   },
+   {
+    "en": "workflow",
+    "vi": "chuỗi bước tự động"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Khi LLM soạn được 30 bản email trong vài phút, việc nào của người làm CRM trở nên quan trọng hơn?",
+    "choices": [
+     "Gõ phím nhanh hơn",
+     "Viết brief rõ, xây guardrail và chấm điểm chất lượng",
+     "Gửi email nhiều gấp ba",
+     "Bỏ hẳn bước duyệt"
+    ],
+    "answer": 1,
+    "why": "Khi khâu soạn rẻ đi, giá trị chuyển sang định hướng, kiểm soát rủi ro và đánh giá chất lượng."
+   },
+   {
+    "q": "Cách trung thực nhất để biết chiến dịch có AI thật sự tạo ra tăng trưởng là gì?",
+    "choices": [
+     "Đếm số email đã gửi",
+     "Hỏi ý kiến team",
+     "Xem tỉ lệ mở email tăng",
+     "So với holdout group không nhận thông điệp"
+    ],
+    "answer": 3,
+    "why": "Holdout cho biết điều gì sẽ xảy ra nếu không làm gì. Chênh lệch giữa hai nhóm mới là tác động thật."
+   },
+   {
+    "q": "AI viết SQL và báo 'tỉ lệ kích hoạt quý này tăng 40%'. Bạn nên làm gì trước khi báo sếp?",
+    "choices": [
+     "Báo ngay vì AI đã tính",
+     "Kiểm tra lại truy vấn và định nghĩa chỉ số mà AI dùng",
+     "Làm tròn lên 50%",
+     "Xoá kết quả vì AI không đáng tin"
+    ],
+    "answer": 1,
+    "why": "AI có thể hiểu sai định nghĩa như 'kích hoạt' là gì hay khoảng thời gian. Con số quan trọng cần được kiểm tra."
+   },
+   {
+    "q": "Propensity model dùng để làm gì trong CRM?",
+    "choices": [
+     "Dự đoán khả năng một người làm một hành động như rời bỏ hay mua thêm",
+     "Thiết kế banner",
+     "Dịch email sang tiếng Anh",
+     "Đếm số người theo dõi fanpage"
+    ],
+    "answer": 0,
+    "why": "Propensity model gán cho mỗi người một xác suất hành động, giúp chọn đúng người để tác động."
+   }
+  ],
+  "takeaway": "AI làm khâu soạn rẻ đi; giá trị của người làm CRM chuyển sang thiết kế hệ thống, kiểm soát rủi ro và đo tác động thật."
+ },
+ {
+  "id": "career-06",
+  "track": "career",
+  "unit": "Getting hired",
+  "order": 6,
+  "title": "Interviewing for AI Roles",
+  "title_vi": "Phỏng vấn vào các role AI",
+  "level": 2,
+  "minutes": 15,
+  "body": "Quy trình phỏng vấn AI ở hầu hết công ty gồm bốn vòng chính. Thứ tự và độ khó khác nhau theo role, nhưng biết trước từng vòng giúp bạn chuẩn bị đúng chỗ.\n\n## Vòng 1 - Technical screen\nTechnical screen (vòng sàng lọc kỹ thuật, thường 45-60 phút) kiểm tra nền tảng. Với AI Engineer: viết hàm Python xử lý list, dict, chuỗi; giải thích token, embedding (vector biểu diễn ý nghĩa), RAG, temperature. Với role gần business như AI PM: câu hỏi khái niệm như \"vì sao model có thể bịa?\", \"bạn đo chất lượng chatbot thế nào?\". Mẹo: nói to suy nghĩ của mình. Người phỏng vấn chấm cách bạn tư duy, không chỉ đáp án cuối.\n\n## Vòng 2 - Take-home\nTake-home (bài làm ở nhà, vài giờ đến vài ngày), ví dụ \"xây một hệ thống hỏi đáp trên bộ tài liệu này\". Điều làm bài nổi bật thường không phải độ phức tạp mà là:\n- README rõ: bạn hiểu đề thế nào, giả định gì.\n- Có eval nhỏ: 10-20 câu hỏi mẫu, chấm đúng sai, báo con số.\n- Nói rõ đánh đổi và việc sẽ làm nếu có thêm thời gian.\n- Không làm quá giờ được giao. Nộp đúng hạn kèm ghi chú trung thực tốt hơn nộp muộn một bản \"hoàn hảo\".\n\n## Vòng 3 - System design cho ứng dụng LLM\nCâu hỏi kiểu \"thiết kế chatbot hỗ trợ khách hàng cho một ngân hàng\". Dùng khung sau để không bị rối:\n- Yêu cầu: ai dùng, bao nhiêu người, trả lời gì, không được trả lời gì.\n- Dữ liệu: tài liệu nào, cập nhật bao lâu một lần, có dữ liệu cá nhân không.\n- Retrieval (truy xuất): chunking (cắt tài liệu thành đoạn), vector database, tìm đoạn liên quan.\n- Model: chọn model lớn hay nhỏ, vì sao.\n- Guardrail: chặn câu hỏi ngoài phạm vi, che thông tin nhạy cảm, chuyển cho người thật khi cần.\n- Eval và monitoring: đo trước khi ra mắt, theo dõi sau ra mắt.\n- Chi phí và latency: ước lượng thô số token mỗi lượt.\nBạn không cần trả lời hoàn hảo từng phần. Người phỏng vấn muốn thấy bạn đặt đúng câu hỏi và nhìn ra đánh đổi.\n\n## Vòng 4 - Behavioural\nBehavioural (vòng hành vi) hỏi về kinh nghiệm thật: \"kể về lần bạn bất đồng với kỹ sư\", \"lần một dự án thất bại\". Dùng STAR: Situation (bối cảnh), Task (nhiệm vụ), Action (bạn làm gì), Result (kết quả có số). Đây là vòng người chuyển nghề có lợi thế, vì bạn có nhiều năm kinh nghiệm làm việc với người. Chuẩn bị sẵn 6-8 câu chuyện, mỗi câu dùng được cho nhiều câu hỏi.\n\n## Bài tập\nTrong take-home, bạn thường cần một hàm chấm eval đơn giản. Bài code dưới đây là phiên bản nhỏ của việc đó: mỗi ca thử có câu trả lời của model và danh sách từ khoá bắt buộc. Viết hàm tính tỉ lệ ca đạt.",
+  "terms": [
+   {
+    "en": "technical screen",
+    "vi": "vòng sàng lọc kỹ thuật"
+   },
+   {
+    "en": "take-home",
+    "vi": "bài làm ở nhà"
+   },
+   {
+    "en": "system design",
+    "vi": "thiết kế hệ thống"
+   },
+   {
+    "en": "retrieval",
+    "vi": "truy xuất tài liệu liên quan"
+   },
+   {
+    "en": "chunking",
+    "vi": "cắt tài liệu thành đoạn"
+   },
+   {
+    "en": "STAR",
+    "vi": "khung kể chuyện bối cảnh, nhiệm vụ, hành động, kết quả"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Trong vòng technical screen, vì sao nên nói to suy nghĩ khi giải bài?",
+    "choices": [
+     "Để kéo dài thời gian",
+     "Vì người phỏng vấn chấm cả cách bạn tư duy, không chỉ đáp án cuối",
+     "Vì không được phép viết code",
+     "Để người phỏng vấn giải hộ"
+    ],
+    "answer": 1,
+    "why": "Nói to giúp người phỏng vấn thấy hướng tiếp cận và có thể gợi ý khi bạn đi lệch."
+   },
+   {
+    "q": "Điều gì làm bài take-home nổi bật nhất?",
+    "choices": [
+     "Dùng thật nhiều thư viện",
+     "Code dài nhất có thể",
+     "README rõ, có eval nhỏ với con số và nói rõ đánh đổi",
+     "Nộp muộn để làm hoàn hảo"
+    ],
+    "answer": 2,
+    "why": "Bài take-home được chấm như một mẫu công việc thật: rõ ràng, đo được, trung thực về giới hạn."
+   },
+   {
+    "q": "Khi được hỏi 'thiết kế chatbot cho ngân hàng', bước đầu tiên nên làm là gì?",
+    "choices": [
+     "Chọn ngay model mạnh nhất",
+     "Vẽ giao diện",
+     "Nói về giá GPU",
+     "Làm rõ yêu cầu: ai dùng, quy mô, chatbot được và không được trả lời gì"
+    ],
+    "answer": 3,
+    "why": "Thiết kế phụ thuộc vào yêu cầu. Hỏi đúng ở đầu thể hiện tư duy hệ thống và tránh giải sai bài."
+   },
+   {
+    "q": "Với vòng behavioural, cách chuẩn bị hiệu quả nhất là gì?",
+    "choices": [
+     "Chuẩn bị 6-8 câu chuyện thật theo STAR, có kết quả bằng số",
+     "Học thuộc định nghĩa thuật ngữ",
+     "Không cần chuẩn bị",
+     "Chuẩn bị một câu chuyện cho mọi câu hỏi"
+    ],
+    "answer": 0,
+    "why": "Câu chuyện có cấu trúc và số liệu dễ thuyết phục, và mỗi câu có thể dùng lại cho nhiều câu hỏi khác nhau."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm pass_rate(cases). Mỗi phần tử của cases là dict có 'output' (chuỗi trả lời của model) và 'must_include' (list từ khoá). Một ca đạt khi output chứa TẤT CẢ từ khoá, không phân biệt hoa thường. Trả về tỉ lệ ca đạt, làm tròn 2 chữ số. Nếu cases rỗng thì trả về 0.0.\nVí dụ: [{'output':'Hoàn tiền trong 7 ngày','must_include':['hoàn tiền','7 ngày']}, {'output':'Liên hệ CSKH','must_include':['hotline']}] -> 0.5",
+   "starter": "def pass_rate(cases):\n    # TODO: count cases where output contains every keyword (case-insensitive)\n    return None\n",
+   "solution": "def pass_rate(cases):\n    if not cases:\n        return 0.0\n    passed = 0\n    for case in cases:\n        text = case['output'].lower()\n        if all(k.lower() in text for k in case['must_include']):\n            passed += 1\n    return round(passed / len(cases), 2)\n",
+   "tests": "c1 = [{'output':'Hoàn tiền trong 7 ngày','must_include':['hoàn tiền','7 ngày']},{'output':'Liên hệ CSKH','must_include':['hotline']}]\nassert pass_rate(c1) == 0.5, 'Một ca đạt, một ca trượt thì phải bằng 0.5'\nassert pass_rate([]) == 0.0, 'Danh sách rỗng phải trả về 0.0'\nassert pass_rate([{'output':'GỌI HOTLINE NGAY','must_include':['hotline']}]) == 1.0, 'Phải không phân biệt hoa thường'\nassert pass_rate([{'output':'abc','must_include':[]}]) == 1.0, 'Không có từ khoá bắt buộc thì ca đó tính là đạt'\nc3 = [{'output':'a b','must_include':['a']},{'output':'b','must_include':['a']},{'output':'c','must_include':['a']}]\nassert pass_rate(c3) == 0.33, '1/3 phải làm tròn thành 0.33'\n",
+   "hint": "Đổi cả output và từ khoá về chữ thường trước khi so sánh. Hàm all() giúp kiểm tra mọi từ khoá cùng lúc. Nhớ xử lý trường hợp list rỗng trước khi chia."
+  },
+  "takeaway": "Mỗi vòng phỏng vấn chấm một thứ khác nhau; chuẩn bị đúng vòng và luôn cho thấy bạn biết đo lường và nhìn ra đánh đổi."
+ },
+ {
+  "id": "career-07",
+  "track": "career",
+  "unit": "AI at work",
+  "order": 7,
+  "title": "Staying Current Without Drowning",
+  "title_vi": "Cập nhật AI mà không bị ngợp",
+  "level": 1,
+  "minutes": 10,
+  "body": "Mỗi tuần trong ngành AI có hàng chục model mới, hàng trăm paper, vô số bài \"thứ này thay đổi tất cả\". Nếu cố theo hết, bạn sẽ mệt và không học sâu được gì. Mục tiêu không phải biết mọi thứ, mà là biết đủ thứ quan trọng và có thời gian xây.\n\n## Chế độ ăn thông tin\nHãy đối xử với thông tin như bữa ăn: ít món, chất lượng, đúng giờ.\n- Nguồn chính thức (2-3 nguồn): blog và changelog (nhật ký thay đổi sản phẩm) của các phòng lab và công cụ bạn dùng thật. Khi bạn dùng một công cụ, changelog của nó quan trọng hơn mọi bài bình luận.\n- Newsletter tổng hợp (1-2 cái): đọc một lần mỗi tuần, chỉ mở bài nào liên quan tới role bạn nhắm.\n- Một cộng đồng: một nhóm Discord, Slack hoặc diễn đàn nơi người làm thật chia sẻ. Hỏi và trả lời ở đây dạy bạn nhiều hơn đọc tin.\n- Một hai người trong nghề để theo dõi sâu, thay vì hàng trăm tài khoản lướt qua.\n\nQuy tắc đơn giản: nếu một tin quan trọng thật, nó sẽ còn được nhắc tới sau một tuần. Bạn không cần biết ngay trong ngày.\n\n## Đọc paper nhẹ nhàng\nPaper (bài báo khoa học) nghe đáng sợ nhưng bạn không cần đọc từ đầu tới cuối. Dùng cách đọc ba lượt:\n- Lượt 1 (5-10 phút): đọc title, abstract (tóm tắt đầu bài), nhìn các hình và bảng, đọc kết luận. Tự hỏi: bài này giải vấn đề gì, ý chính là gì, kết quả có đáng chú ý không. Phần lớn paper dừng ở đây là đủ.\n- Lượt 2 (30-60 phút): đọc phần phương pháp, bỏ qua chứng minh toán. Vẽ lại sơ đồ bằng tay.\n- Lượt 3: chỉ khi bạn cần dùng hoặc tái hiện kết quả. Lúc này mới đi vào từng công thức.\n\nMẹo thêm: tìm bài blog hoặc video giải thích paper trước, rồi mới đọc bản gốc. Bạn cũng có thể nhờ một LLM tóm tắt, nhưng hãy tự đọc lại abstract và hình chính, vì bản tóm tắt có thể sai chi tiết quan trọng.\n\n## Ghi chép để nhớ\nMỗi thứ đáng nhớ, viết 3 dòng vào một file ghi chú: nó là gì, vì sao quan trọng, liên quan gì tới việc của mình. Sau vài tháng bạn có một kho kiến thức riêng, dễ tìm lại hơn hàng trăm tab đánh dấu.\n\n## Học bằng cách xây\nCách nhanh nhất để hiểu một công nghệ mới là dùng nó trong 1-2 giờ cho một việc nhỏ. Đọc mười bài về agent không bằng tự dựng một agent nhỏ tra thời tiết rồi gửi tin nhắn. Mỗi tháng chọn một thứ mới để thử, không phải mười.\n\n## Chống FOMO\nFOMO (sợ bị bỏ lỡ) là cảm giác người khác đang biết hết còn mình tụt lại. Hãy nhớ: nền tảng như Python, cách đánh giá chất lượng, tư duy sản phẩm thay đổi rất chậm. Công cụ thay đổi rất nhanh. Người đầu tư vào nền tảng sẽ học công cụ mới trong vài ngày, còn người chỉ chạy theo công cụ sẽ phải chạy mãi.\n\nMột nhịp gợi ý: 30 phút đọc mỗi tuần, 3-5 giờ xây mỗi tuần. Tỉ lệ đó giữ cho bạn vừa cập nhật vừa tiến bộ thật.",
+  "terms": [
+   {
+    "en": "changelog",
+    "vi": "nhật ký thay đổi sản phẩm"
+   },
+   {
+    "en": "newsletter",
+    "vi": "bản tin định kỳ qua email"
+   },
+   {
+    "en": "paper",
+    "vi": "bài báo khoa học"
+   },
+   {
+    "en": "abstract",
+    "vi": "đoạn tóm tắt đầu bài"
+   },
+   {
+    "en": "FOMO",
+    "vi": "nỗi sợ bị bỏ lỡ"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Bạn dùng một công cụ AI hằng ngày. Nguồn nào nên theo dõi sát nhất?",
+    "choices": [
+     "Mọi bài bình luận trên mạng xã hội",
+     "Changelog chính thức của công cụ đó",
+     "Tin đồn trong nhóm chat",
+     "Bảng xếp hạng model mỗi ngày"
+    ],
+    "answer": 1,
+    "why": "Changelog cho biết chính xác cái gì thay đổi trong công cụ bạn dùng, ảnh hưởng trực tiếp tới công việc."
+   },
+   {
+    "q": "Với phần lớn paper, bạn nên dừng ở đâu?",
+    "choices": [
+     "Lượt 1: title, abstract, hình, kết luận",
+     "Đọc hết mọi chứng minh toán",
+     "Không đọc gì cả",
+     "Chỉ đọc phần tài liệu tham khảo"
+    ],
+    "answer": 0,
+    "why": "Lượt đầu đủ để biết bài giải vấn đề gì và có đáng đọc sâu không. Chỉ đọc sâu khi bạn cần dùng."
+   },
+   {
+    "q": "Vì sao không nên tin hoàn toàn bản tóm tắt paper do LLM viết?",
+    "choices": [
+     "Vì LLM không đọc được tiếng Anh",
+     "Vì paper bị khoá",
+     "Vì bản tóm tắt có thể sai hoặc bỏ sót chi tiết quan trọng",
+     "Vì tóm tắt luôn quá dài"
+    ],
+    "answer": 2,
+    "why": "LLM có thể hallucinate. Đọc lại abstract và hình chính giúp bạn kiểm tra ý cốt lõi."
+   },
+   {
+    "q": "Câu nào mô tả đúng nhất cách chống FOMO?",
+    "choices": [
+     "Theo dõi thêm thật nhiều tài khoản",
+     "Học mọi công cụ mới ngay trong ngày ra mắt",
+     "Ngừng đọc tin hoàn toàn",
+     "Đầu tư vào nền tảng thay đổi chậm, thử công cụ mới có chọn lọc"
+    ],
+    "answer": 3,
+    "why": "Nền tảng giúp bạn học công cụ mới nhanh. Chạy theo mọi công cụ thì không bao giờ đủ thời gian xây."
+   }
+  ],
+  "takeaway": "Đọc ít mà chọn lọc, đọc paper theo lượt, và dành phần lớn thời gian để xây."
+ },
+ {
+  "id": "career-08",
+  "track": "career",
+  "unit": "Getting hired",
+  "order": 8,
+  "title": "Your 6-Month Roadmap",
+  "title_vi": "Mẫu lộ trình cá nhân 6 tháng",
+  "level": 1,
+  "minutes": 12,
+  "body": "Một lộ trình tốt không phải danh sách khoá học, mà là chuỗi đầu ra cụ thể theo thời gian. Mẫu dưới đây giả định bạn có khoảng 8-10 giờ mỗi tuần, xuất phát từ nền product hoặc CRM, nhắm một role như AI Engineer, FDE, AI PM hoặc AI Growth. Hãy chỉnh theo thời gian và mục tiêu của bạn.\n\n## Tháng 1 - Nền Python và khái niệm\n- Học Python: biến, hàm, vòng lặp, list, dict, đọc CSV.\n- Đọc hiểu khái niệm: model, train, test, overfitting, token, prompt.\n- Đầu ra: 20 bài tập Python nhỏ đã giải, một script đọc file dữ liệu công việc của bạn và in báo cáo đơn giản.\n\n## Tháng 2 - Gọi LLM qua API\n- Học cách gọi API một LLM, viết system prompt (hướng dẫn nền cho model), chỉnh temperature.\n- Học structured output (yêu cầu model trả về dạng có cấu trúc như JSON) để dữ liệu dùng tiếp được.\n- Đầu ra: một công cụ nhỏ tự động hoá một việc lặp lại của chính bạn, ví dụ phân loại phản hồi khách thành nhóm chủ đề.\n\n## Tháng 3 - RAG và eval\n- Học embedding, chunking, vector database, retrieval.\n- Học viết eval: bộ câu hỏi mẫu, tiêu chí chấm, tỉ lệ đạt.\n- Đầu ra: một hệ thống hỏi đáp trên bộ tài liệu thật (chính sách, FAQ sản phẩm), kèm eval 30 câu và README.\n\n## Tháng 4 - Project gắn với lĩnh vực\n- Chọn một bài toán trong ngành bạn hiểu: cá nhân hoá email, agent hỗ trợ vận hành, trợ lý phân tích chiến dịch.\n- Thêm tool calling (cho model gọi hàm, API bên ngoài) nếu bài toán cần nhiều bước.\n- Đầu ra: project chính của portfolio, có demo video 2 phút và số đo trước sau.\n\n## Tháng 5 - Viết, kết nối, nộp đơn\n- Viết 2-3 bài về các project, đăng LinkedIn hoặc blog.\n- Cập nhật CV: đưa link portfolio lên đầu, viết lại kinh nghiệm cũ theo góc nhìn AI.\n- Nhắn 15-20 người đang làm role đích, hỏi một câu cụ thể thay vì xin việc chung chung.\n- Đầu ra: 10-15 đơn có chọn lọc, mỗi đơn chỉnh CV theo JD.\n\n## Tháng 6 - Phỏng vấn và lặp lại\n- Luyện technical screen, system design cho ứng dụng LLM, 6-8 câu chuyện STAR.\n- Sau mỗi buổi phỏng vấn, ghi lại câu hỏi và chỗ mình yếu, bổ sung vào kế hoạch học.\n- Đầu ra: lịch phỏng vấn đều đặn, danh sách điểm yếu đang được vá.\n\n## Nhịp hằng tuần\n- 2 buổi học (khái niệm, khoá học, đọc tài liệu).\n- 2 buổi xây (code, project).\n- 30 phút đọc tin có chọn lọc.\n- 30 phút cuối tuần review: tuần này làm được gì, kẹt ở đâu, tuần sau làm gì.\n\n## Mẫu để tự điền\n- Role đích: ...\n- Lý do chọn role này: ...\n- Thế mạnh mang theo từ nghề cũ: ...\n- Ba khoảng trống lớn nhất so với JD: ...\n- Project chính dự kiến: ...\n- Giờ học mỗi tuần thực tế: ...\n- Mốc kiểm tra cuối tháng 3: đã có project RAG có eval chưa?\n\nKế hoạch sẽ trượt, điều đó bình thường. Quan trọng là mỗi tháng có một đầu ra có thể cho người khác xem. Nếu tháng nào trượt, đừng dồn hai tháng vào một, hãy cắt bớt phạm vi và giữ nhịp.",
+  "terms": [
+   {
+    "en": "roadmap",
+    "vi": "lộ trình"
+   },
+   {
+    "en": "system prompt",
+    "vi": "hướng dẫn nền cho model"
+   },
+   {
+    "en": "structured output",
+    "vi": "đầu ra có cấu trúc như JSON"
+   },
+   {
+    "en": "tool calling",
+    "vi": "cho model gọi hàm bên ngoài"
+   },
+   {
+    "en": "vector database",
+    "vi": "cơ sở dữ liệu tìm theo ý nghĩa"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Điểm khác chính giữa lộ trình tốt và danh sách khoá học là gì?",
+    "choices": [
+     "Lộ trình tốt có nhiều khoá hơn",
+     "Lộ trình tốt gắn mỗi giai đoạn với một đầu ra cụ thể cho người khác xem được",
+     "Lộ trình tốt không cần thời hạn",
+     "Lộ trình tốt chỉ học lý thuyết"
+    ],
+    "answer": 1,
+    "why": "Đầu ra cụ thể như script, project, bài viết vừa là bằng chứng năng lực vừa giúp đo tiến độ."
+   },
+   {
+    "q": "Vì sao tháng 3 nên có eval đi kèm hệ thống RAG?",
+    "choices": [
+     "Vì eval làm code chạy nhanh hơn",
+     "Vì không có eval thì không gọi được API",
+     "Vì eval là cách duy nhất để deploy",
+     "Vì eval cho biết hệ thống trả lời đúng tới đâu và là kỹ năng nhà tuyển dụng rất coi trọng"
+    ],
+    "answer": 3,
+    "why": "Không đo thì không biết tốt hay tệ. Biết viết eval là điểm phân biệt người làm AI thật với người làm demo."
+   },
+   {
+    "q": "Khi nhắn tin cho người đang làm role đích, cách nào hiệu quả hơn?",
+    "choices": [
+     "Hỏi một câu cụ thể về công việc của họ",
+     "Gửi CV và xin việc ngay",
+     "Gửi cùng một tin nhắn dài cho 200 người",
+     "Chỉ thả tim bài viết"
+    ],
+    "answer": 0,
+    "why": "Câu hỏi cụ thể dễ trả lời và mở đầu một mối quan hệ thật, thay vì tạo áp lực xin việc."
+   },
+   {
+    "q": "Nếu tháng 2 bị trượt kế hoạch, cách xử lý hợp lý là gì?",
+    "choices": [
+     "Dồn hai tháng vào một",
+     "Bỏ cả lộ trình",
+     "Cắt bớt phạm vi, giữ nhịp và vẫn có đầu ra nhỏ",
+     "Bắt đầu lại từ tháng 1"
+    ],
+    "answer": 2,
+    "why": "Giữ nhịp đều quan trọng hơn hoàn thành đủ phạm vi. Dồn việc thường dẫn tới kiệt sức và bỏ cuộc."
+   }
+  ],
+  "takeaway": "Lộ trình tốt là chuỗi đầu ra cụ thể mỗi tháng, không phải danh sách khoá học."
+ }
+]

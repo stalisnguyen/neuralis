@@ -1,0 +1,1542 @@
+[
+ {
+  "id": "t-001",
+  "en": "variable",
+  "vi": "biến (cái hộp có tên để chứa giá trị)",
+  "track": "py",
+  "explain": "Giống chiếc hộp dán nhãn 'gia_ve' bên trong để số 50000. Khi cần, bạn gọi tên hộp thay vì nhớ con số."
+ },
+ {
+  "id": "t-002",
+  "en": "function",
+  "vi": "hàm (đoạn code đặt tên, gọi lại được nhiều lần)",
+  "track": "py",
+  "explain": "Như công thức pha cà phê sữa: đưa vào cà phê và sữa, ra một ly. Viết một lần, dùng mãi."
+ },
+ {
+  "id": "t-003",
+  "en": "loop",
+  "vi": "vòng lặp (lặp lại một việc nhiều lần)",
+  "track": "py",
+  "explain": "Như nhân viên gửi tin nhắn chúc mừng sinh nhật cho từng khách trong danh sách, người này xong tới người kia."
+ },
+ {
+  "id": "t-004",
+  "en": "for loop",
+  "vi": "vòng lặp for (đi qua từng phần tử)",
+  "track": "py",
+  "explain": "Duyệt lần lượt từng món trong giỏ hàng để cộng tổng tiền."
+ },
+ {
+  "id": "t-005",
+  "en": "while loop",
+  "vi": "vòng lặp while (lặp khi điều kiện còn đúng)",
+  "track": "py",
+  "explain": "Còn khách xếp hàng thì quầy còn phục vụ; hết khách thì dừng."
+ },
+ {
+  "id": "t-006",
+  "en": "list",
+  "vi": "danh sách (dãy giá trị có thứ tự)",
+  "track": "py",
+  "explain": "Như danh sách món trong đơn Shopee: món thứ nhất, thứ hai, thứ ba, thêm bớt được."
+ },
+ {
+  "id": "t-007",
+  "en": "dictionary",
+  "vi": "từ điển (cặp khoá và giá trị)",
+  "track": "py",
+  "explain": "Như danh bạ điện thoại: tra tên 'Lan' ra số điện thoại của Lan."
+ },
+ {
+  "id": "t-008",
+  "en": "tuple",
+  "vi": "bộ giá trị cố định (không sửa được)",
+  "track": "py",
+  "explain": "Như toạ độ một cửa hàng (vĩ độ, kinh độ), đã ghi là không đổi."
+ },
+ {
+  "id": "t-009",
+  "en": "set",
+  "vi": "tập hợp (không có phần tử trùng)",
+  "track": "py",
+  "explain": "Danh sách email khách đã lọc trùng: mỗi email chỉ xuất hiện một lần."
+ },
+ {
+  "id": "t-010",
+  "en": "string",
+  "vi": "chuỗi ký tự (dữ liệu dạng chữ)",
+  "track": "py",
+  "explain": "Tên khách 'Nguyễn Văn A' hay nội dung một tin nhắn đều là string."
+ },
+ {
+  "id": "t-011",
+  "en": "integer",
+  "vi": "số nguyên",
+  "track": "py",
+  "explain": "Số lượng sản phẩm trong kho: 12, 0, 350, không có phần lẻ."
+ },
+ {
+  "id": "t-012",
+  "en": "float",
+  "vi": "số thực (số có phần thập phân)",
+  "track": "py",
+  "explain": "Tỉ lệ mở email 0.235 hay giá 19.99 đô là float."
+ },
+ {
+  "id": "t-013",
+  "en": "boolean",
+  "vi": "giá trị đúng hoặc sai",
+  "track": "py",
+  "explain": "Như công tắc: khách đã xác minh tài khoản chưa, True hoặc False."
+ },
+ {
+  "id": "t-014",
+  "en": "if statement",
+  "vi": "câu lệnh điều kiện",
+  "track": "py",
+  "explain": "Nếu đơn trên 300 nghìn thì miễn phí ship, không thì tính phí."
+ },
+ {
+  "id": "t-015",
+  "en": "argument",
+  "vi": "đối số (giá trị truyền vào hàm)",
+  "track": "py",
+  "explain": "Khi gọi hàm tinh_tien(5, 20000), hai số 5 và 20000 là argument."
+ },
+ {
+  "id": "t-016",
+  "en": "return",
+  "vi": "trả về kết quả từ hàm",
+  "track": "py",
+  "explain": "Máy bán nước nhận tiền rồi 'trả ra' một chai nước; return là chai nước đó."
+ },
+ {
+  "id": "t-017",
+  "en": "module",
+  "vi": "module (file code dùng lại được)",
+  "track": "py",
+  "explain": "Như một ngăn tủ đồ nghề, cần thì import ra dùng, ví dụ module math."
+ },
+ {
+  "id": "t-018",
+  "en": "library",
+  "vi": "thư viện (bộ code người khác viết sẵn)",
+  "track": "py",
+  "explain": "Thay vì tự làm bánh từ bột, bạn mua bánh sẵn; numpy, pandas là thư viện như vậy."
+ },
+ {
+  "id": "t-019",
+  "en": "import",
+  "vi": "nạp module hoặc thư viện vào chương trình",
+  "track": "py",
+  "explain": "Dòng import math giống mở hộp đồ nghề toán ra để dùng."
+ },
+ {
+  "id": "t-020",
+  "en": "class",
+  "vi": "lớp (khuôn mẫu để tạo đối tượng)",
+  "track": "py",
+  "explain": "Như bản thiết kế 'Khách hàng' có tên, hạng thành viên; mỗi khách thật là một đối tượng tạo từ khuôn đó."
+ },
+ {
+  "id": "t-021",
+  "en": "object",
+  "vi": "đối tượng (một thực thể tạo từ class)",
+  "track": "py",
+  "explain": "Từ khuôn 'Xe Grab', mỗi chiếc xe cụ thể với biển số riêng là một object."
+ },
+ {
+  "id": "t-022",
+  "en": "exception",
+  "vi": "ngoại lệ (lỗi xảy ra khi chạy)",
+  "track": "py",
+  "explain": "Như khách quẹt thẻ hết tiền: chương trình báo lỗi thay vì tiếp tục sai."
+ },
+ {
+  "id": "t-023",
+  "en": "indentation",
+  "vi": "thụt đầu dòng (cách Python nhóm code)",
+  "track": "py",
+  "explain": "Python dùng khoảng trắng đầu dòng để biết dòng nào nằm trong if hay vòng lặp, giống mục con trong dàn ý."
+ },
+ {
+  "id": "t-024",
+  "en": "list comprehension",
+  "vi": "cách viết gọn tạo list mới",
+  "track": "py",
+  "explain": "Một dòng [g*2 for g in gia] nhân đôi mọi giá, thay vì viết vòng lặp ba dòng."
+ },
+ {
+  "id": "t-025",
+  "en": "JSON",
+  "vi": "định dạng dữ liệu dạng chữ có cấu trúc",
+  "track": "py",
+  "explain": "Cách các ứng dụng gửi dữ liệu cho nhau, nhìn giống dictionary: {'ten': 'Lan', 'tuoi': 30}."
+ },
+ {
+  "id": "t-026",
+  "en": "vector",
+  "vi": "vector (dãy số biểu diễn một thứ)",
+  "track": "math",
+  "explain": "Một khách hàng có thể là vector [tuổi, số đơn, chi tiêu] = [30, 12, 5.2]."
+ },
+ {
+  "id": "t-027",
+  "en": "matrix",
+  "vi": "ma trận (bảng số nhiều hàng nhiều cột)",
+  "track": "math",
+  "explain": "Bảng Excel 1.000 khách x 3 cột chỉ số chính là một ma trận."
+ },
+ {
+  "id": "t-028",
+  "en": "scalar",
+  "vi": "vô hướng (một con số đơn lẻ)",
+  "track": "math",
+  "explain": "Giá một ly trà sữa 45000 là scalar, không phải dãy số."
+ },
+ {
+  "id": "t-029",
+  "en": "dot product",
+  "vi": "tích vô hướng (nhân từng cặp rồi cộng)",
+  "track": "math",
+  "explain": "Số lượng từng món nhân đơn giá rồi cộng lại ra tổng hoá đơn: đó là dot product."
+ },
+ {
+  "id": "t-030",
+  "en": "dimension",
+  "vi": "số chiều (số thành phần của vector)",
+  "track": "math",
+  "explain": "Vector [tuổi, thu nhập] có 2 chiều; embedding của một câu có thể hàng nghìn chiều."
+ },
+ {
+  "id": "t-031",
+  "en": "transpose",
+  "vi": "chuyển vị (đổi hàng thành cột)",
+  "track": "math",
+  "explain": "Xoay bảng Excel để tên tháng nằm dọc thay vì nằm ngang."
+ },
+ {
+  "id": "t-032",
+  "en": "matrix multiplication",
+  "vi": "nhân ma trận",
+  "track": "math",
+  "explain": "Cách mạng neural kết hợp hàng loạt đầu vào với trọng số cùng lúc, như tính hoá đơn cho nhiều khách một lượt."
+ },
+ {
+  "id": "t-033",
+  "en": "derivative",
+  "vi": "đạo hàm (tốc độ thay đổi)",
+  "track": "math",
+  "explain": "Đồng hồ tốc độ xe máy cho biết quãng đường thay đổi nhanh cỡ nào ở mỗi khoảnh khắc."
+ },
+ {
+  "id": "t-034",
+  "en": "gradient",
+  "vi": "gradient (hướng tăng nhanh nhất)",
+  "track": "math",
+  "explain": "Đứng trên đồi trong sương mù, gradient chỉ hướng dốc lên nhất; đi ngược lại để xuống thấp."
+ },
+ {
+  "id": "t-035",
+  "en": "partial derivative",
+  "vi": "đạo hàm riêng",
+  "track": "math",
+  "explain": "Đo doanh thu đổi bao nhiêu khi chỉ tăng giá, giữ nguyên mọi thứ khác."
+ },
+ {
+  "id": "t-036",
+  "en": "chain rule",
+  "vi": "quy tắc dây chuyền",
+  "track": "math",
+  "explain": "Giá xăng ảnh hưởng giá ship, giá ship ảnh hưởng đơn hàng; nhân các mức ảnh hưởng lại để biết tác động tổng."
+ },
+ {
+  "id": "t-037",
+  "en": "function (math)",
+  "vi": "hàm số (quy tắc biến đầu vào thành đầu ra)",
+  "track": "math",
+  "explain": "f(x) = 2x giống quy tắc 'mua x ly được tặng gấp đôi số điểm'."
+ },
+ {
+  "id": "t-038",
+  "en": "slope",
+  "vi": "độ dốc của đường thẳng",
+  "track": "math",
+  "explain": "Mỗi tháng chạy quảng cáo thêm 1 triệu thì doanh thu tăng bao nhiêu; đó là độ dốc."
+ },
+ {
+  "id": "t-039",
+  "en": "probability",
+  "vi": "xác suất (khả năng xảy ra, từ 0 tới 1)",
+  "track": "math",
+  "explain": "Khả năng trời mưa chiều nay ở Sài Gòn mùa mưa có thể là 0.7."
+ },
+ {
+  "id": "t-040",
+  "en": "probability distribution",
+  "vi": "phân phối xác suất",
+  "track": "math",
+  "explain": "Bảng cho biết mỗi kết quả có khả năng bao nhiêu, như tỉ lệ khách mua 0, 1, 2, 3 món."
+ },
+ {
+  "id": "t-041",
+  "en": "normal distribution",
+  "vi": "phân phối chuẩn (hình chuông)",
+  "track": "math",
+  "explain": "Chiều cao người trưởng thành: phần lớn quanh mức trung bình, rất cao hoặc rất thấp thì hiếm."
+ },
+ {
+  "id": "t-042",
+  "en": "mean",
+  "vi": "trung bình cộng",
+  "track": "math",
+  "explain": "Tổng chi tiêu chia số khách ra chi tiêu trung bình mỗi người."
+ },
+ {
+  "id": "t-043",
+  "en": "median",
+  "vi": "trung vị (giá trị ở giữa)",
+  "track": "math",
+  "explain": "Xếp thu nhập từ thấp tới cao, người đứng giữa; ít bị kéo lệch bởi vài tỉ phú."
+ },
+ {
+  "id": "t-044",
+  "en": "variance",
+  "vi": "phương sai (độ phân tán)",
+  "track": "math",
+  "explain": "Đo các giá trị cách trung bình xa cỡ nào; giờ giao hàng thất thường thì phương sai lớn."
+ },
+ {
+  "id": "t-045",
+  "en": "standard deviation",
+  "vi": "độ lệch chuẩn",
+  "track": "math",
+  "explain": "Căn bậc hai của phương sai, cùng đơn vị với dữ liệu: 'giao trễ trung bình 10 phút, lệch chuẩn 5 phút'."
+ },
+ {
+  "id": "t-046",
+  "en": "conditional probability",
+  "vi": "xác suất có điều kiện",
+  "track": "math",
+  "explain": "Khả năng khách mua lại khi biết họ đã mở email, khác với khả năng mua lại nói chung."
+ },
+ {
+  "id": "t-047",
+  "en": "Bayes' theorem",
+  "vi": "định lý Bayes (cập nhật niềm tin khi có bằng chứng mới)",
+  "track": "math",
+  "explain": "Thấy đường ướt, bạn nâng khả năng 'vừa mưa' lên, nhưng vẫn nhớ có thể do xe tưới cây."
+ },
+ {
+  "id": "t-048",
+  "en": "correlation",
+  "vi": "tương quan (hai đại lượng biến đổi cùng nhau)",
+  "track": "math",
+  "explain": "Bán kem và bán quạt cùng tăng mùa nóng; tương quan không có nghĩa cái này gây ra cái kia."
+ },
+ {
+  "id": "t-049",
+  "en": "logarithm",
+  "vi": "logarit (số mũ cần để ra một giá trị)",
+  "track": "math",
+  "explain": "log₁₀(1000) = 3 vì 10³ = 1000; giúp thu nhỏ các con số chênh lệch quá lớn."
+ },
+ {
+  "id": "t-050",
+  "en": "exponential",
+  "vi": "hàm mũ (tăng theo cấp số nhân)",
+  "track": "math",
+  "explain": "Tin đồn mỗi người kể cho 2 người khác: 1, 2, 4, 8, 16... tăng rất nhanh."
+ },
+ {
+  "id": "t-051",
+  "en": "sigmoid",
+  "vi": "hàm sigmoid (ép giá trị vào khoảng 0 tới 1)",
+  "track": "math",
+  "explain": "Biến một điểm số bất kỳ thành xác suất, như điểm rủi ro thành 'khả năng vỡ nợ 0.8'."
+ },
+ {
+  "id": "t-052",
+  "en": "softmax",
+  "vi": "hàm softmax (biến điểm số thành xác suất cộng lại bằng 1)",
+  "track": "math",
+  "explain": "Chia 100% khả năng cho các lựa chọn, như model đoán từ tiếp theo: 'cơm' 60%, 'phở' 30%, 'bún' 10%."
+ },
+ {
+  "id": "t-053",
+  "en": "optimization",
+  "vi": "tối ưu hoá (tìm giá trị tốt nhất)",
+  "track": "math",
+  "explain": "Tìm mức giá cho lợi nhuận cao nhất, hay tham số cho lỗi thấp nhất."
+ },
+ {
+  "id": "t-054",
+  "en": "cosine similarity",
+  "vi": "độ tương đồng cosine (hai vector cùng hướng tới đâu)",
+  "track": "math",
+  "explain": "Đo hai câu có ý nghĩa gần nhau không bằng góc giữa hai embedding; gần 1 là rất giống."
+ },
+ {
+  "id": "t-055",
+  "en": "Euclidean distance",
+  "vi": "khoảng cách Euclid (đường chim bay)",
+  "track": "math",
+  "explain": "Khoảng cách thẳng giữa hai điểm trên bản đồ, không tính đường đi vòng."
+ },
+ {
+  "id": "t-056",
+  "en": "machine learning",
+  "vi": "học máy (máy học quy luật từ dữ liệu)",
+  "track": "ml",
+  "explain": "Thay vì viết luật 'email có chữ trúng thưởng là spam', cho máy xem nghìn email để tự rút ra quy luật."
+ },
+ {
+  "id": "t-057",
+  "en": "feature",
+  "vi": "đặc trưng (thông tin đầu vào)",
+  "track": "ml",
+  "explain": "Để đoán khách có rời bỏ không, feature có thể là số ngày chưa đăng nhập, số đơn tháng trước."
+ },
+ {
+  "id": "t-058",
+  "en": "label",
+  "vi": "nhãn (đáp án đúng để học)",
+  "track": "ml",
+  "explain": "Trong dữ liệu cũ, cột 'đã rời bỏ: có/không' là label để model học."
+ },
+ {
+  "id": "t-059",
+  "en": "dataset",
+  "vi": "tập dữ liệu",
+  "track": "ml",
+  "explain": "Một bảng nghìn dòng lịch sử giao dịch dùng để train và kiểm tra model."
+ },
+ {
+  "id": "t-060",
+  "en": "training",
+  "vi": "huấn luyện (cho model học từ dữ liệu)",
+  "track": "ml",
+  "explain": "Như cho nhân viên mới xem hàng trăm ca khiếu nại cũ để học cách xử lý."
+ },
+ {
+  "id": "t-061",
+  "en": "training set",
+  "vi": "tập huấn luyện",
+  "track": "ml",
+  "explain": "Phần dữ liệu model được xem để học, như đề luyện thi."
+ },
+ {
+  "id": "t-062",
+  "en": "validation set",
+  "vi": "tập kiểm định (dùng để chỉnh model)",
+  "track": "ml",
+  "explain": "Đề thi thử giữa kỳ, dùng để chọn cách học tốt nhất trước khi thi thật."
+ },
+ {
+  "id": "t-063",
+  "en": "test set",
+  "vi": "tập kiểm tra (đánh giá cuối cùng)",
+  "track": "ml",
+  "explain": "Đề thi thật model chưa từng thấy, cho biết nó làm tốt tới đâu với dữ liệu mới."
+ },
+ {
+  "id": "t-064",
+  "en": "supervised learning",
+  "vi": "học có giám sát (học từ dữ liệu có đáp án)",
+  "track": "ml",
+  "explain": "Học từ các email đã được đánh dấu spam hoặc không spam."
+ },
+ {
+  "id": "t-065",
+  "en": "unsupervised learning",
+  "vi": "học không giám sát (tự tìm cấu trúc, không có đáp án)",
+  "track": "ml",
+  "explain": "Tự chia khách thành các nhóm có thói quen giống nhau mà không ai gán nhóm trước."
+ },
+ {
+  "id": "t-066",
+  "en": "reinforcement learning",
+  "vi": "học tăng cường (học qua thưởng và phạt)",
+  "track": "ml",
+  "explain": "Như dạy chó: làm đúng được bánh, làm sai không được; dần dần nó học được hành vi tốt."
+ },
+ {
+  "id": "t-067",
+  "en": "regression",
+  "vi": "hồi quy (dự đoán một con số)",
+  "track": "ml",
+  "explain": "Dự đoán doanh thu tháng sau là bao nhiêu tỉ đồng."
+ },
+ {
+  "id": "t-068",
+  "en": "classification",
+  "vi": "phân loại (dự đoán thuộc nhóm nào)",
+  "track": "ml",
+  "explain": "Đoán một giao dịch là gian lận hay bình thường."
+ },
+ {
+  "id": "t-069",
+  "en": "clustering",
+  "vi": "phân cụm (gom nhóm điểm giống nhau)",
+  "track": "ml",
+  "explain": "Gom khách thành nhóm 'săn sale', 'mua đều đặn', 'mua một lần rồi thôi'."
+ },
+ {
+  "id": "t-070",
+  "en": "linear regression",
+  "vi": "hồi quy tuyến tính (vẽ đường thẳng khớp dữ liệu nhất)",
+  "track": "ml",
+  "explain": "Kẻ một đường thẳng qua các điểm chi phí quảng cáo và doanh thu để dự đoán điểm mới."
+ },
+ {
+  "id": "t-071",
+  "en": "logistic regression",
+  "vi": "hồi quy logistic (dự đoán xác suất cho hai lớp)",
+  "track": "ml",
+  "explain": "Ước lượng khả năng khách bấm vào email, ví dụ 0.3."
+ },
+ {
+  "id": "t-072",
+  "en": "decision tree",
+  "vi": "cây quyết định (chuỗi câu hỏi có/không)",
+  "track": "ml",
+  "explain": "Như nhân viên ngân hàng hỏi: thu nhập trên 15 triệu? Có nợ xấu? rồi mới quyết định duyệt vay."
+ },
+ {
+  "id": "t-073",
+  "en": "random forest",
+  "vi": "rừng ngẫu nhiên (nhiều cây quyết định bỏ phiếu)",
+  "track": "ml",
+  "explain": "Hỏi ý kiến 100 chuyên gia hơi khác nhau rồi lấy đa số, thường chính xác hơn một người."
+ },
+ {
+  "id": "t-074",
+  "en": "k-means",
+  "vi": "thuật toán k-means (chia dữ liệu thành k cụm)",
+  "track": "ml",
+  "explain": "Chọn k = 3 rồi để thuật toán tìm 3 nhóm khách có hành vi gần nhau nhất."
+ },
+ {
+  "id": "t-075",
+  "en": "neural network",
+  "vi": "mạng neural (nhiều lớp phép tính nối nhau)",
+  "track": "ml",
+  "explain": "Như dây chuyền nhiều tầng: tầng đầu nhận ra nét, tầng sau ghép thành hình, tầng cuối nhận ra mặt người."
+ },
+ {
+  "id": "t-076",
+  "en": "neuron",
+  "vi": "neuron nhân tạo (một đơn vị tính toán nhỏ)",
+  "track": "ml",
+  "explain": "Nhận nhiều số đầu vào, nhân trọng số, cộng lại rồi quyết định 'bật' mạnh hay yếu."
+ },
+ {
+  "id": "t-077",
+  "en": "layer",
+  "vi": "lớp (tầng trong mạng neural)",
+  "track": "ml",
+  "explain": "Mỗi tầng xử lý thông tin rồi chuyền cho tầng sau, như các khâu trong bếp."
+ },
+ {
+  "id": "t-078",
+  "en": "weight",
+  "vi": "trọng số (mức quan trọng của một đầu vào)",
+  "track": "ml",
+  "explain": "Khi chấm điểm khách, 'số đơn' có thể nặng ký hơn 'tuổi'; con số thể hiện độ nặng đó là weight."
+ },
+ {
+  "id": "t-079",
+  "en": "bias (parameter)",
+  "vi": "hệ số chệch (giá trị cộng thêm trong neuron)",
+  "track": "ml",
+  "explain": "Như phí cố định cộng vào hoá đơn dù mua bao nhiêu, giúp dịch chuyển kết quả."
+ },
+ {
+  "id": "t-080",
+  "en": "parameter",
+  "vi": "tham số (con số model tự học)",
+  "track": "ml",
+  "explain": "Weight và bias là tham số; LLM lớn có hàng tỉ tham số."
+ },
+ {
+  "id": "t-081",
+  "en": "hyperparameter",
+  "vi": "siêu tham số (thiết lập do người chọn trước khi train)",
+  "track": "ml",
+  "explain": "Như chọn nhiệt độ lò và thời gian nướng; learning rate, số epoch là hyperparameter."
+ },
+ {
+  "id": "t-082",
+  "en": "activation function",
+  "vi": "hàm kích hoạt",
+  "track": "ml",
+  "explain": "Quyết định neuron 'bật' mạnh tới đâu, giúp mạng học được quan hệ phức tạp chứ không chỉ đường thẳng."
+ },
+ {
+  "id": "t-083",
+  "en": "ReLU",
+  "vi": "hàm ReLU (giữ số dương, biến số âm thành 0)",
+  "track": "ml",
+  "explain": "Quy tắc đơn giản: âm thì bằng 0, dương thì giữ nguyên; rất phổ biến vì nhanh và hiệu quả."
+ },
+ {
+  "id": "t-084",
+  "en": "loss",
+  "vi": "độ lỗi (model sai bao nhiêu)",
+  "track": "ml",
+  "explain": "Như khoảng cách giữa giá đoán và giá thật; train là tìm cách làm con số này nhỏ lại."
+ },
+ {
+  "id": "t-085",
+  "en": "loss function",
+  "vi": "hàm mất mát (công thức tính độ lỗi)",
+  "track": "ml",
+  "explain": "Quy tắc chấm điểm sai, ví dụ bình phương khoảng cách giữa dự đoán và đáp án."
+ },
+ {
+  "id": "t-086",
+  "en": "gradient descent",
+  "vi": "giảm dần theo gradient (đi xuống dốc để giảm lỗi)",
+  "track": "ml",
+  "explain": "Như quả bóng lăn xuống đáy thung lũng: mỗi bước đi theo hướng dốc xuống nhất."
+ },
+ {
+  "id": "t-087",
+  "en": "learning rate",
+  "vi": "tốc độ học (độ dài mỗi bước)",
+  "track": "ml",
+  "explain": "Bước quá dài thì nhảy qua đáy, quá ngắn thì đi mãi không tới."
+ },
+ {
+  "id": "t-088",
+  "en": "backpropagation",
+  "vi": "lan truyền ngược (tính lỗi ngược từ đầu ra về từng trọng số)",
+  "track": "ml",
+  "explain": "Như truy ngược món ăn bị mặn do khâu nào, rồi chỉnh đúng khâu đó."
+ },
+ {
+  "id": "t-089",
+  "en": "epoch",
+  "vi": "một lượt học hết toàn bộ dữ liệu",
+  "track": "ml",
+  "explain": "Đọc hết cuốn sách một lần là một epoch; thường cần đọc nhiều lần."
+ },
+ {
+  "id": "t-090",
+  "en": "batch",
+  "vi": "lô (nhóm nhỏ dữ liệu mỗi lần cập nhật)",
+  "track": "ml",
+  "explain": "Thay vì chấm cả nghìn bài cùng lúc, chấm từng xấp 32 bài rồi điều chỉnh."
+ },
+ {
+  "id": "t-091",
+  "en": "overfitting",
+  "vi": "học thuộc lòng (khớp quá sát dữ liệu huấn luyện)",
+  "track": "ml",
+  "explain": "Học sinh thuộc đáp án đề cũ nhưng gặp đề mới thì bí."
+ },
+ {
+  "id": "t-092",
+  "en": "underfitting",
+  "vi": "học chưa tới (model quá đơn giản)",
+  "track": "ml",
+  "explain": "Dùng một đường thẳng để mô tả doanh số lên xuống theo mùa: quá thô, sai cả dữ liệu cũ."
+ },
+ {
+  "id": "t-093",
+  "en": "regularization",
+  "vi": "điều chuẩn (phạt model quá phức tạp)",
+  "track": "ml",
+  "explain": "Như giới hạn số trang bài luận để học sinh viết ý chính thay vì nhồi chi tiết."
+ },
+ {
+  "id": "t-094",
+  "en": "cross-validation",
+  "vi": "kiểm định chéo (chia dữ liệu nhiều cách để kiểm tra)",
+  "track": "ml",
+  "explain": "Thi thử 5 đề khác nhau rồi lấy điểm trung bình, đáng tin hơn một đề."
+ },
+ {
+  "id": "t-095",
+  "en": "accuracy",
+  "vi": "độ chính xác tổng (tỉ lệ đoán đúng)",
+  "track": "ml",
+  "explain": "Đoán đúng 90 trên 100 ca là 90%; nhưng dễ đánh lừa khi một lớp rất hiếm."
+ },
+ {
+  "id": "t-096",
+  "en": "precision",
+  "vi": "độ chuẩn (trong các ca báo dương, bao nhiêu ca đúng)",
+  "track": "ml",
+  "explain": "Model báo 10 giao dịch gian lận, 8 cái đúng là gian lận: precision 80%."
+ },
+ {
+  "id": "t-097",
+  "en": "recall",
+  "vi": "độ phủ (trong các ca dương thật, bắt được bao nhiêu)",
+  "track": "ml",
+  "explain": "Có 20 giao dịch gian lận thật, model bắt được 15: recall 75%."
+ },
+ {
+  "id": "t-098",
+  "en": "F1 score",
+  "vi": "điểm F1 (cân bằng precision và recall)",
+  "track": "ml",
+  "explain": "Một con số gộp cả hai, hữu ích khi không muốn hy sinh hẳn bên nào."
+ },
+ {
+  "id": "t-099",
+  "en": "confusion matrix",
+  "vi": "ma trận nhầm lẫn",
+  "track": "ml",
+  "explain": "Bảng 2x2 đếm đoán đúng, báo nhầm, bỏ sót, giúp thấy model sai kiểu gì."
+ },
+ {
+  "id": "t-100",
+  "en": "baseline",
+  "vi": "mốc so sánh đơn giản",
+  "track": "ml",
+  "explain": "Trước khi khen model, so với cách ngây thơ như 'luôn gợi ý hàng bán chạy nhất'."
+ },
+ {
+  "id": "t-101",
+  "en": "feature engineering",
+  "vi": "chế tác đặc trưng",
+  "track": "ml",
+  "explain": "Từ ngày mua hàng, tạo ra 'số ngày từ lần mua cuối'; người hiểu ngành thường làm phần này rất giỏi."
+ },
+ {
+  "id": "t-102",
+  "en": "data leakage",
+  "vi": "rò rỉ dữ liệu (model lỡ thấy thông tin của đáp án)",
+  "track": "ml",
+  "explain": "Dùng cột 'ngày huỷ tài khoản' để đoán ai sẽ huỷ: kết quả đẹp giả tạo."
+ },
+ {
+  "id": "t-103",
+  "en": "imbalanced data",
+  "vi": "dữ liệu mất cân bằng",
+  "track": "ml",
+  "explain": "Gian lận chỉ chiếm 1%; model đoán 'không gian lận' mọi lúc cũng đạt 99% accuracy mà vô dụng."
+ },
+ {
+  "id": "t-104",
+  "en": "deep learning",
+  "vi": "học sâu (mạng neural nhiều lớp)",
+  "track": "ml",
+  "explain": "Nền của nhận diện ảnh, giọng nói và LLM hiện nay."
+ },
+ {
+  "id": "t-105",
+  "en": "CNN",
+  "vi": "mạng tích chập (chuyên xử lý ảnh)",
+  "track": "ml",
+  "explain": "Quét ảnh bằng các 'kính lúp' nhỏ để nhận ra cạnh, góc, rồi tới hình dạng."
+ },
+ {
+  "id": "t-106",
+  "en": "LLM",
+  "vi": "mô hình ngôn ngữ lớn",
+  "track": "llm",
+  "explain": "Model được train trên lượng chữ khổng lồ để đoán từ tiếp theo, từ đó biết viết, tóm tắt, trả lời."
+ },
+ {
+  "id": "t-107",
+  "en": "token",
+  "vi": "token (mẩu chữ model xử lý)",
+  "track": "llm",
+  "explain": "Câu 'xin chào bạn' có thể bị cắt thành vài token; giá và giới hạn của model tính theo token."
+ },
+ {
+  "id": "t-108",
+  "en": "tokenizer",
+  "vi": "bộ tách token",
+  "track": "llm",
+  "explain": "Cái máy cắt văn bản thành token trước khi đưa vào model, như thái rau trước khi nấu."
+ },
+ {
+  "id": "t-109",
+  "en": "embedding",
+  "vi": "embedding (vector biểu diễn ý nghĩa)",
+  "track": "llm",
+  "explain": "Biến chữ thành toạ độ: 'cà phê' và 'trà sữa' nằm gần nhau, 'xe tải' nằm xa."
+ },
+ {
+  "id": "t-110",
+  "en": "attention",
+  "vi": "cơ chế chú ý",
+  "track": "llm",
+  "explain": "Khi đọc 'nó' trong câu, model nhìn lại xem 'nó' ám chỉ con mèo hay cái bàn."
+ },
+ {
+  "id": "t-111",
+  "en": "self-attention",
+  "vi": "tự chú ý (mỗi từ nhìn mọi từ khác trong câu)",
+  "track": "llm",
+  "explain": "Mỗi từ tự hỏi những từ nào trong câu quan trọng với mình để hiểu đúng nghĩa."
+ },
+ {
+  "id": "t-112",
+  "en": "transformer",
+  "vi": "kiến trúc transformer",
+  "track": "llm",
+  "explain": "Thiết kế mạng dùng attention, là nền của hầu hết LLM hiện nay."
+ },
+ {
+  "id": "t-113",
+  "en": "context window",
+  "vi": "cửa sổ ngữ cảnh (lượng token model nhìn được một lúc)",
+  "track": "llm",
+  "explain": "Như mặt bàn làm việc: bàn càng rộng càng bày được nhiều tài liệu cùng lúc."
+ },
+ {
+  "id": "t-114",
+  "en": "prompt",
+  "vi": "prompt (câu lệnh, nội dung gửi cho model)",
+  "track": "llm",
+  "explain": "Lời dặn bạn đưa cho model, như brief gửi cho agency."
+ },
+ {
+  "id": "t-115",
+  "en": "system prompt",
+  "vi": "hướng dẫn nền cho model",
+  "track": "llm",
+  "explain": "Những quy tắc chung đặt trước mọi hội thoại: 'Bạn là trợ lý CSKH, luôn lịch sự, không bàn chính trị'."
+ },
+ {
+  "id": "t-116",
+  "en": "prompt engineering",
+  "vi": "kỹ thuật viết prompt",
+  "track": "llm",
+  "explain": "Viết lệnh rõ ràng, có ví dụ, có định dạng đầu ra để model làm đúng ý."
+ },
+ {
+  "id": "t-117",
+  "en": "zero-shot",
+  "vi": "không cho ví dụ",
+  "track": "llm",
+  "explain": "Chỉ nói 'phân loại cảm xúc review này' mà không đưa mẫu nào."
+ },
+ {
+  "id": "t-118",
+  "en": "few-shot",
+  "vi": "cho vài ví dụ mẫu",
+  "track": "llm",
+  "explain": "Đưa 3 review đã gán nhãn trước, model bắt chước cách làm tốt hơn."
+ },
+ {
+  "id": "t-119",
+  "en": "chain-of-thought",
+  "vi": "chuỗi suy luận từng bước",
+  "track": "llm",
+  "explain": "Yêu cầu model nghĩ từng bước như làm toán nháp, thường giúp bài khó đúng hơn."
+ },
+ {
+  "id": "t-120",
+  "en": "temperature",
+  "vi": "nhiệt độ (độ ngẫu nhiên khi chọn từ)",
+  "track": "llm",
+  "explain": "Thấp thì trả lời ổn định, an toàn; cao thì sáng tạo hơn nhưng dễ lan man."
+ },
+ {
+  "id": "t-121",
+  "en": "top-p",
+  "vi": "lấy mẫu top-p (chỉ chọn trong nhóm từ có tổng xác suất p)",
+  "track": "llm",
+  "explain": "Chỉ cân nhắc các từ khả dĩ nhất cộng lại tới 90%, bỏ đuôi từ quá lạ."
+ },
+ {
+  "id": "t-122",
+  "en": "sampling",
+  "vi": "lấy mẫu (cách chọn từ tiếp theo)",
+  "track": "llm",
+  "explain": "Model không luôn chọn từ chắc nhất, mà 'bốc thăm' có trọng số, nên mỗi lần trả lời hơi khác."
+ },
+ {
+  "id": "t-123",
+  "en": "hallucination",
+  "vi": "ảo giác (AI bịa thông tin nghe rất thật)",
+  "track": "llm",
+  "explain": "Hỏi chính sách hoàn tiền, AI tự tin trả lời '30 ngày' trong khi công ty chỉ cho 7 ngày."
+ },
+ {
+  "id": "t-124",
+  "en": "grounding",
+  "vi": "bám nguồn (buộc câu trả lời dựa trên tài liệu thật)",
+  "track": "llm",
+  "explain": "Yêu cầu model chỉ trả lời từ tài liệu được cung cấp và trích dẫn chỗ lấy."
+ },
+ {
+  "id": "t-125",
+  "en": "RAG",
+  "vi": "tạo sinh có truy xuất (tra tài liệu rồi mới trả lời)",
+  "track": "llm",
+  "explain": "Như nhân viên mở sổ tay chính sách trước khi trả lời khách, thay vì nói theo trí nhớ."
+ },
+ {
+  "id": "t-126",
+  "en": "retrieval",
+  "vi": "truy xuất (tìm đoạn tài liệu liên quan)",
+  "track": "llm",
+  "explain": "Bước tìm đúng trang trong sổ tay trước khi đọc cho model."
+ },
+ {
+  "id": "t-127",
+  "en": "chunking",
+  "vi": "cắt tài liệu thành đoạn",
+  "track": "llm",
+  "explain": "Cắt cuốn cẩm nang 100 trang thành đoạn nhỏ để dễ tìm đúng đoạn cần."
+ },
+ {
+  "id": "t-128",
+  "en": "chunk overlap",
+  "vi": "phần chồng lấn giữa các đoạn",
+  "track": "llm",
+  "explain": "Mỗi đoạn lặp lại vài câu cuối của đoạn trước để không cắt đứt một ý giữa chừng."
+ },
+ {
+  "id": "t-129",
+  "en": "vector database",
+  "vi": "cơ sở dữ liệu vector (tìm theo ý nghĩa)",
+  "track": "llm",
+  "explain": "Lưu embedding của các đoạn tài liệu, hỏi 'đổi trả' cũng tìm ra đoạn viết 'hoàn hàng'."
+ },
+ {
+  "id": "t-130",
+  "en": "semantic search",
+  "vi": "tìm kiếm theo ngữ nghĩa",
+  "track": "llm",
+  "explain": "Tìm theo ý chứ không theo chữ y hệt: 'giao chậm' vẫn khớp 'ship trễ'."
+ },
+ {
+  "id": "t-131",
+  "en": "keyword search",
+  "vi": "tìm theo từ khoá",
+  "track": "llm",
+  "explain": "Tìm chính xác chữ xuất hiện, như Ctrl+F; tốt với mã sản phẩm, tên riêng."
+ },
+ {
+  "id": "t-132",
+  "en": "hybrid search",
+  "vi": "tìm kiếm kết hợp",
+  "track": "llm",
+  "explain": "Gộp tìm theo ý nghĩa và theo từ khoá để vừa hiểu ý vừa không bỏ sót mã sản phẩm."
+ },
+ {
+  "id": "t-133",
+  "en": "reranking",
+  "vi": "xếp hạng lại kết quả",
+  "track": "llm",
+  "explain": "Lấy 20 đoạn tìm được, dùng model khác chấm lại để chọn 5 đoạn sát nhất."
+ },
+ {
+  "id": "t-134",
+  "en": "agent",
+  "vi": "agent (AI tự lập kế hoạch và làm nhiều bước)",
+  "track": "llm",
+  "explain": "Bạn nói 'đặt lịch họp tuần sau với team', agent tự xem lịch, chọn giờ, gửi lời mời."
+ },
+ {
+  "id": "t-135",
+  "en": "tool calling",
+  "vi": "gọi công cụ (model yêu cầu chạy hàm bên ngoài)",
+  "track": "llm",
+  "explain": "Model không tự biết thời tiết, nó yêu cầu gọi API thời tiết rồi dùng kết quả trả lời."
+ },
+ {
+  "id": "t-136",
+  "en": "MCP",
+  "vi": "Model Context Protocol (chuẩn kết nối AI với công cụ và dữ liệu)",
+  "track": "llm",
+  "explain": "Như ổ cắm chuẩn: công cụ nào làm theo MCP thì các ứng dụng AI hỗ trợ MCP cắm vào dùng được."
+ },
+ {
+  "id": "t-137",
+  "en": "multi-agent",
+  "vi": "nhiều agent phối hợp",
+  "track": "llm",
+  "explain": "Một agent tìm tài liệu, một agent viết, một agent kiểm tra, như một nhóm nhỏ chia việc."
+ },
+ {
+  "id": "t-138",
+  "en": "orchestration",
+  "vi": "điều phối (sắp xếp các bước và công cụ)",
+  "track": "llm",
+  "explain": "Phần code quyết định bước nào chạy trước, gọi model nào, khi nào dừng."
+ },
+ {
+  "id": "t-139",
+  "en": "workflow",
+  "vi": "chuỗi bước tự động cố định",
+  "track": "llm",
+  "explain": "Khác agent ở chỗ các bước được định sẵn: nhận email -> tóm tắt -> gửi Slack."
+ },
+ {
+  "id": "t-140",
+  "en": "structured output",
+  "vi": "đầu ra có cấu trúc",
+  "track": "llm",
+  "explain": "Bắt model trả về JSON đúng mẫu để chương trình đọc tiếp được, không phải đoạn văn tự do."
+ },
+ {
+  "id": "t-141",
+  "en": "eval",
+  "vi": "eval (bộ kiểm tra chất lượng đầu ra AI)",
+  "track": "llm",
+  "explain": "Bộ câu hỏi mẫu kèm tiêu chí chấm, chạy mỗi lần sửa để biết tốt lên hay tệ đi."
+ },
+ {
+  "id": "t-142",
+  "en": "benchmark",
+  "vi": "bộ đo chuẩn công khai",
+  "track": "llm",
+  "explain": "Đề thi chung để so model với nhau; điểm cao trên benchmark chưa chắc tốt cho bài toán của bạn."
+ },
+ {
+  "id": "t-143",
+  "en": "LLM-as-judge",
+  "vi": "dùng LLM chấm điểm LLM",
+  "track": "llm",
+  "explain": "Nhờ một model đọc câu trả lời và chấm theo rubric, nhanh hơn người chấm nhưng cần kiểm tra lại."
+ },
+ {
+  "id": "t-144",
+  "en": "rubric",
+  "vi": "bảng tiêu chí chấm điểm",
+  "track": "llm",
+  "explain": "Như phiếu chấm thi: đúng sự thật 2 điểm, đúng giọng 1 điểm, đủ ý 2 điểm."
+ },
+ {
+  "id": "t-145",
+  "en": "golden dataset",
+  "vi": "bộ dữ liệu chuẩn (có đáp án tin cậy)",
+  "track": "llm",
+  "explain": "Bộ câu hỏi và câu trả lời mẫu do chuyên gia duyệt, dùng làm thước đo."
+ },
+ {
+  "id": "t-146",
+  "en": "fine-tuning",
+  "vi": "tinh chỉnh (train thêm model có sẵn trên dữ liệu riêng)",
+  "track": "llm",
+  "explain": "Như đào tạo thêm một nhân viên giỏi về văn phong riêng của công ty bạn."
+ },
+ {
+  "id": "t-147",
+  "en": "LoRA",
+  "vi": "LoRA (tinh chỉnh tiết kiệm bằng cách chỉ học phần nhỏ thêm vào)",
+  "track": "llm",
+  "explain": "Thay vì sửa cả cuốn sách, chỉ dán thêm vài trang ghi chú; rẻ và nhanh hơn nhiều."
+ },
+ {
+  "id": "t-148",
+  "en": "pre-training",
+  "vi": "huấn luyện trước (giai đoạn học từ dữ liệu khổng lồ)",
+  "track": "llm",
+  "explain": "Giai đoạn model đọc lượng chữ khổng lồ để học ngôn ngữ, cực kỳ tốn kém."
+ },
+ {
+  "id": "t-149",
+  "en": "instruction tuning",
+  "vi": "tinh chỉnh theo chỉ dẫn",
+  "track": "llm",
+  "explain": "Dạy model đã biết ngôn ngữ cách làm theo yêu cầu của người dùng."
+ },
+ {
+  "id": "t-150",
+  "en": "RLHF",
+  "vi": "học tăng cường từ phản hồi con người",
+  "track": "llm",
+  "explain": "Người chấm câu trả lời nào tốt hơn, model học để trả lời giống cái được chọn."
+ },
+ {
+  "id": "t-151",
+  "en": "alignment",
+  "vi": "căn chỉnh (làm AI hành xử đúng ý và an toàn)",
+  "track": "llm",
+  "explain": "Đảm bảo AI hữu ích, trung thực và không gây hại, như đào tạo cả đạo đức nghề cho nhân viên."
+ },
+ {
+  "id": "t-152",
+  "en": "inference",
+  "vi": "suy luận (chạy model để ra kết quả)",
+  "track": "llm",
+  "explain": "Mỗi lần bạn hỏi và model trả lời là một lần inference, khác với lúc train."
+ },
+ {
+  "id": "t-153",
+  "en": "latency",
+  "vi": "độ trễ",
+  "track": "llm",
+  "explain": "Thời gian từ lúc gửi câu hỏi tới lúc có câu trả lời; chậm quá người dùng bỏ đi."
+ },
+ {
+  "id": "t-154",
+  "en": "throughput",
+  "vi": "thông lượng (xử lý được bao nhiêu mỗi giây)",
+  "track": "llm",
+  "explain": "Như số khách một quầy phục vụ được mỗi giờ."
+ },
+ {
+  "id": "t-155",
+  "en": "streaming",
+  "vi": "trả kết quả dần dần",
+  "track": "llm",
+  "explain": "Chữ hiện ra từng phần thay vì chờ cả câu, giúp người dùng cảm thấy nhanh hơn."
+ },
+ {
+  "id": "t-156",
+  "en": "quantization",
+  "vi": "lượng tử hoá (giảm độ chính xác số để model nhẹ hơn)",
+  "track": "llm",
+  "explain": "Như nén ảnh từ bản gốc xuống bản nhẹ: hơi giảm chất lượng nhưng chạy nhanh, tốn ít bộ nhớ."
+ },
+ {
+  "id": "t-157",
+  "en": "distillation",
+  "vi": "chưng cất (model nhỏ học từ model lớn)",
+  "track": "llm",
+  "explain": "Học trò nhỏ học theo cách thầy giỏi trả lời, để chạy rẻ hơn mà vẫn khá tốt."
+ },
+ {
+  "id": "t-158",
+  "en": "open-weight model",
+  "vi": "model công bố trọng số",
+  "track": "llm",
+  "explain": "Model bạn tải về chạy trên máy của mình, khác model chỉ dùng qua API."
+ },
+ {
+  "id": "t-159",
+  "en": "API",
+  "vi": "giao diện lập trình (cách phần mềm gọi dịch vụ khác)",
+  "track": "llm",
+  "explain": "Như gọi món qua quầy: bạn gửi yêu cầu theo mẫu, nhà bếp trả món, không cần vào bếp."
+ },
+ {
+  "id": "t-160",
+  "en": "rate limit",
+  "vi": "giới hạn tần suất gọi",
+  "track": "llm",
+  "explain": "Nhà cung cấp chỉ cho gọi bao nhiêu lần mỗi phút, giống quầy chỉ nhận số khách nhất định."
+ },
+ {
+  "id": "t-161",
+  "en": "guardrail",
+  "vi": "hàng rào an toàn",
+  "track": "llm",
+  "explain": "Kiểm tra đầu vào và đầu ra để chặn nội dung nguy hiểm, lộ dữ liệu, hứa sai với khách."
+ },
+ {
+  "id": "t-162",
+  "en": "prompt injection",
+  "vi": "tấn công chèn lệnh",
+  "track": "llm",
+  "explain": "Kẻ xấu giấu câu 'bỏ qua mọi quy tắc' trong email để lừa AI làm điều không được phép."
+ },
+ {
+  "id": "t-163",
+  "en": "jailbreak",
+  "vi": "bẻ khoá (lừa AI vượt quy tắc an toàn)",
+  "track": "llm",
+  "explain": "Dùng câu chuyện đóng vai để dụ model nói điều nó vốn từ chối."
+ },
+ {
+  "id": "t-164",
+  "en": "PII",
+  "vi": "thông tin định danh cá nhân",
+  "track": "llm",
+  "explain": "Số điện thoại, số CMND, địa chỉ; cần che hoặc xoá trước khi gửi cho model bên ngoài."
+ },
+ {
+  "id": "t-165",
+  "en": "multimodal",
+  "vi": "đa phương thức (hiểu nhiều dạng dữ liệu)",
+  "track": "llm",
+  "explain": "Model vừa đọc chữ vừa xem ảnh, ví dụ chụp hoá đơn rồi hỏi tổng tiền."
+ },
+ {
+  "id": "t-166",
+  "en": "vision-language model",
+  "vi": "model thị giác và ngôn ngữ",
+  "track": "llm",
+  "explain": "Model nhìn ảnh và mô tả hoặc trả lời câu hỏi về ảnh bằng lời."
+ },
+ {
+  "id": "t-167",
+  "en": "diffusion model",
+  "vi": "model khuếch tán (tạo ảnh từ nhiễu)",
+  "track": "llm",
+  "explain": "Bắt đầu từ ảnh nhiễu như TV mất sóng, gỡ nhiễu từng bước tới khi thành bức tranh."
+ },
+ {
+  "id": "t-168",
+  "en": "reasoning model",
+  "vi": "model suy luận",
+  "track": "llm",
+  "explain": "Model được train để 'nghĩ' nhiều bước trước khi trả lời, thường tốt hơn với toán và lập kế hoạch nhưng chậm hơn."
+ },
+ {
+  "id": "t-169",
+  "en": "next-token prediction",
+  "vi": "đoán token tiếp theo",
+  "track": "llm",
+  "explain": "Nhiệm vụ cốt lõi của LLM: 'Trời hôm nay rất...' đoán tiếp 'nóng'."
+ },
+ {
+  "id": "t-170",
+  "en": "memory (agent)",
+  "vi": "bộ nhớ của agent",
+  "track": "llm",
+  "explain": "Cách agent lưu lại thông tin qua nhiều lượt, như ghi chú sở thích của khách để lần sau dùng."
+ },
+ {
+  "id": "t-171",
+  "en": "observability",
+  "vi": "khả năng quan sát hệ thống",
+  "track": "llm",
+  "explain": "Ghi lại mọi bước model và tool đã chạy để khi sai biết sai ở đâu."
+ },
+ {
+  "id": "t-172",
+  "en": "tracing",
+  "vi": "truy vết (ghi lại từng bước một lần chạy)",
+  "track": "llm",
+  "explain": "Như camera hành trình cho mỗi yêu cầu: model nhận gì, gọi tool nào, trả gì."
+ },
+ {
+  "id": "t-173",
+  "en": "model drift",
+  "vi": "mô hình trôi (chất lượng giảm dần theo thời gian)",
+  "track": "llm",
+  "explain": "Hành vi khách thay đổi sau Tết, model dự đoán dựa trên dữ liệu cũ dần kém đi."
+ },
+ {
+  "id": "t-174",
+  "en": "cost per token",
+  "vi": "chi phí mỗi token",
+  "track": "llm",
+  "explain": "Cách tính tiền khi dùng model qua API; nhân với hàng triệu lượt mới thấy chi phí thật."
+ },
+ {
+  "id": "t-175",
+  "en": "prompt caching",
+  "vi": "lưu đệm prompt",
+  "track": "llm",
+  "explain": "Phần prompt lặp lại được nhà cung cấp lưu lại, lần sau rẻ và nhanh hơn."
+ },
+ {
+  "id": "t-176",
+  "en": "robot",
+  "vi": "robot (máy cảm nhận, quyết định và hành động)",
+  "track": "robo",
+  "explain": "Robot hút bụi cảm nhận vật cản, quyết định rẽ, rồi tự di chuyển."
+ },
+ {
+  "id": "t-177",
+  "en": "degrees of freedom",
+  "vi": "bậc tự do (số cách chuyển động độc lập)",
+  "track": "robo",
+  "explain": "Cánh tay người từ vai tới cổ tay có khoảng 7 bậc tự do; cánh tay robot thường có 6."
+ },
+ {
+  "id": "t-178",
+  "en": "joint",
+  "vi": "khớp",
+  "track": "robo",
+  "explain": "Chỗ nối cho phép xoay hoặc trượt, như khuỷu tay."
+ },
+ {
+  "id": "t-179",
+  "en": "link",
+  "vi": "khâu (phần cứng nối giữa các khớp)",
+  "track": "robo",
+  "explain": "Như xương cánh tay nằm giữa vai và khuỷu."
+ },
+ {
+  "id": "t-180",
+  "en": "end effector",
+  "vi": "bộ phận cuối (tay gắp, giác hút, mỏ hàn)",
+  "track": "robo",
+  "explain": "Phần ở đầu cánh tay robot thật sự chạm vào vật, như bàn tay."
+ },
+ {
+  "id": "t-181",
+  "en": "gripper",
+  "vi": "tay gắp",
+  "track": "robo",
+  "explain": "Kẹp hai ngón hoặc nhiều ngón để cầm vật, như cái kẹp gắp đá."
+ },
+ {
+  "id": "t-182",
+  "en": "actuator",
+  "vi": "cơ cấu chấp hành (bộ phận tạo chuyển động)",
+  "track": "robo",
+  "explain": "Như cơ bắp của robot: motor, xi lanh khí nén."
+ },
+ {
+  "id": "t-183",
+  "en": "motor",
+  "vi": "động cơ",
+  "track": "robo",
+  "explain": "Biến điện thành chuyển động quay, như motor trong quạt máy."
+ },
+ {
+  "id": "t-184",
+  "en": "servo",
+  "vi": "servo (motor quay tới đúng góc được yêu cầu)",
+  "track": "robo",
+  "explain": "Bảo nó quay 90 độ là nó quay đúng 90 độ rồi giữ, dùng nhiều trong robot nhỏ."
+ },
+ {
+  "id": "t-185",
+  "en": "sensor",
+  "vi": "cảm biến",
+  "track": "robo",
+  "explain": "Giác quan của robot: camera như mắt, cảm biến lực như xúc giác."
+ },
+ {
+  "id": "t-186",
+  "en": "encoder",
+  "vi": "bộ mã hoá vòng quay (đo motor đã quay bao nhiêu)",
+  "track": "robo",
+  "explain": "Như đồng hồ công-tơ-mét đếm số vòng bánh xe để biết đã đi bao xa."
+ },
+ {
+  "id": "t-187",
+  "en": "IMU",
+  "vi": "bộ đo quán tính (đo gia tốc và góc xoay)",
+  "track": "robo",
+  "explain": "Thứ giúp điện thoại biết bạn đang xoay ngang hay dọc; robot dùng để giữ thăng bằng."
+ },
+ {
+  "id": "t-188",
+  "en": "lidar",
+  "vi": "lidar (đo khoảng cách bằng tia laser)",
+  "track": "robo",
+  "explain": "Quét tia laser xung quanh, đo thời gian phản xạ để vẽ bản đồ chướng ngại vật."
+ },
+ {
+  "id": "t-189",
+  "en": "depth camera",
+  "vi": "camera chiều sâu",
+  "track": "robo",
+  "explain": "Camera biết mỗi điểm ảnh cách xa bao nhiêu, không chỉ màu sắc."
+ },
+ {
+  "id": "t-190",
+  "en": "point cloud",
+  "vi": "đám mây điểm (tập điểm 3D)",
+  "track": "robo",
+  "explain": "Hàng nghìn chấm toạ độ 3D lidar thu được, ghép lại thành hình căn phòng."
+ },
+ {
+  "id": "t-191",
+  "en": "odometry",
+  "vi": "đo hành trình (ước lượng vị trí từ chuyển động)",
+  "track": "robo",
+  "explain": "Đếm số vòng bánh xe để đoán đã đi bao xa, sai số cộng dồn theo thời gian."
+ },
+ {
+  "id": "t-192",
+  "en": "localization",
+  "vi": "định vị (robot biết mình đang ở đâu)",
+  "track": "robo",
+  "explain": "Như bạn nhìn biển tên đường để biết mình đang ở góc nào của quận 1."
+ },
+ {
+  "id": "t-193",
+  "en": "mapping",
+  "vi": "lập bản đồ",
+  "track": "robo",
+  "explain": "Robot đi quanh và vẽ lại sơ đồ phòng, chỗ nào tường, chỗ nào trống."
+ },
+ {
+  "id": "t-194",
+  "en": "SLAM",
+  "vi": "định vị và lập bản đồ đồng thời",
+  "track": "robo",
+  "explain": "Vừa vẽ bản đồ khu phố lạ, vừa đánh dấu mình đang đứng đâu trên chính bản đồ đó."
+ },
+ {
+  "id": "t-195",
+  "en": "path planning",
+  "vi": "lập kế hoạch đường đi",
+  "track": "robo",
+  "explain": "Tìm đường từ A tới B tránh chướng ngại, như Google Maps cho robot."
+ },
+ {
+  "id": "t-196",
+  "en": "A* algorithm",
+  "vi": "thuật toán A* (tìm đường ngắn có ước lượng)",
+  "track": "robo",
+  "explain": "Vừa tính quãng đã đi vừa ước lượng quãng còn lại để ưu tiên hướng hứa hẹn nhất."
+ },
+ {
+  "id": "t-197",
+  "en": "obstacle avoidance",
+  "vi": "tránh vật cản",
+  "track": "robo",
+  "explain": "Robot giao hàng thấy người đi bộ trước mặt thì chậm lại và đi vòng."
+ },
+ {
+  "id": "t-198",
+  "en": "kinematics",
+  "vi": "động học (quan hệ giữa góc khớp và vị trí)",
+  "track": "robo",
+  "explain": "Tính xem các khớp đặt góc nào thì bàn tay robot nằm ở đâu, chưa tính lực."
+ },
+ {
+  "id": "t-199",
+  "en": "forward kinematics",
+  "vi": "động học thuận (từ góc khớp ra vị trí)",
+  "track": "robo",
+  "explain": "Biết vai xoay 30 độ, khuỷu 45 độ, tính ra bàn tay đang ở toạ độ nào."
+ },
+ {
+  "id": "t-200",
+  "en": "inverse kinematics",
+  "vi": "động học ngược (từ vị trí mong muốn ra góc khớp)",
+  "track": "robo",
+  "explain": "Muốn tay chạm cái ly ở chỗ này thì vai và khuỷu phải xoay bao nhiêu."
+ },
+ {
+  "id": "t-201",
+  "en": "dynamics",
+  "vi": "động lực học (tính cả lực và khối lượng)",
+  "track": "robo",
+  "explain": "Biết cần bao nhiêu lực để nhấc chai nước nặng 1 kg lên nhanh mà không rung."
+ },
+ {
+  "id": "t-202",
+  "en": "trajectory",
+  "vi": "quỹ đạo (đường đi theo thời gian)",
+  "track": "robo",
+  "explain": "Không chỉ đi qua điểm nào, mà còn đi tới đó lúc nào, nhanh hay chậm."
+ },
+ {
+  "id": "t-203",
+  "en": "control loop",
+  "vi": "vòng điều khiển (đo, so sánh, chỉnh liên tục)",
+  "track": "robo",
+  "explain": "Như lái xe: nhìn đường, thấy lệch, chỉnh tay lái, lặp lại liên tục."
+ },
+ {
+  "id": "t-204",
+  "en": "feedback control",
+  "vi": "điều khiển phản hồi",
+  "track": "robo",
+  "explain": "Dùng kết quả đo được để chỉnh hành động, như máy lạnh đo nhiệt độ phòng rồi tăng giảm công suất."
+ },
+ {
+  "id": "t-205",
+  "en": "PID",
+  "vi": "bộ điều khiển PID (Tỉ lệ, Tích phân, Vi phân)",
+  "track": "robo",
+  "explain": "Như giữ xe máy đúng 40 km/h: lệch nhiều thì vặn ga nhiều, lệch lâu thì bù thêm, đang tăng nhanh thì nhả bớt."
+ },
+ {
+  "id": "t-206",
+  "en": "setpoint",
+  "vi": "giá trị mục tiêu",
+  "track": "robo",
+  "explain": "Con số bạn muốn hệ thống giữ, như máy lạnh đặt 26 độ."
+ },
+ {
+  "id": "t-207",
+  "en": "Kalman filter",
+  "vi": "bộ lọc Kalman (gộp dự đoán và đo đạc nhiễu)",
+  "track": "robo",
+  "explain": "Như ước lượng vị trí xe trong đường hầm: kết hợp tốc độ đang chạy và vài tín hiệu GPS chập chờn."
+ },
+ {
+  "id": "t-208",
+  "en": "sensor fusion",
+  "vi": "hợp nhất cảm biến",
+  "track": "robo",
+  "explain": "Gộp camera, lidar, IMU để có bức tranh đáng tin hơn từng cảm biến riêng lẻ."
+ },
+ {
+  "id": "t-209",
+  "en": "ROS 2",
+  "vi": "ROS 2 (bộ khung phần mềm mã nguồn mở cho robot)",
+  "track": "robo",
+  "explain": "Như hệ điều hành chung cho các phần của robot nói chuyện với nhau: camera, motor, bộ lập kế hoạch."
+ },
+ {
+  "id": "t-210",
+  "en": "node (ROS)",
+  "vi": "node (một chương trình nhỏ trong ROS)",
+  "track": "robo",
+  "explain": "Mỗi node lo một việc, như một nhân viên chuyên trách trong cửa hàng."
+ },
+ {
+  "id": "t-211",
+  "en": "topic (ROS)",
+  "vi": "topic (kênh phát dữ liệu trong ROS)",
+  "track": "robo",
+  "explain": "Như một kênh radio: node camera phát ảnh, node nào cần thì bật kênh để nghe."
+ },
+ {
+  "id": "t-212",
+  "en": "simulation",
+  "vi": "mô phỏng",
+  "track": "robo",
+  "explain": "Thử robot trong thế giới ảo trước, hỏng không tốn tiền sửa."
+ },
+ {
+  "id": "t-213",
+  "en": "sim-to-real",
+  "vi": "chuyển từ mô phỏng ra đời thật",
+  "track": "robo",
+  "explain": "Robot học giỏi trong game nhưng ngoài đời sàn trơn, ánh sáng khác; khoảng cách đó gọi là sim-to-real gap."
+ },
+ {
+  "id": "t-214",
+  "en": "domain randomization",
+  "vi": "ngẫu nhiên hoá môi trường mô phỏng",
+  "track": "robo",
+  "explain": "Thay đổi màu, ánh sáng, ma sát liên tục trong mô phỏng để robot quen với mọi điều kiện."
+ },
+ {
+  "id": "t-215",
+  "en": "teleoperation",
+  "vi": "điều khiển từ xa",
+  "track": "robo",
+  "explain": "Người dùng tay cầm hoặc thiết bị đeo điều khiển robot, thường để thu dữ liệu làm mẫu."
+ },
+ {
+  "id": "t-216",
+  "en": "imitation learning",
+  "vi": "học bắt chước",
+  "track": "robo",
+  "explain": "Robot xem người làm mẫu gấp áo nhiều lần rồi học làm theo."
+ },
+ {
+  "id": "t-217",
+  "en": "policy",
+  "vi": "chính sách (quy tắc chọn hành động từ quan sát)",
+  "track": "robo",
+  "explain": "Bộ não quyết định: thấy cảnh này thì làm động tác kia."
+ },
+ {
+  "id": "t-218",
+  "en": "VLA model",
+  "vi": "model thị giác, ngôn ngữ và hành động",
+  "track": "robo",
+  "explain": "Model nhìn camera, hiểu lệnh 'cất cái cốc vào tủ' và xuất ra chuyển động cho robot."
+ },
+ {
+  "id": "t-219",
+  "en": "humanoid",
+  "vi": "robot hình người",
+  "track": "robo",
+  "explain": "Robot hai chân hai tay để làm việc trong môi trường thiết kế cho người, như cầu thang, tay nắm cửa."
+ },
+ {
+  "id": "t-220",
+  "en": "cobot",
+  "vi": "robot cộng tác (làm việc an toàn cạnh người)",
+  "track": "robo",
+  "explain": "Cánh tay robot nhỏ dừng ngay khi chạm vào người, dùng ở xưởng nhỏ bên cạnh công nhân."
+ }
+]

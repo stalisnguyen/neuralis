@@ -1,0 +1,1458 @@
+[
+ {
+  "id": "py-17",
+  "track": "py",
+  "unit": "Functions",
+  "order": 17,
+  "title": "Defining functions",
+  "title_vi": "Gói code thành một cái tên",
+  "level": 2,
+  "minutes": 10,
+  "body": "Hãy tưởng tượng bạn mở một quán trà sữa. Mỗi lần có khách, bạn phải tính tiền: giá ly, cộng topping, cộng VAT. Nếu lần nào cũng viết lại cả đoạn code tính tiền thì vừa dài vừa dễ sai. Lập trình viên giải quyết chuyện này bằng cách gói đoạn code lại, đặt cho nó một cái tên, rồi gọi tên đó mỗi khi cần. Cái gói đó gọi là **function** (hàm: một đoạn code có tên, nhận đầu vào và trả ra kết quả).\n\n## Cú pháp def\nTrong Python, bạn tạo function bằng từ khoá def:\n```\ndef say_hello():\n    print(\"Xin chào từ Bit!\")\n\nsay_hello()\nsay_hello()\n```\nDòng def gồm: từ khoá def, tên hàm, cặp ngoặc tròn và dấu hai chấm. Phần thân hàm thụt vào 4 dấu cách, giống khối if hay for bạn đã học. Một điểm hay nhầm: **định nghĩa hàm chưa chạy gì cả**. Python chỉ ghi nhớ \"à, có một công thức tên say_hello\". Code bên trong chỉ chạy khi bạn **gọi** hàm bằng cách viết tên kèm ngoặc: say_hello(). Gọi hai lần thì chạy hai lần.\n\n## Đưa dữ liệu vào\nMột công thức nấu ăn cần nguyên liệu. Function cũng vậy, nó nhận dữ liệu qua **parameter** (tham số: cái tên đặt trong ngoặc khi định nghĩa hàm). Giá trị thật bạn đưa vào khi gọi hàm gọi là **argument** (đối số).\n```\ndef greet(name):\n    print(f\"Xin chào, {name}!\")\n\ngreet(\"Lan\")    # name = \"Lan\"\ngreet(\"Minh\")   # name = \"Minh\"\n```\nMỗi lần gọi, name nhận một giá trị khác, nên cùng một hàm phục vụ được nhiều khách.\n\n## Lấy kết quả ra bằng return\nprint chỉ hiện chữ lên màn hình, giống thu ngân đọc to số tiền. Còn **return** trả kết quả về cho chỗ gọi hàm, giống thu ngân đưa bạn tờ hoá đơn: bạn cầm nó, cộng trừ tiếp, lưu lại được.\n```\ndef price_with_vat(price):\n    return price * 1.1\n\ntotal = price_with_vat(50000) + price_with_vat(30000)\nprint(total)   # 88000.0\n```\nNếu hàm chỉ print mà không return, kết quả của lời gọi hàm là None (giá trị rỗng của Python), và bạn không thể cộng nó với số khác. Khi gặp return, hàm dừng ngay lập tức, các dòng phía sau không chạy nữa. Vì vậy return thường nằm ở cuối, hoặc trong một nhánh if để thoát sớm.\n\n## Docstring và cách đặt tên\nDòng chữ đầu tiên trong thân hàm, đặt giữa ba dấu nháy kép, gọi là **docstring** (chuỗi mô tả hàm). Nó giúp người đọc (và chính bạn ba tháng sau) hiểu hàm làm gì:\n```\ndef price_with_vat(price):\n    \"\"\"Return price including 10% VAT.\"\"\"\n    return price * 1.1\n```\nMột vài thói quen tốt:\n- Tên hàm là động từ hoặc cụm động từ viết thường, nối bằng dấu gạch dưới: calculate_total, send_email.\n- Mỗi hàm làm một việc rõ ràng. Nếu bạn phải dùng chữ \"và\" để mô tả hàm, có lẽ nên tách làm hai.\n- Thấy mình copy cùng một đoạn code từ hai lần trở lên là dấu hiệu nên gói nó thành function.\n\nTrong công việc AI sau này, bạn sẽ viết rất nhiều hàm nhỏ kiểu clean_text, load_data, compute_score rồi ghép chúng lại. Function là viên gạch cơ bản của mọi chương trình lớn.",
+  "terms": [
+   {
+    "en": "function",
+    "vi": "hàm, đoạn code có tên"
+   },
+   {
+    "en": "def",
+    "vi": "từ khoá định nghĩa hàm"
+   },
+   {
+    "en": "parameter",
+    "vi": "tham số trong định nghĩa hàm"
+   },
+   {
+    "en": "argument",
+    "vi": "giá trị truyền vào khi gọi hàm"
+   },
+   {
+    "en": "return",
+    "vi": "trả kết quả về chỗ gọi"
+   },
+   {
+    "en": "docstring",
+    "vi": "chuỗi mô tả hàm"
+   },
+   {
+    "en": "None",
+    "vi": "giá trị rỗng của Python"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Bạn viết xong khối def say_hello(): print(\"Hi\") rồi chạy file, nhưng không có dòng nào khác. Màn hình hiện gì?",
+    "choices": [
+     "Hi",
+     "Không hiện gì, vì hàm mới được định nghĩa chứ chưa được gọi",
+     "None",
+     "Báo lỗi vì thiếu return"
+    ],
+    "answer": 1,
+    "why": "def chỉ tạo ra công thức. Code trong thân hàm chỉ chạy khi bạn gọi say_hello()."
+   },
+   {
+    "q": "Hàm def f(x): print(x * 2) được gọi bằng y = f(5). Giá trị của y là gì?",
+    "choices": [
+     "10",
+     "\"10\"",
+     "None",
+     "5"
+    ],
+    "answer": 2,
+    "why": "Hàm chỉ print chứ không return, nên lời gọi hàm trả về None. Số 10 chỉ hiện trên màn hình, không được lưu vào y."
+   },
+   {
+    "q": "Trong def greet(name): ... và lời gọi greet(\"Lan\"), đâu là argument?",
+    "choices": [
+     "greet",
+     "name",
+     "def",
+     "\"Lan\""
+    ],
+    "answer": 3,
+    "why": "name là parameter (cái tên chờ sẵn trong định nghĩa), còn \"Lan\" là giá trị thật được truyền vào lúc gọi, tức argument."
+   },
+   {
+    "q": "Hàm có hai dòng: return 1 rồi print(\"xong\"). Gọi hàm thì sao?",
+    "choices": [
+     "Trả về 1 và không in \"xong\", vì return kết thúc hàm ngay",
+     "In \"xong\" rồi trả về 1",
+     "Chỉ in \"xong\"",
+     "Báo lỗi vì có code sau return"
+    ],
+    "answer": 0,
+    "why": "Khi gặp return, hàm dừng ngay và trả giá trị về. Dòng print phía sau không bao giờ chạy."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm make_greeting(name) trả về (return, không print) câu chào dạng \"Xin chào, <tên>!\". Bỏ khoảng trắng thừa ở hai đầu tên. Nếu tên rỗng sau khi bỏ khoảng trắng, trả về \"Xin chào, bạn!\".\nVí dụ: make_greeting(\"Lan\") -> \"Xin chào, Lan!\"; make_greeting(\"  Minh \") -> \"Xin chào, Minh!\"; make_greeting(\"   \") -> \"Xin chào, bạn!\"",
+   "starter": "def make_greeting(name):\n    # TODO: strip the name, handle the empty case, return the greeting\n    pass\n",
+   "solution": "def make_greeting(name):\n    \"\"\"Return a greeting for name.\"\"\"\n    clean = name.strip()\n    if clean == \"\":\n        return \"Xin chào, bạn!\"\n    return f\"Xin chào, {clean}!\"\n",
+   "tests": "assert make_greeting(\"Lan\") == \"Xin chào, Lan!\", 'make_greeting(\"Lan\") phải là \"Xin chào, Lan!\"'\nassert make_greeting(\"  Minh \") == \"Xin chào, Minh!\", 'phải bỏ khoảng trắng thừa ở hai đầu tên'\nassert make_greeting(\"\") == \"Xin chào, bạn!\", 'tên rỗng thì chào \"bạn\"'\nassert make_greeting(\"   \") == \"Xin chào, bạn!\", 'tên chỉ có khoảng trắng cũng coi là rỗng'\nassert isinstance(make_greeting(\"Bit\"), str), 'hàm phải return một chuỗi, không chỉ print'\n",
+   "hint": "Dùng .strip() để bỏ khoảng trắng, kiểm tra chuỗi rỗng bằng if, rồi dùng f-string để ghép câu chào. Nhớ dùng return."
+  },
+  "takeaway": "Function là công thức có tên: def để định nghĩa, gọi tên kèm ngoặc để chạy, và dùng return để trả kết quả về thay vì chỉ print."
+ },
+ {
+  "id": "py-18",
+  "track": "py",
+  "unit": "Functions",
+  "order": 18,
+  "title": "Parameters, defaults, return",
+  "title_vi": "Tham số, giá trị mặc định và kết quả trả về",
+  "level": 2,
+  "minutes": 12,
+  "body": "Ở bài trước, hàm chỉ nhận một đầu vào. Thực tế, một phép tính thường cần nhiều thông tin. Ví dụ tính tiền đơn Shopee: giá hàng, mã giảm giá, phí ship. Bài này giúp bạn điều khiển đầu vào và đầu ra của hàm cho gọn gàng.\n\n## Nhiều parameter\nBạn liệt kê các parameter (tham số) cách nhau bằng dấu phẩy:\n```\ndef order_total(price, quantity, shipping):\n    return price * quantity + shipping\n\norder_total(120000, 2, 15000)   # 255000\n```\nKhi gọi như trên, Python ghép theo thứ tự: giá trị đầu cho price, thứ hai cho quantity, thứ ba cho shipping. Cách này gọi là **positional argument** (đối số theo vị trí). Đổi chỗ là sai nghĩa ngay.\n\n## Gọi theo tên: keyword argument\nĐể khỏi nhớ thứ tự, bạn có thể ghi tên parameter khi gọi:\n```\norder_total(quantity=2, shipping=15000, price=120000)\n```\nĐây là **keyword argument** (đối số gọi theo tên). Code dễ đọc hơn hẳn, nhất là khi hàm có nhiều tham số kiểu số giống nhau.\n\n## Giá trị mặc định\nPhần lớn đơn hàng có phí ship 15.000đ và không có giảm giá. Thay vì bắt người gọi lần nào cũng ghi, bạn đặt **default value** (giá trị mặc định):\n```\ndef order_total(price, quantity=1, shipping=15000, discount=0):\n    subtotal = price * quantity * (1 - discount)\n    return subtotal + shipping\n\norder_total(100000)                    # 115000\norder_total(100000, 3)                 # 315000\norder_total(100000, discount=0.2)      # 95000.0\n```\nQuy tắc: tham số có mặc định phải đứng **sau** tham số bắt buộc. Viết def f(a=1, b) sẽ báo lỗi.\n\nMột cái bẫy nổi tiếng: đừng dùng list hay dict làm giá trị mặc định, ví dụ def add_item(item, cart=[]). List đó chỉ được tạo một lần khi định nghĩa hàm và bị dùng chung giữa các lần gọi, nên giỏ hàng của khách này lọt sang khách kia. Cách an toàn là đặt cart=None rồi trong thân hàm viết if cart is None: cart = [].\n\n## Trả về nhiều giá trị\nHàm có thể return nhiều giá trị cùng lúc, cách nhau bằng dấu phẩy. Python gói chúng thành một **tuple** (bộ giá trị không sửa được):\n```\ndef min_max(numbers):\n    return min(numbers), max(numbers)\n\nlow, high = min_max([3, 9, 1, 7])\nprint(low, high)   # 1 9\n```\nDòng low, high = ... gọi là **unpacking** (tách tuple ra từng biến). Rất hay gặp khi làm dữ liệu, ví dụ hàm chia dữ liệu thành phần train và phần test trả về hai thứ một lúc.\n\n## Thoát sớm với return\nHàm có thể có nhiều return trong các nhánh khác nhau. Kỹ thuật \"kiểm tra trường hợp xấu trước rồi thoát\" giúp code phẳng, dễ đọc:\n```\ndef safe_divide(a, b):\n    if b == 0:\n        return 0\n    return a / b\n```\nTóm lại, khi thiết kế một hàm, hãy tự hỏi: hàm cần biết gì (parameter), điều gì thường giống nhau ở mọi lần gọi (default), và người gọi cần nhận lại gì (return).",
+  "terms": [
+   {
+    "en": "positional argument",
+    "vi": "đối số truyền theo vị trí"
+   },
+   {
+    "en": "keyword argument",
+    "vi": "đối số truyền theo tên"
+   },
+   {
+    "en": "default value",
+    "vi": "giá trị mặc định"
+   },
+   {
+    "en": "tuple",
+    "vi": "bộ giá trị không sửa được"
+   },
+   {
+    "en": "unpacking",
+    "vi": "tách tuple ra nhiều biến"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Với def order_total(price, quantity=1, shipping=15000), lời gọi order_total(50000, shipping=0) trả về bao nhiêu?",
+    "choices": [
+     "65000",
+     "50000",
+     "0",
+     "Báo lỗi vì thiếu quantity"
+    ],
+    "answer": 1,
+    "why": "quantity dùng mặc định 1, shipping được đặt bằng 0 theo tên, nên kết quả là 50000 * 1 + 0."
+   },
+   {
+    "q": "Vì sao def f(a=1, b): báo lỗi?",
+    "choices": [
+     "Vì tên a và b quá ngắn",
+     "Vì không được có hai tham số",
+     "Vì tham số có mặc định phải đứng sau tham số bắt buộc",
+     "Vì giá trị mặc định phải là chuỗi"
+    ],
+    "answer": 2,
+    "why": "Python ghép đối số theo vị trí từ trái sang, nên các tham số bắt buộc phải đứng trước, tham số có mặc định đứng sau."
+   },
+   {
+    "q": "Hàm return total, count. Gọi result = f(). result là gì?",
+    "choices": [
+     "Chỉ total",
+     "Chỉ count",
+     "Báo lỗi",
+     "Một tuple gồm (total, count)"
+    ],
+    "answer": 3,
+    "why": "Nhiều giá trị sau return được gói thành tuple. Muốn tách ra thì viết total, count = f()."
+   },
+   {
+    "q": "Hàm def add_item(item, cart=[]) được gọi hai lần cho hai khách khác nhau mà không truyền cart. Chuyện gì xảy ra?",
+    "choices": [
+     "Hai khách dùng chung một list, món của khách đầu xuất hiện trong giỏ khách sau",
+     "Mỗi lần gọi có một list mới tinh",
+     "Python báo lỗi ngay khi định nghĩa",
+     "cart luôn là None"
+    ],
+    "answer": 0,
+    "why": "List mặc định được tạo một lần lúc định nghĩa hàm và dùng lại ở mọi lần gọi. Cách an toàn là cart=None rồi tạo list mới trong thân hàm."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm split_bill(total, people=2, tip=0) chia hoá đơn: cộng tiền tip theo tỉ lệ (tip=0.1 nghĩa là thêm 10%), chia đều cho số người, làm tròn bằng round() về số nguyên. Nếu people nhỏ hơn hoặc bằng 0 thì trả về 0.\nVí dụ: split_bill(300000) -> 150000; split_bill(300000, 3) -> 100000; split_bill(100000, 4, tip=0.1) -> 27500; split_bill(50000, 0) -> 0",
+   "starter": "def split_bill(total, people=2, tip=0):\n    # TODO: handle people <= 0, add the tip, divide, round\n    pass\n",
+   "solution": "def split_bill(total, people=2, tip=0):\n    \"\"\"Return each person's share, rounded to an integer.\"\"\"\n    if people <= 0:\n        return 0\n    return round(total * (1 + tip) / people)\n",
+   "tests": "assert split_bill(300000) == 150000, 'mặc định chia 2 người: 300000 -> 150000'\nassert split_bill(300000, 3) == 100000, 'chia 3 người: 300000 -> 100000'\nassert split_bill(100000, 4, tip=0.1) == 27500, 'tip 10% rồi chia 4: 100000 -> 27500'\nassert split_bill(50000, 0) == 0, 'people = 0 thì trả về 0'\nassert split_bill(50000, -1) == 0, 'people âm cũng trả về 0'\nassert isinstance(split_bill(100000, 3), int), 'kết quả phải là số nguyên (dùng round)'\n",
+   "hint": "Kiểm tra people <= 0 trước và return sớm. Sau đó nhân total với (1 + tip), chia cho people, rồi bọc bằng round()."
+  },
+  "takeaway": "Parameter quyết định hàm cần biết gì, default value lo các trường hợp phổ biến, và return có thể trả nhiều giá trị dưới dạng tuple."
+ },
+ {
+  "id": "py-19",
+  "track": "py",
+  "unit": "Functions",
+  "order": 19,
+  "title": "Scope",
+  "title_vi": "Biến sống ở đâu",
+  "level": 2,
+  "minutes": 11,
+  "body": "Khi chương trình có nhiều hàm, một câu hỏi xuất hiện: biến tạo ra ở chỗ này thì dùng được ở chỗ kia không? Câu trả lời nằm ở khái niệm **scope** (phạm vi: vùng code mà một biến được nhìn thấy).\n\n## Local và global\nBiến tạo ra bên trong một hàm là **local variable** (biến cục bộ). Nó chỉ tồn tại trong lúc hàm chạy và biến mất khi hàm kết thúc. Biến tạo ở ngoài mọi hàm, ở \"tầng trên cùng\" của file, là **global variable** (biến toàn cục).\n```\nshop_name = \"Bit Tea\"        # global\n\ndef make_receipt(total):\n    tax = total * 0.1        # local\n    return f\"{shop_name}: {total + tax}\"\n\nprint(make_receipt(50000))\nprint(tax)                   # NameError: name 'tax' is not defined\n```\nHãy hình dung mỗi lần gọi hàm là một phòng họp riêng. Giấy nháp viết trong phòng (biến local) bị dọn đi khi họp xong. Còn bảng thông báo ở sảnh (biến global) thì ai trong phòng cũng nhìn thấy được.\n\n## Python tìm tên biến theo thứ tự nào\nKhi gặp một cái tên, Python tìm từ trong ra ngoài: trước hết trong hàm hiện tại (local), sau đó ra hàm bao quanh nếu có, rồi đến global, cuối cùng là các tên có sẵn như print, len. Người ta gọi tắt thứ tự này là **LEGB** (Local, Enclosing, Global, Built-in). Tìm thấy ở tầng nào thì dừng ở tầng đó.\n\nHệ quả: nếu trong hàm bạn gán một biến trùng tên biến global, bạn đang tạo một biến local mới, không phải sửa biến global.\n```\ncount = 0\n\ndef add_one():\n    count = count + 1    # UnboundLocalError\n\nadd_one()\n```\nDòng gán khiến Python coi count là biến local của hàm, nhưng lúc đọc vế phải thì biến local đó chưa có giá trị, nên báo lỗi.\n\n## Có từ khoá global, nhưng hạn chế dùng\nBạn có thể viết global count trong hàm để sửa thẳng biến global. Nhưng code kiểu này khó kiểm soát: bất kỳ hàm nào cũng có thể âm thầm thay đổi dữ liệu dùng chung, giống như mọi nhân viên đều được tự ý sửa số dư trong sổ quỹ. Khi có lỗi, bạn không biết ai đã sửa.\n\nCách làm tốt hơn: **truyền dữ liệu vào qua parameter, lấy kết quả ra qua return**.\n```\ndef add_one(count):\n    return count + 1\n\ncount = 0\ncount = add_one(count)\n```\nHàm kiểu này gọi là **pure function** (hàm thuần: cùng đầu vào thì luôn cùng đầu ra, không đụng vào thứ gì bên ngoài). Nó dễ test, dễ ghép, dễ hiểu.\n\n## Cẩn thận với list và dict\nCó một chỗ tinh tế: nếu bạn truyền một list hoặc dict vào hàm rồi sửa nó (append, gán key mới), bản gốc bên ngoài cũng bị đổi, vì hai bên cùng trỏ vào một đối tượng. Đó gọi là **mutation** (thay đổi tại chỗ). Muốn an toàn, hãy tạo bản sao trước khi sửa:\n```\ndef add_points(wallet, user, points):\n    new_wallet = dict(wallet)          # copy\n    new_wallet[user] = new_wallet.get(user, 0) + points\n    return new_wallet\n```\nThói quen này cực kỳ quan trọng khi làm dữ liệu cho AI: bạn không muốn một bước làm sạch dữ liệu vô tình phá hỏng dữ liệu gốc mà các bước khác còn cần.",
+  "terms": [
+   {
+    "en": "scope",
+    "vi": "phạm vi nhìn thấy của biến"
+   },
+   {
+    "en": "local variable",
+    "vi": "biến cục bộ trong hàm"
+   },
+   {
+    "en": "global variable",
+    "vi": "biến toàn cục của file"
+   },
+   {
+    "en": "LEGB",
+    "vi": "thứ tự tìm tên: Local, Enclosing, Global, Built-in"
+   },
+   {
+    "en": "pure function",
+    "vi": "hàm thuần, không đụng dữ liệu bên ngoài"
+   },
+   {
+    "en": "mutation",
+    "vi": "thay đổi đối tượng tại chỗ"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Trong hàm có dòng tax = total * 0.1. Sau khi hàm chạy xong, bạn print(tax) ở ngoài hàm. Kết quả?",
+    "choices": [
+     "In ra giá trị tax lần cuối",
+     "NameError vì tax là biến local, đã biến mất",
+     "In ra 0",
+     "In ra None"
+    ],
+    "answer": 1,
+    "why": "Biến local chỉ sống trong lúc hàm chạy. Ở ngoài hàm, tên tax không tồn tại."
+   },
+   {
+    "q": "Cách nào tốt nhất để một hàm cập nhật số điểm của khách?",
+    "choices": [
+     "Dùng global points rồi sửa trực tiếp",
+     "Tạo biến cùng tên trong hàm",
+     "Nhận points qua parameter và return giá trị mới",
+     "In điểm mới ra màn hình"
+    ],
+    "answer": 2,
+    "why": "Truyền vào qua parameter, lấy ra qua return giúp hàm rõ ràng và dễ test, không ai âm thầm sửa dữ liệu chung."
+   },
+   {
+    "q": "Hàm nhận list orders rồi gọi orders.append(x). List bên ngoài hàm có bị thay đổi không?",
+    "choices": [
+     "Không, vì hàm có scope riêng",
+     "Chỉ khi có từ khoá global",
+     "Báo lỗi vì không được sửa list trong hàm",
+     "Có, vì hàm và bên ngoài cùng trỏ vào một list"
+    ],
+    "answer": 3,
+    "why": "Scope chỉ quyết định tên biến nào được nhìn thấy. Đối tượng list thì dùng chung, nên append trong hàm làm đổi cả bản gốc."
+   },
+   {
+    "q": "Python tìm một cái tên theo thứ tự nào?",
+    "choices": [
+     "Local, Enclosing, Global, Built-in",
+     "Global, Local, Built-in, Enclosing",
+     "Built-in trước rồi mới tới Local",
+     "Ngẫu nhiên"
+    ],
+    "answer": 0,
+    "why": "Thứ tự LEGB: tìm trong hàm hiện tại trước, rồi hàm bao quanh, rồi global, cuối cùng là tên có sẵn."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm add_points(wallet, user, points) với wallet là dict {tên: điểm}. Hàm trả về một dict MỚI trong đó user được cộng thêm points (nếu user chưa có thì bắt đầu từ 0). Không được sửa dict gốc.\nVí dụ: w = {\"Lan\": 10}; add_points(w, \"Lan\", 5) -> {\"Lan\": 15}; add_points(w, \"Minh\", 3) -> {\"Lan\": 10, \"Minh\": 3}; sau đó w vẫn là {\"Lan\": 10}",
+   "starter": "def add_points(wallet, user, points):\n    # TODO: copy wallet, update the copy, return it\n    pass\n",
+   "solution": "def add_points(wallet, user, points):\n    \"\"\"Return a new wallet with points added to user.\"\"\"\n    new_wallet = dict(wallet)\n    new_wallet[user] = new_wallet.get(user, 0) + points\n    return new_wallet\n",
+   "tests": "w = {\"Lan\": 10}\nassert add_points(w, \"Lan\", 5) == {\"Lan\": 15}, 'Lan có 10 điểm, cộng 5 phải thành 15'\nassert add_points(w, \"Minh\", 3) == {\"Lan\": 10, \"Minh\": 3}, 'user mới bắt đầu từ 0 điểm'\nassert w == {\"Lan\": 10}, 'không được sửa dict gốc'\nassert add_points({}, \"Bit\", 0) == {\"Bit\": 0}, 'wallet rỗng vẫn phải chạy được'\nassert add_points(w, \"Lan\", 5) is not w, 'phải trả về một dict mới, không phải dict gốc'\n",
+   "hint": "dict(wallet) tạo một bản sao. Dùng .get(user, 0) để lấy điểm hiện tại, kể cả khi user chưa có."
+  },
+  "takeaway": "Biến trong hàm là local và biến mất khi hàm xong; hãy đưa dữ liệu vào bằng parameter, lấy ra bằng return, và sao chép list hoặc dict trước khi sửa."
+ },
+ {
+  "id": "py-20",
+  "track": "py",
+  "unit": "Functions",
+  "order": 20,
+  "title": "Lambda and sorted",
+  "title_vi": "Hàm một dòng và sắp xếp theo ý mình",
+  "level": 2,
+  "minutes": 12,
+  "body": "Sắp xếp là việc bạn làm hằng ngày khi phân tích dữ liệu: khách nào chi nhiều nhất, sản phẩm nào bán chạy nhất, tài xế nào được đánh giá cao nhất. Python có sẵn hàm sorted, và khi kết hợp với lambda, bạn sắp xếp được theo bất kỳ tiêu chí nào.\n\n## sorted cơ bản\n```\nprices = [45000, 12000, 30000]\nprint(sorted(prices))                 # [12000, 30000, 45000]\nprint(sorted(prices, reverse=True))   # [45000, 30000, 12000]\nprint(prices)                         # list gốc không đổi\n```\nsorted trả về một list mới. Còn prices.sort() thì sắp xếp ngay trên list gốc và trả về None. Khi phân vân, dùng sorted cho an toàn.\n\n## Sắp xếp theo key\nGiả sử bạn có danh sách sản phẩm dạng dict. Python không biết nên so sánh hai dict theo tiêu chí nào. Bạn chỉ cho nó bằng tham số **key**: một hàm nhận một phần tử và trả về giá trị dùng để so sánh.\n```\nproducts = [\n    {\"name\": \"Trà đào\", \"price\": 35000},\n    {\"name\": \"Cà phê\", \"price\": 25000},\n    {\"name\": \"Sinh tố\", \"price\": 40000},\n]\n\ndef get_price(p):\n    return p[\"price\"]\n\ncheap_first = sorted(products, key=get_price)\n```\nPython gọi get_price cho từng sản phẩm, rồi sắp xếp theo các con số trả về.\n\n## lambda: hàm viết trong một dòng\nViết riêng hàm get_price chỉ để dùng một lần thì hơi dài. **lambda** (hàm ẩn danh: hàm nhỏ không cần tên, viết ngay tại chỗ) giải quyết chuyện đó:\n```\ncheap_first = sorted(products, key=lambda p: p[\"price\"])\n```\nĐọc là: \"một hàm nhận p, trả về p[\"price\"]\". Phần sau dấu hai chấm là giá trị được trả về, không cần ghi return. lambda chỉ chứa được một biểu thức (expression), nên dùng cho việc ngắn. Logic dài thì viết def cho dễ đọc.\n\n## Sắp xếp theo nhiều tiêu chí\nMuốn xếp tài xế theo rating cao trước, nếu bằng rating thì ai chạy nhiều chuyến hơn đứng trước? Cho key trả về một tuple. Python so sánh tuple theo từng phần tử từ trái sang phải, giống cách tra từ điển so từng chữ cái.\n```\ndrivers = [\n    {\"name\": \"An\", \"rating\": 4.8, \"trips\": 120},\n    {\"name\": \"Bình\", \"rating\": 4.9, \"trips\": 80},\n    {\"name\": \"Chi\", \"rating\": 4.8, \"trips\": 300},\n]\nranked = sorted(drivers, key=lambda d: (d[\"rating\"], d[\"trips\"]), reverse=True)\n# Bình, Chi, An\n```\nMẹo: nếu muốn một tiêu chí giảm dần và tiêu chí kia tăng dần, với số bạn có thể đổi dấu, ví dụ key=lambda d: (-d[\"rating\"], d[\"name\"]).\n\n## Hàm là một giá trị\nĐiều thú vị ở bài này: bạn vừa truyền một hàm vào một hàm khác. Trong Python, function cũng là một giá trị như số hay chuỗi, có thể gán vào biến, đặt trong list, truyền làm argument. Ý tưởng này gọi là **first-class function** (hàm là công dân hạng nhất). Các hàm như max, min cũng nhận key:\n```\nbest = max(products, key=lambda p: p[\"price\"])\n```\nKhi làm với dữ liệu thật, cụm sorted kết hợp key=lambda sẽ xuất hiện liên tục, từ xếp hạng khách hàng đến chọn ra top kết quả tìm kiếm.",
+  "terms": [
+   {
+    "en": "sorted",
+    "vi": "hàm trả về list mới đã sắp xếp"
+   },
+   {
+    "en": "key",
+    "vi": "hàm chọn giá trị để so sánh khi sắp xếp"
+   },
+   {
+    "en": "lambda",
+    "vi": "hàm ẩn danh viết một dòng"
+   },
+   {
+    "en": "expression",
+    "vi": "biểu thức, thứ tính ra một giá trị"
+   },
+   {
+    "en": "first-class function",
+    "vi": "hàm được dùng như một giá trị"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Khác nhau chính giữa sorted(a) và a.sort() là gì?",
+    "choices": [
+     "sorted nhanh hơn rất nhiều",
+     "Không có khác biệt",
+     "sorted trả về list mới, a.sort() sửa list gốc và trả về None",
+     "a.sort() chỉ dùng được với số"
+    ],
+    "answer": 2,
+    "why": "sorted giữ nguyên list gốc và trả về bản đã xếp. a.sort() xếp tại chỗ và trả về None."
+   },
+   {
+    "q": "lambda x: x[\"price\"] tương đương với hàm nào?",
+    "choices": [
+     "def f(x): print(x[\"price\"])",
+     "def f(): return price",
+     "def f(x): x = x[\"price\"]",
+     "def f(x): return x[\"price\"]"
+    ],
+    "answer": 3,
+    "why": "Phần sau dấu hai chấm của lambda chính là giá trị được return."
+   },
+   {
+    "q": "Xếp sinh viên theo điểm giảm dần, nếu bằng điểm thì theo tên A-Z. key nào đúng?",
+    "choices": [
+     "key=lambda s: (-s[\"score\"], s[\"name\"])",
+     "key=lambda s: (s[\"score\"], s[\"name\"]), reverse=True",
+     "key=lambda s: s[\"name\"]",
+     "key=lambda s: -s[\"name\"]"
+    ],
+    "answer": 0,
+    "why": "Đổi dấu điểm để điểm cao đứng trước khi xếp tăng dần, còn tên giữ nguyên để xếp A-Z. Dùng reverse=True sẽ đảo cả tên thành Z-A."
+   },
+   {
+    "q": "max(products, key=lambda p: p[\"price\"]) trả về gì?",
+    "choices": [
+     "Giá cao nhất (một con số)",
+     "Cả dict của sản phẩm có giá cao nhất",
+     "Danh sách sản phẩm đã sắp xếp",
+     "Tên sản phẩm đắt nhất"
+    ],
+    "answer": 1,
+    "why": "key chỉ dùng để so sánh. max vẫn trả về chính phần tử gốc, tức cả dict."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm rank_drivers(drivers) nhận list các dict có \"name\", \"rating\", \"trips\". Trả về list TÊN tài xế xếp theo rating giảm dần; nếu bằng rating thì ai nhiều trips hơn đứng trước. List rỗng trả về [].\nVí dụ: [{\"name\":\"An\",\"rating\":4.8,\"trips\":120},{\"name\":\"Bình\",\"rating\":4.9,\"trips\":80},{\"name\":\"Chi\",\"rating\":4.8,\"trips\":300}] -> [\"Bình\", \"Chi\", \"An\"]",
+   "starter": "def rank_drivers(drivers):\n    # TODO: sort with key=lambda ..., then return the names\n    pass\n",
+   "solution": "def rank_drivers(drivers):\n    \"\"\"Return driver names ranked by rating, then trips.\"\"\"\n    ranked = sorted(drivers, key=lambda d: (d[\"rating\"], d[\"trips\"]), reverse=True)\n    return [d[\"name\"] for d in ranked]\n",
+   "tests": "ds = [{\"name\":\"An\",\"rating\":4.8,\"trips\":120},{\"name\":\"Bình\",\"rating\":4.9,\"trips\":80},{\"name\":\"Chi\",\"rating\":4.8,\"trips\":300}]\nassert rank_drivers(ds) == [\"Bình\", \"Chi\", \"An\"], 'rating cao trước, bằng rating thì nhiều trips trước'\nassert rank_drivers([]) == [], 'list rỗng phải trả về []'\nassert rank_drivers([{\"name\":\"Dũng\",\"rating\":5.0,\"trips\":1}]) == [\"Dũng\"], 'một tài xế thì trả về đúng tên đó'\nassert rank_drivers(ds)[0] == \"Bình\", 'Bình có rating 4.9 phải đứng đầu'\nassert ds[0][\"name\"] == \"An\", 'không được sắp xếp làm đổi list gốc'\n",
+   "hint": "Cho key trả về một tuple gồm rating và trips, thêm reverse=True. Sau đó lấy ra tên từng tài xế bằng một vòng for hoặc list comprehension."
+  },
+  "takeaway": "sorted, max, min nhận tham số key là một hàm (thường là lambda) để bạn quyết định tiêu chí so sánh, kể cả nhiều tiêu chí bằng tuple."
+ },
+ {
+  "id": "py-21",
+  "track": "py",
+  "unit": "Working with data",
+  "order": 21,
+  "title": "Comprehensions",
+  "title_vi": "Tạo list và dict trong một dòng",
+  "level": 2,
+  "minutes": 12,
+  "body": "Bạn đã biết dùng vòng for để duyệt list. Rất nhiều vòng for chỉ làm một việc lặp đi lặp lại: tạo list mới từ list cũ, có thể biến đổi từng phần tử hoặc lọc bớt. Python có cách viết gọn cho đúng việc đó, gọi là **comprehension** (cách tạo list, dict, set trong một biểu thức).\n\n## List comprehension\nVí dụ cộng 10% VAT cho mọi giá:\n```\nprices = [100000, 250000, 40000]\n\n# Cách cũ\nwith_vat = []\nfor p in prices:\n    with_vat.append(p * 1.1)\n\n# List comprehension\nwith_vat = [p * 1.1 for p in prices]\n```\nĐọc từ trái sang: \"lấy p * 1.1, với mỗi p trong prices\". Phần đầu là thứ bạn muốn đặt vào list mới, phần sau là vòng lặp.\n\n## Thêm điều kiện lọc\nThêm if ở cuối để chỉ giữ những phần tử thoả điều kiện, giống như lọc cột trong Excel:\n```\nbig_orders = [p for p in prices if p >= 100000]\n# [100000, 250000]\n```\nBạn kết hợp được cả hai: vừa lọc vừa biến đổi.\n```\nnames = [\"  lan \", \"\", \"MINH\", \"  \"]\nclean = [n.strip().title() for n in names if n.strip()]\n# [\"Lan\", \"Minh\"]\n```\nỞ đây if n.strip() loại các chuỗi rỗng, vì chuỗi rỗng được Python coi là False.\n\nNếu muốn chọn giữa hai giá trị cho từng phần tử (chứ không phải lọc bỏ), dùng if else ở **phía trước** chữ for:\n```\nlabels = [\"VIP\" if p >= 200000 else \"thường\" for p in prices]\n```\nVị trí của if quyết định ý nghĩa: if ở cuối là lọc, if else ở đầu là chọn giá trị.\n\n## Dict comprehension\nCùng ý tưởng nhưng dùng ngoặc nhọn và cặp key: value. Ví dụ biến danh sách sản phẩm thành bảng tra giá theo mã:\n```\nitems = [\n    {\"sku\": \"TS01\", \"price\": 35000, \"stock\": 12},\n    {\"sku\": \"CF02\", \"price\": 25000, \"stock\": 0},\n]\nprice_of = {it[\"sku\"]: it[\"price\"] for it in items if it[\"stock\"] > 0}\n# {\"TS01\": 35000}\n```\nBảng tra kiểu này rất hữu ích: thay vì duyệt cả list để tìm giá của một mã, bạn chỉ cần price_of[\"TS01\"].\n\nBạn cũng có thể biến đổi một dict có sẵn bằng .items():\n```\ndiscounted = {k: v * 0.9 for k, v in price_of.items()}\n```\n\n## Set comprehension\nDùng ngoặc nhọn nhưng chỉ có một giá trị, bạn được một set (tập hợp không trùng lặp):\n```\ncities = {o[\"city\"] for o in orders}\n```\n\n## Khi nào không nên dùng\nComprehension làm code gọn, nhưng đừng nhồi quá nhiều. Nếu một dòng có hai vòng for lồng nhau cộng vài điều kiện, người đọc sẽ phải dừng lại giải mã. Lúc đó vòng for bình thường dễ hiểu hơn. Quy tắc dễ nhớ: nếu đọc to lên mà không trôi chảy trong một hơi, hãy tách ra.\n\nTrong công việc với dữ liệu và AI, comprehension xuất hiện ở khắp nơi: làm sạch danh sách câu trước khi đưa vào model, lấy ra một cột từ list các dict, tạo bảng tra từ token sang id. Viết nhiều sẽ quen tay rất nhanh.",
+  "terms": [
+   {
+    "en": "comprehension",
+    "vi": "cách tạo list, dict, set trong một biểu thức"
+   },
+   {
+    "en": "list comprehension",
+    "vi": "tạo list mới trong một dòng"
+   },
+   {
+    "en": "dict comprehension",
+    "vi": "tạo dict mới trong một dòng"
+   },
+   {
+    "en": "filter",
+    "vi": "lọc, chỉ giữ phần tử thoả điều kiện"
+   },
+   {
+    "en": "lookup table",
+    "vi": "bảng tra cứu theo key"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "[x * 2 for x in [1, 2, 3] if x > 1] cho kết quả gì?",
+    "choices": [
+     "[2, 4, 6]",
+     "[4, 6]",
+     "[1, 2, 3]",
+     "[2, 3]"
+    ],
+    "answer": 1,
+    "why": "if lọc ra 2 và 3, sau đó mỗi số được nhân 2."
+   },
+   {
+    "q": "Bạn muốn gắn nhãn \"lẻ\" hoặc \"chẵn\" cho MỌI số trong list. Cách viết nào đúng?",
+    "choices": [
+     "[\"chẵn\" for n in nums if n % 2 == 0 else \"lẻ\"]",
+     "[n for n in nums if \"chẵn\"]",
+     "[\"chẵn\" if n % 2 == 0 else \"lẻ\" for n in nums]",
+     "{\"chẵn\": n for n in nums}"
+    ],
+    "answer": 2,
+    "why": "Chọn giữa hai giá trị cho từng phần tử thì if else đứng trước for. if đứng sau for chỉ dùng để lọc và không có else."
+   },
+   {
+    "q": "{k: v for k, v in d.items() if v > 0} làm gì với dict d?",
+    "choices": [
+     "Xoá các key có giá trị âm khỏi d gốc",
+     "Báo lỗi vì dict không có items",
+     "Trả về list các key",
+     "Tạo dict mới chỉ gồm các cặp có giá trị lớn hơn 0"
+    ],
+    "answer": 3,
+    "why": "Dict comprehension tạo ra dict mới. d gốc giữ nguyên."
+   },
+   {
+    "q": "Khi nào nên viết vòng for bình thường thay cho comprehension?",
+    "choices": [
+     "Khi logic có nhiều vòng lồng và điều kiện, đọc một dòng sẽ khó hiểu",
+     "Không bao giờ, comprehension luôn tốt hơn",
+     "Khi list có ít hơn 10 phần tử",
+     "Khi làm việc với số"
+    ],
+    "answer": 0,
+    "why": "Comprehension để code gọn hơn, không phải để thi viết ngắn. Logic phức tạp thì vòng for rõ ràng hơn."
+   }
+  ],
+  "code": {
+   "prompt": "Viết 2 hàm.\n1) vat_prices(prices): bỏ các giá nhỏ hơn hoặc bằng 0, nhân các giá còn lại với 1.1 và làm tròn bằng round(). Ví dụ: [100000, -5, 0, 25000] -> [110000, 27500]\n2) stock_lookup(items): items là list dict có \"sku\", \"price\", \"stock\". Trả về dict {sku: price} chỉ cho các món còn hàng (stock > 0). Ví dụ: [{\"sku\":\"TS01\",\"price\":35000,\"stock\":12},{\"sku\":\"CF02\",\"price\":25000,\"stock\":0}] -> {\"TS01\": 35000}",
+   "starter": "def vat_prices(prices):\n    # TODO: list comprehension with a filter\n    pass\n\n\ndef stock_lookup(items):\n    # TODO: dict comprehension with a filter\n    pass\n",
+   "solution": "def vat_prices(prices):\n    return [round(p * 1.1) for p in prices if p > 0]\n\n\ndef stock_lookup(items):\n    return {it[\"sku\"]: it[\"price\"] for it in items if it[\"stock\"] > 0}\n",
+   "tests": "assert vat_prices([100000, -5, 0, 25000]) == [110000, 27500], 'bỏ giá <= 0 rồi cộng VAT 10%'\nassert vat_prices([]) == [], 'list rỗng trả về []'\nitems = [{\"sku\":\"TS01\",\"price\":35000,\"stock\":12},{\"sku\":\"CF02\",\"price\":25000,\"stock\":0}]\nassert stock_lookup(items) == {\"TS01\": 35000}, 'chỉ giữ món còn hàng'\nassert stock_lookup([]) == {}, 'không có món nào thì trả về dict rỗng'\nassert stock_lookup([{\"sku\":\"A\",\"price\":1,\"stock\":1},{\"sku\":\"B\",\"price\":2,\"stock\":5}]) == {\"A\": 1, \"B\": 2}, 'mọi món còn hàng đều phải có trong dict'\n",
+   "hint": "Mẫu list: [biểu_thức for x in danh_sách if điều_kiện]. Mẫu dict: {key: value for x in danh_sách if điều_kiện}."
+  },
+  "takeaway": "Comprehension viết gọn việc tạo list hoặc dict mới từ dữ liệu cũ: biểu thức ở đầu, vòng for ở giữa, if lọc ở cuối."
+ },
+ {
+  "id": "py-22",
+  "track": "py",
+  "unit": "Working with data",
+  "order": 22,
+  "title": "String methods and f-strings",
+  "title_vi": "Làm sạch và trình bày chữ",
+  "level": 2,
+  "minutes": 12,
+  "body": "Dữ liệu thật hiếm khi sạch. Khách nhập tên \" nguyễn văn AN \", số điện thoại \"+84 912.345.678\", email có chữ hoa lẫn chữ thường. Trước khi phân tích hay đưa vào một model AI, bạn cần làm sạch chữ. Python có sẵn rất nhiều **string method** (hàm gắn với chuỗi, gọi bằng dấu chấm).\n\n## Các method hay dùng nhất\n```\nraw = \"  nguyễn văn AN  \"\nraw.strip()           # \"nguyễn văn AN\"  bỏ khoảng trắng hai đầu\nraw.lower()           # \"  nguyễn văn an  \"\nraw.upper()           # \"  NGUYỄN VĂN AN  \"\nraw.strip().title()   # \"Nguyễn Văn An\"  viết hoa chữ đầu mỗi từ\n```\nChuỗi trong Python là **immutable** (không sửa được tại chỗ). Mọi method đều trả về chuỗi mới, nên bạn phải gán lại: name = name.strip(). Gọi raw.strip() mà không gán thì raw vẫn y nguyên.\n\nBạn có thể nối nhiều method liên tiếp như trên, gọi là **method chaining** (gọi nối chuỗi method). Python chạy từ trái sang phải.\n\n## Tìm, thay và kiểm tra\n```\nphone = \"+84 912.345.678\"\nphone.replace(\" \", \"\").replace(\".\", \"\")   # \"+84912345678\"\nphone.startswith(\"+84\")                   # True\n\"345\" in phone                            # True\nemail = \"Lan@Gmail.com\"\nemail.lower().endswith(\"@gmail.com\")      # True\n\"12a\".isdigit()                           # False\n```\nreplace thay mọi chỗ xuất hiện. startswith, endswith, isdigit trả về True hoặc False, rất tiện để kiểm tra dữ liệu đầu vào.\n\n## Cắt và ghép\nsplit cắt chuỗi thành list, join làm ngược lại:\n```\nline = \"Lan,3,45000\"\nparts = line.split(\",\")          # [\"Lan\", \"3\", \"45000\"]\ntags = [\"ai\", \"python\", \"data\"]\n\", \".join(tags)                  # \"ai, python, data\"\n\"tôi thích học AI\".split()       # tách theo khoảng trắng\n```\nsplit không có đối số sẽ tách theo mọi khoảng trắng và bỏ khoảng trắng thừa. Đây là bước đầu tiên, thô sơ nhất, của việc tách câu thành từ trước khi máy học xử lý chữ.\n\n## f-string để trình bày\n**f-string** (chuỗi có chữ f phía trước, cho phép nhét giá trị vào trong ngoặc nhọn) là cách trình bày kết quả rõ ràng nhất:\n```\nname, qty, price = \"Trà sữa\", 2, 35000\nprint(f\"{name} x{qty}: {qty * price:,}đ\")   # Trà sữa x2: 70,000đ\nrate = 0.12345\nprint(f\"Tỉ lệ chuyển đổi: {rate:.1%}\")      # 12.3%\nprint(f\"Doanh thu TB: {1234.5678:.2f}\")     # 1234.57\n```\nPhần sau dấu hai chấm trong ngoặc nhọn gọi là **format spec** (quy cách hiển thị):\n- :, thêm dấu phẩy ngăn cách hàng nghìn.\n- :.2f giữ 2 chữ số thập phân.\n- :.1% đổi thành phần trăm với 1 chữ số thập phân.\n- :>8 căn phải trong 8 ô, tiện khi in bảng.\n\nBên trong ngoặc nhọn bạn viết được cả biểu thức như qty * price hay name.upper().\n\n## Một hàm làm sạch nhỏ\n```\ndef clean_email(email):\n    return email.strip().lower()\n```\nHai method, một dòng, nhưng giúp hệ thống CRM không coi \"Lan@Gmail.com \" và \"lan@gmail.com\" là hai khách khác nhau. Những hàm nhỏ kiểu này là phần lớn công việc thật của người làm dữ liệu.",
+  "terms": [
+   {
+    "en": "string method",
+    "vi": "hàm gắn với chuỗi, gọi bằng dấu chấm"
+   },
+   {
+    "en": "immutable",
+    "vi": "không sửa được tại chỗ"
+   },
+   {
+    "en": "method chaining",
+    "vi": "gọi nối nhiều method liên tiếp"
+   },
+   {
+    "en": "split / join",
+    "vi": "cắt chuỗi thành list / ghép list thành chuỗi"
+   },
+   {
+    "en": "f-string",
+    "vi": "chuỗi chèn giá trị trong ngoặc nhọn"
+   },
+   {
+    "en": "format spec",
+    "vi": "quy cách hiển thị số trong f-string"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "name = \" lan \"; name.strip(); print(name). Kết quả in ra là gì?",
+    "choices": [
+     "\"lan\"",
+     "\"Lan\"",
+     "\" lan \"",
+     "Báo lỗi"
+    ],
+    "answer": 2,
+    "why": "Chuỗi immutable, strip() trả về chuỗi mới nhưng không được gán lại, nên name không đổi."
+   },
+   {
+    "q": "\"a,b,,c\".split(\",\") trả về gì?",
+    "choices": [
+     "[\"a\", \"b\", \"\", \"c\"]",
+     "[\"a\", \"b\", \"c\"]",
+     "\"abc\"",
+     "[\"a,b,,c\"]"
+    ],
+    "answer": 0,
+    "why": "Giữa hai dấu phẩy liền nhau là một chuỗi rỗng, nên split giữ lại phần tử \"\"."
+   },
+   {
+    "q": "f\"{0.256:.0%}\" hiển thị gì?",
+    "choices": [
+     "0.256",
+     "25.6%",
+     "0%",
+     "26%"
+    ],
+    "answer": 3,
+    "why": ":.0% nhân với 100 và làm tròn về 0 chữ số thập phân, nên 25.6 thành 26%."
+   },
+   {
+    "q": "Vì sao nên chuẩn hoá email bằng .strip().lower() trước khi lưu vào CRM?",
+    "choices": [
+     "Để email ngắn hơn",
+     "Để cùng một khách không bị đếm thành hai do khác chữ hoa hoặc khoảng trắng",
+     "Vì email bắt buộc phải viết thường mới gửi được",
+     "Để mã hoá email"
+    ],
+    "answer": 1,
+    "why": "Chuẩn hoá giúp so khớp dữ liệu chính xác, tránh trùng lặp khách hàng khi đếm, gộp hoặc gửi chiến dịch."
+   }
+  ],
+  "code": {
+   "prompt": "Viết 2 hàm.\n1) normalize_phone(phone): bỏ khoảng trắng hai đầu và bỏ mọi dấu cách, dấu chấm, dấu gạch ngang; nếu bắt đầu bằng \"+84\" thì đổi phần đó thành \"0\". Ví dụ: \"+84 912.345.678\" -> \"0912345678\"; \" 0903-111-222 \" -> \"0903111222\"\n2) receipt_line(name, qty, price): trả về chuỗi \"<Tên viết hoa chữ đầu> x<qty>: <thành tiền có dấu phẩy>đ\", tên đã bỏ khoảng trắng thừa. Ví dụ: receipt_line(\" trà sữa \", 2, 35000) -> \"Trà Sữa x2: 70,000đ\"",
+   "starter": "def normalize_phone(phone):\n    # TODO: strip, remove spaces/dots/dashes, replace +84 with 0\n    pass\n\n\ndef receipt_line(name, qty, price):\n    # TODO: use an f-string with :, formatting\n    pass\n",
+   "solution": "def normalize_phone(phone):\n    p = phone.strip().replace(\" \", \"\").replace(\".\", \"\").replace(\"-\", \"\")\n    if p.startswith(\"+84\"):\n        p = \"0\" + p[3:]\n    return p\n\n\ndef receipt_line(name, qty, price):\n    return f\"{name.strip().title()} x{qty}: {qty * price:,}đ\"\n",
+   "tests": "assert normalize_phone(\"+84 912.345.678\") == \"0912345678\", '+84 phải đổi thành 0 và bỏ dấu chấm, dấu cách'\nassert normalize_phone(\" 0903-111-222 \") == \"0903111222\", 'phải bỏ dấu gạch ngang và khoảng trắng hai đầu'\nassert normalize_phone(\"0987654321\") == \"0987654321\", 'số đã sạch thì giữ nguyên'\nassert receipt_line(\" trà sữa \", 2, 35000) == \"Trà Sữa x2: 70,000đ\", 'sai định dạng dòng hoá đơn'\nassert receipt_line(\"cà phê\", 1, 500) == \"Cà Phê x1: 500đ\", 'số nhỏ hơn 1000 không có dấu phẩy'\n",
+   "hint": "Gọi nối .replace() nhiều lần. Để bỏ 3 ký tự đầu dùng p[3:]. Trong f-string, {số:,} sẽ thêm dấu phẩy hàng nghìn."
+  },
+  "takeaway": "String method trả về chuỗi mới nên phải gán lại; dùng strip, lower, replace, split để làm sạch và f-string với format spec để trình bày."
+ },
+ {
+  "id": "py-23",
+  "track": "py",
+  "unit": "Working with data",
+  "order": 23,
+  "title": "Nested data and JSON",
+  "title_vi": "Dữ liệu lồng nhau như dữ liệu thật",
+  "level": 2,
+  "minutes": 13,
+  "body": "Dữ liệu trong các app thật hiếm khi là một list số đơn giản. Một đơn hàng Shopee có mã đơn, thông tin khách, và một danh sách món, mỗi món lại có tên, số lượng, giá. Đó là **nested data** (dữ liệu lồng nhau): list chứa dict, dict chứa list, lồng nhiều tầng.\n\n## List của dict\nCấu trúc phổ biến nhất là list các dict, mỗi dict là một \"dòng\" dữ liệu, giống mỗi dòng trong Google Sheet:\n```\norders = [\n    {\"id\": \"A1\", \"customer\": {\"name\": \"Lan\", \"city\": \"HCM\"},\n     \"items\": [{\"name\": \"Trà đào\", \"qty\": 2, \"price\": 35000},\n               {\"name\": \"Bánh flan\", \"qty\": 1, \"price\": 15000}]},\n    {\"id\": \"A2\", \"customer\": {\"name\": \"Minh\", \"city\": \"HN\"},\n     \"items\": [{\"name\": \"Cà phê\", \"qty\": 3, \"price\": 25000}]},\n]\n```\n\n## Đi sâu từng tầng\nĐể lấy một giá trị, bạn đi từ ngoài vào trong, mỗi tầng một cặp ngoặc vuông:\n```\norders[0][\"customer\"][\"name\"]        # \"Lan\"\norders[0][\"items\"][1][\"price\"]       # 15000\nlen(orders[1][\"items\"])              # 1\n```\nMẹo đọc: orders[0] là đơn đầu tiên (một dict), [\"items\"] là list món của đơn đó, [1] là món thứ hai, [\"price\"] là giá món đó. Khi bối rối, hãy print từng tầng một để xem bạn đang cầm list hay dict.\n\nDuyệt dữ liệu lồng nhau thì dùng vòng for lồng nhau:\n```\nrevenue = 0\nfor order in orders:\n    for item in order[\"items\"]:\n        revenue += item[\"qty\"] * item[\"price\"]\nprint(revenue)   # 160000\n```\n\n## Khi key có thể không tồn tại\nDữ liệu thật hay thiếu trường. Đơn này có \"voucher\", đơn kia không. Dùng .get để không bị lỗi KeyError:\n```\norder.get(\"voucher\", 0)\norder.get(\"customer\", {}).get(\"city\", \"chưa rõ\")\n```\nVí dụ thứ hai đi hai tầng an toàn: nếu thiếu \"customer\" thì dùng dict rỗng, rồi lấy \"city\" từ dict rỗng sẽ ra \"chưa rõ\".\n\n## JSON: ngôn ngữ chung của dữ liệu\n**JSON** (JavaScript Object Notation, định dạng văn bản để lưu và gửi dữ liệu) trông gần như giống hệt list và dict của Python. Khi app gọi một **API** (cổng để chương trình này xin dữ liệu từ chương trình khác), ví dụ API thời tiết hay API của một model AI, dữ liệu trả về gần như luôn là JSON. Python có sẵn module json để chuyển qua lại:\n```\nimport json\n\ntext = '{\"name\": \"Lan\", \"tags\": [\"vip\", \"hcm\"], \"active\": true}'\ndata = json.loads(text)      # chuỗi -> dict\nprint(data[\"tags\"][0])       # vip\n\nback = json.dumps(data, ensure_ascii=False)   # dict -> chuỗi\n```\n- json.loads (load string) biến chuỗi JSON thành dict hoặc list. Quá trình này gọi là **parse** (phân tích chuỗi thành cấu trúc dữ liệu).\n- json.dumps (dump string) làm ngược lại. ensure_ascii=False giữ nguyên dấu tiếng Việt thay vì đổi thành mã khó đọc.\n- Một vài khác biệt: JSON viết true, false, null; Python viết True, False, None. JSON bắt buộc dùng nháy kép cho chuỗi.\n\nKhi bạn gọi API của Claude hay một LLM khác sau này, bạn sẽ gửi đi một dict được chuyển thành JSON và nhận về JSON chứa câu trả lời nằm sâu vài tầng. Kỹ năng \"đi sâu từng tầng\" trong bài này là thứ bạn dùng hằng ngày.",
+  "terms": [
+   {
+    "en": "nested data",
+    "vi": "dữ liệu lồng nhiều tầng"
+   },
+   {
+    "en": "JSON",
+    "vi": "định dạng văn bản để lưu và gửi dữ liệu"
+   },
+   {
+    "en": "API",
+    "vi": "cổng để chương trình xin dữ liệu từ chương trình khác"
+   },
+   {
+    "en": "parse",
+    "vi": "phân tích chuỗi thành cấu trúc dữ liệu"
+   },
+   {
+    "en": "json.loads / json.dumps",
+    "vi": "chuỗi -> dict / dict -> chuỗi"
+   },
+   {
+    "en": "KeyError",
+    "vi": "lỗi khi lấy key không tồn tại"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Với dữ liệu orders trong bài, orders[1][\"items\"][0][\"name\"] là gì?",
+    "choices": [
+     "\"Trà đào\"",
+     "\"Minh\"",
+     "\"Cà phê\"",
+     "Báo lỗi"
+    ],
+    "answer": 2,
+    "why": "orders[1] là đơn A2, items của nó có một món, món [0] tên là \"Cà phê\"."
+   },
+   {
+    "q": "Hàm json.loads làm gì?",
+    "choices": [
+     "Biến chuỗi JSON thành dict hoặc list của Python",
+     "Tải dữ liệu từ internet",
+     "Lưu dict ra file",
+     "Biến dict thành chuỗi"
+    ],
+    "answer": 0,
+    "why": "loads là load string: đọc một chuỗi JSON và parse nó thành cấu trúc Python."
+   },
+   {
+    "q": "Một số đơn không có key \"voucher\". Cách lấy an toàn nhất là gì?",
+    "choices": [
+     "order[\"voucher\"]",
+     "order.voucher",
+     "order[\"voucher\"] or 0",
+     "order.get(\"voucher\", 0)"
+    ],
+    "answer": 3,
+    "why": ".get trả về giá trị mặc định khi key không có, thay vì báo KeyError. Cách thứ ba vẫn lỗi vì order[\"voucher\"] chạy trước."
+   },
+   {
+    "q": "Chuỗi JSON nào hợp lệ?",
+    "choices": [
+     "{'name': 'Lan'}",
+     "{\"active\": true, \"note\": null}",
+     "{\"active\": True}",
+     "{name: \"Lan\"}"
+    ],
+    "answer": 1,
+    "why": "JSON bắt buộc nháy kép cho key và chuỗi, viết true, false, null bằng chữ thường."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm total_revenue(json_text) nhận một chuỗi JSON là list các đơn hàng, mỗi đơn có \"items\" là list món với \"qty\" và \"price\". Trả về tổng doanh thu (tổng qty * price của mọi món). Đơn thiếu \"items\" coi như không có món.\nVí dụ: '[{\"id\":\"A1\",\"items\":[{\"qty\":2,\"price\":35000},{\"qty\":1,\"price\":15000}]},{\"id\":\"A2\",\"items\":[{\"qty\":3,\"price\":25000}]}]' -> 160000; '[]' -> 0",
+   "starter": "import json\n\n\ndef total_revenue(json_text):\n    # TODO: parse with json.loads, loop over orders and items\n    pass\n",
+   "solution": "import json\n\n\ndef total_revenue(json_text):\n    orders = json.loads(json_text)\n    total = 0\n    for order in orders:\n        for item in order.get(\"items\", []):\n            total += item[\"qty\"] * item[\"price\"]\n    return total\n",
+   "tests": "s = '[{\"id\":\"A1\",\"items\":[{\"qty\":2,\"price\":35000},{\"qty\":1,\"price\":15000}]},{\"id\":\"A2\",\"items\":[{\"qty\":3,\"price\":25000}]}]'\nassert total_revenue(s) == 160000, 'tổng doanh thu phải là 160000'\nassert total_revenue('[]') == 0, 'không có đơn thì doanh thu bằng 0'\nassert total_revenue('[{\"id\":\"B1\"}]') == 0, 'đơn thiếu items coi như 0'\nassert total_revenue('[{\"id\":\"C1\",\"items\":[]}]') == 0, 'đơn có list items rỗng thì bằng 0'\nassert total_revenue('[{\"items\":[{\"qty\":10,\"price\":1000}]}]') == 10000, '10 món giá 1000 phải ra 10000'\n",
+   "hint": "json.loads cho bạn một list. Dùng hai vòng for lồng nhau, và order.get(\"items\", []) để xử lý đơn thiếu items."
+  },
+  "takeaway": "Đi vào dữ liệu lồng nhau từng tầng một bằng ngoặc vuông, dùng .get khi key có thể thiếu, và dùng json.loads, json.dumps để chuyển giữa chuỗi JSON và Python."
+ },
+ {
+  "id": "py-24",
+  "track": "py",
+  "unit": "Working with data",
+  "order": 24,
+  "title": "Handling errors",
+  "title_vi": "Bắt lỗi để chương trình không gãy",
+  "level": 2,
+  "minutes": 12,
+  "body": "Một file khảo sát có 10.000 dòng. Ở dòng 7.342, ai đó nhập tuổi là \"hai mươi\" thay vì 20. Nếu code của bạn gặp lỗi và dừng hẳn ở đó, bạn mất công chạy lại từ đầu. Bài này dạy cách xử lý tình huống như vậy.\n\n## Exception là gì\nKhi Python gặp việc nó không làm được, nó tạo ra một **exception** (ngoại lệ: tín hiệu báo có lỗi xảy ra trong lúc chạy). Nếu không ai xử lý, chương trình dừng và in thông báo lỗi.\n```\nint(\"hai mươi\")    # ValueError: invalid literal for int()\n10 / 0             # ZeroDivisionError: division by zero\n{\"a\": 1}[\"b\"]      # KeyError: 'b'\n[1, 2][5]          # IndexError: list index out of range\n```\nMỗi loại lỗi có một tên riêng. Tên lỗi cho bạn biết ngay chuyện gì đã xảy ra.\n\n## try và except\nBạn bọc đoạn code có thể lỗi trong khối try, và viết cách xử lý trong except:\n```\ndef parse_age(text):\n    try:\n        return int(text)\n    except ValueError:\n        return None\n\nparse_age(\"25\")         # 25\nparse_age(\"hai mươi\")   # None\n```\nPython chạy thử phần try. Nếu mọi thứ ổn, except bị bỏ qua. Nếu xảy ra ValueError, Python nhảy ngay vào except thay vì dừng chương trình. Giống như thu ngân gặp tờ tiền rách: không đóng cửa hàng, chỉ để riêng ra và phục vụ tiếp.\n\n## Bắt đúng loại lỗi\nBạn có thể bắt nhiều loại lỗi, mỗi loại một cách xử lý:\n```\ndef safe_ratio(a, b):\n    try:\n        return a / b\n    except ZeroDivisionError:\n        return 0\n    except TypeError:\n        return None\n```\nĐừng viết except: trống hoặc except Exception: cho mọi thứ khi chưa cần. Nó nuốt luôn cả những lỗi do chính bạn gõ sai tên biến, khiến bug ẩn đi rất khó tìm. Quy tắc: chỉ bắt những lỗi bạn đã dự đoán và biết cách xử lý.\n\n## else và finally\n- else chạy khi try không có lỗi nào. Hợp để đặt phần \"khi thành công thì làm tiếp\".\n- finally luôn chạy dù có lỗi hay không. Dùng để dọn dẹp, ví dụ đóng kết nối.\n\n## Tự tạo lỗi với raise\nĐôi khi chính bạn muốn báo lỗi, vì dữ liệu sai đến mức không nên chạy tiếp:\n```\ndef withdraw(balance, amount):\n    if amount > balance:\n        raise ValueError(\"Số dư không đủ\")\n    return balance - amount\n```\n**raise** (ném ra lỗi) giúp hàm của bạn nói rõ \"tôi không xử lý được trường hợp này\", thay vì âm thầm trả ra một kết quả sai. Một khoản rút tiền âm số dư mà vẫn chạy bình thường còn nguy hiểm hơn nhiều so với một lỗi hiện rõ.\n\n## Áp dụng cho dữ liệu bẩn\n```\nraw = [\"25\", \"30\", \"hai mươi\", \"\", \"41\"]\nages = []\nskipped = 0\nfor r in raw:\n    try:\n        ages.append(int(r))\n    except ValueError:\n        skipped += 1\nprint(ages, skipped)   # [25, 30, 41] 2\n```\nBạn vừa xử lý hết dữ liệu, vừa đếm được bao nhiêu dòng hỏng để báo cáo lại. Khi làm việc với API của các model AI sau này, try except cũng là cách bạn xử lý lúc mạng chập chờn hoặc server trả lỗi: thử lại, ghi log, chứ không để cả hệ thống sập.",
+  "terms": [
+   {
+    "en": "exception",
+    "vi": "ngoại lệ, tín hiệu báo lỗi khi chạy"
+   },
+   {
+    "en": "try / except",
+    "vi": "chạy thử / xử lý khi có lỗi"
+   },
+   {
+    "en": "ValueError",
+    "vi": "lỗi giá trị không hợp lệ"
+   },
+   {
+    "en": "ZeroDivisionError",
+    "vi": "lỗi chia cho 0"
+   },
+   {
+    "en": "raise",
+    "vi": "chủ động ném ra lỗi"
+   },
+   {
+    "en": "finally",
+    "vi": "khối luôn chạy dù có lỗi hay không"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Đoạn try: x = int(\"12\") except ValueError: x = 0. Giá trị cuối của x là?",
+    "choices": [
+     "0",
+     "None",
+     "12",
+     "Báo lỗi"
+    ],
+    "answer": 2,
+    "why": "int(\"12\") chạy được nên không có lỗi, khối except bị bỏ qua và x là 12."
+   },
+   {
+    "q": "Vì sao không nên dùng except: trống cho mọi đoạn code?",
+    "choices": [
+     "Vì nó làm code chạy chậm",
+     "Vì nó che luôn cả lỗi do bạn gõ sai, khiến bug khó tìm",
+     "Vì Python không cho phép",
+     "Vì nó chỉ bắt được ValueError"
+    ],
+    "answer": 1,
+    "why": "except trống bắt mọi loại lỗi, kể cả NameError do gõ sai tên biến, nên lỗi thật bị giấu đi."
+   },
+   {
+    "q": "Khi nào nên dùng raise trong hàm của mình?",
+    "choices": [
+     "Khi đầu vào sai đến mức tiếp tục sẽ cho kết quả sai nguy hiểm",
+     "Mỗi khi hàm chạy xong",
+     "Để in thông báo ra màn hình",
+     "Để thay cho return"
+    ],
+    "answer": 0,
+    "why": "raise báo rõ hàm không xử lý được tình huống này, tốt hơn là âm thầm trả kết quả sai."
+   },
+   {
+    "q": "Khối finally chạy khi nào?",
+    "choices": [
+     "Chỉ khi có lỗi",
+     "Chỉ khi không có lỗi",
+     "Không bao giờ nếu có return trong try",
+     "Luôn chạy, dù có lỗi hay không"
+    ],
+    "answer": 3,
+    "why": "finally được thiết kế để luôn chạy, thường dùng cho việc dọn dẹp."
+   }
+  ],
+  "code": {
+   "prompt": "Viết 2 hàm.\n1) parse_price(text): bỏ khoảng trắng hai đầu, bỏ dấu phẩy và chữ \"đ\", rồi đổi sang int. Nếu không đổi được thì trả về None. Ví dụ: \"35,000đ\" -> 35000; \" 120000 \" -> 120000; \"miễn phí\" -> None; \"\" -> None\n2) average_price(texts): dùng parse_price cho từng chuỗi, bỏ qua các giá trị None, trả về trung bình (float). Nếu không có giá hợp lệ nào thì trả về 0. Ví dụ: [\"10,000đ\", \"abc\", \"20000\"] -> 15000.0",
+   "starter": "def parse_price(text):\n    # TODO: clean the text, then try int(...) except ValueError\n    pass\n\n\ndef average_price(texts):\n    # TODO: use parse_price, skip None\n    pass\n",
+   "solution": "def parse_price(text):\n    clean = text.strip().replace(\",\", \"\").replace(\"đ\", \"\")\n    try:\n        return int(clean)\n    except ValueError:\n        return None\n\n\ndef average_price(texts):\n    values = [v for v in (parse_price(t) for t in texts) if v is not None]\n    if not values:\n        return 0\n    return sum(values) / len(values)\n",
+   "tests": "assert parse_price(\"35,000đ\") == 35000, '\"35,000đ\" phải thành 35000'\nassert parse_price(\" 120000 \") == 120000, 'phải bỏ khoảng trắng hai đầu'\nassert parse_price(\"miễn phí\") is None, 'chữ không đổi được thì trả về None'\nassert parse_price(\"\") is None, 'chuỗi rỗng trả về None'\nassert average_price([\"10,000đ\", \"abc\", \"20000\"]) == 15000.0, 'trung bình của 10000 và 20000 là 15000.0'\nassert average_price([\"x\", \"\"]) == 0, 'không có giá hợp lệ thì trả về 0'\n",
+   "hint": "Làm sạch chuỗi bằng strip và replace trước, rồi đặt int(...) trong try. Ở hàm thứ hai, nhớ kiểm tra list rỗng trước khi chia."
+  },
+  "takeaway": "Bọc phần có thể lỗi trong try, chỉ bắt đúng loại lỗi bạn dự đoán trong except, và dùng raise khi đầu vào sai đến mức không nên chạy tiếp."
+ },
+ {
+  "id": "py-25",
+  "track": "py",
+  "unit": "Working with data",
+  "order": 25,
+  "title": "Modules and the standard library",
+  "title_vi": "Dùng đồ nghề có sẵn của Python",
+  "level": 2,
+  "minutes": 14,
+  "body": "Python được cài sẵn kèm một bộ đồ nghề khổng lồ gọi là **standard library** (thư viện chuẩn: các module đi kèm Python, không cần cài thêm). Thay vì tự viết hàm tính trung vị hay đếm tần suất, bạn chỉ cần import thứ có sẵn.\n\n## import là gì\nMột **module** (file chứa code Python có thể dùng lại) gom các hàm liên quan với nhau. Bạn đưa nó vào chương trình bằng import:\n```\nimport math\nprint(math.sqrt(16))      # 4.0\n\nfrom statistics import mean, median\nprint(mean([1, 2, 6]))    # 3\n```\nimport math thì gọi qua tên module: math.sqrt. from ... import ... lấy riêng vài hàm để gọi thẳng tên. Cả hai đều đúng, cách đầu giúp người đọc biết hàm đến từ đâu.\n\n## math: toán cơ bản\n```\nmath.sqrt(2)       # căn bậc hai\nmath.ceil(4.1)     # 5, làm tròn lên\nmath.floor(4.9)    # 4, làm tròn xuống\nmath.log(100, 10)  # 2.0\nmath.pi\n```\nmath.ceil rất hay dùng trong đời thực: 23 khách, mỗi xe 4 chỗ thì cần math.ceil(23 / 4) = 6 xe.\n\n## random: ngẫu nhiên có kiểm soát\n```\nimport random\nrandom.seed(42)\nrandom.randint(1, 6)              # tung xúc xắc\nrandom.choice([\"A\", \"B\", \"C\"])    # chọn ngẫu nhiên một phần tử\nrandom.shuffle(cards)             # xáo trộn list tại chỗ\n```\n**seed** (hạt giống ngẫu nhiên) cố định chuỗi số ngẫu nhiên: cùng seed thì lần nào chạy cũng ra cùng kết quả. Trong machine learning, người ta đặt seed để thí nghiệm lặp lại được, ví dụ khi chia dữ liệu ngẫu nhiên thành phần train và test.\n\n## statistics: thống kê nhanh\n```\nfrom statistics import mean, median, stdev\nspend = [120, 80, 95, 4000, 110]\nmean(spend)     # 881\nmedian(spend)   # 110\n```\nVí dụ này cho thấy vì sao cần cả hai: một khách chi 4000 kéo trung bình lên 881, trong khi trung vị (giá trị ở giữa khi xếp theo thứ tự) là 110 mới phản ánh đúng khách \"điển hình\". stdev đo độ phân tán: các giá trị cách xa trung bình bao nhiêu.\n\n## collections.Counter: đếm tần suất\n```\nfrom collections import Counter\norders = [\"trà đào\", \"cà phê\", \"trà đào\", \"sinh tố\", \"trà đào\"]\nc = Counter(orders)\nc[\"trà đào\"]          # 3\nc.most_common(2)      # [(\"trà đào\", 3), (\"cà phê\", 1)]\n```\nCounter giống một dict đặc biệt chuyên đếm. Đếm từ trong văn bản, đếm sản phẩm bán chạy, đếm loại lỗi trong log, một dòng là xong.\n\n## datetime: ngày và giờ\n```\nfrom datetime import date, datetime, timedelta\nd1 = date(2026, 1, 15)\nd2 = date.fromisoformat(\"2026-03-01\")\n(d2 - d1).days                  # 45\nd1 + timedelta(days=30)         # date(2026, 2, 14)\ndatetime.now().strftime(\"%d/%m/%Y\")\n```\nTrừ hai ngày cho ra một khoảng thời gian, lấy .days để có số ngày. Đây chính là cách tính \"khách đã bao nhiêu ngày chưa quay lại\", con số nền tảng trong lifecycle marketing.\n\n## Thư viện bên ngoài\nNgoài thư viện chuẩn, cộng đồng Python có hàng trăm nghìn **package** (gói thư viện do người khác viết, cài thêm bằng pip) như numpy, pandas, scikit-learn. Bạn sẽ gặp numpy ở chương sau. Nguyên tắc chung: trước khi tự viết một thứ phổ biến, hãy tìm xem đã có thư viện làm sẵn chưa.",
+  "terms": [
+   {
+    "en": "module",
+    "vi": "file code Python dùng lại được"
+   },
+   {
+    "en": "standard library",
+    "vi": "thư viện chuẩn đi kèm Python"
+   },
+   {
+    "en": "import",
+    "vi": "đưa module vào chương trình"
+   },
+   {
+    "en": "seed",
+    "vi": "hạt giống cố định chuỗi số ngẫu nhiên"
+   },
+   {
+    "en": "median",
+    "vi": "trung vị, giá trị ở giữa"
+   },
+   {
+    "en": "Counter",
+    "vi": "dict chuyên đếm tần suất"
+   },
+   {
+    "en": "timedelta",
+    "vi": "khoảng thời gian giữa hai mốc"
+   },
+   {
+    "en": "package",
+    "vi": "gói thư viện cài thêm bằng pip"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Chi tiêu của 5 khách là [100, 120, 90, 110, 5000]. Muốn biết khách điển hình chi bao nhiêu, nên dùng gì?",
+    "choices": [
+     "mean, vì nó tính mọi giá trị",
+     "median, vì một khách chi rất lớn không kéo lệch nó",
+     "max",
+     "sum"
+    ],
+    "answer": 1,
+    "why": "Trung vị là giá trị ở giữa, không bị một giá trị cực lớn kéo lên như trung bình."
+   },
+   {
+    "q": "Vì sao người làm ML hay viết random.seed(42) ở đầu code?",
+    "choices": [
+     "Để số ngẫu nhiên lớn hơn",
+     "Để code chạy nhanh hơn",
+     "Vì 42 là số bắt buộc",
+     "Để kết quả ngẫu nhiên lặp lại được giữa các lần chạy"
+    ],
+    "answer": 3,
+    "why": "Cùng seed thì chuỗi số ngẫu nhiên giống nhau, nên thí nghiệm có thể chạy lại và so sánh công bằng."
+   },
+   {
+    "q": "Counter([\"a\", \"b\", \"a\"]).most_common(1) trả về gì?",
+    "choices": [
+     "[(\"a\", 2)]",
+     "\"a\"",
+     "2",
+     "{\"a\": 2, \"b\": 1}"
+    ],
+    "answer": 0,
+    "why": "most_common(n) trả về list n cặp (giá trị, số lần) xuất hiện nhiều nhất."
+   },
+   {
+    "q": "(date(2026, 3, 1) - date(2026, 2, 1)).days bằng bao nhiêu?",
+    "choices": [
+     "30",
+     "31",
+     "28",
+     "1"
+    ],
+    "answer": 2,
+    "why": "Tháng 2 năm 2026 có 28 ngày, nên khoảng cách từ 1/2 đến 1/3 là 28 ngày."
+   }
+  ],
+  "code": {
+   "prompt": "Viết 2 hàm.\n1) summarize(items): items là list tên món đã bán. Trả về dict {\"total\": tổng số món, \"unique\": số món khác nhau, \"top\": món bán nhiều nhất}. List rỗng thì \"top\" là None. Dùng collections.Counter. Ví dụ: [\"trà\", \"cà phê\", \"trà\"] -> {\"total\": 3, \"unique\": 2, \"top\": \"trà\"}\n2) days_since(last_order, today): hai chuỗi ngày dạng \"YYYY-MM-DD\", trả về số ngày từ last_order đến today (int). Dùng datetime.date.fromisoformat. Ví dụ: days_since(\"2026-01-15\", \"2026-03-01\") -> 45",
+   "starter": "from collections import Counter\nfrom datetime import date\n\n\ndef summarize(items):\n    # TODO: use Counter\n    pass\n\n\ndef days_since(last_order, today):\n    # TODO: use date.fromisoformat and subtract\n    pass\n",
+   "solution": "from collections import Counter\nfrom datetime import date\n\n\ndef summarize(items):\n    c = Counter(items)\n    top = c.most_common(1)[0][0] if items else None\n    return {\"total\": len(items), \"unique\": len(c), \"top\": top}\n\n\ndef days_since(last_order, today):\n    return (date.fromisoformat(today) - date.fromisoformat(last_order)).days\n",
+   "tests": "assert summarize([\"trà\", \"cà phê\", \"trà\"]) == {\"total\": 3, \"unique\": 2, \"top\": \"trà\"}, 'trà bán 2 lần phải là top'\nassert summarize([]) == {\"total\": 0, \"unique\": 0, \"top\": None}, 'list rỗng thì top là None'\nassert summarize([\"x\"])[\"unique\"] == 1, 'một món thì unique là 1'\nassert days_since(\"2026-01-15\", \"2026-03-01\") == 45, 'từ 15/1 đến 1/3/2026 là 45 ngày'\nassert days_since(\"2026-05-05\", \"2026-05-05\") == 0, 'cùng một ngày thì là 0'\n",
+   "hint": "len(Counter(items)) là số món khác nhau. most_common(1) trả về list một cặp, lấy [0][0] để có tên. Trừ hai date rồi lấy .days."
+  },
+  "takeaway": "Trước khi tự viết, hãy tìm trong standard library: math, random, statistics, collections.Counter và datetime giải quyết rất nhiều việc chỉ trong một dòng."
+ },
+ {
+  "id": "py-26",
+  "track": "py",
+  "unit": "Thinking like a programmer",
+  "order": 26,
+  "title": "Decomposing a problem",
+  "title_vi": "Chia bài toán lớn thành việc nhỏ",
+  "level": 2,
+  "minutes": 13,
+  "body": "Đến đây bạn đã có khá đủ đồ nghề: biến, vòng lặp, list, dict, function, try except. Khó khăn tiếp theo không còn là cú pháp mà là: đứng trước một bài toán lớn, bắt đầu từ đâu? Kỹ năng quan trọng nhất của lập trình viên là **decomposition** (phân rã: chia bài toán lớn thành các bài toán nhỏ, mỗi cái giải được dễ dàng).\n\n## Một bài toán thực tế\nQuản lý quán gửi bạn dữ liệu đơn hàng trong ngày, mỗi dòng là một chuỗi:\n```\nlines = [\n    \"Lan,Trà đào,2,35000\",\n    \"Minh,Cà phê,1,25000\",\n    \"Lan,Bánh flan,3,15000\",\n    \"lỗi dòng này\",\n]\n```\nYêu cầu: tính tổng chi tiêu của từng khách, bỏ qua dòng lỗi.\n\nNếu cố viết tất cả trong một khối code, bạn sẽ rối ngay. Hãy làm như cách bạn lên kế hoạch cho một campaign: chia thành các bước, mỗi bước có đầu vào và đầu ra rõ ràng.\n\n## Bước 1: mô tả bằng lời\nTrước khi gõ code, viết các bước bằng tiếng Việt. Cách này gọi là **pseudocode** (mã giả: mô tả thuật toán bằng ngôn ngữ thường).\n- Với mỗi dòng: tách thành tên khách, món, số lượng, đơn giá.\n- Nếu dòng sai định dạng thì bỏ qua.\n- Tính thành tiền của dòng đó.\n- Cộng dồn thành tiền vào tổng của khách đó.\n\n## Bước 2: mỗi bước là một hàm\n```\ndef parse_line(line):\n    \"\"\"'Lan,Trà đào,2,35000' -> ('Lan', 'Trà đào', 2, 35000) or None\"\"\"\n    parts = line.split(\",\")\n    if len(parts) != 4:\n        return None\n    name, item, qty, price = parts\n    try:\n        return name.strip(), item.strip(), int(qty), int(price)\n    except ValueError:\n        return None\n\ndef line_total(qty, price):\n    return qty * price\n\ndef spend_by_customer(lines):\n    totals = {}\n    for line in lines:\n        row = parse_line(line)\n        if row is None:\n            continue\n        name, item, qty, price = row\n        totals[name] = totals.get(name, 0) + line_total(qty, price)\n    return totals\n```\nHàm cuối cùng đọc gần như y hệt pseudocode. Đó là dấu hiệu của code tốt.\n\n## Bước 3: test từng mảnh nhỏ\nLợi ích lớn nhất của việc chia nhỏ: bạn kiểm tra được từng phần riêng. Đây là ý tưởng của **unit test** (kiểm thử đơn vị: kiểm tra từng hàm nhỏ một cách độc lập):\n```\nassert parse_line(\"Lan,Trà đào,2,35000\") == (\"Lan\", \"Trà đào\", 2, 35000)\nassert parse_line(\"lỗi dòng này\") is None\nassert line_total(3, 15000) == 45000\n```\nNếu kết quả cuối sai, bạn biết ngay lỗi nằm ở hàm nào thay vì dò cả trăm dòng.\n\n## Vài nguyên tắc dễ nhớ\n- **Bắt đầu từ đầu ra.** Hỏi \"kết quả cuối cùng trông như thế nào?\" (ở đây là dict {tên: tổng tiền}), rồi lùi dần về đầu vào.\n- **Làm phiên bản đơn giản nhất chạy được trước.** Chưa cần lo dòng lỗi, cứ tính đúng cho dữ liệu sạch, sau đó mới thêm xử lý lỗi.\n- **Một hàm, một việc.** parse_line không cộng tiền, spend_by_customer không tách chuỗi.\n- **Dùng ví dụ cụ thể.** Tự tính tay một hai dòng để có đáp án đúng, rồi so với kết quả code.\n\nCách tư duy này không chỉ dùng cho code. Khi làm AI engineer, bài toán \"xây chatbot chăm sóc khách hàng\" cũng được chia thành: lấy dữ liệu, làm sạch, tìm tài liệu liên quan, gọi model, kiểm tra câu trả lời. Mỗi mảnh là một hàm hoặc một module có thể test riêng.",
+  "terms": [
+   {
+    "en": "decomposition",
+    "vi": "phân rã bài toán thành phần nhỏ"
+   },
+   {
+    "en": "pseudocode",
+    "vi": "mã giả, mô tả bước bằng lời"
+   },
+   {
+    "en": "unit test",
+    "vi": "kiểm thử từng hàm nhỏ độc lập"
+   },
+   {
+    "en": "edge case",
+    "vi": "trường hợp biên, dữ liệu bất thường"
+   },
+   {
+    "en": "refactor",
+    "vi": "viết lại code cho gọn mà không đổi kết quả"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Lợi ích lớn nhất của việc tách bài toán thành nhiều hàm nhỏ là gì?",
+    "choices": [
+     "Code chạy nhanh hơn",
+     "Có thể test từng phần và biết ngay lỗi nằm ở đâu",
+     "Dùng ít biến hơn",
+     "Không cần xử lý lỗi nữa"
+    ],
+    "answer": 1,
+    "why": "Mỗi hàm nhỏ có đầu vào và đầu ra rõ ràng, nên kiểm tra riêng được và khoanh vùng lỗi nhanh."
+   },
+   {
+    "q": "Khi bắt đầu một bài toán mới, bước nào hợp lý nhất?",
+    "choices": [
+     "Gõ code ngay và sửa dần",
+     "Tìm thư viện phức tạp nhất có thể",
+     "Mô tả kết quả mong muốn và các bước bằng lời trước",
+     "Viết xử lý lỗi cho mọi trường hợp trước"
+    ],
+    "answer": 2,
+    "why": "Biết rõ đầu ra và các bước bằng pseudocode giúp bạn chia việc đúng trước khi chạm vào cú pháp."
+   },
+   {
+    "q": "Hàm nào dưới đây vi phạm nguyên tắc \"một hàm, một việc\" rõ nhất?",
+    "choices": [
+     "clean_email(email)",
+     "line_total(qty, price)",
+     "parse_line(line)",
+     "read_parse_compute_and_email_report(lines)"
+    ],
+    "answer": 3,
+    "why": "Tên hàm phải dùng nhiều động từ nối với nhau là dấu hiệu nó đang làm quá nhiều việc."
+   },
+   {
+    "q": "Trong spend_by_customer, vì sao dòng lỗi được xử lý bằng cách parse_line trả về None?",
+    "choices": [
+     "Để hàm cha chỉ cần kiểm tra None và bỏ qua, không phải biết chi tiết lỗi",
+     "Vì None là số 0",
+     "Vì Python bắt buộc trả về None",
+     "Để chương trình dừng lại"
+    ],
+    "answer": 0,
+    "why": "parse_line lo chuyện kiểm tra định dạng, hàm cha chỉ cần một tín hiệu đơn giản. Mỗi hàm giữ đúng phần việc của mình."
+   }
+  ],
+  "code": {
+   "prompt": "Viết 2 hàm.\n1) parse_line(line): chuỗi dạng \"Tên,Món,Số lượng,Đơn giá\" -> tuple (tên, món, số lượng int, đơn giá int), các phần đã bỏ khoảng trắng thừa. Sai số phần hoặc số lượng/đơn giá không phải số thì trả về None. Ví dụ: \"Lan, Trà đào, 2, 35000\" -> (\"Lan\", \"Trà đào\", 2, 35000)\n2) spend_by_customer(lines): dùng parse_line, trả về dict {tên: tổng tiền}, bỏ qua dòng lỗi. Ví dụ: [\"Lan,Trà đào,2,35000\", \"Minh,Cà phê,1,25000\", \"Lan,Bánh flan,3,15000\", \"lỗi\"] -> {\"Lan\": 115000, \"Minh\": 25000}",
+   "starter": "def parse_line(line):\n    # TODO: split by comma, check 4 parts, convert numbers inside try\n    pass\n\n\ndef spend_by_customer(lines):\n    # TODO: use parse_line, skip None, add up per customer\n    pass\n",
+   "solution": "def parse_line(line):\n    parts = [p.strip() for p in line.split(\",\")]\n    if len(parts) != 4:\n        return None\n    name, item, qty, price = parts\n    try:\n        return name, item, int(qty), int(price)\n    except ValueError:\n        return None\n\n\ndef spend_by_customer(lines):\n    totals = {}\n    for line in lines:\n        row = parse_line(line)\n        if row is None:\n            continue\n        name, item, qty, price = row\n        totals[name] = totals.get(name, 0) + qty * price\n    return totals\n",
+   "tests": "assert parse_line(\"Lan, Trà đào, 2, 35000\") == (\"Lan\", \"Trà đào\", 2, 35000), 'phải tách và bỏ khoảng trắng từng phần'\nassert parse_line(\"lỗi dòng này\") is None, 'thiếu phần thì trả về None'\nassert parse_line(\"Lan,Trà,hai,35000\") is None, 'số lượng không phải số thì trả về None'\nlines = [\"Lan,Trà đào,2,35000\", \"Minh,Cà phê,1,25000\", \"Lan,Bánh flan,3,15000\", \"lỗi\"]\nassert spend_by_customer(lines) == {\"Lan\": 115000, \"Minh\": 25000}, 'Lan 115000, Minh 25000, bỏ dòng lỗi'\nassert spend_by_customer([]) == {}, 'không có dòng nào thì trả về dict rỗng'\n",
+   "hint": "Tách bằng split(\",\") rồi strip từng phần. Đặt int(...) trong try. Ở hàm thứ hai dùng totals.get(name, 0) để cộng dồn."
+  },
+  "takeaway": "Trước khi code, hãy chia bài toán thành các bước nhỏ có đầu vào và đầu ra rõ ràng, viết mỗi bước thành một hàm và test riêng từng hàm."
+ },
+ {
+  "id": "py-27",
+  "track": "py",
+  "unit": "Thinking like a programmer",
+  "order": 27,
+  "title": "Reading tracebacks",
+  "title_vi": "Đọc thông báo lỗi để sửa bug",
+  "level": 2,
+  "minutes": 12,
+  "body": "Ai viết code cũng gặp lỗi, kể cả kỹ sư nhiều năm kinh nghiệm. Khác biệt nằm ở tốc độ tìm ra lỗi. Người mới thường sợ khối chữ đỏ hiện ra, nhưng thực ra đó là bản đồ dẫn thẳng đến chỗ hỏng. Khối chữ đó gọi là **traceback** (dấu vết lỗi: danh sách các lời gọi hàm dẫn đến lỗi). Còn việc tìm và sửa lỗi gọi là **debugging** (gỡ lỗi).\n\n## Giải phẫu một traceback\n```\ndef average(values):\n    return sum(values) / len(values)\n\ndef report(data):\n    avg = average(data[\"scores\"])\n    return f\"Trung bình: {avg}\"\n\nreport({\"scores\": []})\n```\nChạy đoạn trên, Python in ra:\n```\nTraceback (most recent call last):\n  File \"main.py\", line 8, in <module>\n    report({\"scores\": []})\n  File \"main.py\", line 5, in report\n    avg = average(data[\"scores\"])\n  File \"main.py\", line 2, in average\n    return sum(values) / len(values)\nZeroDivisionError: division by zero\n```\nCách đọc: **đọc từ dưới lên**.\n- Dòng cuối cùng cho biết loại lỗi và mô tả: ZeroDivisionError, chia cho 0.\n- Ngay trên đó là nơi lỗi thật sự xảy ra: dòng 2, trong hàm average.\n- Các dòng phía trên là đường đi: dòng 8 gọi report, report ở dòng 5 gọi average.\n\nGiống như truy vết một đơn hàng giao sai: bắt đầu từ điểm giao cuối cùng, lần ngược lại các kho trung chuyển. Ở đây nguyên nhân gốc là danh sách điểm rỗng được truyền vào từ dòng 8.\n\n## Những lỗi bạn sẽ gặp nhiều nhất\n- **SyntaxError**: viết sai cú pháp, thiếu dấu hai chấm, thiếu ngoặc. Python báo trước khi chạy.\n- **IndentationError**: thụt lề không đều.\n- **NameError**: dùng tên chưa tồn tại, thường do gõ sai (totl thay vì total) hoặc dùng biến local ngoài hàm.\n- **TypeError**: phép tính giữa hai kiểu không hợp, ví dụ \"Tổng: \" + 5, hoặc gọi hàm thiếu đối số.\n- **KeyError / IndexError**: lấy key không có trong dict, hoặc vị trí vượt ngoài list.\n- **AttributeError**: gọi method không tồn tại, ví dụ gọi .append trên một chuỗi, hoặc trên None vì một hàm quên return.\n\n## Quy trình sửa lỗi\n1. Đọc dòng cuối: loại lỗi là gì?\n2. Tìm dòng code của bạn gần cuối traceback nhất.\n3. Đặt giả thuyết: \"chắc values đang rỗng\".\n4. Kiểm chứng bằng print ngay trước dòng lỗi: print(type(values), values). Cách này gọi là **print debugging** (in giá trị ra để quan sát).\n5. Sửa, chạy lại, và chạy lại cả các test cũ để chắc mình không làm hỏng chỗ khác.\n\n## Lỗi không có traceback\nLoại khó nhất là **logic error** (lỗi logic: code chạy êm nhưng ra kết quả sai). Ví dụ tính trung bình mà quên chia, hay dùng range(1, len(x)) làm sót phần tử đầu. Python không báo gì cả. Vũ khí chính là test với ví dụ bạn đã tính tay, như đã học ở bài trước.\n\nMột mẹo cuối: copy dòng lỗi cuối cùng và dán vào Google hoặc hỏi một trợ lý AI, kèm đoạn code liên quan. Gần như chắc chắn đã có người gặp đúng lỗi đó. Nhưng hãy tự đọc traceback trước, kỹ năng này giúp bạn hiểu lời giải thay vì chỉ chép.",
+  "terms": [
+   {
+    "en": "traceback",
+    "vi": "dấu vết các lời gọi hàm dẫn đến lỗi"
+   },
+   {
+    "en": "debugging",
+    "vi": "gỡ lỗi, tìm và sửa bug"
+   },
+   {
+    "en": "TypeError",
+    "vi": "lỗi kiểu dữ liệu không hợp"
+   },
+   {
+    "en": "NameError",
+    "vi": "lỗi dùng tên chưa tồn tại"
+   },
+   {
+    "en": "AttributeError",
+    "vi": "lỗi gọi method hoặc thuộc tính không có"
+   },
+   {
+    "en": "logic error",
+    "vi": "lỗi logic, chạy được nhưng sai kết quả"
+   },
+   {
+    "en": "print debugging",
+    "vi": "in giá trị ra để quan sát"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Nên đọc traceback theo thứ tự nào để tìm lỗi nhanh nhất?",
+    "choices": [
+     "Từ trên xuống, dòng đầu là quan trọng nhất",
+     "Chỉ đọc dòng đầu tiên",
+     "Từ dưới lên: loại lỗi ở cuối, chỗ xảy ra lỗi ngay phía trên",
+     "Không cần đọc, chạy lại là được"
+    ],
+    "answer": 2,
+    "why": "Dòng cuối là loại lỗi, các dòng ngay trên là nơi lỗi xảy ra, càng lên trên càng là các lời gọi bên ngoài."
+   },
+   {
+    "q": "print(\"Tổng: \" + 5) gây ra lỗi gì?",
+    "choices": [
+     "NameError",
+     "SyntaxError",
+     "KeyError",
+     "TypeError"
+    ],
+    "answer": 3,
+    "why": "Không thể cộng chuỗi với số. Hãy dùng f-string hoặc str(5)."
+   },
+   {
+    "q": "Bạn nhận lỗi AttributeError: 'NoneType' object has no attribute 'append'. Nguyên nhân hay gặp nhất là gì?",
+    "choices": [
+     "Một hàm quên return nên trả về None, rồi bạn gọi .append trên kết quả đó",
+     "Bạn gõ sai tên biến",
+     "List quá dài",
+     "Thiếu dấu hai chấm"
+    ],
+    "answer": 0,
+    "why": "NoneType nghĩa là biến đang là None. Thường do hàm không có return, hoặc gán kết quả của list.sort() vốn trả về None."
+   },
+   {
+    "q": "Hàm tính tổng chạy không lỗi nhưng kết quả luôn thiếu phần tử đầu. Đây là loại lỗi gì và cách tìm?",
+    "choices": [
+     "SyntaxError, đọc traceback",
+     "Logic error, test với ví dụ tính tay và in giá trị trong vòng lặp",
+     "IndentationError, sửa thụt lề",
+     "Không phải lỗi"
+    ],
+    "answer": 1,
+    "why": "Logic error không có traceback. Cần so kết quả với đáp án tính tay và quan sát các giá trị trung gian."
+   }
+  ],
+  "code": {
+   "prompt": "Hàm average_order_value(orders) dưới đây có bug. orders là list dict có \"total\" (số tiền, có thể là chuỗi như \"35000\"). Hàm phải trả về giá trị đơn trung bình (float), bỏ qua đơn có \"total\" không đổi được sang số, và trả về 0 nếu không có đơn hợp lệ. Hãy sửa code trong starter để mọi test đều qua.\nVí dụ: [{\"total\": 30000}, {\"total\": \"50000\"}] -> 40000.0; [] -> 0; [{\"total\": \"abc\"}] -> 0",
+   "starter": "def average_order_value(orders):\n    # TODO: this code has bugs. Run the tests, read the traceback, fix it.\n    total = 0\n    for o in orders:\n        total = total + o[\"total\"]\n    return total / len(orders)\n",
+   "solution": "def average_order_value(orders):\n    values = []\n    for o in orders:\n        try:\n            values.append(float(o[\"total\"]))\n        except (ValueError, TypeError, KeyError):\n            continue\n    if not values:\n        return 0\n    return sum(values) / len(values)\n",
+   "tests": "assert average_order_value([{\"total\": 30000}, {\"total\": \"50000\"}]) == 40000.0, 'trung bình của 30000 và \"50000\" là 40000.0'\nassert average_order_value([]) == 0, 'không có đơn thì trả về 0, không được chia cho 0'\nassert average_order_value([{\"total\": \"abc\"}]) == 0, 'đơn có total không phải số thì bỏ qua'\nassert average_order_value([{\"total\": 10}, {\"total\": \"x\"}, {\"total\": 20}]) == 15.0, 'chỉ tính các đơn hợp lệ'\nassert average_order_value([{\"id\": 1}, {\"total\": 8}]) == 8.0, 'đơn thiếu total cũng bỏ qua'\n",
+   "hint": "Chạy test và đọc dòng cuối traceback: có TypeError khi cộng số với chuỗi và ZeroDivisionError khi list rỗng. Đổi từng total sang float trong try, và kiểm tra list rỗng trước khi chia."
+  },
+  "takeaway": "Đọc traceback từ dưới lên: dòng cuối là loại lỗi, ngay trên là nơi xảy ra; còn lỗi logic thì phải bắt bằng test với ví dụ tính tay."
+ },
+ {
+  "id": "py-28",
+  "track": "py",
+  "unit": "Thinking like a programmer",
+  "order": 28,
+  "title": "Classes and objects",
+  "title_vi": "Tự tạo kiểu dữ liệu của riêng mình",
+  "level": 2,
+  "minutes": 13,
+  "body": "Đến giờ bạn mô tả một khách hàng bằng dict: {\"name\": \"Lan\", \"tier\": \"gold\", \"points\": 120}. Cách này ổn khi dữ liệu nhỏ. Nhưng khi chương trình lớn lên, mỗi khách hàng không chỉ có dữ liệu mà còn có hành vi: được cộng điểm, được nâng hạng, nhận voucher. Python cho phép bạn gói dữ liệu và hành vi vào một chỗ bằng **class**.\n\n## Class và object\n**Class** (lớp) là bản thiết kế. **Object** (đối tượng), hay **instance** (thể hiện), là một thứ cụ thể được tạo ra từ bản thiết kế đó. Hãy nghĩ class là mẫu thẻ thành viên của một chuỗi cà phê, còn object là từng tấm thẻ in tên Lan, tên Minh. Cùng một mẫu, nhưng mỗi tấm có dữ liệu riêng.\n\nThực ra bạn đã dùng object từ lâu: \"hello\" là một object của class str, [1, 2] là object của class list. Đó là lý do bạn gọi được \"hello\".upper() hay [1, 2].append(3).\n\n## Định nghĩa class\n```\nclass Customer:\n    def __init__(self, name, tier=\"silver\"):\n        self.name = name\n        self.tier = tier\n        self.points = 0\n\nlan = Customer(\"Lan\", \"gold\")\nminh = Customer(\"Minh\")\n\nprint(lan.name, lan.tier)     # Lan gold\nprint(minh.tier, minh.points) # silver 0\n```\nTừng phần một:\n- class Customer: tên class viết hoa chữ cái đầu mỗi từ, ví dụ OrderItem, gọi là kiểu CamelCase.\n- **__init__** (hàm khởi tạo, đọc là \"dunder init\") chạy tự động mỗi khi bạn tạo object mới bằng Customer(...). Nó nhận dữ liệu ban đầu và gắn vào object.\n- **self** là chính object đang được tạo hoặc đang được dùng. self.name = name nghĩa là \"gắn giá trị name vào tấm thẻ này\". Khi gọi Customer(\"Lan\"), Python tự truyền self, bạn chỉ cần đưa các đối số còn lại.\n- self.name, self.tier, self.points là các **attribute** (thuộc tính: dữ liệu gắn với từng object). Truy cập bằng dấu chấm: lan.name.\n\n## Mỗi object có dữ liệu riêng\n```\nlan.points = 150\nprint(lan.points)    # 150\nprint(minh.points)   # 0\n```\nSửa thẻ của Lan không ảnh hưởng thẻ của Minh. Giống hệt việc mỗi dict là một bản riêng, nhưng giờ cấu trúc được quy định rõ: mọi Customer đều chắc chắn có name, tier, points. Không còn chuyện dict này viết \"Name\", dict kia viết \"name\" rồi code lỗi KeyError.\n\n## Kiểm tra kiểu\n```\nisinstance(lan, Customer)   # True\ntype(lan).__name__          # \"Customer\"\n```\n\n## Khi nào nên dùng class\n- Khi có nhiều thứ cùng loại, cùng cấu trúc: khách hàng, đơn hàng, sản phẩm, robot.\n- Khi dữ liệu đi kèm các hành động riêng của nó (bài sau sẽ thêm method).\n- Khi chỉ cần chứa vài giá trị tạm thời, dict vẫn là lựa chọn đơn giản và tốt.\n\nCách tổ chức code quanh các object như vậy gọi là **OOP** (object-oriented programming, lập trình hướng đối tượng). Các thư viện AI bạn sẽ dùng đều xây theo kiểu này: một model trong scikit-learn hay PyTorch là một object, bạn tạo nó ra, nó giữ các tham số bên trong, và bạn gọi các method như fit hay predict trên nó.",
+  "terms": [
+   {
+    "en": "class",
+    "vi": "lớp, bản thiết kế cho object"
+   },
+   {
+    "en": "object / instance",
+    "vi": "đối tượng cụ thể tạo từ class"
+   },
+   {
+    "en": "__init__",
+    "vi": "hàm khởi tạo chạy khi tạo object"
+   },
+   {
+    "en": "self",
+    "vi": "chính object đang được dùng"
+   },
+   {
+    "en": "attribute",
+    "vi": "thuộc tính, dữ liệu gắn với object"
+   },
+   {
+    "en": "OOP",
+    "vi": "lập trình hướng đối tượng"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Quan hệ giữa class và object giống với cặp nào nhất?",
+    "choices": [
+     "Mẫu thẻ thành viên và từng tấm thẻ in tên từng khách",
+     "Hai tấm thẻ của hai khách",
+     "Một file Excel và một file Word",
+     "Một hàm và một biến"
+    ],
+    "answer": 0,
+    "why": "Class là bản thiết kế chung, mỗi object là một bản cụ thể có dữ liệu riêng."
+   },
+   {
+    "q": "__init__ chạy khi nào?",
+    "choices": [
+     "Khi chương trình kết thúc",
+     "Mỗi khi bạn đọc một attribute",
+     "Chỉ khi bạn gọi lan.__init__()",
+     "Tự động mỗi khi tạo object mới, ví dụ Customer(\"Lan\")"
+    ],
+    "answer": 3,
+    "why": "Python tự gọi __init__ lúc tạo instance để gắn dữ liệu ban đầu."
+   },
+   {
+    "q": "Trong self.points = 0, self là gì?",
+    "choices": [
+     "Một từ khoá để in ra màn hình",
+     "Class Customer",
+     "Chính object đang được tạo, như tấm thẻ của Lan",
+     "Một biến global"
+    ],
+    "answer": 2,
+    "why": "self trỏ tới instance cụ thể, nên mỗi object có attribute points riêng."
+   },
+   {
+    "q": "Có lan = Customer(\"Lan\") và minh = Customer(\"Minh\"). Đặt lan.points = 99. minh.points bằng bao nhiêu?",
+    "choices": [
+     "99",
+     "0",
+     "None",
+     "Báo lỗi"
+    ],
+    "answer": 1,
+    "why": "Mỗi object có attribute riêng. Sửa của Lan không ảnh hưởng Minh, Minh vẫn có giá trị khởi tạo 0."
+   }
+  ],
+  "code": {
+   "prompt": "Viết class Product với __init__(self, name, price, stock=0) gắn 3 attribute name, price, stock. Thêm attribute category luôn bằng \"general\" lúc tạo. Viết thêm hàm (không nằm trong class) total_stock_value(products) trả về tổng price * stock của list các Product.\nVí dụ: p = Product(\"Trà đào\", 35000, 10); p.name -> \"Trà đào\"; p.category -> \"general\"; Product(\"Cà phê\", 25000).stock -> 0; total_stock_value([p, Product(\"Cà phê\", 25000, 2)]) -> 400000",
+   "starter": "class Product:\n    # TODO: write __init__ with name, price, stock=0 and category = \"general\"\n    pass\n\n\ndef total_stock_value(products):\n    # TODO: sum price * stock\n    pass\n",
+   "solution": "class Product:\n    def __init__(self, name, price, stock=0):\n        self.name = name\n        self.price = price\n        self.stock = stock\n        self.category = \"general\"\n\n\ndef total_stock_value(products):\n    return sum(p.price * p.stock for p in products)\n",
+   "tests": "p = Product(\"Trà đào\", 35000, 10)\nassert p.name == \"Trà đào\" and p.price == 35000 and p.stock == 10, 'phải gắn đúng name, price, stock'\nassert p.category == \"general\", 'category phải là \"general\"'\nassert Product(\"Cà phê\", 25000).stock == 0, 'stock mặc định là 0'\nassert total_stock_value([p, Product(\"Cà phê\", 25000, 2)]) == 400000, '35000*10 + 25000*2 = 400000'\nassert total_stock_value([]) == 0, 'list rỗng thì tổng là 0'\nq = Product(\"A\", 1, 1)\nq.stock = 5\nassert p.stock == 10, 'mỗi object phải có dữ liệu riêng'\n",
+   "hint": "Trong __init__, gán từng tham số vào self bằng self.name = name. Hàm tổng có thể dùng sum với một vòng for đọc p.price và p.stock."
+  },
+  "takeaway": "Class là bản thiết kế, object là bản cụ thể; __init__ gắn dữ liệu ban đầu vào self, và mỗi object giữ attribute riêng của nó."
+ },
+ {
+  "id": "py-29",
+  "track": "py",
+  "unit": "Thinking like a programmer",
+  "order": 29,
+  "title": "A class with methods",
+  "title_vi": "Cho object biết tự làm việc",
+  "level": 2,
+  "minutes": 14,
+  "body": "Ở bài trước, object mới chỉ chứa dữ liệu. Sức mạnh thật sự của class đến khi bạn thêm **method** (phương thức: hàm định nghĩa bên trong class, hoạt động trên dữ liệu của object). Bạn đã dùng method từ lâu, như \"abc\".upper() hay list.append(x). Giờ bạn sẽ tự viết.\n\n## Ví dụ: một ví điện tử nhỏ\n```\nclass Wallet:\n    def __init__(self, owner, balance=0):\n        self.owner = owner\n        self.balance = balance\n        self.history = []\n\n    def deposit(self, amount):\n        if amount <= 0:\n            raise ValueError(\"Số tiền nạp phải lớn hơn 0\")\n        self.balance += amount\n        self.history.append((\"deposit\", amount))\n\n    def withdraw(self, amount):\n        if amount > self.balance:\n            raise ValueError(\"Số dư không đủ\")\n        self.balance -= amount\n        self.history.append((\"withdraw\", amount))\n\n    def summary(self):\n        return f\"{self.owner}: {self.balance:,}đ sau {len(self.history)} giao dịch\"\n```\nDùng thử:\n```\nw = Wallet(\"Lan\", 100000)\nw.deposit(50000)\nw.withdraw(30000)\nprint(w.summary())   # Lan: 120,000đ sau 2 giao dịch\n```\n\n## Method khác hàm thường ở chỗ nào\nMethod luôn nhận self làm tham số đầu tiên. Khi bạn viết w.deposit(50000), Python thực chất gọi Wallet.deposit(w, 50000): object đứng trước dấu chấm được truyền vào làm self. Nhờ vậy, bên trong method bạn đọc và sửa được self.balance của đúng chiếc ví đó.\n\nSo với cách dùng dict cộng hàm rời, class gom mọi thứ về một chỗ. Muốn biết ví làm được gì, chỉ cần đọc class Wallet.\n\n## Bảo vệ dữ liệu bằng method\nChú ý cách withdraw kiểm tra số dư trước khi trừ. Nếu ai cũng sửa trực tiếp w.balance = -500000 thì quy tắc kinh doanh bị phá vỡ. Ý tưởng \"chỉ thay đổi dữ liệu qua các method có kiểm tra\" gọi là **encapsulation** (đóng gói: giấu chi tiết bên trong, chỉ mở ra những cách dùng an toàn). Python không cấm hẳn việc sửa trực tiếp, nhưng theo quy ước, attribute bắt đầu bằng dấu gạch dưới như self._balance nghĩa là \"đừng đụng vào từ bên ngoài\".\n\n## Method trả về giá trị và method thay đổi trạng thái\nCó hai loại method bạn sẽ viết nhiều:\n- Method thay đổi **state** (trạng thái: dữ liệu hiện tại của object) như deposit, withdraw. Thường không cần return.\n- Method chỉ đọc và tính toán rồi return, như summary. Không thay đổi gì.\nTách bạch hai loại này giúp code dễ đoán. Một method tên get_balance mà lại âm thầm trừ phí thì rất dễ gây bug.\n\n## Method đặc biệt __repr__\nKhi print một object, mặc định bạn thấy thứ khó hiểu như <__main__.Wallet object at 0x...>. Định nghĩa **__repr__** (cách object tự mô tả khi được in ra) để dễ debug hơn:\n```\n    def __repr__(self):\n        return f\"Wallet({self.owner!r}, {self.balance})\"\n```\nPhần !r trong f-string in giá trị kèm dấu nháy, giúp phân biệt chuỗi với số.\n\n## Liên hệ với AI\nMô hình trong các thư viện machine learning được thiết kế đúng như vậy. Bạn tạo object model, gọi model.fit(X, y) để nó học (method thay đổi state: các tham số bên trong được cập nhật), rồi gọi model.predict(X_new) để dự đoán (method chỉ đọc và trả kết quả). Hiểu class giúp bạn đọc tài liệu của các thư viện đó dễ dàng hơn nhiều.",
+  "terms": [
+   {
+    "en": "method",
+    "vi": "hàm bên trong class, làm việc trên object"
+   },
+   {
+    "en": "state",
+    "vi": "trạng thái, dữ liệu hiện tại của object"
+   },
+   {
+    "en": "encapsulation",
+    "vi": "đóng gói, chỉ sửa dữ liệu qua cách an toàn"
+   },
+   {
+    "en": "__repr__",
+    "vi": "cách object tự mô tả khi in ra"
+   },
+   {
+    "en": "fit / predict",
+    "vi": "học từ dữ liệu / dự đoán"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Khi gọi w.deposit(50000), giá trị của self bên trong method là gì?",
+    "choices": [
+     "Class Wallet",
+     "Số 50000",
+     "None",
+     "Chính object w"
+    ],
+    "answer": 3,
+    "why": "Object đứng trước dấu chấm được Python truyền vào làm self, tương đương Wallet.deposit(w, 50000)."
+   },
+   {
+    "q": "Vì sao nên trừ tiền qua method withdraw thay vì sửa thẳng w.balance?",
+    "choices": [
+     "Vì method có thể kiểm tra quy tắc như số dư không được âm",
+     "Vì sửa trực tiếp sẽ báo SyntaxError",
+     "Vì method chạy nhanh hơn",
+     "Vì balance là biến global"
+    ],
+    "answer": 0,
+    "why": "Đây là ý tưởng encapsulation: mọi thay đổi đi qua một chỗ có kiểm tra, quy tắc kinh doanh không bị phá."
+   },
+   {
+    "q": "Bạn quên ghi self trong def deposit(amount): rồi gọi w.deposit(100). Chuyện gì xảy ra?",
+    "choices": [
+     "Chạy bình thường",
+     "amount nhận giá trị 100 và balance tự cộng",
+     "TypeError vì method nhận 1 tham số nhưng được truyền 2",
+     "NameError vì thiếu biến w"
+    ],
+    "answer": 2,
+    "why": "Python tự truyền w làm đối số đầu tiên, cộng thêm 100 là hai đối số, trong khi method chỉ khai báo một."
+   },
+   {
+    "q": "Trong ML, model.fit(X, y) và model.predict(X_new) tương ứng với hai loại method nào?",
+    "choices": [
+     "Cả hai đều chỉ đọc",
+     "fit thay đổi state của model, predict chỉ tính toán và trả kết quả",
+     "fit trả kết quả, predict thay đổi state",
+     "Cả hai đều là __init__"
+    ],
+    "answer": 1,
+    "why": "fit cập nhật các tham số bên trong model, còn predict dùng các tham số đó để tính dự đoán mà không đổi gì."
+   }
+  ],
+  "code": {
+   "prompt": "Viết class Wallet:\n- __init__(self, owner, balance=0): gắn owner, balance và history là list rỗng.\n- deposit(self, amount): nếu amount <= 0 thì raise ValueError; ngược lại cộng vào balance và thêm (\"deposit\", amount) vào history.\n- withdraw(self, amount): nếu amount <= 0 hoặc lớn hơn balance thì raise ValueError; ngược lại trừ balance và thêm (\"withdraw\", amount) vào history.\n- summary(self): trả về \"<owner>: <balance có dấu phẩy>đ\". Ví dụ: w = Wallet(\"Lan\", 100000); w.deposit(50000); w.withdraw(30000); w.summary() -> \"Lan: 120,000đ\"",
+   "starter": "class Wallet:\n    def __init__(self, owner, balance=0):\n        # TODO\n        pass\n\n    # TODO: deposit, withdraw, summary\n",
+   "solution": "class Wallet:\n    def __init__(self, owner, balance=0):\n        self.owner = owner\n        self.balance = balance\n        self.history = []\n\n    def deposit(self, amount):\n        if amount <= 0:\n            raise ValueError(\"amount must be positive\")\n        self.balance += amount\n        self.history.append((\"deposit\", amount))\n\n    def withdraw(self, amount):\n        if amount <= 0 or amount > self.balance:\n            raise ValueError(\"invalid amount\")\n        self.balance -= amount\n        self.history.append((\"withdraw\", amount))\n\n    def summary(self):\n        return f\"{self.owner}: {self.balance:,}đ\"\n",
+   "tests": "w = Wallet(\"Lan\", 100000)\nw.deposit(50000)\nw.withdraw(30000)\nassert w.balance == 120000, 'số dư sau nạp 50000 và rút 30000 phải là 120000'\nassert w.history == [(\"deposit\", 50000), (\"withdraw\", 30000)], 'history phải ghi đúng thứ tự giao dịch'\nassert w.summary() == \"Lan: 120,000đ\", 'summary sai định dạng'\ntry:\n    w.withdraw(999999)\n    raised = False\nexcept ValueError:\n    raised = True\nassert raised, 'rút quá số dư phải raise ValueError'\nassert w.balance == 120000, 'rút thất bại thì số dư không đổi'\ntry:\n    Wallet(\"Minh\").deposit(0)\n    raised = False\nexcept ValueError:\n    raised = True\nassert raised, 'nạp số tiền <= 0 phải raise ValueError'\n",
+   "hint": "Mọi method đều nhận self đầu tiên và đọc, sửa dữ liệu qua self.balance, self.history. Kiểm tra điều kiện sai rồi raise trước khi thay đổi số dư."
+  },
+  "takeaway": "Method là hàm bên trong class nhận self đầu tiên; dùng method để thay đổi state một cách có kiểm tra, và tách riêng method chỉ đọc với method thay đổi dữ liệu."
+ },
+ {
+  "id": "py-30",
+  "track": "py",
+  "unit": "Python for AI",
+  "order": 30,
+  "title": "NumPy arrays",
+  "title_vi": "Tính toán trên cả mảng số một lúc",
+  "level": 3,
+  "minutes": 14,
+  "body": "Gần như mọi thứ trong AI đều quy về các con số: một bức ảnh là bảng số độ sáng của từng điểm ảnh, một câu văn được biến thành các vector số, một model là hàng triệu đến hàng tỷ con số được gọi là tham số. Để xử lý khối lượng số khổng lồ đó, cộng đồng Python dùng **NumPy** (thư viện tính toán số học nền tảng của Python). Hầu hết các thư viện AI lớn đều xây trên NumPy hoặc dùng cách làm việc rất giống nó.\n\n## Từ list sang array\n```\nimport numpy as np\n\nprices = np.array([35000, 25000, 40000, 15000])\nprint(prices.shape)   # (4,)\nprint(prices.dtype)   # int64\n```\nnp là tên viết tắt mà ai cũng dùng. **array** (mảng NumPy) trông giống list, nhưng có hai khác biệt quan trọng:\n- Mọi phần tử cùng một kiểu dữ liệu, gọi là **dtype** (kiểu phần tử, ví dụ int64 hay float64). Nhờ vậy máy lưu và tính rất nhanh.\n- **shape** (hình dạng) cho biết số phần tử theo từng chiều. (4,) là một hàng 4 số. Một bảng 3 dòng 2 cột có shape (3, 2).\n\n## Vectorization: bỏ vòng for\nMuốn tăng giá 10%. Với list bạn cần vòng for hoặc comprehension. Với array, bạn viết thẳng phép tính lên cả mảng:\n```\nnew_prices = prices * 1.1\ntotal = prices + 5000          # cộng 5000 vào mọi phần tử\nqty = np.array([2, 1, 3, 4])\nrevenue = prices * qty         # nhân từng cặp: [70000, 25000, 120000, 60000]\n```\nCách tính trên cả mảng một lúc này gọi là **vectorization** (vector hoá). Code ngắn hơn, dễ đọc hơn, và nhanh hơn vòng for Python nhiều lần, vì phần tính toán thật chạy bằng code C đã được tối ưu. Với vài triệu phần tử, khác biệt có thể là vài giây so với vài phút.\n\nLưu ý quan trọng: dấu + giữa hai list là nối list, còn giữa hai array là cộng từng phần tử.\n```\n[1, 2] + [3, 4]                     # [1, 2, 3, 4]\nnp.array([1, 2]) + np.array([3, 4]) # array([4, 6])\n```\n\n## Broadcasting\nTrong ví dụ prices + 5000, số 5000 được \"kéo giãn\" ra để khớp với cả mảng. Cơ chế này gọi là **broadcasting** (tự mở rộng kích thước cho khớp). Nó cũng hoạt động giữa bảng và hàng, ví dụ trừ giá trị trung bình của từng cột khỏi cả bảng. Khi hai shape không khớp được, NumPy sẽ báo lỗi, và đọc shape là bước đầu tiên để debug.\n\n## Lọc bằng mask\nSo sánh một array với một số cho ra một array True/False, gọi là **boolean mask** (mặt nạ đúng sai). Đặt mask vào ngoặc vuông để lọc:\n```\nmask = prices > 30000          # array([True, False, True, False])\nexpensive = prices[mask]       # array([35000, 40000])\ncount = int((prices > 30000).sum())   # 2, vì True được tính là 1\n```\nĐây là cách lọc dữ liệu chuẩn trong NumPy, thay cho comprehension có if.\n\n## Vài hàm tạo array hữu ích\n```\nnp.zeros(3)          # array([0., 0., 0.])\nnp.ones((2, 3))      # bảng 2x3 toàn số 1\nnp.arange(0, 10, 2)  # array([0, 2, 4, 6, 8])\nnp.round(new_prices) # làm tròn từng phần tử\n```\n\nKhi chuyển kết quả về Python thường, dùng .tolist() để được list, hoặc int(...) và float(...) cho một số. Ở bài sau, bạn sẽ dùng NumPy để tính trung bình, tổng theo cột, và dot product, phép tính có mặt ở trung tâm của mọi neural network.",
+  "terms": [
+   {
+    "en": "NumPy",
+    "vi": "thư viện tính toán số học nền tảng"
+   },
+   {
+    "en": "array",
+    "vi": "mảng số cùng kiểu"
+   },
+   {
+    "en": "dtype",
+    "vi": "kiểu dữ liệu của phần tử"
+   },
+   {
+    "en": "shape",
+    "vi": "số phần tử theo từng chiều"
+   },
+   {
+    "en": "vectorization",
+    "vi": "tính trên cả mảng thay cho vòng for"
+   },
+   {
+    "en": "broadcasting",
+    "vi": "tự mở rộng kích thước cho khớp"
+   },
+   {
+    "en": "boolean mask",
+    "vi": "mảng True/False dùng để lọc"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "np.array([1, 2, 3]) * 2 cho kết quả gì?",
+    "choices": [
+     "[1, 2, 3, 1, 2, 3]",
+     "array([2, 4, 6])",
+     "Báo lỗi",
+     "6"
+    ],
+    "answer": 1,
+    "why": "Với array, phép nhân áp dụng cho từng phần tử. Lặp list hai lần là hành vi của list, không phải array."
+   },
+   {
+    "q": "Vì sao vectorization trong NumPy thường nhanh hơn vòng for Python?",
+    "choices": [
+     "Vì NumPy bỏ bớt dữ liệu",
+     "Vì nó dùng nhiều RAM hơn",
+     "Vì phép tính chạy bằng code C tối ưu trên dữ liệu cùng kiểu",
+     "Vì nó chỉ tính phần tử đầu"
+    ],
+    "answer": 2,
+    "why": "Array lưu các số cùng dtype liền nhau, và NumPy thực hiện phép tính bằng code biên dịch sẵn thay cho từng bước của Python."
+   },
+   {
+    "q": "Với a = np.array([5, 12, 8, 20]), a[a > 10] là gì?",
+    "choices": [
+     "array([12, 20])",
+     "array([False, True, False, True])",
+     "2",
+     "array([5, 8])"
+    ],
+    "answer": 0,
+    "why": "a > 10 tạo ra boolean mask, đặt mask vào ngoặc vuông sẽ giữ lại các phần tử ứng với True."
+   },
+   {
+    "q": "Một bảng dữ liệu có 100 khách và 5 cột đặc trưng. shape của array là gì?",
+    "choices": [
+     "(5, 100)",
+     "(500,)",
+     "(5,)",
+     "(100, 5)"
+    ],
+    "answer": 3,
+    "why": "Theo quy ước, mỗi dòng là một mẫu và mỗi cột là một đặc trưng, nên shape là (số dòng, số cột) = (100, 5)."
+   }
+  ],
+  "code": {
+   "prompt": "Dùng numpy, viết 2 hàm.\n1) apply_discount(prices, rate): prices là list số, trả về numpy array giá sau khi giảm rate (rate=0.2 nghĩa là giảm 20%), làm tròn bằng np.round. Ví dụ: apply_discount([100000, 35000], 0.2) -> array([80000., 28000.])\n2) count_above(prices, threshold): trả về số phần tử lớn hơn threshold, kiểu int. Dùng boolean mask, không dùng vòng for. Ví dụ: count_above([5, 12, 8, 20], 10) -> 2",
+   "starter": "import numpy as np\n\n\ndef apply_discount(prices, rate):\n    # TODO: convert to np.array, multiply, round\n    pass\n\n\ndef count_above(prices, threshold):\n    # TODO: boolean mask, then sum\n    pass\n",
+   "solution": "import numpy as np\n\n\ndef apply_discount(prices, rate):\n    arr = np.array(prices, dtype=float)\n    return np.round(arr * (1 - rate))\n\n\ndef count_above(prices, threshold):\n    arr = np.array(prices)\n    return int((arr > threshold).sum())\n",
+   "tests": "import numpy as np\nr = apply_discount([100000, 35000], 0.2)\nassert isinstance(r, np.ndarray), 'apply_discount phải trả về numpy array'\nassert np.allclose(r, [80000, 28000]), 'giảm 20% của [100000, 35000] là [80000, 28000]'\nassert np.allclose(apply_discount([50000], 0), [50000]), 'rate = 0 thì giá giữ nguyên'\nassert count_above([5, 12, 8, 20], 10) == 2, 'có 2 số lớn hơn 10'\nassert count_above([1, 2, 3], 100) == 0, 'không có số nào lớn hơn 100'\nassert isinstance(count_above([1, 50], 10), int), 'count_above phải trả về int'\n",
+   "hint": "np.array(prices) biến list thành array. Nhân cả array với (1 - rate). Với count_above, (arr > threshold) là mask, gọi .sum() rồi bọc bằng int()."
+  },
+  "takeaway": "NumPy array chứa các số cùng kiểu và cho phép tính trên cả mảng một lúc (vectorization), lọc bằng boolean mask thay cho vòng for."
+ },
+ {
+  "id": "py-31",
+  "track": "py",
+  "unit": "Python for AI",
+  "order": 31,
+  "title": "NumPy stats and dot product",
+  "title_vi": "Trung bình, tổng và tích vô hướng",
+  "level": 3,
+  "minutes": 15,
+  "body": "Bài này đưa bạn đến gần trái tim của machine learning. Bạn sẽ dùng NumPy để tóm tắt dữ liệu bằng trung bình, tổng, và học phép tính **dot product** (tích vô hướng: nhân từng cặp số rồi cộng tất cả lại), thứ mà mọi neural network thực hiện hàng tỷ lần.\n\n## Thống kê trên array\n```\nimport numpy as np\n\nscores = np.array([7.5, 8.0, 6.0, 9.5])\nscores.mean()     # 7.75   trung bình\nscores.sum()      # 31.0\nscores.max()      # 9.5\nscores.std()      # độ lệch chuẩn, đo mức phân tán\nnp.median(scores) # 7.75\nscores.argmax()   # 3, VỊ TRÍ của giá trị lớn nhất\n```\nargmax rất hay gặp trong AI: một model phân loại trả về xác suất cho từng lớp, ví dụ [0.1, 0.7, 0.2], và argmax cho biết lớp được chọn là lớp số 1.\n\n## Bảng 2 chiều và axis\nDữ liệu thật thường là bảng. Giả sử điểm 3 học viên ở 2 môn:\n```\ngrades = np.array([\n    [8.0, 6.5],\n    [7.0, 9.0],\n    [9.0, 7.5],\n])\ngrades.shape          # (3, 2)\ngrades.mean(axis=0)   # array([8.0, 7.67])  trung bình mỗi CỘT (mỗi môn)\ngrades.mean(axis=1)   # array([7.25, 8.0, 8.25])  trung bình mỗi DÒNG (mỗi người)\ngrades[:, 0]          # cột đầu tiên: array([8.0, 7.0, 9.0])\ngrades[1]             # dòng thứ hai: array([7.0, 9.0])\n```\n**axis** (trục) là chỗ người mới hay nhầm. Mẹo nhớ: axis=0 nghĩa là \"gộp theo chiều dọc, đi xuống qua các dòng\", nên kết quả còn lại một giá trị cho mỗi cột. axis=1 là gộp theo chiều ngang, mỗi dòng còn một giá trị. grades[:, 0] đọc là \"mọi dòng, cột 0\".\n\n## Dot product\nMột tiệm bánh bán 3 loại bánh với số lượng [10, 4, 7], đơn giá [20000, 35000, 15000]. Doanh thu là 10×20000 + 4×35000 + 7×15000. Đó chính là dot product:\n```\nqty = np.array([10, 4, 7])\nprice = np.array([20000, 35000, 15000])\nnp.dot(qty, price)    # 445000\nqty @ price           # cách viết khác, cùng kết quả\n```\nCông thức: a · b = Σ aᵢ × bᵢ. Hai vector phải cùng độ dài.\n\n## Vì sao dot product quan trọng trong AI\n- **Weighted sum** (tổng có trọng số): điểm xét tuyển = 0.5×Toán + 0.3×Văn + 0.2×Anh là dot product giữa vector điểm và vector trọng số. Một neuron trong neural network làm đúng việc này: nhân mỗi đầu vào với một weight (trọng số) rồi cộng lại, sau đó cộng thêm bias và đưa qua một hàm kích hoạt. \"Học\" chính là điều chỉnh các weight đó.\n- **Độ giống nhau**: trong LLM, mỗi từ hay câu được biến thành một embedding (vector số biểu diễn ý nghĩa). Hai vector cùng hướng cho dot product lớn, nghĩa là hai câu có ý nghĩa gần nhau. Đây là cơ sở của tìm kiếm ngữ nghĩa và RAG.\n- Khi nhân một bảng với một vector (grades @ weights), NumPy tính dot product của từng dòng với vector đó, cho ra điểm của mọi học viên trong một lệnh.\n\n```\nweights = np.array([0.6, 0.4])\ngrades @ weights      # array([7.4, 7.8, 8.4])\n```\n\n## Chuẩn hoá dữ liệu\nKết hợp mean và std, bạn có thể đưa các cột về cùng thang đo: (x - x.mean()) / x.std(). Bước này gọi là **standardization** (chuẩn hoá) và thường được làm trước khi train model, để một cột có số rất lớn như thu nhập không lấn át cột có số nhỏ như tuổi.",
+  "terms": [
+   {
+    "en": "dot product",
+    "vi": "tích vô hướng, nhân từng cặp rồi cộng"
+   },
+   {
+    "en": "axis",
+    "vi": "trục tính toán: 0 theo cột, 1 theo dòng"
+   },
+   {
+    "en": "argmax",
+    "vi": "vị trí của giá trị lớn nhất"
+   },
+   {
+    "en": "weighted sum",
+    "vi": "tổng có trọng số"
+   },
+   {
+    "en": "weight",
+    "vi": "trọng số model học được"
+   },
+   {
+    "en": "embedding",
+    "vi": "vector số biểu diễn ý nghĩa"
+   },
+   {
+    "en": "standardization",
+    "vi": "chuẩn hoá về cùng thang đo"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "np.dot([1, 2, 3], [4, 5, 6]) bằng bao nhiêu?",
+    "choices": [
+     "[4, 10, 18]",
+     "21",
+     "15",
+     "32"
+    ],
+    "answer": 3,
+    "why": "1×4 + 2×5 + 3×6 = 4 + 10 + 18 = 32. Dot product cộng các tích lại thành một số."
+   },
+   {
+    "q": "Bảng có shape (100, 5): 100 khách, 5 cột. data.mean(axis=0) cho ra gì?",
+    "choices": [
+     "5 giá trị, trung bình của từng cột",
+     "100 giá trị, trung bình của từng khách",
+     "Một số duy nhất",
+     "Bảng (100, 5)"
+    ],
+    "answer": 0,
+    "why": "axis=0 gộp qua các dòng, mỗi cột còn lại một giá trị, nên được 5 giá trị."
+   },
+   {
+    "q": "Model trả về xác suất [0.05, 0.15, 0.8] cho 3 lớp. np.argmax cho ra gì và ý nghĩa là gì?",
+    "choices": [
+     "0.8, xác suất cao nhất",
+     "3, số lớp",
+     "2, model chọn lớp ở vị trí 2",
+     "1, lớp ở giữa"
+    ],
+    "answer": 2,
+    "why": "argmax trả về vị trí của giá trị lớn nhất, ở đây là vị trí 2, tức lớp được dự đoán."
+   },
+   {
+    "q": "Một neuron đơn giản tính gì với đầu vào x và weight w?",
+    "choices": [
+     "Giá trị lớn nhất của x",
+     "Dot product của x và w, cộng bias, rồi qua hàm kích hoạt",
+     "Trung bình của w",
+     "Sắp xếp x theo w"
+    ],
+    "answer": 1,
+    "why": "Neuron nhân từng đầu vào với trọng số tương ứng rồi cộng lại, đó là dot product, sau đó cộng bias và áp hàm kích hoạt."
+   }
+  ],
+  "code": {
+   "prompt": "Dùng numpy, viết 2 hàm.\n1) weighted_score(scores, weights): trả về dot product của hai list (kiểu float). Nếu độ dài khác nhau thì raise ValueError. Ví dụ: weighted_score([8, 6, 9], [0.5, 0.3, 0.2]) -> 7.6\n2) column_means(table): table là list các list (mỗi dòng cùng số cột). Trả về list trung bình của từng cột, mỗi giá trị làm tròn 2 chữ số bằng round(). Ví dụ: column_means([[8, 6.5], [7, 9], [9, 7.5]]) -> [8.0, 7.67]",
+   "starter": "import numpy as np\n\n\ndef weighted_score(scores, weights):\n    # TODO: check lengths, then np.dot\n    pass\n\n\ndef column_means(table):\n    # TODO: np.array(table).mean(axis=...)\n    pass\n",
+   "solution": "import numpy as np\n\n\ndef weighted_score(scores, weights):\n    if len(scores) != len(weights):\n        raise ValueError(\"scores and weights must have the same length\")\n    return float(np.dot(np.array(scores, dtype=float), np.array(weights, dtype=float)))\n\n\ndef column_means(table):\n    means = np.array(table, dtype=float).mean(axis=0)\n    return [round(float(m), 2) for m in means]\n",
+   "tests": "import math\nassert math.isclose(weighted_score([8, 6, 9], [0.5, 0.3, 0.2]), 7.6), '8*0.5 + 6*0.3 + 9*0.2 = 7.6'\nassert isinstance(weighted_score([1], [1]), float), 'weighted_score phải trả về float'\nassert weighted_score([0, 0], [0.5, 0.5]) == 0.0, 'điểm toàn 0 thì kết quả là 0'\ntry:\n    weighted_score([1, 2], [1])\n    raised = False\nexcept ValueError:\n    raised = True\nassert raised, 'độ dài khác nhau phải raise ValueError'\nassert column_means([[8, 6.5], [7, 9], [9, 7.5]]) == [8.0, 7.67], 'trung bình cột phải là [8.0, 7.67]'\nassert column_means([[1, 2, 3]]) == [1.0, 2.0, 3.0], 'một dòng thì trung bình cột là chính nó'\n",
+   "hint": "np.dot nhận hai array cùng độ dài. Với bảng, axis=0 cho trung bình từng cột. Đổi từng giá trị sang float rồi round(..., 2)."
+  },
+  "takeaway": "mean, sum, argmax và axis giúp tóm tắt bảng số; dot product nhân từng cặp rồi cộng lại, và đó chính là phép tính cốt lõi của một neuron và của việc đo độ giống nhau giữa các embedding."
+ },
+ {
+  "id": "py-32",
+  "track": "py",
+  "unit": "Python for AI",
+  "order": 32,
+  "title": "Mini project: sales analysis",
+  "title_vi": "Dự án nhỏ: phân tích doanh số",
+  "level": 3,
+  "minutes": 15,
+  "body": "Bài cuối chương là một dự án nhỏ gom lại gần hết những gì bạn đã học: list của dict, function, comprehension, sorted với key, Counter, datetime, try except và cách chia nhỏ bài toán. Bạn chỉ dùng Python thuần, không cần NumPy, để thấy rằng chỉ với các công cụ cơ bản bạn đã làm được phân tích có ích.\n\n## Dữ liệu\nMột chuỗi trà sữa gửi bạn dữ liệu bán hàng dạng list các dict, mỗi dict là một giao dịch:\n```\nsales = [\n    {\"date\": \"2026-09-03\", \"product\": \"Trà đào\", \"category\": \"tea\", \"qty\": 3, \"price\": 35000},\n    {\"date\": \"2026-09-15\", \"product\": \"Cà phê sữa\", \"category\": \"coffee\", \"qty\": 5, \"price\": 25000},\n    {\"date\": \"2026-10-02\", \"product\": \"Trà đào\", \"category\": \"tea\", \"qty\": 4, \"price\": 35000},\n    {\"date\": \"2026-10-09\", \"product\": \"Bánh flan\", \"category\": \"dessert\", \"qty\": 6, \"price\": 15000},\n    {\"date\": \"2026-10-20\", \"product\": \"Cà phê sữa\", \"category\": \"coffee\", \"qty\": \"?\", \"price\": 25000},\n]\n```\nĐể ý dòng cuối: qty là \"?\". Dữ liệu thật luôn có những dòng như vậy.\n\n## Câu hỏi của sếp\n- Doanh thu theo từng nhóm hàng là bao nhiêu?\n- Sản phẩm nào mang lại nhiều doanh thu nhất?\n- Doanh thu từng tháng thay đổi thế nào?\n- Có bao nhiêu dòng dữ liệu lỗi?\n\nMỗi câu hỏi là một hàm. Đây là cách decomposition (chia nhỏ bài toán) bạn đã học.\n\n## Bước 1: làm sạch\nViết một hàm kiểm tra và tính doanh thu của một dòng, trả về None nếu dòng lỗi:\n```\ndef row_revenue(row):\n    try:\n        return int(row[\"qty\"]) * int(row[\"price\"])\n    except (ValueError, KeyError, TypeError):\n        return None\n```\nMọi hàm phía sau đều dựa vào hàm này, nên quy tắc làm sạch chỉ nằm ở một chỗ. Muốn đổi quy tắc, sửa một nơi là xong.\n\n## Bước 2: gom nhóm\nMẫu \"cộng dồn vào dict\" xuất hiện liên tục trong phân tích dữ liệu. Thuật ngữ chung là **group by** (gom nhóm: chia dữ liệu theo một cột rồi tính tổng hay trung bình cho từng nhóm):\n```\ndef revenue_by(sales, field):\n    totals = {}\n    for row in sales:\n        rev = row_revenue(row)\n        if rev is None:\n            continue\n        key = row[field]\n        totals[key] = totals.get(key, 0) + rev\n    return totals\n\nrevenue_by(sales, \"category\")\n# {\"tea\": 245000, \"coffee\": 125000, \"dessert\": 90000}\n```\nMột hàm dùng cho cả nhóm hàng lẫn sản phẩm, chỉ cần đổi field.\n\n## Bước 3: xếp hạng và theo thời gian\n```\nby_product = revenue_by(sales, \"product\")\ntop = max(by_product, key=by_product.get)   # \"Trà đào\"\n```\nĐể tính theo tháng, lấy 7 ký tự đầu của chuỗi ngày: \"2026-10-02\"[:7] là \"2026-10\". Đây là một ví dụ của **feature engineering** (tạo đặc trưng mới từ dữ liệu sẵn có), việc mà người làm ML làm rất nhiều trước khi train model.\n\n## Bước 4: trình bày kết quả\n```\nfor cat, rev in sorted(revenue_by(sales, \"category\").items(),\n                       key=lambda kv: kv[1], reverse=True):\n    print(f\"{cat:<8} {rev:>10,}đ\")\n```\nMột bảng nhỏ gọn, căn lề đẹp, sếp đọc là hiểu ngay.\n\n## Bạn vừa làm gì\nBạn đã đi qua đúng quy trình mà một data analyst hay AI engineer làm hằng ngày: nhận dữ liệu bẩn, làm sạch, gom nhóm, xếp hạng, nhìn theo thời gian, báo cáo cả số dòng lỗi. Ở thực tế, bước tiếp theo thường là dùng thư viện pandas cho bảng lớn, hoặc đưa các con số này vào một model để dự báo doanh thu tháng sau. Nhưng logic bên dưới thì vẫn là những gì bạn vừa viết.",
+  "terms": [
+   {
+    "en": "data cleaning",
+    "vi": "làm sạch dữ liệu"
+   },
+   {
+    "en": "group by",
+    "vi": "gom nhóm rồi tính cho từng nhóm"
+   },
+   {
+    "en": "aggregation",
+    "vi": "tổng hợp nhiều dòng thành một con số"
+   },
+   {
+    "en": "feature engineering",
+    "vi": "tạo đặc trưng mới từ dữ liệu sẵn có"
+   },
+   {
+    "en": "pandas",
+    "vi": "thư viện xử lý bảng dữ liệu"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Vì sao nên gom việc kiểm tra dòng lỗi vào một hàm row_revenue riêng?",
+    "choices": [
+     "Vì Python bắt buộc",
+     "Để quy tắc làm sạch nằm ở một chỗ, mọi hàm khác dùng chung và dễ sửa",
+     "Để code dài hơn",
+     "Để không cần try except"
+    ],
+    "answer": 1,
+    "why": "Khi quy tắc chỉ nằm ở một nơi, bạn sửa một lần là mọi phân tích đều nhất quán."
+   },
+   {
+    "q": "Với dict by_product = {\"Trà đào\": 245000, \"Bánh flan\": 90000}, max(by_product, key=by_product.get) trả về gì?",
+    "choices": [
+     "245000",
+     "(\"Trà đào\", 245000)",
+     "\"Bánh flan\"",
+     "\"Trà đào\""
+    ],
+    "answer": 3,
+    "why": "Duyệt dict là duyệt key. key=by_product.get so sánh theo giá trị, nhưng max vẫn trả về key."
+   },
+   {
+    "q": "Lấy \"2026-10-02\"[:7] để gom theo tháng là ví dụ của việc gì?",
+    "choices": [
+     "Feature engineering, tạo đặc trưng mới từ dữ liệu sẵn có",
+     "Debugging",
+     "Encapsulation",
+     "Broadcasting"
+    ],
+    "answer": 0,
+    "why": "Bạn tạo ra một cột mới là tháng từ cột ngày có sẵn để phân tích theo một góc nhìn khác."
+   },
+   {
+    "q": "Trong dữ liệu mẫu, vì sao báo cáo nên ghi rõ số dòng lỗi thay vì chỉ lặng lẽ bỏ qua?",
+    "choices": [
+     "Vì dòng lỗi làm tăng doanh thu",
+     "Vì Python yêu cầu",
+     "Để người đọc biết con số có thể thiếu và đi sửa nguồn dữ liệu",
+     "Để báo cáo dài hơn"
+    ],
+    "answer": 2,
+    "why": "Nếu nhiều dòng bị bỏ, tổng doanh thu bị thấp đi. Minh bạch số dòng lỗi giúp quyết định dựa trên dữ liệu đáng tin hơn."
+   }
+  ],
+  "code": {
+   "prompt": "Viết 3 hàm cho dữ liệu bán hàng là list dict có \"date\" (\"YYYY-MM-DD\"), \"product\", \"category\", \"qty\", \"price\". Dòng có qty hoặc price không đổi được sang int (hoặc thiếu key) là dòng lỗi.\n1) revenue_by_category(sales) -> dict {category: doanh thu}, bỏ dòng lỗi.\n2) top_product(sales) -> tên sản phẩm có tổng doanh thu cao nhất, None nếu không có dòng hợp lệ.\n3) monthly_report(sales) -> dict {\"months\": {\"YYYY-MM\": doanh thu}, \"bad_rows\": số dòng lỗi}.\nVí dụ với dữ liệu trong bài: revenue_by_category -> {\"tea\": 245000, \"coffee\": 125000, \"dessert\": 90000}; top_product -> \"Trà đào\"; monthly_report -> {\"months\": {\"2026-09\": 230000, \"2026-10\": 230000}, \"bad_rows\": 1}",
+   "starter": "def revenue_by_category(sales):\n    # TODO\n    pass\n\n\ndef top_product(sales):\n    # TODO\n    pass\n\n\ndef monthly_report(sales):\n    # TODO\n    pass\n",
+   "solution": "def row_revenue(row):\n    try:\n        return int(row[\"qty\"]) * int(row[\"price\"])\n    except (ValueError, KeyError, TypeError):\n        return None\n\n\ndef revenue_by(sales, field):\n    totals = {}\n    for row in sales:\n        rev = row_revenue(row)\n        if rev is None:\n            continue\n        totals[row[field]] = totals.get(row[field], 0) + rev\n    return totals\n\n\ndef revenue_by_category(sales):\n    return revenue_by(sales, \"category\")\n\n\ndef top_product(sales):\n    by_product = revenue_by(sales, \"product\")\n    if not by_product:\n        return None\n    return max(by_product, key=by_product.get)\n\n\ndef monthly_report(sales):\n    months = {}\n    bad = 0\n    for row in sales:\n        rev = row_revenue(row)\n        if rev is None:\n            bad += 1\n            continue\n        m = row[\"date\"][:7]\n        months[m] = months.get(m, 0) + rev\n    return {\"months\": months, \"bad_rows\": bad}\n",
+   "tests": "sales = [\n    {\"date\": \"2026-09-03\", \"product\": \"Trà đào\", \"category\": \"tea\", \"qty\": 3, \"price\": 35000},\n    {\"date\": \"2026-09-15\", \"product\": \"Cà phê sữa\", \"category\": \"coffee\", \"qty\": 5, \"price\": 25000},\n    {\"date\": \"2026-10-02\", \"product\": \"Trà đào\", \"category\": \"tea\", \"qty\": 4, \"price\": 35000},\n    {\"date\": \"2026-10-09\", \"product\": \"Bánh flan\", \"category\": \"dessert\", \"qty\": 6, \"price\": 15000},\n    {\"date\": \"2026-10-20\", \"product\": \"Cà phê sữa\", \"category\": \"coffee\", \"qty\": \"?\", \"price\": 25000},\n]\nassert revenue_by_category(sales) == {\"tea\": 245000, \"coffee\": 125000, \"dessert\": 90000}, 'doanh thu theo nhóm sai, nhớ bỏ dòng lỗi'\nassert top_product(sales) == \"Trà đào\", 'Trà đào có doanh thu cao nhất'\nassert monthly_report(sales) == {\"months\": {\"2026-09\": 230000, \"2026-10\": 230000}, \"bad_rows\": 1}, 'báo cáo tháng sai hoặc đếm sai dòng lỗi'\nassert top_product([]) is None, 'không có dữ liệu thì top_product trả về None'\nassert monthly_report([{\"date\": \"2026-01-01\", \"qty\": 1}]) == {\"months\": {}, \"bad_rows\": 1}, 'dòng thiếu price là dòng lỗi'\nassert revenue_by_category([{\"date\": \"2026-01-01\", \"product\": \"A\", \"category\": \"x\", \"qty\": \"2\", \"price\": \"10\"}]) == {\"x\": 20}, 'qty và price dạng chuỗi số vẫn hợp lệ'\n",
+   "hint": "Viết thêm một hàm phụ tính doanh thu một dòng trong try except, trả None khi lỗi. Dùng mẫu totals.get(key, 0) + rev để gom nhóm, max(d, key=d.get) để tìm top, và date[:7] để lấy tháng."
+  },
+  "takeaway": "Một phân tích dữ liệu tốt gồm các bước nhỏ rõ ràng: làm sạch ở một chỗ, gom nhóm bằng dict, xếp hạng bằng key, nhìn theo thời gian, và luôn báo cáo số dòng lỗi."
+ }
+]

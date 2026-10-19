@@ -1,0 +1,1205 @@
+[
+ {
+  "id": "math-01",
+  "track": "math",
+  "unit": "Vectors and matrices",
+  "order": 1,
+  "title": "Vectors",
+  "title_vi": "Vector: danh sách số và mũi tên",
+  "level": 1,
+  "minutes": 10,
+  "body": "Nếu bạn từng mở một file Excel danh sách khách hàng, bạn đã gặp vector rồi. Mỗi dòng là một khách: 28 tuổi, 12 đơn hàng, tổng chi 3,5 triệu. Viết gọn lại thành [28, 12, 3.5], đó là một **vector** (một danh sách số có thứ tự, mỗi vị trí mang một ý nghĩa cố định).\n\n## Hai cách nhìn cùng một thứ\n- Nhìn như danh sách: vector là một dãy số. Vị trí rất quan trọng: [28, 12] khác [12, 28], vì số đầu là tuổi, số sau là số đơn.\n- Nhìn như mũi tên: với vector [3, 2], hãy tưởng tượng bạn đứng ở gốc toạ độ, đi sang phải 3 bước, lên trên 2 bước. Mũi tên từ gốc đến điểm đó chính là vector. Nó có hướng (chỉ về đâu) và độ dài (đi xa bao nhiêu).\n\nVới 2 hoặc 3 số thì ta vẽ được. Vector khách hàng có thể có 50 số, ta không vẽ được 50 chiều, nhưng mọi phép tính vẫn y như vậy. Đây là mẹo quan trọng nhất của toán cho AI: hiểu trên hình 2D, rồi tin rằng nó vẫn đúng ở 1000 chiều.\n\nSố phần tử của vector gọi là **dimension** (số chiều). Một embedding (vector biểu diễn ý nghĩa của một từ hay một câu) trong các mô hình ngôn ngữ thường có vài trăm đến vài nghìn chiều.\n\n## Cộng hai vector\nCộng từng vị trí với nhau: [3, 2] + [1, 4] = [4, 6]. Trên hình, đó là đi theo mũi tên thứ nhất, rồi từ chỗ đó đi tiếp mũi tên thứ hai. Giống đi Grab: từ nhà đến quán cà phê, rồi từ quán đến văn phòng; tổng quãng dịch chuyển là mũi tên từ nhà thẳng đến văn phòng.\n\nVí dụ đời thường: giỏ hàng tuần 1 là [2 kg gạo, 1 chai nước mắm], tuần 2 là [3, 0]. Cộng lại được [5, 1], tổng của hai tuần. Chỉ cộng được khi hai vector cùng số chiều và cùng ý nghĩa ở từng vị trí.\n\n## Nhân vector với một số\nNhân mọi phần tử với cùng một số: 2 × [3, 2] = [6, 4]. Mũi tên giữ nguyên hướng nhưng dài gấp đôi. Nhân 0.5 thì ngắn lại một nửa. Nhân số âm, ví dụ -1, thì mũi tên quay ngược hướng. Con số đứng ngoài đó gọi là **scalar** (một số đơn lẻ, không phải danh sách), và phép nhân này gọi là scaling (co giãn).\n\nVí dụ: công thức nấu cho 2 người là [200 g thịt, 100 g rau]. Nấu cho 6 người thì nhân 3: [600, 300]. Tỷ lệ giữa các nguyên liệu không đổi, đó chính là \"giữ nguyên hướng\".\n\n## Độ dài của vector\nĐộ dài, gọi là **norm**, tính bằng định lý Pytago quen thuộc: vector [3, 4] dài √(3² + 4²) = √25 = 5. Nhiều chiều hơn thì cộng bình phương tất cả phần tử rồi lấy căn.\n\n## Vì sao AI cần những thứ này\nMô hình AI không hiểu chữ, ảnh hay âm thanh. Nó chỉ làm việc với số. Một bức ảnh xám 28×28 điểm ảnh là một vector 784 số. Một câu văn được biến thành embedding. Khi mọi thứ đã là vector, ta có thể cộng, co giãn, đo độ dài, và ở bài sau là đo xem hai vector giống nhau đến đâu.\n\n```\na = [3, 2]\nb = [1, 4]\ntotal = [a[0] + b[0], a[1] + b[1]]   # [4, 6]\ndouble_a = [2 * x for x in a]        # [6, 4]\n```",
+  "terms": [
+   {
+    "en": "vector",
+    "vi": "danh sách số có thứ tự, cũng là một mũi tên"
+   },
+   {
+    "en": "dimension",
+    "vi": "số chiều, số phần tử của vector"
+   },
+   {
+    "en": "scalar",
+    "vi": "một số đơn lẻ"
+   },
+   {
+    "en": "scaling",
+    "vi": "nhân vector với một số để co giãn"
+   },
+   {
+    "en": "norm",
+    "vi": "độ dài của vector"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Vector [tuổi, số đơn] của khách A là [28, 12], của khách B là [12, 28]. Hai vector này có giống nhau không?",
+    "choices": [
+     "Giống, vì cùng chứa hai con số 28 và 12",
+     "Khác, vì vị trí mang ý nghĩa: A 28 tuổi 12 đơn, B 12 tuổi 28 đơn",
+     "Giống, vì tổng các phần tử bằng nhau",
+     "Không so sánh được vì khác số chiều"
+    ],
+    "answer": 1,
+    "why": "Trong vector, thứ tự quyết định ý nghĩa của từng con số. Đổi chỗ là đổi hẳn nội dung."
+   },
+   {
+    "q": "Nhân vector [3, 2] với -1 thì mũi tên thay đổi thế nào?",
+    "choices": [
+     "Dài gấp đôi",
+     "Biến mất",
+     "Quay ngược hướng, giữ nguyên độ dài",
+     "Xoay 90 độ"
+    ],
+    "answer": 2,
+    "why": "Kết quả là [-3, -2]: cùng độ dài nhưng chỉ về phía ngược lại. Nhân số âm luôn đảo hướng."
+   },
+   {
+    "q": "Độ dài (norm) của vector [6, 8] là bao nhiêu?",
+    "choices": [
+     "10",
+     "14",
+     "48",
+     "100"
+    ],
+    "answer": 0,
+    "why": "√(6² + 8²) = √(36 + 64) = √100 = 10. Không phải cộng thẳng 6 + 8."
+   },
+   {
+    "q": "Bạn cộng vector [kg gạo, chai nước mắm] với vector [nhiệt độ, độ ẩm]. Điều gì xảy ra?",
+    "choices": [
+     "Kết quả là tổng lượng hàng",
+     "Không cộng được vì máy tính báo lỗi",
+     "Kết quả đúng nếu đổi đơn vị",
+     "Phép cộng chạy được về mặt số nhưng kết quả vô nghĩa vì từng vị trí mang ý nghĩa khác nhau"
+    ],
+    "answer": 3,
+    "why": "Máy tính vẫn cộng được hai danh sách 2 số, nhưng cộng kg gạo với nhiệt độ không cho ra thông tin gì. Vector chỉ cộng có nghĩa khi cùng ý nghĩa ở từng vị trí."
+   }
+  ],
+  "code": {
+   "prompt": "Viết 3 hàm cho vector dạng list:\n- add(a, b): cộng từng vị trí, ví dụ add([3, 2], [1, 4]) trả về [4, 6]\n- scale(k, v): nhân mọi phần tử với k, ví dụ scale(2, [3, 2]) trả về [6, 4]\n- norm(v): độ dài vector, ví dụ norm([3, 4]) trả về 5.0\nGiả sử a và b luôn cùng số chiều. Vector rỗng [] có norm bằng 0.",
+   "starter": "import math\n\ndef add(a, b):\n    # TODO: return a new list with element-wise sums\n    pass\n\ndef scale(k, v):\n    # TODO: multiply every element by k\n    pass\n\ndef norm(v):\n    # TODO: square root of the sum of squares\n    pass\n",
+   "solution": "import math\n\ndef add(a, b):\n    return [x + y for x, y in zip(a, b)]\n\ndef scale(k, v):\n    return [k * x for x in v]\n\ndef norm(v):\n    return math.sqrt(sum(x * x for x in v))\n",
+   "tests": "assert add([3, 2], [1, 4]) == [4, 6], 'add([3, 2], [1, 4]) phải bằng [4, 6]'\nassert add([], []) == [], 'cộng hai vector rỗng phải ra []'\nassert scale(2, [3, 2]) == [6, 4], 'scale(2, [3, 2]) phải bằng [6, 4]'\nassert scale(-1, [1, -2]) == [-1, 2], 'nhân -1 phải đảo dấu mọi phần tử'\nassert abs(norm([3, 4]) - 5) < 1e-9, 'norm([3, 4]) phải bằng 5'\nassert norm([0, 0, 0]) == 0, 'vector toàn số 0 có độ dài 0'\nassert abs(norm([1, 2, 2]) - 3) < 1e-9, 'norm([1, 2, 2]) phải bằng 3'\n",
+   "hint": "Dùng zip(a, b) để đi qua từng cặp phần tử cùng vị trí. Với norm, bình phương từng phần tử, cộng lại, rồi dùng math.sqrt."
+  },
+  "takeaway": "Vector là một danh sách số có thứ tự, cũng là một mũi tên có hướng và độ dài; cộng là nối mũi tên, nhân với một số là co giãn mũi tên."
+ },
+ {
+  "id": "math-02",
+  "track": "math",
+  "unit": "Vectors and matrices",
+  "order": 2,
+  "title": "Dot product and cosine similarity",
+  "title_vi": "Đo độ giống nhau giữa hai vector",
+  "level": 2,
+  "minutes": 12,
+  "lab": "embedding-map",
+  "body": "Bài trước ta có vector. Bài này trả lời câu hỏi mà mọi hệ thống tìm kiếm, gợi ý sản phẩm và RAG đều phải hỏi: hai vector này giống nhau đến mức nào?\n\n## Dot product: nhân từng cặp rồi cộng lại\n**Dot product** (tích vô hướng) của [1, 2, 3] và [4, 5, 6] là 1×4 + 2×5 + 3×6 = 32. Kết quả là một con số, không phải vector.\n\nVí dụ ở cửa hàng: giỏ hàng [2 ổ bánh mì, 3 hộp sữa, 1 kg táo], bảng giá [15, 30, 60] nghìn. Dot product = 2×15 + 3×30 + 1×60 = 180 nghìn, đúng bằng tổng hoá đơn. Bạn đã làm dot product ở quầy thu ngân cả đời mà không biết tên của nó.\n\n## Ý nghĩa hình học\nTrên hình mũi tên, dot product lớn và dương khi hai mũi tên chỉ cùng một hướng, bằng 0 khi chúng vuông góc (không liên quan gì đến nhau), và âm khi chúng chỉ ngược hướng.\n\nThử với sở thích xem phim: mỗi người là vector [thích phim hành động, thích phim tình cảm], chấm điểm từ -2 đến 2.\n- An [2, -1] và Bình [2, -2]: dot = 4 + 2 = 6, khá hợp gu.\n- An [2, -1] và Chi [-2, 1]: dot = -4 - 1 = -5, ngược gu hẳn.\n\n## Vấn đề: dot product bị độ dài làm nhiễu\nGiả sử Dũng [20, -10], cùng gu với An nhưng chấm điểm mạnh tay gấp 10 lần. Dot product của Dũng với ai cũng phình to, chỉ vì vector của Dũng dài. Ta muốn so hướng, không muốn so độ dài.\n\n## Cosine similarity: chỉ giữ lại hướng\nCách sửa: chia dot product cho tích hai độ dài.\n\ncos(a, b) = (a · b) / (‖a‖ × ‖b‖)\n\nKết quả luôn nằm trong khoảng từ -1 đến 1:\n- Gần 1: cùng hướng, rất giống nhau.\n- Gần 0: không liên quan.\n- Gần -1: ngược nhau.\n\nAn [2, -1] và Dũng [20, -10] có **cosine similarity** (độ giống nhau theo hướng) đúng bằng 1, vì chúng cùng hướng, chỉ khác độ dài. Đây đúng là điều ta muốn. Tên gọi đến từ góc giữa hai mũi tên: góc 0 độ thì cos bằng 1, góc 90 độ thì bằng 0, góc 180 độ thì bằng -1.\n\n## Trong AI dùng ở đâu\nKhi một mô hình biến câu \"điện thoại pin trâu\" và câu \"smartphone dùng được lâu\" thành embedding (vector biểu diễn ý nghĩa), hai vector chỉ về gần cùng một hướng nên cosine similarity cao, dù không có chữ nào trùng nhau. Đây là nền móng của **semantic search** (tìm theo ý nghĩa thay vì theo từ khoá), của gợi ý kiểu \"khách mua món này cũng thích...\", và của bước tìm đoạn văn liên quan trong RAG. Lab embedding-map cho bạn thấy các từ gần nghĩa nằm sát nhau trên bản đồ 2D.\n\nMẹo thực tế: nhiều hệ thống **normalize** (chuẩn hoá về độ dài 1) mọi vector ngay từ đầu. Khi đó cosine similarity chính bằng dot product, tính nhanh hơn nhiều.\n\n```\ndef dot(a, b):\n    return sum(x * y for x, y in zip(a, b))\n\nprint(dot([2, 15, 1], [15, 30, 60]))\n```",
+  "terms": [
+   {
+    "en": "dot product",
+    "vi": "tích vô hướng: nhân từng cặp rồi cộng lại"
+   },
+   {
+    "en": "cosine similarity",
+    "vi": "độ giống nhau theo hướng, từ -1 đến 1"
+   },
+   {
+    "en": "embedding",
+    "vi": "vector biểu diễn ý nghĩa"
+   },
+   {
+    "en": "semantic search",
+    "vi": "tìm kiếm theo ý nghĩa"
+   },
+   {
+    "en": "normalize",
+    "vi": "chuẩn hoá vector về độ dài 1"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Giỏ hàng [1 ly trà, 2 bánh] và bảng giá [10, 5] nghìn. Dot product là bao nhiêu?",
+    "choices": [
+     "15",
+     "20",
+     "[10, 10]",
+     "25"
+    ],
+    "answer": 1,
+    "why": "1×10 + 2×5 = 20. Dot product là một con số, ở đây chính là tổng tiền."
+   },
+   {
+    "q": "Cosine similarity của [1, 0] và [0, 3] là bao nhiêu?",
+    "choices": [
+     "1",
+     "3",
+     "-1",
+     "0"
+    ],
+    "answer": 3,
+    "why": "Dot product = 1×0 + 0×3 = 0, nên cosine bằng 0. Hai mũi tên vuông góc, không liên quan đến nhau."
+   },
+   {
+    "q": "So sánh hai bài review: một bài dài, một bài ngắn, cùng ý khen sản phẩm. Vì sao dùng cosine similarity tốt hơn dot product?",
+    "choices": [
+     "Vì cosine loại bỏ ảnh hưởng của độ dài vector, chỉ so hướng",
+     "Vì cosine luôn cho số lớn hơn",
+     "Vì dot product chỉ dùng cho số nguyên",
+     "Vì cosine không cần nhân"
+    ],
+    "answer": 0,
+    "why": "Bài dài có thể cho vector dài hơn, làm dot product phình to. Cosine chia cho độ dài nên chỉ còn lại hướng, tức là nội dung."
+   },
+   {
+    "q": "Hai embedding có cosine similarity bằng -0.9. Điều đó gợi ý gì?",
+    "choices": [
+     "Hai câu gần như giống hệt nhau",
+     "Hai câu không liên quan",
+     "Hai vector chỉ gần như ngược hướng nhau",
+     "Một trong hai vector bị lỗi"
+    ],
+    "answer": 2,
+    "why": "Giá trị gần -1 nghĩa là hai mũi tên chỉ gần như ngược nhau. Trong thực tế với embedding văn bản, giá trị âm mạnh như vậy khá hiếm."
+   }
+  ],
+  "code": {
+   "prompt": "Viết 2 hàm:\n- dot(a, b): dot product, ví dụ dot([1, 2, 3], [4, 5, 6]) trả về 32\n- cosine(a, b): cosine similarity, ví dụ cosine([2, -1], [20, -10]) trả về 1.0 (sai số rất nhỏ chấp nhận được)\nNếu một trong hai vector có độ dài bằng 0, cosine trả về 0.0 để tránh chia cho 0.",
+   "starter": "import math\n\ndef dot(a, b):\n    # TODO: multiply pairs and sum\n    pass\n\ndef cosine(a, b):\n    # TODO: dot divided by the product of the two lengths\n    pass\n",
+   "solution": "import math\n\ndef dot(a, b):\n    return sum(x * y for x, y in zip(a, b))\n\ndef cosine(a, b):\n    na = math.sqrt(dot(a, a))\n    nb = math.sqrt(dot(b, b))\n    if na == 0 or nb == 0:\n        return 0.0\n    return dot(a, b) / (na * nb)\n",
+   "tests": "assert dot([1, 2, 3], [4, 5, 6]) == 32, 'dot([1, 2, 3], [4, 5, 6]) phải bằng 32'\nassert dot([], []) == 0, 'dot của hai vector rỗng phải bằng 0'\nassert abs(cosine([2, -1], [20, -10]) - 1) < 1e-9, 'hai vector cùng hướng phải có cosine bằng 1'\nassert abs(cosine([1, 0], [0, 5])) < 1e-9, 'hai vector vuông góc phải có cosine bằng 0'\nassert abs(cosine([1, 2], [-1, -2]) + 1) < 1e-9, 'hai vector ngược hướng phải có cosine bằng -1'\nassert cosine([0, 0], [1, 2]) == 0.0, 'vector độ dài 0 thì cosine trả về 0.0'\n",
+   "hint": "Độ dài của vector a chính là căn bậc hai của dot(a, a). Kiểm tra trường hợp độ dài bằng 0 trước khi chia."
+  },
+  "takeaway": "Dot product nhân từng cặp rồi cộng; chia cho tích hai độ dài ta được cosine similarity, thước đo độ giống nhau về hướng mà semantic search và RAG dùng hằng ngày."
+ },
+ {
+  "id": "math-03",
+  "track": "math",
+  "unit": "Vectors and matrices",
+  "order": 3,
+  "title": "Matrices as transformations",
+  "title_vi": "Ma trận là cỗ máy biến đổi vector",
+  "level": 2,
+  "minutes": 12,
+  "body": "**Matrix** (ma trận) nghe đáng sợ, nhưng thực chất chỉ là một bảng số có hàng và cột, giống một sheet Excel. Ma trận 2×3 có 2 hàng, 3 cột.\n\n## Nhân ma trận với vector: mỗi hàng làm một dot product\nLấy ma trận M = [[2, 0], [0, 3]] (hàng 1 là [2, 0], hàng 2 là [0, 3]) và vector v = [x, y]:\n\nMv = [hàng 1 · v, hàng 2 · v] = [2x + 0y, 0x + 3y] = [2x, 3y]\n\nQuy tắc chỉ có vậy: mỗi hàng của ma trận làm dot product với vector, cho ra một số. Ma trận có bao nhiêu hàng thì kết quả có bấy nhiêu số. Vì vậy số cột của ma trận phải bằng số chiều của vector.\n\nVí dụ quán trà sữa: vector đơn hàng [số ly trà sữa, số ly cà phê] = [3, 2]. Ma trận có hàng 1 là lượng đường mỗi ly [20, 10] gram, hàng 2 là giá mỗi ly [40, 30] nghìn. Nhân lại được [20×3 + 10×2, 40×3 + 30×2] = [80 g đường, 180 nghìn]. Một phép nhân trả lời hai câu hỏi cùng lúc.\n\n## Cách nhìn quan trọng hơn: ma trận là một phép biến đổi\nHãy tưởng tượng ma trận là một cái máy: đưa vào một vector (một mũi tên), máy trả ra một vector khác. Với M ở trên, mọi điểm bị kéo giãn gấp 2 theo chiều ngang và gấp 3 theo chiều dọc. Một hình vuông biến thành hình chữ nhật. Đây gọi là **linear transformation** (phép biến đổi tuyến tính: kéo giãn, xoay, lật không gian mà các đường thẳng vẫn thẳng).\n\nVài cái máy quen thuộc:\n- [[1, 0], [0, 1]] là **identity matrix** (ma trận đơn vị): giữ nguyên mọi thứ, giống nhân với 1.\n- [[-1, 0], [0, 1]]: lật ngang như soi gương.\n- [[0, -1], [1, 0]]: xoay mọi mũi tên 90 độ ngược chiều kim đồng hồ. Thử với [1, 0]: kết quả là [0, 1].\n\nMa trận cũng có thể đổi số chiều: ma trận 2×3 nhận vector 3 chiều, trả ra vector 2 chiều. Đây là một cách nén thông tin.\n\n## Vì sao đây là trái tim của neural network\nMột layer (lớp) trong neural network về cơ bản làm việc này: nhận vector đầu vào x, nhân với ma trận W, cộng thêm vector b, rồi đưa qua một hàm phi tuyến f. Viết gọn: y = f(Wx + b). Các con số trong W gọi là **weights** (trọng số), b gọi là bias (độ lệch). \"Huấn luyện mô hình\" nghĩa là chỉnh các con số này cho đến khi phép biến đổi làm đúng việc ta muốn.\n\nMỗi hàng của W giống một máy dò một đặc điểm: hàng này phản ứng mạnh khi khách hay mua vào cuối tháng, hàng kia khi khách hay dùng mã giảm giá. Kết quả Wx cho biết vector đầu vào khớp với từng đặc điểm đến đâu.\n\nNhân hai ma trận với nhau nghĩa là ghép hai phép biến đổi nối tiếp: làm cái này rồi làm cái kia. Thứ tự quan trọng: xoay rồi kéo giãn khác với kéo giãn rồi xoay, nên AB thường khác BA.\n\n```\nM = [[2, 0], [0, 3]]\nv = [1, 1]\nresult = [sum(m * x for m, x in zip(row, v)) for row in M]  # [2, 3]\n```",
+  "terms": [
+   {
+    "en": "matrix",
+    "vi": "ma trận, bảng số có hàng và cột"
+   },
+   {
+    "en": "matrix-vector multiplication",
+    "vi": "nhân ma trận với vector: mỗi hàng làm một dot product"
+   },
+   {
+    "en": "linear transformation",
+    "vi": "phép biến đổi tuyến tính: kéo giãn, xoay, lật"
+   },
+   {
+    "en": "identity matrix",
+    "vi": "ma trận đơn vị, giữ nguyên vector"
+   },
+   {
+    "en": "weights",
+    "vi": "trọng số, các con số mô hình học được"
+   },
+   {
+    "en": "layer",
+    "vi": "một lớp tính toán trong neural network"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Ma trận [[1, 2], [3, 4]] nhân với vector [1, 1] cho kết quả gì?",
+    "choices": [
+     "[1, 2]",
+     "[4, 6]",
+     "[3, 7]",
+     "[10]"
+    ],
+    "answer": 2,
+    "why": "Hàng 1: 1×1 + 2×1 = 3. Hàng 2: 3×1 + 4×1 = 7. Mỗi hàng cho ra một số."
+   },
+   {
+    "q": "Ma trận 2×3 (2 hàng, 3 cột) nhân với vector. Vector phải có bao nhiêu chiều, và kết quả có bao nhiêu chiều?",
+    "choices": [
+     "Vector 3 chiều, kết quả 2 chiều",
+     "Vector 2 chiều, kết quả 3 chiều",
+     "Vector 6 chiều, kết quả 1 chiều",
+     "Vector bao nhiêu chiều cũng được"
+    ],
+    "answer": 0,
+    "why": "Số cột phải bằng số chiều vector để làm được dot product. Mỗi hàng cho một số, 2 hàng nên kết quả 2 chiều."
+   },
+   {
+    "q": "Ma trận [[3, 0], [0, 3]] làm gì với mọi vector?",
+    "choices": [
+     "Xoay 90 độ",
+     "Lật ngang",
+     "Giữ nguyên",
+     "Phóng to gấp 3, giữ nguyên hướng"
+    ],
+    "answer": 3,
+    "why": "Kết quả là [3x, 3y], tức là nhân cả vector với 3. Hướng giữ nguyên, độ dài gấp 3."
+   },
+   {
+    "q": "Trong một layer y = f(Wx + b), khi huấn luyện mô hình ta điều chỉnh cái gì?",
+    "choices": [
+     "Dữ liệu đầu vào x",
+     "Các con số trong W và b",
+     "Hàm f",
+     "Số chiều của x"
+    ],
+    "answer": 1,
+    "why": "Dữ liệu là cố định. Thứ mô hình học là weights W và bias b, để phép biến đổi cho ra kết quả đúng."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm matvec(M, v) nhân ma trận M (list các hàng) với vector v (list).\nVí dụ: matvec([[2, 0], [0, 3]], [1, 1]) trả về [2, 3].\nmatvec([[1, 2, 3], [4, 5, 6]], [1, 0, 1]) trả về [4, 10].\nMa trận rỗng [] trả về [].",
+   "starter": "def matvec(M, v):\n    # TODO: each row of M does a dot product with v\n    pass\n",
+   "solution": "def matvec(M, v):\n    return [sum(m * x for m, x in zip(row, v)) for row in M]\n",
+   "tests": "assert matvec([[2, 0], [0, 3]], [1, 1]) == [2, 3], 'matvec([[2, 0], [0, 3]], [1, 1]) phải bằng [2, 3]'\nassert matvec([[1, 0], [0, 1]], [7, -4]) == [7, -4], 'ma trận đơn vị phải giữ nguyên vector'\nassert matvec([[0, -1], [1, 0]], [1, 0]) == [0, 1], 'ma trận xoay 90 độ biến [1, 0] thành [0, 1]'\nassert matvec([[1, 2, 3], [4, 5, 6]], [1, 0, 1]) == [4, 10], 'ma trận 2x3 nhân vector 3 chiều phải ra [4, 10]'\nassert matvec([], [1, 2]) == [], 'ma trận rỗng phải trả về []'\n",
+   "hint": "Duyệt từng hàng của M. Với mỗi hàng, làm dot product với v như bài trước, rồi gom các kết quả vào một list."
+  },
+  "takeaway": "Nhân ma trận với vector là mỗi hàng làm một dot product; nhìn rộng hơn, ma trận là cỗ máy biến đổi vector, và mỗi layer của neural network là một cỗ máy như vậy."
+ },
+ {
+  "id": "math-04",
+  "track": "math",
+  "unit": "Vectors and matrices",
+  "order": 4,
+  "title": "Why GPUs love matrices",
+  "title_vi": "Vì sao GPU và ma trận là cặp bài trùng",
+  "level": 1,
+  "minutes": 8,
+  "body": "Bạn có thể đã nghe Nvidia trở thành một trong những công ty giá trị nhất thế giới nhờ làn sóng AI. Lý do nằm ở chính phép nhân ma trận bạn vừa học.\n\n## Đếm thử số phép tính\nNhân một ma trận 1000×1000 với một vector 1000 chiều cần 1000 dot product, mỗi cái 1000 phép nhân: tổng cộng một triệu phép nhân. Nhân hai ma trận 1000×1000 với nhau thì cần khoảng một tỷ phép nhân. Một mô hình ngôn ngữ lớn làm những phép nhân như vậy cho từng token (mảnh chữ) nó đọc và viết ra, qua hàng chục layer. Chỉ để trả lời một câu hỏi, số phép tính có thể lên tới hàng nghìn tỷ.\n\n## Điểm mấu chốt: các phép tính không phải chờ nhau\nNhìn lại cách nhân ma trận với vector: hàng 1 làm dot product với vector, hàng 2 cũng vậy. Kết quả của hàng 1 không cần biết kết quả của hàng 2. Nghĩa là ta có thể giao cho 1000 \"công nhân\" mỗi người một hàng, tất cả làm cùng lúc. Đây gọi là **parallelism** (tính song song: nhiều việc chạy đồng thời).\n\nSo sánh với bếp nhà hàng:\n- **CPU** (bộ xử lý trung tâm) giống vài đầu bếp rất giỏi. Mỗi người làm được món phức tạp, xử lý tình huống bất ngờ, nhưng chỉ có vài người.\n- **GPU** (bộ xử lý đồ hoạ) giống hàng nghìn phụ bếp chỉ biết làm việc đơn giản như thái hành. Bảo họ làm món phức tạp thì không được, nhưng bảo thái 10.000 củ hành thì xong trong chớp mắt vì tất cả cùng thái.\n\nNhân ma trận chính là \"thái hành\": hàng triệu phép nhân và cộng giống hệt nhau, độc lập với nhau. GPU ban đầu được thiết kế để tính màu cho hàng triệu điểm ảnh trong game, cũng là việc đơn giản lặp lại song song. Năm 2012, mô hình AlexNet được huấn luyện trên GPU và thắng cách biệt một cuộc thi nhận diện ảnh lớn. Từ đó GPU trở thành công cụ tiêu chuẩn của deep learning.\n\n## Viết code theo kiểu cả khối\nVì thế trong AI, người ta tránh viết vòng lặp xử lý từng số một. Thay vào đó, gom dữ liệu thành ma trận lớn rồi ra một lệnh nhân duy nhất. Cách viết này gọi là **vectorization** (vector hoá: tính trên cả khối dữ liệu một lúc). Thư viện như numpy (trên CPU) hay PyTorch (trên GPU) tự chia việc cho phần cứng.\n\n```\nimport numpy as np\nW = np.random.rand(1000, 1000)\nx = np.random.rand(1000)\ny = W @ x   # one million multiplications in one line\n```\n\nXử lý nhiều input cùng lúc cũng là ma trận: xếp 64 câu thành 64 hàng, ta có một **batch** (một mẻ dữ liệu), và cả mẻ được nhân với ma trận trọng số trong một lần. Phần cứng chạy cả mẻ gần như nhanh bằng chạy một câu, nên batch giúp tận dụng GPU tốt hơn.\n\n## Vài điều nên biết thêm\n- Chip chuyên cho AI như TPU của Google đi theo cùng triết lý: tối ưu riêng cho nhân ma trận.\n- Bộ nhớ GPU thường là giới hạn thực tế: mô hình càng lớn thì ma trận trọng số càng nhiều, và chúng phải nằm vừa trong bộ nhớ.\n- Giá thuê GPU và dòng chip mạnh nhất thay đổi rất nhanh. Tính đến 2026, đây vẫn là một trong những khoản chi phí lớn nhất khi làm AI.\n\nKhi bạn nghe ai nói \"mô hình này cần nhiều **compute**\" (sức tính toán), hãy hiểu là: cần nhân rất, rất nhiều ma trận.",
+  "terms": [
+   {
+    "en": "GPU",
+    "vi": "bộ xử lý đồ hoạ, rất nhiều lõi nhỏ chạy song song"
+   },
+   {
+    "en": "CPU",
+    "vi": "bộ xử lý trung tâm, ít lõi nhưng mỗi lõi rất linh hoạt"
+   },
+   {
+    "en": "parallelism",
+    "vi": "tính song song, nhiều phép tính chạy cùng lúc"
+   },
+   {
+    "en": "vectorization",
+    "vi": "tính trên cả khối dữ liệu thay vì vòng lặp từng phần tử"
+   },
+   {
+    "en": "batch",
+    "vi": "một mẻ nhiều input xử lý cùng lúc"
+   },
+   {
+    "en": "compute",
+    "vi": "sức tính toán"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Vì sao nhân ma trận đặc biệt hợp với GPU?",
+    "choices": [
+     "Vì mỗi lõi GPU nhanh hơn mỗi lõi CPU",
+     "Vì ma trận chiếm ít bộ nhớ",
+     "Vì dot product của các hàng độc lập nhau, nên làm song song cùng lúc được",
+     "Vì GPU được thiết kế riêng cho mô hình ngôn ngữ ngay từ đầu"
+    ],
+    "answer": 2,
+    "why": "Sức mạnh của GPU là có rất nhiều lõi chạy cùng lúc. Nhân ma trận gồm vô số phép tính độc lập nên chia việc được cho tất cả các lõi."
+   },
+   {
+    "q": "Việc nào GPU làm tốt hơn hẳn CPU?",
+    "choices": [
+     "Chạy một chuỗi bước mà bước sau phụ thuộc kết quả bước trước",
+     "Cộng 10 triệu cặp số độc lập với nhau",
+     "Xử lý logic if/else nhiều nhánh phức tạp",
+     "Mở một file nhỏ từ ổ cứng"
+    ],
+    "answer": 1,
+    "why": "10 triệu phép cộng độc lập là việc kiểu thái hành: đơn giản, lặp lại, không chờ nhau. Các việc tuần tự hoặc nhiều nhánh logic hợp với CPU hơn."
+   },
+   {
+    "q": "Vectorization trong code AI nghĩa là gì?",
+    "choices": [
+     "Biến chữ thành vector",
+     "Vẽ dữ liệu thành mũi tên",
+     "Nén mô hình cho nhỏ lại",
+     "Viết phép tính trên cả khối dữ liệu một lúc thay vì vòng lặp từng phần tử"
+    ],
+    "answer": 3,
+    "why": "Thay vì vòng for qua từng số, ta gom dữ liệu thành ma trận và gọi một phép tính, để thư viện và phần cứng tự chạy song song."
+   },
+   {
+    "q": "Đưa 64 câu vào mô hình cùng lúc dưới dạng một ma trận gọi là gì, và lợi ích là gì?",
+    "choices": [
+     "Một batch, giúp phần cứng xử lý cả mẻ trong một lần nhân",
+     "Một layer, giúp mô hình sâu hơn",
+     "Một embedding, giúp câu ngắn hơn",
+     "Một token, giúp tiết kiệm bộ nhớ"
+    ],
+    "answer": 0,
+    "why": "Batch xếp nhiều input thành các hàng của một ma trận. GPU nhân cả mẻ gần như nhanh bằng một input nên tận dụng phần cứng tốt hơn."
+   }
+  ],
+  "takeaway": "Nhân ma trận gồm hàng triệu phép tính giống nhau và độc lập, đúng sở trường của GPU, nên AI hiện đại chạy trên GPU và code AI luôn viết theo kiểu cả khối."
+ },
+ {
+  "id": "math-05",
+  "track": "math",
+  "unit": "Change and optimisation",
+  "order": 5,
+  "title": "Functions and graphs",
+  "title_vi": "Hàm số, đồ thị, và mô hình cũng là một hàm",
+  "level": 1,
+  "minutes": 10,
+  "lab": "linear-regression",
+  "body": "**Function** (hàm số) là một cái máy: đưa vào một số, nó trả ra một số theo quy tắc cố định. Viết f(x) = 2x + 1 nghĩa là \"nhận x, nhân 2, cộng 1\". Đưa vào 3, nhận về 7.\n\nVí dụ đời thường: tiền taxi = 12 nghìn mở cửa + 15 nghìn mỗi km. Viết thành hàm: giá(km) = 15 × km + 12. Đi 4 km thì giá(4) = 72 nghìn.\n\n## Graph: vẽ hàm ra để nhìn\n**Graph** (đồ thị) là cách vẽ mọi cặp (input, output) lên mặt phẳng: trục ngang là x, trục dọc là f(x). Nhìn đồ thị, bạn biết ngay hàm tăng hay giảm, tăng nhanh hay chậm, có đáy hay không, mà không cần tính từng điểm.\n\nBa hình dạng hay gặp nhất:\n- Đường thẳng: f(x) = ax + b. Số a quyết định độ dốc, b là chỗ đường cắt trục dọc. Hàm taxi ở trên là một đường thẳng.\n- Parabol hình chữ U: f(x) = x². Có một điểm thấp nhất ở đáy. Hình này cực kỳ quan trọng, vì nó là hình dạng điển hình của \"độ sai\" mà ta muốn đẩy xuống thấp nhất.\n- Đường cong tăng nhanh dần: f(x) = 2^x, giống lãi kép trong ngân hàng.\n\n## Mô hình AI cũng là một hàm\nĐây là ý quan trọng nhất của bài: mọi mô hình machine learning là một hàm. Input là dữ liệu (diện tích căn hộ, một bức ảnh, một câu hỏi), output là dự đoán (giá nhà, \"đây là con mèo\", một câu trả lời). Mô hình đơn giản nhất là một đường thẳng:\n\ngiá dự đoán = w × diện tích + b\n\nHai con số w và b gọi là **parameters** (tham số: những núm vặn mà máy tự chỉnh khi học). \"Huấn luyện\" nghĩa là tìm w và b sao cho đường thẳng đi sát các căn hộ thật nhất. Bài toán này gọi là **linear regression** (hồi quy tuyến tính: tìm đường thẳng khớp nhất với dữ liệu). Mô hình ngôn ngữ lớn cũng là một hàm, chỉ là có hàng tỷ tham số thay vì 2.\n\n## Loss function: đo xem mô hình sai bao nhiêu\nĐể biết một đường thẳng tốt hay dở, ta cần một con số đo độ sai. Với mỗi căn hộ, lấy giá dự đoán trừ giá thật, bình phương lên (để sai âm và sai dương không triệt tiêu nhau, và sai xa bị phạt nặng hơn), rồi lấy trung bình cho tất cả căn hộ. Đây là một **loss function** (hàm mất mát: con số càng nhỏ, mô hình càng đúng), cụ thể là **mean squared error** (trung bình bình phương sai số).\n\nĐiều thú vị: loss cũng là một hàm, nhưng input của nó là các tham số w và b, còn dữ liệu được giữ cố định. Nếu giữ b cố định, thay đổi w rồi vẽ loss theo w, bạn sẽ thấy một hình chữ U. Mục tiêu học máy trở thành: tìm điểm đáy của chữ U đó. Các bài tiếp theo chỉ cách tìm đáy mà không cần vẽ.\n\nHãy mở lab linear-regression, kéo các điểm dữ liệu và xem đường thẳng tự di chuyển để khớp, cùng với con số loss thay đổi theo.\n\n```\ndef predict(area, w, b):\n    return w * area + b\n\nprint(predict(50, 0.05, 0.3))  # 2.8 (billion VND)\n```",
+  "terms": [
+   {
+    "en": "function",
+    "vi": "hàm số, quy tắc biến input thành output"
+   },
+   {
+    "en": "graph",
+    "vi": "đồ thị của hàm"
+   },
+   {
+    "en": "parameter",
+    "vi": "tham số mô hình tự điều chỉnh khi học"
+   },
+   {
+    "en": "linear regression",
+    "vi": "hồi quy tuyến tính, tìm đường thẳng khớp dữ liệu"
+   },
+   {
+    "en": "loss function",
+    "vi": "hàm mất mát, đo mô hình sai bao nhiêu"
+   },
+   {
+    "en": "mean squared error",
+    "vi": "trung bình bình phương sai số"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Với f(x) = 3x - 2, f(4) bằng bao nhiêu?",
+    "choices": [
+     "10",
+     "12",
+     "14",
+     "6"
+    ],
+    "answer": 0,
+    "why": "Nhân 4 với 3 được 12, trừ 2 được 10."
+   },
+   {
+    "q": "Trong mô hình giá = w × diện tích + b, w và b là gì?",
+    "choices": [
+     "Dữ liệu đầu vào",
+     "Kết quả dự đoán",
+     "Giá trị loss",
+     "Parameters mà mô hình tự điều chỉnh khi học"
+    ],
+    "answer": 3,
+    "why": "Diện tích là input, giá là output. w và b là các núm vặn mà quá trình huấn luyện đi tìm."
+   },
+   {
+    "q": "Vì sao mean squared error bình phương các sai số thay vì cộng thẳng?",
+    "choices": [
+     "Để con số trông lớn hơn",
+     "Để sai số âm và dương không triệt tiêu nhau, và sai xa bị phạt nặng hơn",
+     "Vì máy tính không cộng được số âm",
+     "Để loss luôn bằng 0"
+    ],
+    "answer": 1,
+    "why": "Nếu cộng thẳng, dự đoán cao 100 triệu và thấp 100 triệu sẽ triệt tiêu thành 0 dù cả hai đều sai. Bình phương cũng làm sai số lớn nổi bật hơn."
+   },
+   {
+    "q": "Vẽ loss theo tham số w ta thấy một hình chữ U. Mục tiêu huấn luyện là gì?",
+    "choices": [
+     "Tìm điểm cao nhất của đồ thị",
+     "Làm chữ U phẳng ra",
+     "Tìm giá trị w ở đáy chữ U",
+     "Làm w càng lớn càng tốt"
+    ],
+    "answer": 2,
+    "why": "Đáy chữ U là nơi loss nhỏ nhất, tức là mô hình sai ít nhất."
+   }
+  ],
+  "takeaway": "Mô hình AI là một hàm có tham số, và huấn luyện là đi tìm những tham số làm cho loss, một hàm khác đo độ sai, xuống thấp nhất."
+ },
+ {
+  "id": "math-06",
+  "track": "math",
+  "unit": "Change and optimisation",
+  "order": 6,
+  "title": "Slope and derivative",
+  "title_vi": "Đạo hàm là tốc độ thay đổi",
+  "level": 2,
+  "minutes": 12,
+  "body": "Đồng hồ tốc độ trên xe máy không cho biết bạn đã đi bao xa, mà cho biết bạn đang đi nhanh cỡ nào ngay lúc này. Đó chính là ý tưởng của derivative.\n\n## Slope: độ dốc của đường thẳng\nVới đường thẳng, **slope** (độ dốc) là lượng output thay đổi khi input tăng 1 đơn vị. Hàm taxi giá = 15 × km + 12 có slope 15: mỗi km thêm, giá tăng 15 nghìn. Slope dương thì đường đi lên, âm thì đi xuống, bằng 0 thì nằm ngang.\n\nCách tính từ hai điểm: slope = (thay đổi của y) / (thay đổi của x). Từ km 2 (42 nghìn) đến km 4 (72 nghìn): (72 - 42) / (4 - 2) = 15.\n\n## Đường cong thì sao?\nVới f(x) = x², độ dốc thay đổi liên tục: gần đáy thì gần như phẳng, càng xa đáy càng dốc. Không còn một slope chung cho cả đường, mà mỗi điểm có độ dốc riêng.\n\nMẹo: lấy hai điểm rất gần nhau. Tại x = 3, so f(3) = 9 với f(3.001) = 9.006001. Độ dốc ≈ 0.006001 / 0.001 ≈ 6.001. Hai điểm càng gần, kết quả càng tiến về đúng 6. Con số giới hạn đó gọi là **derivative** (đạo hàm: **rate of change**, tức tốc độ thay đổi tức thời tại một điểm), ký hiệu f'(x) hoặc df/dx.\n\nVới f(x) = x², người ta chứng minh được f'(x) = 2x. Kiểm tra: tại x = 3 là 6, khớp với phép thử ở trên. Tại x = 0 là 0, đúng là đáy phẳng. Tại x = -2 là -4: âm, nghĩa là ở đó tăng x thì f giảm.\n\n## Derivative cho ta biết hai thứ\n- Dấu: dương nghĩa là tăng x thì f tăng; âm nghĩa là tăng x thì f giảm.\n- Độ lớn: số càng lớn thì f càng nhạy với một thay đổi nhỏ của x.\n\nVí dụ kinh doanh: f(x) là doanh thu theo ngân sách quảng cáo x. Derivative tại mức ngân sách hiện tại cho biết thêm 1 triệu quảng cáo thì doanh thu tăng thêm khoảng bao nhiêu. Khi con số này giảm dần về 0, quảng cáo thêm không còn đáng tiền. Dân marketing gọi là lợi ích biên giảm dần, dân toán gọi là derivative tiến về 0.\n\n## Vì sao AI cần derivative\nNhớ hình chữ U của loss ở bài trước. Đứng ở một giá trị w bất kỳ, derivative của loss theo w cho biết: tăng w một chút thì loss tăng hay giảm. Nếu derivative dương, nên giảm w. Nếu âm, nên tăng w. Nếu bằng 0, có thể bạn đã ở đáy. Chỉ cần thông tin đó là mô hình biết phải chỉnh tham số theo hướng nào.\n\nBạn không cần thuộc bảng công thức đạo hàm, vì PyTorch tự tính cho bạn. Nhưng bạn cần hiểu nó nghĩa là gì, và biết ước lượng nó bằng cách thử:\n\n```\ndef f(x):\n    return x ** 2\n\nh = 0.0001\nslope_at_3 = (f(3 + h) - f(3 - h)) / (2 * h)   # about 6\n```\n\nCách lấy một điểm bên trái và một điểm bên phải như trên gọi là **central difference** (sai phân trung tâm). Sai số của hai phía phần lớn bù trừ nhau, nên nó chính xác hơn cách chỉ lấy một phía.",
+  "terms": [
+   {
+    "en": "slope",
+    "vi": "độ dốc của đường thẳng"
+   },
+   {
+    "en": "derivative",
+    "vi": "đạo hàm, tốc độ thay đổi tức thời"
+   },
+   {
+    "en": "rate of change",
+    "vi": "tốc độ thay đổi"
+   },
+   {
+    "en": "central difference",
+    "vi": "ước lượng đạo hàm bằng một điểm trái và một điểm phải"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Giá thuê xe đạp = 10 × số giờ + 5 (nghìn đồng). Slope của hàm này là bao nhiêu?",
+    "choices": [
+     "5",
+     "15",
+     "Thay đổi theo số giờ",
+     "10"
+    ],
+    "answer": 3,
+    "why": "Mỗi giờ thêm, giá tăng 10 nghìn. Số 5 là phí cố định, không ảnh hưởng độ dốc."
+   },
+   {
+    "q": "Với f(x) = x², f'(x) = 2x. Tại x = -1, derivative bằng -2. Điều đó nghĩa là gì?",
+    "choices": [
+     "Tại đó, tăng x một chút thì f giảm",
+     "Tại đó f đang ở đáy",
+     "Tại đó f bằng -2",
+     "Tại đó tăng x thì f tăng rất nhanh"
+    ],
+    "answer": 0,
+    "why": "Derivative âm nghĩa là hàm đang đi xuống khi x tăng. Bên trái đáy chữ U, đi về phía phải là đi xuống."
+   },
+   {
+    "q": "Derivative của loss theo tham số w đang bằng +5. Muốn giảm loss, nên làm gì?",
+    "choices": [
+     "Tăng w",
+     "Giữ nguyên w",
+     "Giảm w",
+     "Đổi dấu w"
+    ],
+    "answer": 2,
+    "why": "Derivative dương nghĩa là tăng w thì loss tăng. Vậy muốn loss giảm thì đi ngược lại: giảm w."
+   },
+   {
+    "q": "Vì sao central difference (f(x+h) - f(x-h)) / 2h thường chính xác hơn (f(x+h) - f(x)) / h?",
+    "choices": [
+     "Vì nó dùng h lớn hơn",
+     "Vì lấy một điểm bên trái và một bên phải, sai số hai phía phần lớn bù trừ nhau",
+     "Vì nó không cần tính f",
+     "Vì nó chỉ dùng được cho đường thẳng"
+    ],
+    "answer": 1,
+    "why": "Một phía thì bị lệch theo độ cong của hàm. Lấy đối xứng hai bên thì phần lệch đó gần như triệt tiêu."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm numeric_derivative(f, x, h=1e-5) ước lượng đạo hàm của hàm f tại x bằng central difference: (f(x + h) - f(x - h)) / (2h).\nVí dụ: với f(x) = x², numeric_derivative(f, 3) xấp xỉ 6.\nVới hàm hằng f(x) = 7, đạo hàm xấp xỉ 0.",
+   "starter": "def numeric_derivative(f, x, h=1e-5):\n    # TODO: central difference\n    pass\n",
+   "solution": "def numeric_derivative(f, x, h=1e-5):\n    return (f(x + h) - f(x - h)) / (2 * h)\n",
+   "tests": "assert abs(numeric_derivative(lambda x: x ** 2, 3) - 6) < 1e-4, 'đạo hàm của x² tại 3 phải xấp xỉ 6'\nassert abs(numeric_derivative(lambda x: 3 * x + 1, 10) - 3) < 1e-4, 'đạo hàm của 3x + 1 phải xấp xỉ 3 ở mọi điểm'\nassert abs(numeric_derivative(lambda x: 7, 2)) < 1e-6, 'đạo hàm của hàm hằng phải xấp xỉ 0'\nassert abs(numeric_derivative(lambda x: x ** 3, 2) - 12) < 1e-3, 'đạo hàm của x³ tại 2 phải xấp xỉ 12'\nassert abs(numeric_derivative(lambda x: x ** 2, 0)) < 1e-6, 'đạo hàm của x² tại đáy x = 0 phải xấp xỉ 0'\n",
+   "hint": "Gọi f tại hai điểm x + h và x - h, lấy hiệu, rồi chia cho khoảng cách giữa hai điểm đó."
+  },
+  "takeaway": "Derivative cho biết output thay đổi nhanh cỡ nào khi input nhích một chút; dấu của nó chỉ cho mô hình biết nên chỉnh tham số theo hướng nào."
+ },
+ {
+  "id": "math-07",
+  "track": "math",
+  "unit": "Change and optimisation",
+  "order": 7,
+  "title": "Partial derivatives and the gradient",
+  "title_vi": "Đạo hàm riêng và gradient: độ dốc nhiều chiều",
+  "level": 2,
+  "minutes": 12,
+  "body": "Giá một căn hộ không chỉ phụ thuộc vào diện tích, mà còn vào số phòng ngủ, khoảng cách đến trung tâm, tầng cao. Mô hình thật có rất nhiều tham số, nên loss là hàm của nhiều biến cùng lúc. Derivative một biến không còn đủ.\n\n## Partial derivative: xoay một núm, giữ yên các núm khác\nTưởng tượng một bàn trộn âm thanh có nhiều núm vặn. Bạn muốn biết núm bass ảnh hưởng thế nào đến độ ồn: giữ nguyên mọi núm khác, chỉ xoay núm bass một chút, xem độ ồn thay đổi bao nhiêu. Đó là **partial derivative** (đạo hàm riêng: tốc độ thay đổi theo một biến khi các biến khác đứng yên), ký hiệu ∂f/∂x.\n\nVí dụ: f(x, y) = x² + 3y.\n- Giữ y cố định, chỉ nhìn x: phần 3y giống một hằng số, nên ∂f/∂x = 2x.\n- Giữ x cố định, chỉ nhìn y: ∂f/∂y = 3.\n\nTại điểm (2, 5): ∂f/∂x = 4 và ∂f/∂y = 3. Nhích x một chút thì f tăng khoảng 4 lần lượng nhích đó; nhích y một chút thì f tăng khoảng 3 lần.\n\n## Gradient: gom tất cả lại thành một vector\nXếp tất cả partial derivative thành một vector, ta có **gradient**, ký hiệu ∇f. Ở ví dụ trên, tại (2, 5) thì ∇f = [4, 3]. Đây là chỗ bài vector và bài derivative gặp nhau.\n\nGradient có một ý nghĩa hình học rất đẹp: nó là mũi tên chỉ về hướng mà f tăng nhanh nhất. Độ dài mũi tên cho biết dốc đến đâu.\n\n## Hình dung bằng địa hình\nHãy tưởng tượng loss là một vùng đồi núi, gọi là **loss landscape** (địa hình loss). Hai tham số w và b là toạ độ đông tây và bắc nam của bạn trên bản đồ, còn độ cao tại mỗi điểm là loss. Bạn bị bịt mắt, đứng đâu đó trên sườn đồi, và muốn xuống thung lũng, nơi loss thấp nhất.\n\nBạn không nhìn thấy toàn cảnh, nhưng cảm được độ nghiêng dưới chân. Gradient chính là cảm giác đó viết thành số: \"hướng này dốc lên nhiều nhất\". Muốn đi xuống nhanh nhất, chỉ cần bước theo hướng ngược lại, tức là -∇f.\n\n## Từ 2 biến đến hàng tỷ biến\nMột mô hình ngôn ngữ có hàng tỷ tham số, nên gradient của loss là một vector hàng tỷ chiều. Mỗi phần tử trả lời một câu hỏi nhỏ: \"chỉnh tham số này lên một chút thì loss tăng hay giảm, nhiều hay ít?\". Không ai vẽ được địa hình hàng tỷ chiều, nhưng ý tưởng y hệt sườn đồi hai chiều.\n\nMột điểm cần nhớ: gradient chỉ mô tả độ dốc tại chỗ bạn đang đứng. Đi một bước xong, địa hình dưới chân đã khác, nên phải tính lại gradient. Vì vậy huấn luyện mô hình là một quá trình lặp nhiều bước, không phải một phép tính duy nhất.\n\n## Ước lượng gradient bằng cách nhích từng biến\nGiống bài trước, ta ước lượng từng partial derivative bằng cách nhích từng biến một:\n\n```\ndef f(x, y):\n    return x ** 2 + 3 * y\n\nh = 0.0001\ndf_dx = (f(2 + h, 5) - f(2 - h, 5)) / (2 * h)   # about 4\ndf_dy = (f(2, 5 + h) - f(2, 5 - h)) / (2 * h)   # about 3\ngradient = [df_dx, df_dy]\n```\n\nCách này rất chậm khi có nhiều tham số, vì mỗi tham số phải tính f hai lần. Trong thực tế người ta dùng backpropagation, chủ đề của bài 9.",
+  "terms": [
+   {
+    "en": "partial derivative",
+    "vi": "đạo hàm riêng theo một biến, các biến khác giữ nguyên"
+   },
+   {
+    "en": "gradient",
+    "vi": "vector gom mọi đạo hàm riêng, chỉ hướng tăng nhanh nhất"
+   },
+   {
+    "en": "loss landscape",
+    "vi": "địa hình loss theo các tham số"
+   },
+   {
+    "en": "multivariable function",
+    "vi": "hàm nhiều biến"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Với f(x, y) = 5x + y², ∂f/∂x bằng bao nhiêu?",
+    "choices": [
+     "2y",
+     "5",
+     "5 + 2y",
+     "x"
+    ],
+    "answer": 1,
+    "why": "Khi đạo hàm theo x, coi y là hằng số. Phần y² không đổi theo x, phần 5x có tốc độ thay đổi là 5."
+   },
+   {
+    "q": "Gradient của một hàm tại một điểm chỉ về hướng nào?",
+    "choices": [
+     "Hướng hàm giảm nhanh nhất",
+     "Luôn chỉ về gốc toạ độ",
+     "Hướng hàm tăng nhanh nhất",
+     "Hướng hàm không đổi"
+    ],
+    "answer": 2,
+    "why": "Gradient là hướng dốc lên mạnh nhất. Hướng giảm nhanh nhất là ngược lại, -∇f."
+   },
+   {
+    "q": "Đứng trên địa hình loss, muốn giảm loss nhanh nhất thì bước theo hướng nào?",
+    "choices": [
+     "Theo hướng gradient",
+     "Vuông góc với gradient",
+     "Một hướng ngẫu nhiên",
+     "Ngược hướng gradient, tức là -∇f"
+    ],
+    "answer": 3,
+    "why": "Gradient chỉ hướng loss tăng nhanh nhất, nên bước ngược lại thì loss giảm nhanh nhất. Đây là nền của gradient descent."
+   },
+   {
+    "q": "Mô hình có 1 tỷ tham số. Gradient của loss là gì?",
+    "choices": [
+     "Một vector 1 tỷ chiều, mỗi phần tử cho biết loss nhạy thế nào với một tham số",
+     "Một con số duy nhất",
+     "Một ma trận 1 tỷ hàng 1 tỷ cột",
+     "Danh sách dữ liệu huấn luyện"
+    ],
+    "answer": 0,
+    "why": "Mỗi tham số có một partial derivative riêng. Gom lại được một vector có số chiều bằng số tham số."
+   }
+  ],
+  "takeaway": "Partial derivative đo ảnh hưởng của từng tham số khi các tham số khác đứng yên; gom lại thành gradient, một mũi tên chỉ hướng loss tăng nhanh nhất."
+ },
+ {
+  "id": "math-08",
+  "track": "math",
+  "unit": "Change and optimisation",
+  "order": 8,
+  "title": "Gradient descent",
+  "title_vi": "Lăn xuống dốc từng bước nhỏ",
+  "level": 2,
+  "minutes": 13,
+  "lab": "gradient-descent",
+  "body": "Giờ ta ghép mọi thứ lại thành thuật toán quan trọng nhất của machine learning hiện đại: **gradient descent** (đi xuống dốc theo gradient).\n\n## Công thức chỉ có một dòng\nLặp lại nhiều lần:\n\nw mới = w cũ - learning rate × gradient\n\nĐọc thành lời: tính độ dốc tại chỗ đang đứng, bước một bước nhỏ ngược hướng dốc lên, rồi tính lại. Dấu trừ là chìa khoá: gradient chỉ hướng loss tăng, ta đi ngược lại để loss giảm.\n\nVí dụ với loss L(w) = (w - 3)², đáy ở w = 3. Derivative là 2(w - 3). Bắt đầu từ w = 0, learning rate 0.1:\n- Bước 1: gradient = 2(0 - 3) = -6, w = 0 - 0.1 × (-6) = 0.6.\n- Bước 2: gradient = 2(0.6 - 3) = -4.8, w = 0.6 + 0.48 = 1.08.\n- Các bước sau: w ≈ 1.46, 1.77, 2.02... dần tiến về 3.\n\nĐể ý bước đi tự ngắn lại khi gần đáy, vì ở đó dốc thoải hơn nên gradient nhỏ hơn.\n\n## Learning rate: độ dài mỗi bước\n**Learning rate** (tốc độ học: hệ số quyết định mỗi bước đi xa bao nhiêu) là một trong những con số quan trọng nhất khi huấn luyện mô hình.\n- Quá nhỏ: như đi xuống dốc bằng những bước 1 cm. Đúng hướng nhưng mất cả ngày.\n- Quá lớn: như nhảy những bước 10 mét. Bạn vọt qua đáy sang sườn bên kia, có khi còn cao hơn chỗ cũ, rồi nhảy qua lại và loss tăng vọt. Hiện tượng này gọi là diverge (phân kỳ, không hội tụ).\n- Vừa phải: loss giảm đều rồi chững lại gần đáy, gọi là **converge** (hội tụ).\n\nLearning rate là một **hyperparameter** (siêu tham số: con số do người làm chọn trước, mô hình không tự học được). Không có giá trị đúng cho mọi bài toán, người ta phải thử.\n\nMở lab gradient-descent, đổi learning rate từ rất nhỏ đến rất lớn và xem quả bóng lăn khác nhau thế nào. Đây là cách nhanh nhất để có cảm giác về nó.\n\n## Những cái bẫy ngoài đời thật\n- Local minimum (đáy cục bộ): địa hình thật có nhiều thung lũng nhỏ, quả bóng có thể dừng ở một cái hố nhỏ thay vì đáy sâu nhất. Với mạng neural rất lớn, chuyện này thường ít đáng lo hơn người ta từng nghĩ, nhưng vẫn nên biết.\n- Tính gradient trên toàn bộ dữ liệu rất tốn. Nên người ta lấy ngẫu nhiên một nhóm nhỏ (mini-batch), tính gradient trên nhóm đó rồi bước luôn. Đây là **stochastic gradient descent** (SGD: gradient descent dùng mẫu ngẫu nhiên). Bước đi hơi lảo đảo nhưng nhanh hơn rất nhiều.\n- Các optimizer phổ biến như Adam là gradient descent được nâng cấp: tự điều chỉnh độ dài bước cho từng tham số và có \"quán tính\" để bớt lảo đảo.\n\n## Ví von cho dân CRM\nGiống tối ưu một chiến dịch: chạy thử, đo kết quả, chỉnh nhẹ thông điệp theo hướng cho kết quả tốt hơn, chạy tiếp. Không ai đoán trúng ngay từ đầu, nhưng mỗi vòng lặp nhỏ đưa bạn gần mục tiêu hơn. Chỉnh quá mạnh mỗi lần thì kết quả dao động lung tung; chỉnh quá rụt rè thì hết quý chưa thấy tiến bộ.\n\n```\nw = 0.0\nlr = 0.1\nfor step in range(50):\n    grad = 2 * (w - 3)\n    w = w - lr * grad\nprint(w)  # close to 3\n```",
+  "terms": [
+   {
+    "en": "gradient descent",
+    "vi": "đi từng bước ngược hướng gradient để giảm loss"
+   },
+   {
+    "en": "learning rate",
+    "vi": "tốc độ học, độ dài mỗi bước"
+   },
+   {
+    "en": "hyperparameter",
+    "vi": "siêu tham số do người chọn trước"
+   },
+   {
+    "en": "converge",
+    "vi": "hội tụ, loss ổn định gần đáy"
+   },
+   {
+    "en": "stochastic gradient descent",
+    "vi": "SGD, tính gradient trên nhóm mẫu ngẫu nhiên"
+   },
+   {
+    "en": "local minimum",
+    "vi": "đáy cục bộ, không phải đáy sâu nhất"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Tham số w = 5, gradient = 4, learning rate = 0.5. Sau một bước gradient descent, w bằng bao nhiêu?",
+    "choices": [
+     "3",
+     "7",
+     "4.5",
+     "2"
+    ],
+    "answer": 0,
+    "why": "w mới = 5 - 0.5 × 4 = 3. Gradient dương nên w giảm."
+   },
+   {
+    "q": "Khi huấn luyện, loss nhảy lên xuống và ngày càng lớn sau mỗi bước. Nguyên nhân hay gặp nhất là gì?",
+    "choices": [
+     "Learning rate quá nhỏ",
+     "Learning rate quá lớn",
+     "Dữ liệu quá ít",
+     "Mô hình đã ở đáy"
+    ],
+    "answer": 1,
+    "why": "Bước quá dài làm vọt qua đáy sang sườn bên kia, mỗi lần lại cao hơn. Learning rate quá nhỏ chỉ làm chậm, không làm loss tăng vọt."
+   },
+   {
+    "q": "Hyperparameter khác parameter thế nào?",
+    "choices": [
+     "Hyperparameter là tham số có giá trị lớn hơn",
+     "Hai từ này nghĩa như nhau",
+     "Hyperparameter do người chọn trước, parameter do mô hình tự học",
+     "Parameter do người chọn trước, hyperparameter do mô hình tự học"
+    ],
+    "answer": 2,
+    "why": "Learning rate là hyperparameter vì ta đặt nó. Các weights là parameter vì gradient descent tự điều chỉnh chúng."
+   },
+   {
+    "q": "Vì sao SGD tính gradient trên mini-batch thay vì toàn bộ dữ liệu?",
+    "choices": [
+     "Vì mini-batch cho gradient chính xác hơn",
+     "Vì dữ liệu lớn không lưu được",
+     "Vì bắt buộc khi learning rate nhỏ",
+     "Vì tính trên toàn bộ dữ liệu quá tốn; một nhóm nhỏ ngẫu nhiên cho hướng đủ tốt và nhanh hơn nhiều"
+    ],
+    "answer": 3,
+    "why": "Gradient trên mini-batch hơi nhiễu nhưng gần đúng, và cho phép bước nhiều lần hơn trong cùng thời gian."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm gradient_descent(grad_fn, w0, lr, steps):\n- grad_fn(w) trả về gradient tại w\n- bắt đầu từ w0, lặp steps lần: w = w - lr * grad_fn(w)\n- trả về w cuối cùng\nVí dụ: với grad_fn(w) = 2 * (w - 3), gradient_descent(grad_fn, 0, 0.1, 100) trả về số rất gần 3.\nNếu steps = 0 thì trả về w0.",
+   "starter": "def gradient_descent(grad_fn, w0, lr, steps):\n    # TODO: repeat steps times: w = w - lr * grad_fn(w)\n    pass\n",
+   "solution": "def gradient_descent(grad_fn, w0, lr, steps):\n    w = w0\n    for _ in range(steps):\n        w = w - lr * grad_fn(w)\n    return w\n",
+   "tests": "g = lambda w: 2 * (w - 3)\nassert abs(gradient_descent(g, 0, 0.1, 100) - 3) < 1e-6, 'với loss (w - 3)², w phải tiến về 3'\nassert gradient_descent(g, 5, 0.1, 0) == 5, 'steps = 0 thì phải trả về w0'\nassert gradient_descent(g, 7, 0.0, 50) == 7, 'learning rate 0 thì w không đổi'\nassert abs(gradient_descent(lambda w: 2 * (w + 2), 10, 0.2, 200) + 2) < 1e-6, 'với loss (w + 2)², w phải tiến về -2'\nassert abs(gradient_descent(g, 0, 1.1, 50)) > 100, 'learning rate quá lớn phải làm w phân kỳ ra rất xa'\n",
+   "hint": "Bắt đầu với một biến w = w0, rồi dùng vòng for chạy đúng steps lần, mỗi lần cập nhật w theo công thức."
+  },
+  "takeaway": "Gradient descent lặp đi lặp lại một việc: tính độ dốc, bước một bước nhỏ ngược hướng dốc; learning rate quyết định bước dài hay ngắn và phải chọn vừa phải."
+ },
+ {
+  "id": "math-09",
+  "track": "math",
+  "unit": "Change and optimisation",
+  "order": 9,
+  "title": "Chain rule and backpropagation",
+  "title_vi": "Quy tắc dây chuyền, ý tưởng đằng sau backprop",
+  "level": 3,
+  "minutes": 14,
+  "body": "Một mạng neural là nhiều hàm nối tiếp nhau: input đi qua layer 1, kết quả đi qua layer 2, rồi layer 3, cuối cùng ra loss. Câu hỏi: chỉnh một trọng số ở tận layer 1 thì loss ở cuối thay đổi bao nhiêu? Câu trả lời là **chain rule** (quy tắc dây chuyền).\n\n## Chain rule bằng ví dụ đổi tiền\nBạn đổi USD sang EUR, rồi EUR sang VND. Giả sử 1 USD = 0.9 EUR và 1 EUR = 28.000 VND. Vậy 1 USD bằng bao nhiêu VND? Bạn nhân tự nhiên: 0.9 × 28.000 = 25.200.\n\nĐó chính là chain rule. Mỗi tỷ giá là một tốc độ thay đổi: thêm 1 USD thì thêm 0.9 EUR, thêm 1 EUR thì thêm 28.000 VND. Muốn biết tốc độ thay đổi của cả chuỗi, nhân tốc độ của từng khâu lại.\n\nViết bằng ký hiệu: nếu y phụ thuộc u, và u phụ thuộc x, thì\n\ndy/dx = dy/du × du/dx\n\nVí dụ: y = (3x + 1)². Đặt u = 3x + 1, thì y = u². Ta có dy/du = 2u và du/dx = 3. Nhân lại: dy/dx = 2u × 3 = 6(3x + 1). Tại x = 1, kết quả là 24.\n\nChuỗi dài hơn cũng vậy: 10 khâu thì nhân 10 tốc độ thay đổi. Ảnh hưởng của một trọng số ở layer đầu lên loss ở cuối bằng tích các tốc độ thay đổi dọc đường đi.\n\n## Backpropagation: tính ngược từ cuối về đầu\nHuấn luyện một mạng neural có hai chiều:\n- **Forward pass** (lượt đi): đưa input qua từng layer, tính ra dự đoán, rồi tính loss.\n- **Backward pass** (lượt về): bắt đầu từ loss, đi ngược về layer cuối, rồi layer áp chót, cứ thế đến layer đầu. Ở mỗi layer, nhân thêm tốc độ thay đổi của layer đó vào kết quả đang có.\n\nCách đi ngược này gọi là **backpropagation** (lan truyền ngược). Lợi ích lớn: tích số đã tính ở các layer phía sau được dùng lại cho các layer phía trước, không phải tính lại từ đầu cho từng trọng số. Nhờ vậy, với chi phí chỉ cỡ vài lần một lượt forward, ta có gradient cho toàn bộ hàng tỷ tham số. So với cách nhích từng tham số ở bài 7, đây là khác biệt giữa vài giây và vài thế kỷ.\n\nCó gradient rồi thì đưa vào gradient descent ở bài 8 để cập nhật trọng số. Vòng lặp huấn luyện đầy đủ là: forward, tính loss, backward, cập nhật, rồi lặp lại rất nhiều lần.\n\n## Ví dụ quen thuộc với dân CRM\nDoanh thu cuối tháng giảm. Bạn truy ngược: doanh thu phụ thuộc số đơn, số đơn phụ thuộc tỷ lệ mở email, tỷ lệ mở phụ thuộc tiêu đề. Bạn ước lượng mỗi khâu ảnh hưởng khâu sau bao nhiêu, rồi nhân lại để biết tiêu đề email ảnh hưởng doanh thu đến đâu. Backpropagation làm đúng việc truy ngược trách nhiệm đó, cho hàng tỷ khâu cùng lúc và hoàn toàn tự động.\n\n## Vài hệ quả thực tế\n- Nhân nhiều số nhỏ hơn 1 với nhau thì tích rất nhanh tiến về 0. Gradient ở các layer đầu gần như biến mất và các layer đó không học được. Đây là **vanishing gradient** (gradient biến mất). Hàm ReLU và residual connection là những cải tiến giúp giảm vấn đề này.\n- Bạn gần như không bao giờ tự viết backpropagation. PyTorch ghi lại mọi phép tính trong lượt forward, rồi một lệnh loss.backward() là xong. Tính năng này gọi là **autograd** (tự động tính đạo hàm).\n\n```\nx = 1.0\nu = 3 * x + 1          # forward: u = 4\ny = u ** 2             # forward: y = 16\ndy_du = 2 * u          # 8\ndu_dx = 3\ndy_dx = dy_du * du_dx  # backward: 24\n```",
+  "terms": [
+   {
+    "en": "chain rule",
+    "vi": "quy tắc dây chuyền: nhân tốc độ thay đổi của từng khâu"
+   },
+   {
+    "en": "forward pass",
+    "vi": "lượt đi, tính dự đoán và loss"
+   },
+   {
+    "en": "backward pass",
+    "vi": "lượt về, tính gradient từ loss ngược về đầu"
+   },
+   {
+    "en": "backpropagation",
+    "vi": "lan truyền ngược, cách tính gradient cho mọi trọng số"
+   },
+   {
+    "en": "vanishing gradient",
+    "vi": "gradient nhỏ dần gần như bằng 0 ở các layer đầu"
+   },
+   {
+    "en": "autograd",
+    "vi": "tự động tính đạo hàm trong thư viện như PyTorch"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "y = u³ và u = 2x. Tại x = 1, dy/dx bằng bao nhiêu?",
+    "choices": [
+     "6",
+     "12",
+     "24",
+     "8"
+    ],
+    "answer": 2,
+    "why": "Tại x = 1 thì u = 2. dy/du = 3u² = 12, du/dx = 2. Nhân lại: 12 × 2 = 24."
+   },
+   {
+    "q": "Backward pass bắt đầu từ đâu?",
+    "choices": [
+     "Từ layer đầu tiên",
+     "Từ dữ liệu input",
+     "Từ một layer chọn ngẫu nhiên",
+     "Từ loss ở cuối, rồi đi ngược về các layer đầu"
+    ],
+    "answer": 3,
+    "why": "Ta muốn biết mỗi trọng số ảnh hưởng loss ra sao, nên xuất phát từ loss và nhân dần các tốc độ thay đổi khi đi ngược lại."
+   },
+   {
+    "q": "Vì sao backpropagation nhanh hơn rất nhiều so với nhích từng tham số để ước lượng gradient?",
+    "choices": [
+     "Vì tích số ở các layer sau được dùng lại cho layer trước, nên một lượt ngược cho gradient của mọi tham số",
+     "Vì nó bỏ qua các layer đầu",
+     "Vì nó dùng ít dữ liệu hơn",
+     "Vì nó không cần forward pass"
+    ],
+    "answer": 0,
+    "why": "Nhích từng tham số phải chạy lại mô hình cho mỗi tham số. Backprop tái sử dụng kết quả trung gian nên chỉ tốn cỡ vài lần một lượt forward."
+   },
+   {
+    "q": "Vanishing gradient là gì?",
+    "choices": [
+     "Gradient quá lớn làm mô hình mất ổn định",
+     "Nhân nhiều số nhỏ hơn 1 làm gradient ở các layer đầu gần như bằng 0, các layer đó khó học",
+     "Gradient bị xoá khi lưu mô hình",
+     "Mô hình không còn gradient vì đã học xong"
+    ],
+    "answer": 1,
+    "why": "Chain rule nhân các tốc độ thay đổi. Nếu nhiều thừa số nhỏ hơn 1, tích co về gần 0 và tín hiệu học không đến được layer đầu."
+   }
+  ],
+  "takeaway": "Chain rule nói tốc độ thay đổi của một chuỗi bằng tích tốc độ từng khâu; backpropagation áp dụng nó từ loss ngược về đầu để có gradient cho mọi trọng số trong một lượt."
+ },
+ {
+  "id": "math-10",
+  "track": "math",
+  "unit": "Probability and statistics",
+  "order": 10,
+  "title": "Probability basics",
+  "title_vi": "Xác suất cơ bản: đo mức độ có thể",
+  "level": 1,
+  "minutes": 10,
+  "body": "AI hiện đại gần như không bao giờ nói chắc chắn. Bộ lọc spam nói \"email này 97% là spam\". Mô hình ngôn ngữ chọn từ tiếp theo dựa trên xác suất. Để hiểu chúng, cần nắm vài ý cơ bản về **probability** (xác suất: con số từ 0 đến 1 đo khả năng xảy ra của một sự việc).\n\n## Con số từ 0 đến 1\n- 0 nghĩa là chắc chắn không xảy ra, 1 là chắc chắn xảy ra.\n- 0.5 là năm ăn năm thua, như tung đồng xu.\n- Phần trăm chỉ là cách viết khác: 0.25 = 25%.\n\nCách hiểu thực tế nhất là theo tần suất: \"xác suất chiều nay Sài Gòn mưa là 0.7\" nghĩa là trong rất nhiều buổi chiều có điều kiện giống hôm nay, khoảng 70% buổi có mưa.\n\n## Các khả năng cộng lại bằng 1\nTập hợp mọi kết quả có thể xảy ra gọi là **sample space** (không gian mẫu). Tung một con xúc xắc: {1, 2, 3, 4, 5, 6}, mỗi mặt có xác suất 1/6. Tổng tất cả luôn bằng 1, vì chắc chắn phải ra một mặt nào đó.\n\nHệ quả hữu ích: xác suất không xảy ra = 1 - xác suất xảy ra. Nếu 30% khách mở email thì 70% không mở.\n\n## Hai luật cơ bản\nLuật \"hoặc\": với các sự kiện không thể cùng xảy ra, P(A hoặc B) = P(A) + P(B). Xúc xắc ra 1 hoặc 2: 1/6 + 1/6 = 1/3.\n\nLuật \"và\": với các sự kiện **independent** (độc lập: cái này xảy ra không làm thay đổi khả năng của cái kia), P(A và B) = P(A) × P(B). Tung đồng xu hai lần đều ra ngửa: 0.5 × 0.5 = 0.25.\n\nCẩn thận với chữ \"độc lập\". Việc một khách mua áo và việc khách đó mua quần thường không độc lập: người đã mua áo dễ mua thêm quần hơn. Nhân thẳng hai xác suất trong trường hợp này sẽ ra kết quả sai. Bài sau về conditional probability sẽ xử lý chuyện này.\n\n## Ngộ nhận phổ biến\n- \"Đồng xu ra ngửa 5 lần liền, lần sau chắc chắn ra sấp.\" Sai. Đồng xu không có trí nhớ, lần sau vẫn là 0.5. Lỗi suy nghĩ này gọi là gambler's fallacy (ngộ nhận của con bạc).\n- \"Mô hình nói 90% mà vẫn sai, vậy mô hình dở.\" Chưa chắc. Một mô hình nói 90% đúng mức thì cứ 10 lần nói 90%, khoảng 1 lần sẽ sai. Đó là hành vi bình thường.\n- Xác suất nhỏ nhưng lặp lại nhiều lần thì không còn nhỏ. Mỗi giao dịch chỉ có 0.1% khả năng lỗi, nhưng với 1 triệu giao dịch mỗi ngày, bạn sẽ gặp khoảng 1000 lỗi.\n\n## Xác suất trong AI\nKhi một **classifier** (mô hình phân loại: xếp dữ liệu vào các nhóm) nhìn một bức ảnh, nó không chỉ nói \"mèo\". Nó trả ra một danh sách như [mèo 0.85, chó 0.12, cáo 0.03], tổng bằng 1. Danh sách đó là một **probability distribution** (phân phối xác suất: cách chia 100% khả năng cho các kết quả). Mô hình ngôn ngữ cũng vậy: ở mỗi bước, nó đưa ra phân phối xác suất trên hàng chục nghìn token có thể đứng tiếp theo, rồi chọn một token từ phân phối đó.\n\nBạn có thể tự kiểm chứng cách hiểu theo tần suất bằng cách mô phỏng:\n\n```\nimport random\nheads = sum(random.random() < 0.5 for _ in range(10000))\nprint(heads / 10000)   # close to 0.5\n```",
+  "terms": [
+   {
+    "en": "probability",
+    "vi": "xác suất, số từ 0 đến 1"
+   },
+   {
+    "en": "sample space",
+    "vi": "không gian mẫu, tập mọi kết quả có thể"
+   },
+   {
+    "en": "independent",
+    "vi": "độc lập, cái này không ảnh hưởng cái kia"
+   },
+   {
+    "en": "probability distribution",
+    "vi": "phân phối xác suất trên các kết quả"
+   },
+   {
+    "en": "classifier",
+    "vi": "mô hình phân loại"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "20% khách dùng mã giảm giá. Xác suất một khách bất kỳ không dùng mã là bao nhiêu?",
+    "choices": [
+     "0.2",
+     "1.2",
+     "Không tính được",
+     "0.8"
+    ],
+    "answer": 3,
+    "why": "Xác suất không xảy ra = 1 - 0.2 = 0.8."
+   },
+   {
+    "q": "Tung một con xúc xắc hai lần. Xác suất cả hai lần đều ra 6 là bao nhiêu?",
+    "choices": [
+     "1/6",
+     "1/36",
+     "2/6",
+     "1/12"
+    ],
+    "answer": 1,
+    "why": "Hai lần tung độc lập, nên nhân: 1/6 × 1/6 = 1/36."
+   },
+   {
+    "q": "Một đồng xu công bằng vừa ra ngửa 6 lần liền. Xác suất lần thứ 7 ra ngửa là bao nhiêu?",
+    "choices": [
+     "Gần như bằng 0, vì sắp đến lượt sấp",
+     "Gần như bằng 1, vì đang vào cầu ngửa",
+     "Vẫn là 0.5",
+     "Không xác định được"
+    ],
+    "answer": 2,
+    "why": "Các lần tung độc lập, đồng xu không nhớ kết quả trước. Nghĩ rằng sắp đến lượt sấp là gambler's fallacy."
+   },
+   {
+    "q": "Vì sao không nên tính P(khách mua áo và mua quần) = P(mua áo) × P(mua quần)?",
+    "choices": [
+     "Vì hai sự kiện này thường không độc lập",
+     "Vì xác suất không nhân được với nhau",
+     "Vì tổng hai xác suất phải bằng 1",
+     "Vì áo thường đắt hơn quần"
+    ],
+    "answer": 0,
+    "why": "Luật nhân chỉ đúng với sự kiện độc lập. Người đã mua áo thường dễ mua quần hơn, nên nhân thẳng sẽ ra kết quả quá thấp."
+   }
+  ],
+  "takeaway": "Xác suất là số từ 0 đến 1, các khả năng cộng lại bằng 1, và chỉ được nhân xác suất khi các sự kiện thật sự độc lập."
+ },
+ {
+  "id": "math-11",
+  "track": "math",
+  "unit": "Probability and statistics",
+  "order": 11,
+  "title": "Conditional probability and Bayes",
+  "title_vi": "Xét nghiệm dương tính có đáng sợ không?",
+  "level": 2,
+  "minutes": 14,
+  "body": "Một bài toán nổi tiếng khiến cả bác sĩ cũng hay trả lời sai. Một bệnh hiếm gặp ở 1% dân số. Có một xét nghiệm khá tốt: nếu bạn bị bệnh, nó báo dương tính 90% số lần. Nếu bạn không bệnh, nó vẫn báo nhầm dương tính 9% số lần. Bạn đi xét nghiệm và nhận kết quả dương tính. Khả năng bạn thật sự bị bệnh là bao nhiêu?\n\nNhiều người đoán khoảng 90%. Câu trả lời đúng là chỉ khoảng 9%.\n\n## Conditional probability: xác suất khi đã biết thêm thông tin\n**Conditional probability** (xác suất có điều kiện) viết là P(A | B), đọc là \"xác suất của A khi biết B đã xảy ra\". Dấu gạch đứng nghĩa là \"khi biết\".\n\nLưu ý: P(dương | bệnh) = 90% và P(bệnh | dương) là hai câu hỏi khác nhau hoàn toàn. Câu đầu hỏi \"người bệnh thì xét nghiệm báo gì\", câu sau hỏi \"xét nghiệm báo vậy thì người đó có bệnh không\". Nhầm hai thứ này là lỗi rất phổ biến.\n\n## Cách dễ nhất: đếm người\nTưởng tượng 10.000 người đi xét nghiệm.\n- 1% bị bệnh: 100 người. Xét nghiệm bắt được 90%: 90 người dương tính thật.\n- 9.900 người khoẻ, 9% bị báo nhầm: 891 người dương tính giả (**false positive**).\n- Tổng số người nhận kết quả dương tính: 90 + 891 = 981.\n- Trong 981 người đó, chỉ 90 người bệnh thật: 90 / 981 ≈ 9.2%.\n\nLý do: bệnh quá hiếm. Dù tỷ lệ báo nhầm chỉ 9%, số người khoẻ đông gấp 99 lần, nên số ca báo nhầm áp đảo số ca thật.\n\n## Bayes' theorem\nPhép đếm ở trên viết gọn lại thành **Bayes' theorem** (định lý Bayes):\n\nP(bệnh | dương) = P(dương | bệnh) × P(bệnh) / P(dương)\n\nTrong đó P(dương) = P(dương | bệnh) × P(bệnh) + P(dương | khoẻ) × P(khoẻ) = 0.9 × 0.01 + 0.09 × 0.99 = 0.0981.\n\nBa khái niệm đi kèm:\n- **Prior** (xác suất tiên nghiệm: niềm tin trước khi có bằng chứng): ở đây là 1%.\n- **Likelihood** (khả năng thấy bằng chứng này nếu giả thuyết đúng): 90%.\n- **Posterior** (xác suất hậu nghiệm: niềm tin sau khi cập nhật bằng chứng): khoảng 9.2%.\n\nÝ tưởng cốt lõi: bằng chứng mới không thay thế niềm tin cũ, mà cập nhật nó. Một kết quả dương tính đưa bạn từ 1% lên khoảng 9%, tăng gấp 9 lần, nhưng còn xa mới chắc chắn. Nếu làm xét nghiệm lần hai (độc lập) cũng dương tính, posterior 9.2% trở thành prior mới, và kết quả lên khoảng 50%.\n\n## Bayes trong AI và trong công việc\n- Bộ lọc spam đời đầu dùng đúng định lý này: biết email chứa chữ \"trúng thưởng\", xác suất nó là spam là bao nhiêu.\n- Phát hiện gian lận: giao dịch gian lận rất hiếm, nên một hệ thống cảnh báo \"khá chính xác\" vẫn có thể cho ra phần lớn là cảnh báo nhầm. Đội vận hành nên biết điều này trước khi kết luận mô hình dở.\n- Khi đánh giá một mô hình, đừng chỉ hỏi \"đúng bao nhiêu phần trăm\", hãy hỏi thêm \"nhóm cần tìm hiếm đến mức nào\". Bài về precision và recall trong track ML sẽ quay lại chuyện này.\n\n```\nprior = 0.01\np_pos_if_sick = 0.90\np_pos_if_healthy = 0.09\np_pos = p_pos_if_sick * prior + p_pos_if_healthy * (1 - prior)\nposterior = p_pos_if_sick * prior / p_pos   # about 0.092\n```",
+  "terms": [
+   {
+    "en": "conditional probability",
+    "vi": "xác suất có điều kiện, P(A | B)"
+   },
+   {
+    "en": "Bayes' theorem",
+    "vi": "định lý Bayes, cách cập nhật niềm tin bằng bằng chứng"
+   },
+   {
+    "en": "prior",
+    "vi": "xác suất tiên nghiệm, niềm tin ban đầu"
+   },
+   {
+    "en": "likelihood",
+    "vi": "khả năng thấy bằng chứng nếu giả thuyết đúng"
+   },
+   {
+    "en": "posterior",
+    "vi": "xác suất hậu nghiệm, niềm tin sau cập nhật"
+   },
+   {
+    "en": "false positive",
+    "vi": "dương tính giả, báo có nhưng thật ra không"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "P(dương | bệnh) và P(bệnh | dương) khác nhau thế nào?",
+    "choices": [
+     "Một bên hỏi xét nghiệm báo gì khi người đó bị bệnh, bên kia hỏi khả năng bị bệnh khi xét nghiệm đã báo dương",
+     "Chúng luôn bằng nhau",
+     "P(bệnh | dương) luôn lớn hơn",
+     "Chỉ khác cách viết, nghĩa như nhau"
+    ],
+    "answer": 0,
+    "why": "Đổi chỗ hai vế của dấu gạch đứng là đổi câu hỏi. Ví dụ trong bài: một bên 90%, một bên chỉ khoảng 9%."
+   },
+   {
+    "q": "Với cùng xét nghiệm đó, nếu bệnh phổ biến hơn (prior 30% thay vì 1%), posterior sau một kết quả dương tính sẽ thế nào?",
+    "choices": [
+     "Giảm xuống",
+     "Không đổi",
+     "Tăng lên rõ rệt",
+     "Bằng 0"
+    ],
+    "answer": 2,
+    "why": "Prior cao hơn thì số ca thật nhiều hơn so với số ca báo nhầm. Tính ra: 0.27 / (0.27 + 0.063) ≈ 81%."
+   },
+   {
+    "q": "Trong định lý Bayes, prior là gì?",
+    "choices": [
+     "Kết quả của xét nghiệm",
+     "Niềm tin ban đầu trước khi có bằng chứng mới",
+     "Tỷ lệ báo nhầm",
+     "Xác suất sau khi đã cập nhật"
+    ],
+    "answer": 1,
+    "why": "Prior là điểm xuất phát, ví dụ tỷ lệ bệnh trong dân số. Bằng chứng mới cập nhật nó thành posterior."
+   },
+   {
+    "q": "Một hệ thống chống gian lận được quảng cáo là chính xác 95%, nhưng phần lớn cảnh báo mỗi ngày lại là nhầm. Giải thích hợp lý nhất là gì?",
+    "choices": [
+     "Mô hình chắc chắn bị lỗi code",
+     "Dữ liệu bị mất",
+     "Nên tắt hệ thống đi",
+     "Gian lận rất hiếm, nên số giao dịch bình thường bị báo nhầm áp đảo số ca gian lận thật"
+    ],
+    "answer": 3,
+    "why": "Giống ví dụ xét nghiệm: khi nhóm cần tìm rất hiếm, một tỷ lệ báo nhầm nhỏ áp lên rất nhiều giao dịch bình thường vẫn tạo ra nhiều cảnh báo nhầm."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm posterior(prior, sensitivity, false_positive_rate) tính P(bệnh | dương tính) theo định lý Bayes.\n- prior: tỷ lệ bệnh, ví dụ 0.01\n- sensitivity: P(dương | bệnh), ví dụ 0.9\n- false_positive_rate: P(dương | khoẻ), ví dụ 0.09\nVí dụ: posterior(0.01, 0.9, 0.09) xấp xỉ 0.0917.\nNếu P(dương) bằng 0 (không ai có thể dương tính) thì trả về 0.0.",
+   "starter": "def posterior(prior, sensitivity, false_positive_rate):\n    # TODO: Bayes' theorem\n    pass\n",
+   "solution": "def posterior(prior, sensitivity, false_positive_rate):\n    p_pos = sensitivity * prior + false_positive_rate * (1 - prior)\n    if p_pos == 0:\n        return 0.0\n    return sensitivity * prior / p_pos\n",
+   "tests": "assert abs(posterior(0.01, 0.9, 0.09) - 0.0917) < 1e-3, 'ví dụ trong bài phải ra khoảng 0.0917'\nassert posterior(0.0, 0.9, 0.09) == 0.0, 'prior bằng 0 thì posterior phải bằng 0'\nassert abs(posterior(1.0, 0.9, 0.09) - 1.0) < 1e-9, 'prior bằng 1 thì posterior phải bằng 1'\nassert abs(posterior(0.05, 0.8, 0.0) - 1.0) < 1e-9, 'không có báo nhầm thì dương tính nghĩa là chắc chắn bệnh'\nassert abs(posterior(0.2, 0.5, 0.5) - 0.2) < 1e-9, 'xét nghiệm vô dụng (sensitivity bằng false positive rate) thì posterior bằng prior'\nassert posterior(0.0, 0.9, 0.0) == 0.0, 'P(dương) bằng 0 thì phải trả về 0.0, không được chia cho 0'\n",
+   "hint": "Tính P(dương) trước bằng cách cộng hai nhóm: người bệnh dương tính thật và người khoẻ bị báo nhầm. Sau đó lấy phần của người bệnh chia cho tổng."
+  },
+  "takeaway": "Bằng chứng mới cập nhật chứ không thay thế niềm tin ban đầu; khi điều cần tìm rất hiếm, một kết quả dương tính vẫn có thể phần lớn là báo nhầm."
+ },
+ {
+  "id": "math-12",
+  "track": "math",
+  "unit": "Probability and statistics",
+  "order": 12,
+  "title": "Mean, variance and standard deviation",
+  "title_vi": "Trung bình và độ dao động",
+  "level": 1,
+  "minutes": 11,
+  "body": "Bạn có hai cửa hàng, cả hai đều bán trung bình 100 đơn mỗi ngày. Cửa hàng A ngày nào cũng 95 đến 105 đơn. Cửa hàng B có ngày 20 đơn, có ngày 180 đơn. Cùng con số trung bình, nhưng vận hành hai cửa hàng này khác nhau hoàn toàn: B cần kho dự phòng lớn hơn, nhân sự linh hoạt hơn. Để mô tả dữ liệu, một con số là không đủ.\n\n## Mean: trung tâm của dữ liệu\n**Mean** (trung bình cộng) = cộng tất cả rồi chia cho số lượng. Doanh thu 5 ngày [10, 12, 9, 11, 13] triệu có mean = 55 / 5 = 11 triệu.\n\nMean nhạy cảm với giá trị bất thường. Một phòng 10 người có thu nhập trung bình 20 triệu, một tỷ phú bước vào thì mean vọt lên hàng trăm triệu, dù không ai khác giàu lên. Khi dữ liệu có vài giá trị cực đoan, người ta thường xem thêm **median** (trung vị: giá trị đứng giữa khi xếp từ nhỏ đến lớn).\n\n## Variance: dữ liệu toả ra xa trung bình đến đâu\nCách đo độ toả:\n- Lấy từng giá trị trừ mean, được độ lệch.\n- Bình phương các độ lệch, để lệch âm và lệch dương không triệt tiêu nhau, và để lệch xa bị tính nặng hơn.\n- Lấy trung bình các bình phương đó.\n\nKết quả là **variance** (phương sai). Với [10, 12, 9, 11, 13], độ lệch là [-1, 1, -2, 0, 2], bình phương là [1, 1, 4, 0, 4], trung bình = 10 / 5 = 2.\n\n## Standard deviation: đưa về cùng đơn vị\nVariance có một điểm bất tiện: đơn vị bị bình phương, \"triệu đồng bình phương\" nghe rất lạ. Lấy căn bậc hai thì về lại đơn vị gốc, gọi là **standard deviation** (độ lệch chuẩn, viết tắt std). Ở ví dụ trên, std = √2 ≈ 1.41 triệu. Đọc thành lời: doanh thu thường dao động quanh 11 triệu, lệch khoảng 1.4 triệu.\n\nQuay lại hai cửa hàng: cả hai có mean 100, nhưng std của A có thể chỉ khoảng 3 đơn, còn std của B có thể tới 50 đơn. Con số std nói cho bạn điều mà mean che giấu.\n\nGhi chú: khi tính trên một mẫu để ước lượng cho cả tổng thể, các nhà thống kê thường chia cho (n - 1) thay vì n. Với dữ liệu lớn thì khác biệt không đáng kể. Trong bài này ta chia cho n.\n\n## Trong AI dùng ở đâu\n- **Normalization** (chuẩn hoá dữ liệu): trước khi đưa dữ liệu vào mô hình, người ta thường lấy từng cột trừ mean rồi chia std. Nếu không, cột thu nhập (hàng chục triệu) sẽ lấn át cột số con (0 đến 3) chỉ vì con số to hơn, và gradient descent chạy rất chậm. Sau khi chuẩn hoá, mỗi cột có mean 0 và std 1. Giá trị sau chuẩn hoá gọi là **z-score**: nó cho biết một giá trị cách trung bình bao nhiêu lần std.\n- Bên trong mạng neural, kỹ thuật như layer normalization làm việc tương tự với output của từng layer để huấn luyện ổn định hơn.\n- Loss mean squared error ở bài 5 cũng là \"trung bình của bình phương độ lệch\", họ hàng gần của variance.\n\n```\ndata = [10, 12, 9, 11, 13]\nmean = sum(data) / len(data)\nvariance = sum((x - mean) ** 2 for x in data) / len(data)\nstd = variance ** 0.5\n```",
+  "terms": [
+   {
+    "en": "mean",
+    "vi": "trung bình cộng"
+   },
+   {
+    "en": "median",
+    "vi": "trung vị, giá trị đứng giữa"
+   },
+   {
+    "en": "variance",
+    "vi": "phương sai, trung bình bình phương độ lệch"
+   },
+   {
+    "en": "standard deviation",
+    "vi": "độ lệch chuẩn, căn bậc hai của variance"
+   },
+   {
+    "en": "normalization",
+    "vi": "chuẩn hoá dữ liệu về cùng thang đo"
+   },
+   {
+    "en": "z-score",
+    "vi": "số lần std mà một giá trị cách mean"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Dữ liệu [2, 4, 6]. Mean và variance (chia cho n) là bao nhiêu?",
+    "choices": [
+     "Mean 4, variance 4",
+     "Mean 4, variance khoảng 2.67",
+     "Mean 6, variance 2",
+     "Mean 4, variance 0"
+    ],
+    "answer": 1,
+    "why": "Mean = 12 / 3 = 4. Độ lệch [-2, 0, 2], bình phương [4, 0, 4], trung bình = 8 / 3 ≈ 2.67."
+   },
+   {
+    "q": "Hai cửa hàng cùng mean 100 đơn mỗi ngày, std lần lượt là 3 và 50. Điều này cho biết gì?",
+    "choices": [
+     "Cửa hàng std 50 có số đơn mỗi ngày dao động mạnh hơn nhiều",
+     "Cửa hàng std 50 bán được nhiều hơn",
+     "Hai cửa hàng vận hành giống hệt nhau",
+     "Cửa hàng std 3 đang lỗ"
+    ],
+    "answer": 0,
+    "why": "Mean bằng nhau nghĩa là trung tâm như nhau. Std khác nhau cho biết mức dao động quanh trung tâm đó."
+   },
+   {
+    "q": "Muốn mô tả thu nhập điển hình trong một phòng có một tỷ phú, nên xem con số nào?",
+    "choices": [
+     "Variance",
+     "Mean",
+     "Tổng thu nhập",
+     "Median, vì ít bị kéo lệch bởi giá trị cực đoan"
+    ],
+    "answer": 3,
+    "why": "Một giá trị cực lớn kéo mean lên rất cao. Median chỉ nhìn giá trị đứng giữa nên phản ánh người điển hình tốt hơn."
+   },
+   {
+    "q": "Vì sao thường chuẩn hoá các cột dữ liệu trước khi huấn luyện mô hình?",
+    "choices": [
+     "Để dữ liệu chiếm ít bộ nhớ hơn",
+     "Để xoá các giá trị bất thường",
+     "Để các cột có thang đo tương đương, cột có số to không lấn át cột có số nhỏ",
+     "Để mean của mỗi cột bằng 1"
+    ],
+    "answer": 2,
+    "why": "Sau chuẩn hoá mỗi cột có mean 0, std 1. Mô hình và gradient descent không bị đánh lừa bởi đơn vị đo."
+   }
+  ],
+  "code": {
+   "prompt": "Viết 4 hàm cho một list số data (không rỗng):\n- mean(data)\n- variance(data): chia cho n\n- std(data): căn bậc hai của variance\n- zscores(data): list các giá trị (x - mean) / std. Nếu std bằng 0 thì trả về list toàn 0.0 cùng độ dài.\nVí dụ: mean([10, 12, 9, 11, 13]) = 11, variance(...) = 2, zscores([1, 3]) = [-1.0, 1.0].",
+   "starter": "import math\n\ndef mean(data):\n    # TODO\n    pass\n\ndef variance(data):\n    # TODO: average of squared deviations from the mean\n    pass\n\ndef std(data):\n    # TODO\n    pass\n\ndef zscores(data):\n    # TODO: (x - mean) / std, all zeros if std is 0\n    pass\n",
+   "solution": "import math\n\ndef mean(data):\n    return sum(data) / len(data)\n\ndef variance(data):\n    m = mean(data)\n    return sum((x - m) ** 2 for x in data) / len(data)\n\ndef std(data):\n    return math.sqrt(variance(data))\n\ndef zscores(data):\n    m = mean(data)\n    s = std(data)\n    if s == 0:\n        return [0.0 for _ in data]\n    return [(x - m) / s for x in data]\n",
+   "tests": "d = [10, 12, 9, 11, 13]\nassert abs(mean(d) - 11) < 1e-9, 'mean của [10, 12, 9, 11, 13] phải bằng 11'\nassert abs(variance(d) - 2) < 1e-9, 'variance của [10, 12, 9, 11, 13] phải bằng 2'\nassert abs(std(d) - math.sqrt(2)) < 1e-9, 'std phải bằng căn bậc hai của 2'\nassert variance([5, 5, 5]) == 0, 'dữ liệu không đổi thì variance bằng 0'\nassert zscores([5, 5, 5]) == [0.0, 0.0, 0.0], 'std bằng 0 thì zscores phải toàn 0.0'\nz = zscores([1, 3])\nassert abs(z[0] + 1) < 1e-9 and abs(z[1] - 1) < 1e-9, 'zscores([1, 3]) phải bằng [-1.0, 1.0]'\nassert abs(mean(zscores(d))) < 1e-9, 'sau chuẩn hoá mean phải bằng 0'\n",
+   "hint": "Viết mean trước, rồi dùng lại mean trong variance, dùng variance trong std, dùng cả hai trong zscores. Nhớ kiểm tra std bằng 0 trước khi chia."
+  },
+  "takeaway": "Mean cho biết trung tâm, standard deviation cho biết dữ liệu dao động quanh trung tâm bao nhiêu; trừ mean rồi chia std là bước chuẩn hoá dữ liệu quen thuộc trong AI."
+ },
+ {
+  "id": "math-13",
+  "track": "math",
+  "unit": "Probability and statistics",
+  "order": 13,
+  "title": "The normal distribution",
+  "title_vi": "Đường cong hình chuông và vì sao trung bình đáng tin",
+  "level": 2,
+  "minutes": 12,
+  "body": "Đo chiều cao của 10.000 người trưởng thành, rồi đếm xem có bao nhiêu người ở mỗi mức chiều cao. Bạn sẽ thấy một hình chuông: đông nhất ở giữa, thưa dần về hai phía, hai bên gần như đối xứng. Hình này xuất hiện ở khắp nơi, đến mức được gọi là **normal distribution** (phân phối chuẩn), hay đường cong Gauss.\n\n## Distribution là gì\nMột **distribution** (phân phối) mô tả dữ liệu thường rơi vào đâu: giá trị nào hay gặp, giá trị nào hiếm. Không phải mọi thứ đều hình chuông:\n- Kết quả xúc xắc: phân phối đều, mỗi mặt như nhau.\n- Thu nhập: lệch hẳn sang phải, đa số ở mức vừa phải, một số ít rất cao kéo thành đuôi dài.\n- Số đơn của một khách trong năm: rất nhiều người 0 đến 2 đơn, rất ít người 50 đơn.\n\n## Hai con số mô tả trọn hình chuông\nPhân phối chuẩn được xác định hoàn toàn bằng mean (đỉnh chuông ở đâu) và standard deviation (chuông rộng hay hẹp). Kèm theo là quy tắc 68-95-99.7:\n- Khoảng 68% dữ liệu nằm trong khoảng mean ± 1 std.\n- Khoảng 95% nằm trong mean ± 2 std.\n- Khoảng 99.7% nằm trong mean ± 3 std.\n\nVí dụ: thời gian giao hàng trung bình 30 phút, std 5 phút, phân phối gần chuẩn. Vậy khoảng 95% đơn giao trong 20 đến 40 phút. Một đơn mất 50 phút là cách mean 4 std, cực hiếm, đáng kiểm tra xem có sự cố. Đây là ý tưởng đơn giản nhất của **anomaly detection** (phát hiện bất thường).\n\n## Vì sao hình chuông có mặt khắp nơi\n**Central limit theorem** (định lý giới hạn trung tâm) nói đại ý: khi cộng hoặc lấy trung bình nhiều yếu tố ngẫu nhiên độc lập, kết quả có phân phối gần chuẩn, kể cả khi từng yếu tố riêng lẻ không hề có hình chuông.\n\nThử nghĩ: một con xúc xắc có phân phối đều. Nhưng tung 10 con rồi lấy trung bình, lặp lại hàng nghìn lần, các giá trị trung bình sẽ xếp thành hình chuông quanh 3.5. Trực giác: để trung bình ra đúng 1, cả 10 con đều phải ra 1, cực hiếm. Còn để ra quanh 3.5 thì có vô số cách kết hợp.\n\nChiều cao cũng vậy: là kết quả cộng dồn của rất nhiều yếu tố nhỏ như gen, dinh dưỡng, giấc ngủ, nên ra hình chuông.\n\n## Trung bình càng nhiều mẫu càng ổn định\nHệ quả thứ hai: trung bình của n mẫu dao động ít hơn từng mẫu riêng lẻ. Cụ thể, std của giá trị trung bình bằng std gốc chia √n. Lấy trung bình 100 mẫu thì độ dao động giảm 10 lần. Đây là lý do khi chạy **A/B test** (thử hai phiên bản trên hai nhóm ngẫu nhiên rồi so kết quả) cho một email mới, bạn cần đủ nhiều người nhận. Với 50 người, chênh lệch 2% tỷ lệ mở có thể chỉ là may rủi. Với 50.000 người, chênh lệch đó đáng tin hơn nhiều.\n\n## Trong AI\n- Trọng số của mạng neural thường được khởi tạo bằng số ngẫu nhiên lấy từ phân phối chuẩn (hoặc phân phối tương tự).\n- Nhiễu trong dữ liệu đo đạc thường được giả định có dạng chuẩn.\n- Mini-batch trong SGD hoạt động được nhờ chính ý tưởng này: gradient trung bình trên một nhóm mẫu ngẫu nhiên đã khá gần gradient trên toàn bộ dữ liệu.\n- Cẩn thận: nhiều dữ liệu kinh doanh như thu nhập, giá trị đơn hàng, lượt xem video có đuôi dài. Áp quy tắc 68-95-99.7 cho chúng sẽ đánh giá thấp tần suất các giá trị cực đoan.\n\n```\nimport random\nmeans = [sum(random.randint(1, 6) for _ in range(10)) / 10 for _ in range(5000)]\nprint(sum(means) / len(means))  # about 3.5\n```",
+  "terms": [
+   {
+    "en": "distribution",
+    "vi": "phân phối, dữ liệu thường rơi vào đâu"
+   },
+   {
+    "en": "normal distribution",
+    "vi": "phân phối chuẩn, hình chuông"
+   },
+   {
+    "en": "central limit theorem",
+    "vi": "định lý giới hạn trung tâm"
+   },
+   {
+    "en": "anomaly detection",
+    "vi": "phát hiện bất thường"
+   },
+   {
+    "en": "A/B test",
+    "vi": "thử hai phiên bản trên hai nhóm ngẫu nhiên rồi so sánh"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Thời gian giao hàng có dạng hình chuông, mean 30 phút, std 5 phút. Khoảng 95% đơn được giao trong khoảng nào?",
+    "choices": [
+     "25 đến 35 phút",
+     "30 đến 40 phút",
+     "20 đến 40 phút",
+     "15 đến 45 phút"
+    ],
+    "answer": 2,
+    "why": "95% nằm trong mean ± 2 std: 30 ± 10 phút. Khoảng 25 đến 35 là ± 1 std, chứa khoảng 68%."
+   },
+   {
+    "q": "Từng con xúc xắc có phân phối đều, nhưng trung bình của 10 con lại có hình chuông. Hiện tượng này được giải thích bởi điều gì?",
+    "choices": [
+     "Central limit theorem",
+     "Bayes' theorem",
+     "Chain rule",
+     "Gambler's fallacy"
+    ],
+    "answer": 0,
+    "why": "Central limit theorem nói trung bình của nhiều yếu tố ngẫu nhiên độc lập có phân phối gần chuẩn, bất kể từng yếu tố có hình dạng gì."
+   },
+   {
+    "q": "Tăng số mẫu từ 25 lên 100, độ dao động (std) của giá trị trung bình thay đổi thế nào?",
+    "choices": [
+     "Giảm 4 lần",
+     "Giảm 2 lần",
+     "Không đổi",
+     "Tăng gấp đôi"
+    ],
+    "answer": 1,
+    "why": "Std của trung bình tỷ lệ với 1/√n. Số mẫu gấp 4 thì √4 = 2, nên dao động giảm 2 lần."
+   },
+   {
+    "q": "Giá trị đơn hàng có đuôi dài, vài đơn cực lớn. Nếu vẫn áp quy tắc 68-95-99.7 thì sao?",
+    "choices": [
+     "Kết quả vẫn chính xác",
+     "Quy tắc đúng với mọi loại dữ liệu",
+     "Sẽ đánh giá quá cao số đơn cực lớn",
+     "Sẽ đánh giá thấp tần suất các đơn cực lớn, vì dữ liệu không có hình chuông"
+    ],
+    "answer": 3,
+    "why": "Quy tắc này chỉ đúng với phân phối gần chuẩn. Dữ liệu đuôi dài có nhiều giá trị cực đoan hơn nhiều so với hình chuông dự đoán."
+   }
+  ],
+  "takeaway": "Trung bình của nhiều yếu tố ngẫu nhiên có hình chuông và càng nhiều mẫu càng ổn định, nhưng nhiều dữ liệu kinh doanh có đuôi dài nên đừng mặc định mọi thứ đều hình chuông."
+ },
+ {
+  "id": "math-14",
+  "track": "math",
+  "unit": "Probability and statistics",
+  "order": 14,
+  "title": "Softmax, logarithms and log-loss",
+  "title_vi": "Biến điểm số thành xác suất và chấm điểm dự đoán",
+  "level": 3,
+  "minutes": 15,
+  "body": "Ở bước cuối, một mô hình phân loại thường trả ra các con số thô gọi là **logits** (điểm số chưa chuẩn hoá), ví dụ [2.0, 1.0, 0.1] cho [mèo, chó, cáo]. Những con số này có thể âm, lớn tuỳ ý, và không cộng lại bằng 1. Ta cần biến chúng thành xác suất.\n\n## Softmax: biến điểm số thành xác suất\n**Softmax** làm hai bước:\n- Lấy e mũ từng điểm số: e^2.0 ≈ 7.39, e^1.0 ≈ 2.72, e^0.1 ≈ 1.11. Hàm mũ luôn ra số dương, nên điểm âm cũng thành số dương.\n- Chia mỗi số cho tổng (7.39 + 2.72 + 1.11 = 11.22): được khoảng [0.66, 0.24, 0.10].\n\nKết quả đều dương, cộng lại bằng 1, và điểm cao nhất vẫn có xác suất cao nhất. Vì dùng hàm mũ, softmax khuếch đại khoảng cách: điểm hơn nhau 1 đơn vị thì xác suất hơn nhau khoảng 2.7 lần. Nó giống phép chọn max nhưng \"mềm\", vẫn chừa phần cho các lựa chọn khác, nên có tên soft-max.\n\nMô hình ngôn ngữ dùng softmax ở mỗi bước để biến điểm của hàng chục nghìn token thành phân phối xác suất. **Temperature** mà bạn chỉnh khi gọi API chính là chia logits cho một số trước khi đưa vào softmax: temperature thấp làm phân phối nhọn hơn (chắc chắn hơn), temperature cao làm nó phẳng hơn (đa dạng hơn).\n\nMẹo kỹ thuật: e^1000 tràn số trên máy tính. Vì softmax không đổi khi trừ mọi điểm cho cùng một số, người ta luôn trừ điểm lớn nhất trước khi lấy mũ.\n\n## Logarithm: phép ngược của hàm mũ\n**Logarithm** (log) trả lời câu hỏi \"e phải mũ bao nhiêu để ra số này\". ln(e²) = 2, ln(1) = 0. Với xác suất (số từ 0 đến 1), log luôn âm hoặc bằng 0:\n- ln(1) = 0\n- ln(0.5) ≈ -0.69\n- ln(0.1) ≈ -2.3\n- ln(0.01) ≈ -4.6\n\nXác suất càng gần 0, log càng lao xuống âm vô cùng.\n\nHai tính chất làm log được yêu thích: biến phép nhân thành phép cộng, ln(a × b) = ln a + ln b; và giữ cho các con số cực nhỏ không bị máy tính làm tròn thành 0. Nhân 1000 xác suất nhỏ với nhau ra một số bé đến mức máy coi là 0, còn cộng 1000 giá trị log thì vẫn ổn.\n\n## Log-loss: phạt nặng sự tự tin sai\nMô hình dự đoán [0.66, 0.24, 0.10] và đáp án đúng là mèo. **Log-loss** (còn gọi là **cross-entropy loss**) = -ln(xác suất mô hình gán cho đáp án đúng) = -ln(0.66) ≈ 0.42.\n- Gán 0.99 cho đáp án đúng: loss ≈ 0.01, gần như hoàn hảo.\n- Gán 0.5: loss ≈ 0.69.\n- Gán 0.01: loss ≈ 4.6, phạt rất nặng.\n\nVì sao không dùng đơn giản \"1 trừ xác suất\"? Vì log-loss phạt cực nặng sự tự tin sai. Một mô hình nói \"chắc 99% đây là chó\" trong khi là mèo phải bị phạt nặng hơn nhiều so với mô hình nói \"50/50\". Giống trong công việc: người nói \"chưa chắc\" khi chưa chắc đáng tin hơn người khẳng định chắc nịch rồi sai.\n\nLog-loss kết hợp rất đẹp với softmax: gradient của cặp này gộp lại rất gọn, bằng xác suất dự đoán trừ đi đáp án đúng. Vì vậy softmax cộng cross-entropy gần như là mặc định cho bài toán phân loại, và cũng là loss dùng để huấn luyện mô hình ngôn ngữ đoán token tiếp theo.\n\n```\nimport math\nlogits = [2.0, 1.0, 0.1]\nexps = [math.exp(z) for z in logits]\nprobs = [e / sum(exps) for e in exps]   # about [0.66, 0.24, 0.10]\nloss = -math.log(probs[0])              # about 0.42\n```",
+  "terms": [
+   {
+    "en": "logits",
+    "vi": "điểm số thô chưa chuẩn hoá của mô hình"
+   },
+   {
+    "en": "softmax",
+    "vi": "hàm biến điểm số thành xác suất cộng lại bằng 1"
+   },
+   {
+    "en": "temperature",
+    "vi": "hệ số làm phân phối nhọn hơn hoặc phẳng hơn"
+   },
+   {
+    "en": "logarithm",
+    "vi": "phép ngược của hàm mũ"
+   },
+   {
+    "en": "log-loss",
+    "vi": "loss bằng trừ log xác suất của đáp án đúng"
+   },
+   {
+    "en": "cross-entropy loss",
+    "vi": "tên khác của log-loss trong phân loại"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Softmax của [1, 1, 1] là gì?",
+    "choices": [
+     "[1, 1, 1]",
+     "[0.5, 0.25, 0.25]",
+     "[0, 0, 1]",
+     "Khoảng [0.33, 0.33, 0.33]"
+    ],
+    "answer": 3,
+    "why": "Ba điểm bằng nhau thì e mũ cũng bằng nhau, chia cho tổng được mỗi phần một phần ba."
+   },
+   {
+    "q": "Khi giảm temperature của mô hình ngôn ngữ, điều gì xảy ra?",
+    "choices": [
+     "Phân phối phẳng hơn, câu trả lời đa dạng hơn",
+     "Tổng xác suất lớn hơn 1",
+     "Phân phối nhọn hơn, mô hình chọn token điểm cao nhất thường xuyên hơn",
+     "Không ảnh hưởng gì"
+    ],
+    "answer": 2,
+    "why": "Chia logits cho số nhỏ làm khoảng cách giữa các điểm lớn ra, softmax khuếch đại thêm, nên token dẫn đầu chiếm phần lớn xác suất."
+   },
+   {
+    "q": "Mô hình gán xác suất 0.01 cho đáp án đúng. Log-loss khoảng bao nhiêu?",
+    "choices": [
+     "Khoảng 4.6, phạt rất nặng",
+     "Khoảng 0.01",
+     "Đúng 0.99",
+     "Bằng 0"
+    ],
+    "answer": 0,
+    "why": "-ln(0.01) ≈ 4.6. Gán xác suất rất thấp cho đáp án đúng nghĩa là tự tin sai, nên bị phạt nặng."
+   },
+   {
+    "q": "Vì sao khi tính softmax người ta trừ điểm lớn nhất khỏi mọi logits trước khi lấy e mũ?",
+    "choices": [
+     "Để tổng xác suất bằng 1",
+     "Để tránh tràn số khi lấy e mũ số lớn, mà kết quả softmax không đổi",
+     "Để xác suất lớn nhất luôn bằng 1",
+     "Để mọi logits đều dương"
+    ],
+    "answer": 1,
+    "why": "Trừ cùng một số khỏi mọi điểm thì tử và mẫu đều nhân cùng một hệ số, triệt tiêu nhau. Kết quả giữ nguyên nhưng không còn e mũ số khổng lồ."
+   }
+  ],
+  "code": {
+   "prompt": "Viết 2 hàm:\n- softmax(scores): nhận list điểm số, trả về list xác suất cộng lại bằng 1. Phải chạy được với điểm rất lớn như [1000, 1000] (gợi ý: trừ max trước).\n- log_loss(probs, correct): trả về -ln(probs[correct]). Để tránh log(0), nếu xác suất nhỏ hơn 1e-12 thì dùng 1e-12.\nVí dụ: softmax([1, 1]) = [0.5, 0.5]; log_loss([0.5, 0.5], 1) xấp xỉ 0.693.",
+   "starter": "import math\n\ndef softmax(scores):\n    # TODO: subtract max, exponentiate, divide by the sum\n    pass\n\ndef log_loss(probs, correct):\n    # TODO: minus log of the probability of the correct class\n    pass\n",
+   "solution": "import math\n\ndef softmax(scores):\n    m = max(scores)\n    exps = [math.exp(s - m) for s in scores]\n    total = sum(exps)\n    return [e / total for e in exps]\n\ndef log_loss(probs, correct):\n    p = max(probs[correct], 1e-12)\n    return -math.log(p)\n",
+   "tests": "p = softmax([2.0, 1.0, 0.1])\nassert abs(sum(p) - 1) < 1e-9, 'xác suất sau softmax phải cộng lại bằng 1'\nassert p[0] > p[1] > p[2], 'điểm cao hơn phải có xác suất cao hơn'\nassert abs(p[0] - 0.659) < 1e-3, 'softmax([2.0, 1.0, 0.1])[0] phải xấp xỉ 0.659'\nq = softmax([1000, 1000])\nassert abs(q[0] - 0.5) < 1e-9 and abs(q[1] - 0.5) < 1e-9, 'softmax([1000, 1000]) phải bằng [0.5, 0.5], không được tràn số'\nassert softmax([5.0]) == [1.0], 'chỉ một lựa chọn thì xác suất phải bằng 1'\nassert abs(log_loss([1.0, 0.0], 0)) < 1e-9, 'đoán đúng với xác suất 1 thì loss bằng 0'\nassert abs(log_loss([0.5, 0.5], 1) - math.log(2)) < 1e-9, 'log_loss([0.5, 0.5], 1) phải bằng ln 2'\nassert 20 < log_loss([1.0, 0.0], 1) < 30, 'xác suất 0 phải được thay bằng 1e-12, loss khoảng 27.6'\n",
+   "hint": "Với softmax, tìm max(scores), trừ nó khỏi từng điểm rồi mới dùng math.exp. Với log_loss, lấy xác suất ở vị trí correct, dùng max(p, 1e-12) rồi lấy trừ log."
+  },
+  "takeaway": "Softmax biến điểm số thô thành xác suất, và log-loss chấm điểm dự đoán bằng trừ log xác suất của đáp án đúng, phạt rất nặng những lần mô hình tự tin mà sai."
+ }
+]

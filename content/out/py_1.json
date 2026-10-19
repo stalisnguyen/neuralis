@@ -1,0 +1,1402 @@
+[
+ {
+  "id": "py-01",
+  "track": "py",
+  "unit": "Getting started",
+  "order": 1,
+  "title": "What is programming",
+  "title_vi": "Lập trình là gì",
+  "level": 1,
+  "minutes": 8,
+  "body": "Hãy tưởng tượng bạn nhờ một người bạn mới quen đi mua cà phê giúp. Nếu bạn chỉ nói \"mua giúp mình ly cà phê\", người đó sẽ hỏi lại: quán nào, cà phê gì, đá hay nóng, bao nhiêu đường. Máy tính còn \"ngây thơ\" hơn người bạn đó rất nhiều. Nó không đoán ý, không hỏi lại, nó chỉ làm **đúng từng chữ** bạn bảo. Lập trình chính là việc viết ra những chỉ dẫn rõ ràng đến mức máy tính làm theo được mà không cần đoán.\n\n## Vài khái niệm đầu tiên\n\n- program (chương trình): một danh sách chỉ dẫn để máy tính thực hiện, ví dụ app Grab là một chương trình rất lớn.\n- code (mã): chính là các dòng chữ bạn viết ra để tạo nên chương trình.\n- programming language (ngôn ngữ lập trình): \"tiếng nói\" chung giữa bạn và máy, có luật viết riêng. Trong khoá này mình dùng Python.\n- bug (lỗi trong chương trình): khi máy làm khác ý bạn, gần như luôn là vì chỉ dẫn chưa đúng, không phải máy \"hư\".\n\n## Máy tính giỏi gì, kém gì?\n\nMáy tính cực kỳ giỏi làm việc lặp lại, nhanh và không mệt: cộng một triệu hoá đơn trong chưa tới một giây, kiểm tra hàng nghìn đơn Shopee xem đơn nào giao trễ. Nhưng nó kém ở chỗ hiểu ý ngầm. Nếu bạn viết sai một dấu ngoặc, nó sẽ dừng lại và báo lỗi thay vì \"chắc ý bạn là vậy\". Lúc đầu điều này hơi khó chịu, nhưng thật ra đó là điểm tốt: máy luôn nhất quán, nên khi sửa đúng thì nó chạy đúng mãi.\n\n## Một chương trình nhỏ trông như thế nào\n\n```\ncups_morning = 2\ncups_afternoon = 1\nprint(cups_morning + cups_afternoon)\n```\n\nĐọc từ trên xuống: dòng 1 ghi nhớ số ly buổi sáng là 2, dòng 2 ghi nhớ số ly buổi chiều là 1, dòng 3 in ra tổng. Máy chạy lần lượt từng dòng, từ trên xuống dưới, giống như bạn làm theo công thức nấu ăn từng bước.\n\n## Bài tập trong khoá này trông như thế nào\n\nMỗi bài có một bài tập viết một function (hàm, một \"cỗ máy nhỏ\" nhận đầu vào và trả ra kết quả). Bạn sẽ thấy dạng như sau:\n\n```\ndef total_cups(morning, afternoon):\n    return morning + afternoon\n```\n\n- `def` báo cho Python: \"mình sắp định nghĩa một hàm\".\n- `total_cups` là tên hàm, `morning` và `afternoon` là hai đầu vào.\n- `return` nghĩa là \"trả kết quả này ra ngoài\".\n- Dòng bên dưới `def` phải thụt vào 4 dấu cách, Python dựa vào khoảng thụt đó để biết dòng nào thuộc về hàm.\n\nBạn chưa cần hiểu hết bây giờ. Ở bài đầu, việc của bạn chỉ là sửa dòng `return` cho đúng. App sẽ tự chạy các test (đoạn code kiểm tra tự động) để xem hàm của bạn trả đúng kết quả chưa. Nếu sai, đọc thông báo lỗi bằng tiếng Việt, sửa, chạy lại. Vòng lặp \"viết, chạy, sửa\" này chính là cách mọi lập trình viên làm việc mỗi ngày, kể cả người đã có 10 năm kinh nghiệm.",
+  "terms": [
+   {
+    "en": "program",
+    "vi": "chương trình, danh sách chỉ dẫn cho máy"
+   },
+   {
+    "en": "code",
+    "vi": "mã, các dòng lệnh bạn viết"
+   },
+   {
+    "en": "programming language",
+    "vi": "ngôn ngữ lập trình"
+   },
+   {
+    "en": "bug",
+    "vi": "lỗi khiến chương trình chạy sai ý"
+   },
+   {
+    "en": "function",
+    "vi": "hàm, cỗ máy nhỏ nhận đầu vào và trả kết quả"
+   },
+   {
+    "en": "return",
+    "vi": "trả kết quả ra khỏi hàm"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Vì sao máy tính cần chỉ dẫn rất rõ ràng?",
+    "choices": [
+     "Vì máy làm đúng từng chữ được viết, không tự đoán ý người viết",
+     "Vì máy tính chậm hơn con người",
+     "Vì máy tính chỉ hiểu tiếng Anh giao tiếp",
+     "Vì máy tính hay quên những gì vừa làm"
+    ],
+    "answer": 0,
+    "why": "Máy tính không đoán ý ngầm. Nó thực hiện chính xác những gì code nói, nên chỉ dẫn mơ hồ sẽ cho kết quả sai hoặc báo lỗi."
+   },
+   {
+    "q": "Chương trình chạy ra kết quả sai so với ý bạn. Khả năng cao nhất là gì?",
+    "choices": [
+     "Máy tính bị hỏng phần cứng",
+     "Có bug: chỉ dẫn trong code chưa đúng với ý mình",
+     "Python đang tự sửa code của bạn",
+     "Máy tính cần nghỉ một lúc rồi chạy lại"
+    ],
+    "answer": 1,
+    "why": "Gần như mọi kết quả sai đến từ chỉ dẫn chưa đúng, gọi là bug. Việc của lập trình viên là tìm và sửa nó."
+   },
+   {
+    "q": "Trong hàm def total_cups(morning, afternoon), từ return dùng để làm gì?",
+    "choices": [
+     "In kết quả lên màn hình cho người dùng xem",
+     "Đặt tên cho hàm",
+     "Đưa kết quả tính được ra ngoài hàm",
+     "Xoá các đầu vào sau khi dùng"
+    ],
+    "answer": 2,
+    "why": "return trả giá trị ra khỏi hàm để nơi gọi hàm nhận được. In lên màn hình là việc của print, một thứ khác."
+   },
+   {
+    "q": "Máy chạy một chương trình Python đơn giản theo thứ tự nào?",
+    "choices": [
+     "Từ dưới lên trên",
+     "Dòng ngắn nhất chạy trước",
+     "Tất cả các dòng cùng lúc, không theo thứ tự",
+     "Lần lượt từng dòng, từ trên xuống dưới"
+    ],
+    "answer": 3,
+    "why": "Giống làm theo công thức nấu ăn, Python thực hiện từng dòng theo thứ tự từ trên xuống, trừ khi gặp lệnh đặc biệt như vòng lặp hay điều kiện."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm total_cups(morning, afternoon) trả về tổng số ly cà phê bạn uống trong ngày. Ví dụ: total_cups(2, 1) trả về 3, total_cups(0, 0) trả về 0.",
+   "starter": "def total_cups(morning, afternoon):\n    # TODO: return the total number of cups\n    pass\n",
+   "solution": "def total_cups(morning, afternoon):\n    return morning + afternoon\n",
+   "tests": "assert total_cups(2, 1) == 3, 'total_cups(2, 1) phải bằng 3'\nassert total_cups(0, 0) == 0, 'total_cups(0, 0) phải bằng 0'\nassert total_cups(1, 0) == 1, 'total_cups(1, 0) phải bằng 1'\nassert total_cups(3, 4) == 7, 'total_cups(3, 4) phải bằng 7'\n",
+   "hint": "Thay chữ pass bằng một dòng return, cộng hai đầu vào lại với nhau bằng dấu +."
+  },
+  "takeaway": "Lập trình là viết chỉ dẫn rõ ràng đến mức máy làm theo được mà không cần đoán."
+ },
+ {
+  "id": "py-02",
+  "track": "py",
+  "unit": "Getting started",
+  "order": 2,
+  "title": "What is Python",
+  "title_vi": "Python là gì và vì sao AI dùng nó",
+  "level": 1,
+  "minutes": 8,
+  "body": "Python là một ngôn ngữ lập trình ra đời từ đầu những năm 1990, do Guido van Rossum tạo ra. Cái tên không liên quan đến con trăn mà lấy từ một chương trình hài của Anh. Ý tưởng chính của Python: code phải **dễ đọc như đọc tiếng Anh đơn giản**. Đó là lý do nó thường được chọn làm ngôn ngữ đầu tiên cho người mới.\n\n## Python trông \"dễ thương\" thế nào\n\nSo sánh cùng một việc: in ra dòng chữ chào hỏi.\n\n```\nprint(\"Xin chào Bit!\")\n```\n\nChỉ một dòng. Ở nhiều ngôn ngữ khác, bạn cần vài dòng khai báo trước khi in được một câu. Python bỏ bớt những thủ tục đó, giúp bạn tập trung vào việc muốn làm.\n\n## Vì sao giới AI gần như đều dùng Python\n\n- Hệ sinh thái library (thư viện, bộ code người khác viết sẵn để bạn dùng lại) khổng lồ. Muốn tính toán ma trận có NumPy, xử lý bảng dữ liệu có pandas, huấn luyện mô hình có PyTorch, gọi các mô hình ngôn ngữ lớn có SDK chính thức của các công ty AI. Giống như mở quán ăn ở chợ Bến Thành: nguyên liệu gì cũng có sẵn quanh bạn.\n- Dễ thử nghiệm. Người làm AI thường thử rất nhiều ý tưởng nhỏ. Python cho phép viết vài dòng, chạy ngay, xem kết quả, sửa tiếp. Công cụ notebook (sổ code, chạy từng đoạn nhỏ và thấy kết quả ngay bên dưới) rất phổ biến trong nghề.\n- Phần nặng chạy bằng ngôn ngữ nhanh hơn. Bản thân Python không phải ngôn ngữ nhanh nhất, nhưng các thư viện AI viết phần tính toán nặng bằng C, C++ hoặc CUDA (ngôn ngữ để chạy trên card đồ hoạ GPU). Python đóng vai \"người điều phối\": bạn ra lệnh bằng Python, phần cơ bắp chạy ở tầng dưới.\n- Cộng đồng lớn. Gặp lỗi gì, gần như chắc chắn đã có người gặp trước và viết cách sửa.\n\nTính đến 2026, đây vẫn là ngôn ngữ chính trong các tin tuyển dụng ML engineer, AI engineer và cả Forward-Deployed AI Engineer, nơi bạn hay phải viết nhanh một đoạn code nối dữ liệu của khách hàng với mô hình AI.\n\n## Python chạy ở đâu trong app này\n\nBình thường, bạn cài Python lên máy tính. Trong Neuralis, code chạy ngay trong trình duyệt nhờ Pyodide (Python được đóng gói để chạy trong trình duyệt web). Bạn không cần cài gì, chỉ cần viết và bấm chạy.\n\n## Interpreter là gì\n\nPython dùng một interpreter (trình thông dịch, đọc code và thực hiện ngay từng dòng). Nghĩ như một phiên dịch viên đứng giữa bạn và máy: bạn nói câu nào, họ dịch và máy làm câu đó ngay. Nhờ vậy khi có lỗi ở dòng 5, bốn dòng đầu vẫn đã chạy xong, và thông báo lỗi sẽ chỉ rõ dòng 5.\n\nBài tập hôm nay dính chút AI: một mô hình nhận diện ảnh cần vài giây cho mỗi ảnh. Bạn tính tổng thời gian cho cả lô ảnh. Nhân hai số trong Python dùng dấu `*`.",
+  "terms": [
+   {
+    "en": "Python",
+    "vi": "ngôn ngữ lập trình dễ đọc, phổ biến nhất trong AI"
+   },
+   {
+    "en": "library",
+    "vi": "thư viện, code viết sẵn để dùng lại"
+   },
+   {
+    "en": "interpreter",
+    "vi": "trình thông dịch, chạy code từng dòng"
+   },
+   {
+    "en": "notebook",
+    "vi": "sổ code chạy từng đoạn nhỏ"
+   },
+   {
+    "en": "GPU",
+    "vi": "card đồ hoạ, tính toán song song rất nhanh"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Lý do lớn nhất khiến Python phổ biến trong AI là gì?",
+    "choices": [
+     "Python là ngôn ngữ chạy nhanh nhất thế giới",
+     "Có rất nhiều thư viện AI và dữ liệu viết sẵn, dễ thử nghiệm nhanh",
+     "Python là ngôn ngữ duy nhất máy tính hiểu được",
+     "Python do một công ty AI tạo ra riêng cho AI"
+    ],
+    "answer": 1,
+    "why": "Sức mạnh của Python trong AI đến từ hệ sinh thái thư viện như NumPy, pandas, PyTorch và việc thử ý tưởng rất nhanh."
+   },
+   {
+    "q": "Nếu bản thân Python không nhanh, vì sao huấn luyện mô hình bằng Python vẫn ổn?",
+    "choices": [
+     "Vì mô hình AI không cần tính toán nhiều",
+     "Vì Python tự đổi sang tiếng Anh cho nhanh",
+     "Phần tính toán nặng nằm trong thư viện viết bằng C, C++ hoặc CUDA, Python chỉ điều phối",
+     "Vì máy tính chạy Python ưu tiên hơn ngôn ngữ khác"
+    ],
+    "answer": 2,
+    "why": "Python ra lệnh, còn phần cơ bắp chạy ở tầng thấp hơn trên CPU hoặc GPU, nên tốc độ tổng thể vẫn cao."
+   },
+   {
+    "q": "Interpreter của Python làm việc giống ai nhất?",
+    "choices": [
+     "Thủ thư cất code vào kho để đọc sau",
+     "Người kiểm duyệt chỉ chạy code khi không có lỗi nào",
+     "Thợ in chỉ in code ra giấy",
+     "Phiên dịch viên dịch và thực hiện từng câu ngay khi bạn nói"
+    ],
+    "answer": 3,
+    "why": "Interpreter đọc và chạy từng dòng. Vì vậy các dòng trước chỗ lỗi vẫn đã chạy, và lỗi được báo đúng dòng."
+   },
+   {
+    "q": "Trong Neuralis, code Python của bạn chạy ở đâu?",
+    "choices": [
+     "Ngay trong trình duyệt, nhờ Pyodide",
+     "Trên máy chủ của Shopee",
+     "Trong một ứng dụng phải cài riêng",
+     "Trên điện thoại của người khác"
+    ],
+    "answer": 0,
+    "why": "Pyodide đóng gói Python để chạy trong trình duyệt, nên bạn không cần cài đặt gì."
+   }
+  ],
+  "code": {
+   "prompt": "Một mô hình nhận diện ảnh mất seconds_per_image giây cho mỗi ảnh. Viết hàm processing_time(images, seconds_per_image) trả về tổng số giây để xử lý hết images ảnh. Ví dụ: processing_time(10, 3) trả về 30.",
+   "starter": "def processing_time(images, seconds_per_image):\n    # TODO: multiply the two inputs and return the result\n    pass\n",
+   "solution": "def processing_time(images, seconds_per_image):\n    return images * seconds_per_image\n",
+   "tests": "assert processing_time(10, 3) == 30, 'processing_time(10, 3) phải bằng 30'\nassert processing_time(0, 5) == 0, 'Không có ảnh nào thì tổng thời gian là 0'\nassert processing_time(1, 7) == 7, 'processing_time(1, 7) phải bằng 7'\nassert processing_time(250, 2) == 500, 'processing_time(250, 2) phải bằng 500'\n",
+   "hint": "Phép nhân trong Python dùng dấu *. Chỉ cần một dòng return."
+  },
+  "takeaway": "Python dễ đọc, có kho thư viện khổng lồ và là ngôn ngữ điều phối chính của giới AI."
+ },
+ {
+  "id": "py-03",
+  "track": "py",
+  "unit": "Getting started",
+  "order": 3,
+  "title": "Print and comments",
+  "title_vi": "In ra màn hình và ghi chú trong code",
+  "level": 1,
+  "minutes": 9,
+  "body": "Lệnh đầu tiên gần như ai học Python cũng gặp là `print`. Nó hiện nội dung ra màn hình để bạn (hoặc người dùng) nhìn thấy. Còn comment (ghi chú trong code) là những dòng để người đọc hiểu, máy sẽ bỏ qua hoàn toàn.\n\n## print cơ bản\n\n```\nprint(\"Cà phê sữa đá\")\nprint(29000)\n```\n\nChữ phải nằm trong dấu ngoặc kép (hoặc ngoặc đơn), gọi là string (chuỗi ký tự). Số thì viết thẳng, không cần ngoặc. Mỗi lần gọi `print` sẽ in ra một dòng mới.\n\n## In nhiều thứ trên một dòng\n\nBạn có thể đưa nhiều giá trị vào một `print`, ngăn cách bằng dấu phẩy. Python tự chèn một dấu cách giữa chúng:\n\n```\nprint(\"Bạc xỉu\", 32000, \"đồng\")\n```\n\nKết quả: `Bạc xỉu 32000 đồng`. Rất tiện khi muốn in chữ xen lẫn số mà không phải đổi kiểu dữ liệu.\n\n## print khác return thế nào\n\nĐây là chỗ người mới hay nhầm nhất. `print` giống như đọc to số tiền cho khách nghe: khách nghe được, nhưng không ai ghi lại để dùng tiếp. `return` giống như ghi số tiền vào sổ và đưa cuốn sổ cho người khác dùng tiếp để tính toán. Trong bài tập hôm nay, hàm của bạn cần **in** ra hoá đơn, nên dùng `print`. Ở các bài sau, đa số hàm dùng `return`.\n\n## Comment: ghi chú cho người đọc\n\nMọi thứ sau dấu `#` trên một dòng là comment:\n\n```\n# Tính tiền cho bàn số 5\nprice = 29000  # giá một ly cà phê sữa\n```\n\nMáy bỏ qua phần sau `#`. Comment để nhắc chính bạn sau ba tháng đọc lại, hoặc giải thích cho đồng đội. Trong khoá này, theo thói quen của dân làm nghề, comment viết bằng tiếng Anh ngắn gọn. Một comment tốt nói **vì sao** làm vậy, không lặp lại điều code đã nói rõ.\n\n- Comment kém: `# add 1 to x` ngay trên dòng `x = x + 1`.\n- Comment tốt: `# include the free cup from the loyalty card`.\n\nComment còn có công dụng thứ hai: tạm \"tắt\" một dòng code để thử. Thêm `#` ở đầu dòng, dòng đó không chạy nữa, xoá `#` thì chạy lại.\n\n## Khi print báo lỗi\n\nQuên dấu ngoặc kép, ví dụ `print(Cà phê)`, Python sẽ báo lỗi vì nó tưởng `Cà` là tên một thứ gì đó chưa được định nghĩa. Quên đóng ngoặc tròn thì nhận SyntaxError (lỗi cú pháp, viết sai luật của ngôn ngữ). Đừng sợ thông báo lỗi: dòng cuối của nó thường nói rõ chuyện gì sai và ở dòng nào.\n\nBài tập: viết hàm in ra hai dòng của một hoá đơn quán cà phê. Test sẽ \"bắt\" những gì bạn in ra và so sánh từng ký tự, kể cả dấu cách.",
+  "terms": [
+   {
+    "en": "print",
+    "vi": "lệnh in nội dung ra màn hình"
+   },
+   {
+    "en": "string",
+    "vi": "chuỗi ký tự, chữ nằm trong dấu ngoặc kép"
+   },
+   {
+    "en": "comment",
+    "vi": "ghi chú cho người đọc, máy bỏ qua"
+   },
+   {
+    "en": "SyntaxError",
+    "vi": "lỗi cú pháp, viết sai luật ngôn ngữ"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "print(\"Trà đào\", 35000, \"đồng\") in ra gì?",
+    "choices": [
+     "Trà đào35000đồng",
+     "\"Trà đào\", 35000, \"đồng\"",
+     "Trà đào 35000 đồng",
+     "Trà đào, 35000, đồng"
+    ],
+    "answer": 2,
+    "why": "print in các giá trị và tự chèn một dấu cách giữa chúng. Dấu ngoặc kép và dấu phẩy không được in ra."
+   },
+   {
+    "q": "Dòng nào máy KHÔNG thực hiện?",
+    "choices": [
+     "price = 50000",
+     "print(\"# not a comment\")",
+     "print(50000)",
+     "# price = 50000"
+    ],
+    "answer": 3,
+    "why": "Dòng bắt đầu bằng # là comment nên bị bỏ qua. Dấu # nằm trong dấu ngoặc kép chỉ là một ký tự của chuỗi, không phải comment."
+   },
+   {
+    "q": "Khác biệt chính giữa print và return là gì?",
+    "choices": [
+     "print hiện ra cho người xem, return trao giá trị cho phần code khác dùng tiếp",
+     "Hai lệnh giống hệt nhau",
+     "return in đẹp hơn print",
+     "print chỉ dùng được với số, return chỉ dùng với chữ"
+    ],
+    "answer": 0,
+    "why": "print giống đọc to cho khách nghe, return giống ghi vào sổ rồi trao sổ đi. Code khác chỉ nhận được giá trị qua return."
+   },
+   {
+    "q": "Comment nào hữu ích hơn cho người đọc sau này?",
+    "choices": [
+     "# this is a loop",
+     "# skip orders that were refunded by the shop",
+     "# x equals 5",
+     "# code here"
+    ],
+    "answer": 1,
+    "why": "Comment tốt giải thích lý do hoặc ý nghĩa nghiệp vụ, thứ mà nhìn code không thấy ngay."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm print_receipt(item, price) in ra đúng hai dòng. Dòng 1: tên món, dấu gạch ngang, giá và chữ đồng, ví dụ print_receipt(\"Cà phê sữa\", 29000) in ra:\nCà phê sữa - 29000 đồng\nCảm ơn quý khách!\nHàm không cần return gì.",
+   "starter": "def print_receipt(item, price):\n    # TODO: print two lines: the item line and the thank-you line\n    pass\n",
+   "solution": "def print_receipt(item, price):\n    print(item, \"-\", price, \"đồng\")\n    print(\"Cảm ơn quý khách!\")\n",
+   "tests": "import io, contextlib\n\ndef _captured(*args):\n    buf = io.StringIO()\n    with contextlib.redirect_stdout(buf):\n        print_receipt(*args)\n    return buf.getvalue()\n\nout = _captured(\"Cà phê sữa\", 29000)\nassert out.count(\"\\n\") == 2, 'Hàm phải in đúng 2 dòng'\nassert out.splitlines()[0] == \"Cà phê sữa - 29000 đồng\", 'Dòng 1 phải là: Cà phê sữa - 29000 đồng'\nassert out.splitlines()[1] == \"Cảm ơn quý khách!\", 'Dòng 2 phải là: Cảm ơn quý khách!'\nassert _captured(\"Bạc xỉu\", 32000).splitlines()[0] == \"Bạc xỉu - 32000 đồng\", 'Với Bạc xỉu 32000, dòng 1 phải là: Bạc xỉu - 32000 đồng'\n",
+   "hint": "Dùng hai lệnh print. Ở lệnh đầu, đưa item, chuỗi \"-\", price và chuỗi \"đồng\" vào cùng một print, ngăn bằng dấu phẩy."
+  },
+  "takeaway": "print để con người nhìn thấy, comment để con người hiểu, còn máy chỉ quan tâm đến code."
+ },
+ {
+  "id": "py-04",
+  "track": "py",
+  "unit": "Getting started",
+  "order": 4,
+  "title": "Variables",
+  "title_vi": "Biến: đặt tên cho giá trị",
+  "level": 1,
+  "minutes": 9,
+  "body": "Variable (biến) là một cái tên bạn gắn cho một giá trị để dùng lại sau. Hãy nghĩ tới những hũ đựng đồ trong bếp có dán nhãn: hũ \"đường\", hũ \"muối\". Bạn không cần nhớ trong hũ có bao nhiêu gram, chỉ cần gọi đúng tên hũ.\n\n```\nsalary = 15000000\nrent = 5000000\nleft = salary - rent\nprint(left)\n```\n\nDòng 1 tạo biến `salary` và cất vào đó số 15 triệu. Dòng 3 lấy giá trị trong hai hũ ra, trừ cho nhau, cất kết quả vào hũ mới tên `left`. Dòng 4 in ra 10000000.\n\n## Dấu = không phải \"bằng\" trong toán\n\nTrong Python, `=` là assignment (phép gán): \"lấy giá trị bên phải, cất vào tên bên trái\". Vì vậy dòng sau hoàn toàn hợp lệ:\n\n```\ncups = 2\ncups = cups + 1\n```\n\nTrong toán, `cups = cups + 1` vô lý. Trong Python nó nghĩa là: lấy giá trị hiện tại của `cups` (2), cộng 1, rồi cất lại vào `cups`. Giờ `cups` là 3. Giá trị cũ bị thay thế, giống như bạn đổ hũ cũ đi và cho thứ mới vào.\n\n## Luật đặt tên\n\n- Chỉ dùng chữ cái, chữ số và dấu gạch dưới `_`, không bắt đầu bằng số. `price_1` được, `1price` không được.\n- Không có dấu cách. Muốn nhiều từ thì nối bằng `_`: `monthly_rent`. Kiểu viết này gọi là snake_case (các từ viết thường nối bằng gạch dưới), là quy ước chuẩn của Python.\n- Phân biệt hoa thường: `Price` và `price` là hai biến khác nhau.\n- Không dùng từ khoá có sẵn như `def`, `return`, `if`.\n\n## Đặt tên sao cho tốt\n\nTên biến là một dạng tài liệu. So sánh:\n\n```\na = 15000000 - 5000000 - 4000000\nsavings = salary - rent - food\n```\n\nDòng hai đọc lên là hiểu ngay đang tính tiền tiết kiệm. Sau này khi đọc code AI dài hàng trăm dòng, tên biến rõ ràng giúp bạn đỡ khổ rất nhiều. Hãy đặt tên theo **ý nghĩa** của giá trị (`total_bill`), không theo kiểu dữ liệu (`number1`).\n\n## Biến bên trong hàm\n\nTrong một hàm, bạn có thể tạo biến tạm để chia bài toán thành từng bước nhỏ, rồi `return` biến cuối cùng:\n\n```\ndef monthly_cost(rent, food):\n    total = rent + food\n    return total\n```\n\nBiến `total` chỉ sống bên trong hàm. Khi hàm chạy xong, nó biến mất, chỉ còn giá trị được return ra ngoài. Cách viết \"mỗi dòng một bước, mỗi bước một cái tên\" giúp bạn dễ kiểm tra từng phần khi có lỗi, rất hợp với người mới.\n\n## NameError\n\nNếu dùng một biến chưa từng gán giá trị, hoặc gõ sai tên (`salery` thay vì `salary`), Python báo NameError (lỗi không tìm thấy tên). Gặp lỗi này, việc đầu tiên là kiểm tra chính tả.",
+  "terms": [
+   {
+    "en": "variable",
+    "vi": "biến, tên gắn với một giá trị"
+   },
+   {
+    "en": "assignment",
+    "vi": "phép gán, cất giá trị vào tên"
+   },
+   {
+    "en": "snake_case",
+    "vi": "cách đặt tên chữ thường nối bằng gạch dưới"
+   },
+   {
+    "en": "NameError",
+    "vi": "lỗi dùng tên chưa được định nghĩa"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Sau ba dòng: x = 5, x = x + 2, x = x * 2, giá trị của x là bao nhiêu?",
+    "choices": [
+     "7",
+     "10",
+     "12",
+     "14"
+    ],
+    "answer": 3,
+    "why": "x bắt đầu là 5, rồi thành 5 + 2 = 7, rồi thành 7 * 2 = 14. Mỗi lần gán, giá trị cũ bị thay bằng giá trị mới."
+   },
+   {
+    "q": "Tên biến nào hợp lệ trong Python?",
+    "choices": [
+     "total_bill",
+     "total bill",
+     "2nd_price",
+     "return"
+    ],
+    "answer": 0,
+    "why": "Tên không được có dấu cách, không bắt đầu bằng số và không trùng từ khoá như return. total_bill đúng luật và theo snake_case."
+   },
+   {
+    "q": "Dòng cups = cups + 1 nghĩa là gì?",
+    "choices": [
+     "Kiểm tra xem cups có bằng cups + 1 không",
+     "Lấy giá trị hiện tại của cups cộng 1 rồi cất lại vào cups",
+     "Báo lỗi vì phương trình vô nghiệm",
+     "Tạo ra hai biến cùng tên cups"
+    ],
+    "answer": 1,
+    "why": "Dấu = là phép gán: tính vế phải trước, rồi cất kết quả vào tên ở vế trái."
+   },
+   {
+    "q": "Bạn gõ print(salery) trong khi biến tên là salary. Chuyện gì xảy ra?",
+    "choices": [
+     "Python tự hiểu bạn muốn salary",
+     "In ra số 0",
+     "Python báo NameError vì không tìm thấy tên salery",
+     "In ra chữ salery"
+    ],
+    "answer": 2,
+    "why": "Python không tự sửa chính tả. Tên chưa được gán sẽ gây NameError."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm monthly_savings(salary, rent, food) trả về số tiền còn tiết kiệm được mỗi tháng sau khi trừ tiền nhà và tiền ăn. Hãy dùng ít nhất một biến trung gian, ví dụ total_spent. Ví dụ: monthly_savings(15000000, 5000000, 4000000) trả về 6000000.",
+   "starter": "def monthly_savings(salary, rent, food):\n    # TODO: compute total_spent, then savings, then return savings\n    pass\n",
+   "solution": "def monthly_savings(salary, rent, food):\n    total_spent = rent + food\n    savings = salary - total_spent\n    return savings\n",
+   "tests": "assert monthly_savings(15000000, 5000000, 4000000) == 6000000, 'monthly_savings(15000000, 5000000, 4000000) phải bằng 6000000'\nassert monthly_savings(10000000, 0, 0) == 10000000, 'Không tốn gì thì tiết kiệm được cả lương'\nassert monthly_savings(8000000, 5000000, 4000000) == -1000000, 'Chi nhiều hơn lương thì kết quả là số âm -1000000'\nassert monthly_savings(0, 0, 0) == 0, 'Tất cả bằng 0 thì kết quả là 0'\n",
+   "hint": "Bước 1: cộng rent và food vào một biến. Bước 2: lấy salary trừ biến đó. Bước 3: return kết quả."
+  },
+  "takeaway": "Biến là cái hũ có dán nhãn, và dấu = nghĩa là cất giá trị bên phải vào tên bên trái."
+ },
+ {
+  "id": "py-05",
+  "track": "py",
+  "unit": "Getting started",
+  "order": 5,
+  "title": "Numbers and arithmetic",
+  "title_vi": "Số và các phép tính",
+  "level": 1,
+  "minutes": 10,
+  "body": "Phần lớn công việc với dữ liệu, kể cả trong AI, cuối cùng là tính toán với số. Python có hai loại số chính bạn sẽ gặp hằng ngày.\n\n- int (integer, số nguyên): 29000, 0, -5. Dùng cho số ly, số đơn hàng, số tiền tính bằng đồng.\n- float (số thực, có phần thập phân): 8.5, 0.1, 3.14. Dùng cho điểm thi, tỉ lệ phần trăm, cân nặng.\n\nPython dùng dấu chấm cho phần thập phân, không dùng dấu phẩy như cách viết ở Việt Nam. Điểm 8,5 phải viết là `8.5`. Và khi viết số lớn, không được chèn dấu chấm phân cách hàng nghìn: viết `29000`, không viết `29.000` (Python sẽ hiểu đó là 29 phẩy 0). Nếu muốn dễ đọc, bạn được dùng gạch dưới: `15_000_000`.\n\n## Các phép tính\n\n```\nprint(7 + 3)    # 10\nprint(7 - 3)    # 4\nprint(7 * 3)    # 21\nprint(7 / 2)    # 3.5\nprint(7 // 2)   # 3\nprint(7 % 2)    # 1\nprint(2 ** 3)   # 8\n```\n\n- `/` là chia thường, kết quả luôn là float, kể cả `6 / 2` cũng ra `3.0`.\n- `//` là floor division (chia lấy phần nguyên, bỏ phần lẻ). Có 100000 đồng, mỗi ly 30000, mua được `100000 // 30000` là 3 ly.\n- `%` là modulo (phép lấy số dư). Số tiền thừa sau khi mua 3 ly: `100000 % 30000` là 10000 đồng.\n- `**` là luỹ thừa: `2 ** 3` là 2³ = 8. Rất hay gặp khi tính lãi kép.\n\n## Thứ tự ưu tiên\n\nGiống toán phổ thông: luỹ thừa trước, rồi nhân chia, rồi cộng trừ. Có ngoặc thì tính trong ngoặc trước.\n\n```\nbill = 50000 + 30000 * 2      # 110000\nbill = (50000 + 30000) * 2    # 160000\n```\n\nKhi phân vân, cứ thêm ngoặc. Code dễ đọc hơn và bạn khỏi phải nhớ luật.\n\n## Chuyện kỳ lạ của float\n\nThử `print(0.1 + 0.2)`, bạn sẽ thấy `0.30000000000000004`. Đây không phải lỗi của Python. Máy tính lưu số thực ở dạng nhị phân, và 0.1 không biểu diễn chính xác được, giống như 1/3 không viết hết được bằng số thập phân (0.333...). Cách xử lý thường gặp là làm tròn bằng `round`:\n\n```\nprint(round(0.1 + 0.2, 2))   # 0.3\nprint(round(14850.0))        # 14850\n```\n\n`round(x)` làm tròn về số nguyên, `round(x, 2)` giữ 2 chữ số sau dấu phẩy. Với tiền Việt, vì không có xu lẻ, người ta thường làm tròn về số nguyên đồng.\n\n## Phần trăm\n\nTính 10% của hoá đơn 200000 đồng: `200000 * 10 / 100` là `20000.0`. Phép `/` luôn cho ra float, nên nếu muốn số nguyên gọn gàng, bọc thêm `round(...)`. Bài tập hôm nay đúng là việc này: tính tiền tip cho nhân viên quán dựa trên phần trăm khách chọn, như nút \"thêm tip\" trên app giao đồ ăn.",
+  "terms": [
+   {
+    "en": "int",
+    "vi": "số nguyên"
+   },
+   {
+    "en": "float",
+    "vi": "số thực, có phần thập phân"
+   },
+   {
+    "en": "floor division",
+    "vi": "chia lấy phần nguyên (//)"
+   },
+   {
+    "en": "modulo",
+    "vi": "phép lấy số dư (%)"
+   },
+   {
+    "en": "round",
+    "vi": "hàm làm tròn số"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Có 100000 đồng, mỗi ly trà sữa 35000 đồng. Biểu thức nào cho ra số ly mua được?",
+    "choices": [
+     "100000 // 35000",
+     "100000 / 35000",
+     "100000 % 35000",
+     "100000 ** 35000"
+    ],
+    "answer": 0,
+    "why": "// chia lấy phần nguyên, cho ra 2 ly. / cho ra số lẻ 2.857..., còn % cho ra tiền thừa 30000."
+   },
+   {
+    "q": "print(50000 + 30000 * 2) in ra gì?",
+    "choices": [
+     "160000",
+     "110000",
+     "80000",
+     "Báo lỗi vì thiếu ngoặc"
+    ],
+    "answer": 1,
+    "why": "Nhân trước, cộng sau: 30000 * 2 = 60000, cộng 50000 thành 110000."
+   },
+   {
+    "q": "Vì sao 0.1 + 0.2 trong Python ra 0.30000000000000004?",
+    "choices": [
+     "Python bị lỗi phép cộng",
+     "Máy tính đã bị nhiễm virus",
+     "Máy lưu số thực ở dạng nhị phân nên 0.1 không lưu được chính xác tuyệt đối",
+     "Vì phải viết 0,1 thay vì 0.1"
+    ],
+    "answer": 2,
+    "why": "Giống 1/3 không viết hết được bằng số thập phân, 0.1 không biểu diễn chính xác bằng nhị phân. Dùng round khi cần hiển thị."
+   },
+   {
+    "q": "Điểm thi tám phẩy năm phải viết thế nào trong Python?",
+    "choices": [
+     "8,5",
+     "8.5đ",
+     "\"8,5\" là cách duy nhất",
+     "8.5"
+    ],
+    "answer": 3,
+    "why": "Python dùng dấu chấm cho phần thập phân. 8,5 sẽ bị hiểu thành hai số 8 và 5 tách rời."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm tip(amount, percent) trả về tiền tip bằng percent phần trăm của hoá đơn amount, làm tròn về số nguyên đồng bằng round. Ví dụ: tip(200000, 10) trả về 20000, tip(99000, 15) trả về 14850.",
+   "starter": "def tip(amount, percent):\n    # TODO: compute percent % of amount, round it to a whole number\n    pass\n",
+   "solution": "def tip(amount, percent):\n    return round(amount * percent / 100)\n",
+   "tests": "assert tip(200000, 10) == 20000, 'tip(200000, 10) phải bằng 20000'\nassert tip(99000, 15) == 14850, 'tip(99000, 15) phải bằng 14850'\nassert tip(0, 10) == 0, 'Hoá đơn 0 đồng thì tip là 0'\nassert tip(150000, 0) == 0, 'Chọn 0% thì tip là 0'\nassert tip(123456, 10) == 12346, 'tip(123456, 10) phải được làm tròn thành 12346'\nassert isinstance(tip(55000, 5), int), 'Kết quả phải là số nguyên (int), hãy dùng round'\n",
+   "hint": "Phần trăm của một số là số đó nhân phần trăm rồi chia 100. Bọc cả biểu thức trong round(...) để ra số nguyên."
+  },
+  "takeaway": "// cho phần nguyên, % cho số dư, / luôn ra float, và round giúp số thực gọn gàng."
+ },
+ {
+  "id": "py-06",
+  "track": "py",
+  "unit": "Getting started",
+  "order": 6,
+  "title": "Strings",
+  "title_vi": "Làm việc với chữ",
+  "level": 1,
+  "minutes": 11,
+  "body": "Ở bài print bạn đã gặp string (chuỗi ký tự): bất kỳ đoạn chữ nào nằm trong dấu ngoặc kép hoặc ngoặc đơn. Tên khách hàng, mã đơn Shopee, nội dung tin nhắn, prompt bạn gửi cho một mô hình AI, tất cả đều là string. Làm AI với ngôn ngữ thì gần như cả ngày bạn xử lý string.\n\n```\nname = \"Stalis\"\nshop = 'Highlands'\n```\n\nNgoặc kép hay ngoặc đơn đều được, miễn mở và đóng cùng loại.\n\n## Nối và lặp chuỗi\n\n```\nfirst = \"Cà phê\"\nsecond = \"sữa đá\"\nprint(first + \" \" + second)   # Cà phê sữa đá\nprint(\"ha\" * 3)               # hahaha\n```\n\nDấu `+` với hai string là nối lại. Nhưng không cộng thẳng string với số được: `\"Giá: \" + 29000` sẽ báo TypeError (lỗi sai kiểu dữ liệu). Muốn nối thì đổi số thành chữ bằng `str(29000)`. Ngược lại, `int(\"29000\")` đổi chữ thành số.\n\n## f-string: cách ghép chữ gọn nhất\n\n```\nitem = \"Bạc xỉu\"\nprice = 32000\nprint(f\"{item} giá {price} đồng\")\n```\n\nThêm chữ `f` trước dấu ngoặc, rồi đặt biến trong cặp ngoặc nhọn `{}`. Python tự thay vào giá trị, kể cả số, không cần `str()`. f-string (chuỗi có chèn giá trị) là cách dân Python dùng nhiều nhất, và cũng là cách người làm AI lắp ghép prompt từ dữ liệu.\n\n## Method của string\n\nMethod (phương thức, hàm gắn liền với một giá trị, gọi bằng dấu chấm) giúp biến đổi chuỗi. Vài cái rất hay dùng:\n\n```\nraw = \"  nguyễn minh  \"\nprint(raw.strip())          # \"nguyễn minh\"  (bỏ khoảng trắng hai đầu)\nprint(raw.strip().title())  # \"Nguyễn Minh\"  (viết hoa chữ đầu mỗi từ)\nprint(\"abc\".upper())        # \"ABC\"\nprint(\"ABC\".lower())        # \"abc\"\nprint(\"0901 234\".replace(\" \", \"\"))  # \"0901234\"\n```\n\nDữ liệu khách nhập vào form thường lộn xộn: thừa dấu cách, chữ hoa chữ thường lung tung. Làm sạch bằng `strip`, `lower`, `title` là bước đầu tiên của hầu hết dự án dữ liệu. Chú ý: method **không sửa** chuỗi gốc mà trả ra chuỗi mới. String là immutable (không thay đổi được sau khi tạo). Muốn giữ kết quả thì gán lại: `raw = raw.strip()`.\n\n## Độ dài và từng ký tự\n\n```\ncode = \"SPX123\"\nprint(len(code))   # 6\nprint(code[0])     # \"S\"\nprint(code[-1])    # \"3\"\n```\n\n`len` đếm số ký tự. Vị trí trong chuỗi gọi là index (chỉ số), đếm **bắt đầu từ 0**: ký tự đầu là `code[0]`. Index âm đếm từ cuối, `code[-1]` là ký tự cuối cùng. Đếm từ 0 thoạt nghe lạ, nhưng sẽ quen rất nhanh và áp dụng cho cả list ở các bài sau.\n\nBài tập hôm nay: viết câu chào khách tự động cho quán, với tên khách được làm sạch trước khi chèn vào câu.",
+  "terms": [
+   {
+    "en": "string",
+    "vi": "chuỗi ký tự"
+   },
+   {
+    "en": "f-string",
+    "vi": "chuỗi có chèn giá trị bằng {}"
+   },
+   {
+    "en": "method",
+    "vi": "phương thức, hàm gọi bằng dấu chấm"
+   },
+   {
+    "en": "index",
+    "vi": "chỉ số vị trí, đếm từ 0"
+   },
+   {
+    "en": "immutable",
+    "vi": "không thay đổi được sau khi tạo"
+   },
+   {
+    "en": "TypeError",
+    "vi": "lỗi dùng sai kiểu dữ liệu"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Với code = \"GRAB88\", code[1] là gì?",
+    "choices": [
+     "\"G\"",
+     "\"R\"",
+     "\"8\"",
+     "\"GR\""
+    ],
+    "answer": 1,
+    "why": "Index đếm từ 0: code[0] là G, code[1] là R."
+   },
+   {
+    "q": "Vì sao \"Tổng: \" + 50000 báo lỗi?",
+    "choices": [
+     "Vì thiếu dấu chấm phẩy cuối dòng",
+     "Vì số 50000 quá lớn",
+     "Không cộng thẳng string với số được, phải đổi số bằng str() hoặc dùng f-string",
+     "Vì chữ Tổng có dấu tiếng Việt"
+    ],
+    "answer": 2,
+    "why": "Python không tự đoán bạn muốn nối chữ hay cộng số, nên báo TypeError. f\"Tổng: {50000}\" là cách gọn nhất."
+   },
+   {
+    "q": "Sau name = \"  an  \" và name.strip(), biến name chứa gì?",
+    "choices": [
+     "\"an\"",
+     "\"AN\"",
+     "Chuỗi rỗng \"\"",
+     "Vẫn là \"  an  \" vì strip trả ra chuỗi mới, không sửa chuỗi gốc"
+    ],
+    "answer": 3,
+    "why": "String là immutable. Muốn lưu kết quả phải gán lại: name = name.strip()."
+   },
+   {
+    "q": "\"  le thi hoa \".strip().title() cho ra gì?",
+    "choices": [
+     "\"Le Thi Hoa\"",
+     "\"LE THI HOA\"",
+     "\"  Le Thi Hoa \"",
+     "\"Le thi hoa\""
+    ],
+    "answer": 0,
+    "why": "strip bỏ khoảng trắng hai đầu, title viết hoa chữ cái đầu của từng từ."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm greeting(name, cups) trả về câu chào dạng: \"Chào <Tên>, bạn đã gọi <cups> ly.\" Tên phải được bỏ khoảng trắng thừa hai đầu và viết hoa chữ cái đầu mỗi từ. Ví dụ: greeting(\"  minh anh \", 2) trả về \"Chào Minh Anh, bạn đã gọi 2 ly.\"",
+   "starter": "def greeting(name, cups):\n    # TODO: clean the name with strip() and title(), then build the sentence with an f-string\n    pass\n",
+   "solution": "def greeting(name, cups):\n    clean = name.strip().title()\n    return f\"Chào {clean}, bạn đã gọi {cups} ly.\"\n",
+   "tests": "assert greeting('  minh anh ', 2) == 'Chào Minh Anh, bạn đã gọi 2 ly.', 'greeting(\"  minh anh \", 2) phải là: Chào Minh Anh, bạn đã gọi 2 ly.'\nassert greeting('Bit', 1) == 'Chào Bit, bạn đã gọi 1 ly.', 'Tên đã sạch thì giữ nguyên'\nassert greeting('nguyễn thảo', 0) == 'Chào Nguyễn Thảo, bạn đã gọi 0 ly.', 'Tên có dấu tiếng Việt cũng phải viết hoa đúng'\nassert greeting('LAN', 3) == 'Chào Lan, bạn đã gọi 3 ly.', 'Tên viết hoa toàn bộ phải đổi thành Lan'\n",
+   "hint": "Làm hai bước: tạo biến tên đã làm sạch bằng hai method nối tiếp nhau, rồi return một f-string chèn tên và cups vào đúng chỗ."
+  },
+  "takeaway": "String là dữ liệu chữ, đếm vị trí từ 0, và f-string là cách ghép chữ với giá trị gọn nhất."
+ },
+ {
+  "id": "py-07",
+  "track": "py",
+  "unit": "Making decisions",
+  "order": 7,
+  "title": "Booleans and comparisons",
+  "title_vi": "Đúng sai và phép so sánh",
+  "level": 1,
+  "minutes": 9,
+  "body": "Mọi chương trình thông minh đều phải ra quyết định: đơn này có được freeship không, điểm này đậu hay rớt, giao dịch này có đáng ngờ không. Nền móng của việc ra quyết định là boolean (kiểu đúng/sai), chỉ có đúng hai giá trị: `True` và `False`. Viết hoa chữ đầu, không có ngoặc kép.\n\n```\nis_member = True\nhas_voucher = False\n```\n\n## Phép so sánh\n\nPhép so sánh luôn trả về một boolean:\n\n```\nprint(350000 >= 300000)   # True\nprint(8.5 < 5)            # False\nprint(29000 == 29000)     # True\nprint(\"cà phê\" != \"trà\")  # True\n```\n\n- `==` bằng nhau, `!=` khác nhau.\n- `>` lớn hơn, `<` nhỏ hơn.\n- `>=` lớn hơn hoặc bằng, `<=` nhỏ hơn hoặc bằng.\n\n## = và == là hai thứ khác hẳn nhau\n\nĐây là lỗi kinh điển. Một dấu `=` là gán (cất giá trị vào biến). Hai dấu `==` là hỏi \"hai bên có bằng nhau không?\". `price = 50000` cất số vào biến, còn `price == 50000` là câu hỏi, trả lời True hoặc False.\n\n## Ranh giới: > hay >=\n\nShopee ghi \"freeship cho đơn từ 300.000đ\". Chữ \"từ\" nghĩa là 300000 cũng được tính, nên điều kiện là `total >= 300000`, không phải `total > 300000`. Sai một dấu bằng là khách đặt đúng 300000 đồng sẽ bị tính phí ship và gọi tổng đài phàn nàn. Trong nghề, lỗi kiểu này có tên riêng: off-by-one (lệch một đơn vị ở ranh giới). Khi viết điều kiện, luôn tự hỏi: \"đúng tại giá trị ranh giới thì sao?\". Test tốt luôn kiểm tra đúng giá trị đó.\n\n## So sánh chuỗi\n\nSo sánh chuỗi phân biệt hoa thường: `\"Grab\" == \"grab\"` là False. Vì vậy khi so dữ liệu người dùng nhập, nên đưa về cùng dạng trước: `city.lower() == \"hà nội\"`. Kiểm tra một chuỗi có chứa chuỗi khác không thì dùng `in`:\n\n```\nprint(\"sữa\" in \"cà phê sữa đá\")   # True\n```\n\n## Hàm trả về boolean\n\nMột hàm có thể trả thẳng kết quả so sánh, không cần viết dài dòng:\n\n```\ndef is_adult(age):\n    return age >= 18\n```\n\nĐây là cách viết gọn và được ưa chuộng. Tên hàm trả về boolean thường bắt đầu bằng `is_`, `has_`, `can_` để đọc lên như một câu hỏi: `is_adult(20)` đọc là \"20 tuổi có phải người lớn không?\".\n\n## Trong AI dùng ở đâu\n\nMột mô hình phân loại thư rác cho ra một con số xác suất, ví dụ 0.87. Code phía sau thường có một dòng rất giống bài này: `is_spam = score >= 0.8`. Con số 0.8 gọi là threshold (ngưỡng quyết định). Chọn ngưỡng cao thì ít bắt nhầm thư thật nhưng bỏ lọt thư rác hơn, chọn ngưỡng thấp thì ngược lại. Cả một nghề tối ưu ngưỡng bắt đầu từ một phép so sánh nhỏ như vậy.",
+  "terms": [
+   {
+    "en": "boolean",
+    "vi": "kiểu đúng/sai: True hoặc False"
+   },
+   {
+    "en": "comparison operator",
+    "vi": "phép so sánh như ==, <, >="
+   },
+   {
+    "en": "off-by-one",
+    "vi": "lỗi lệch một đơn vị ở ranh giới"
+   },
+   {
+    "en": "threshold",
+    "vi": "ngưỡng quyết định"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Quán ghi \"giảm 10% cho hoá đơn trên 500.000đ\". Điều kiện nào đúng nghĩa nhất?",
+    "choices": [
+     "total >= 500000",
+     "total == 500000",
+     "total > 500000",
+     "total = 500000"
+    ],
+    "answer": 2,
+    "why": "\"Trên\" nghĩa là lớn hơn hẳn, nên 500000 chưa được giảm. Nếu ghi \"từ 500.000đ\" thì mới dùng >=."
+   },
+   {
+    "q": "Khác biệt giữa x = 5 và x == 5 là gì?",
+    "choices": [
+     "Hai cách viết giống hệt nhau",
+     "x == 5 gán hai lần cho chắc",
+     "x = 5 so sánh, x == 5 gán",
+     "x = 5 cất 5 vào x, còn x == 5 hỏi x có bằng 5 không"
+    ],
+    "answer": 3,
+    "why": "Một dấu bằng là gán, hai dấu bằng là so sánh và cho ra True hoặc False."
+   },
+   {
+    "q": "\"Shopee\" == \"shopee\" cho kết quả gì?",
+    "choices": [
+     "False",
+     "True",
+     "Báo lỗi",
+     "\"shopee\""
+    ],
+    "answer": 0,
+    "why": "So sánh chuỗi phân biệt chữ hoa và chữ thường, nên hai chuỗi này khác nhau."
+   },
+   {
+    "q": "Mô hình chấm một email 0.75 điểm rác, ngưỡng là 0.8. is_spam = score >= 0.8 cho ra gì?",
+    "choices": [
+     "True, vì 0.75 gần 0.8",
+     "False, email không bị đánh dấu là rác",
+     "0.75",
+     "Báo lỗi vì score là float"
+    ],
+    "answer": 1,
+    "why": "0.75 nhỏ hơn 0.8 nên phép so sánh trả về False. Gần ngưỡng không có nghĩa là vượt ngưỡng."
+   }
+  ],
+  "code": {
+   "prompt": "Shopee freeship cho đơn từ 300000 đồng trở lên. Viết hàm is_free_ship(total) trả về True nếu đơn được freeship, False nếu không. Ví dụ: is_free_ship(350000) trả về True, is_free_ship(120000) trả về False.",
+   "starter": "def is_free_ship(total):\n    # TODO: return the result of one comparison\n    pass\n",
+   "solution": "def is_free_ship(total):\n    return total >= 300000\n",
+   "tests": "assert is_free_ship(350000) is True, 'Đơn 350000 phải được freeship'\nassert is_free_ship(120000) is False, 'Đơn 120000 không được freeship'\nassert is_free_ship(300000) is True, 'Đơn đúng 300000 cũng được freeship (từ 300000 trở lên)'\nassert is_free_ship(299999) is False, 'Đơn 299999 chưa đủ để freeship'\nassert is_free_ship(0) is False, 'Đơn 0 đồng không được freeship'\n",
+   "hint": "Chỉ cần một dòng return với một phép so sánh. Nghĩ kỹ xem đúng 300000 thì có được không."
+  },
+  "takeaway": "Phép so sánh trả về True hoặc False, và luôn kiểm tra giá trị nằm đúng ranh giới."
+ },
+ {
+  "id": "py-08",
+  "track": "py",
+  "unit": "Making decisions",
+  "order": 8,
+  "title": "if, elif, else",
+  "title_vi": "Rẽ nhánh theo điều kiện",
+  "level": 1,
+  "minutes": 11,
+  "body": "Có boolean rồi, giờ ta cho chương trình hành động khác nhau tuỳ điều kiện. Đó là việc của câu lệnh `if`.\n\n```\ntotal = 350000\nif total >= 300000:\n    print(\"Bạn được freeship!\")\nelse:\n    print(\"Mua thêm để được freeship nhé.\")\n```\n\nĐọc như tiếng Việt: nếu tổng từ 300000 trở lên thì in câu thứ nhất, còn không thì in câu thứ hai. Ba điểm bắt buộc:\n\n- Cuối dòng `if` và `else` có dấu hai chấm `:`.\n- Các dòng thuộc nhánh phải thụt vào 4 dấu cách. Đây là indentation (thụt lề), Python dùng nó để biết dòng nào thuộc nhánh nào. Thụt sai là ra IndentationError hoặc tệ hơn, chạy sai mà không báo.\n- `else` không có điều kiện, nó bắt mọi trường hợp còn lại.\n\n## Nhiều nhánh với elif\n\nKhi có hơn hai khả năng, dùng `elif` (viết tắt của else if, \"còn nếu\"). Ví dụ xếp loại học lực theo điểm trung bình:\n\n```\ndef rank(score):\n    if score >= 8:\n        return \"Giỏi\"\n    elif score >= 6.5:\n        return \"Khá\"\n    elif score >= 5:\n        return \"Trung bình\"\n    else:\n        return \"Yếu\"\n```\n\nPython kiểm tra **từ trên xuống** và dừng ở nhánh đúng đầu tiên. Với điểm 9, điều kiện đầu đã đúng nên trả \"Giỏi\", các nhánh dưới không bao giờ được xét. Vì vậy ở nhánh `elif score >= 6.5`, ta không cần viết thêm `score < 8`: nếu đã xuống đến đây thì chắc chắn điểm nhỏ hơn 8 rồi.\n\n## Thứ tự nhánh quan trọng\n\nNếu viết ngược, đặt `score >= 5` lên đầu, thì điểm 9 cũng lọt vào nhánh \"Trung bình\" vì 9 cũng lớn hơn 5. Quy tắc: khi các điều kiện lồng nhau theo kiểu \"lớn hơn\", đặt **điều kiện khắt khe nhất lên trước**. Giống phân loại khách hàng thân thiết: kiểm tra hạng Kim cương trước, rồi mới tới Vàng, Bạc.\n\n## if không cần else\n\n`else` là tuỳ chọn. Đôi khi bạn chỉ cần làm thêm một việc trong một trường hợp:\n\n```\nprice = 45000\nif is_member:\n    price = price - 5000\n```\n\nNếu không phải thành viên, giá giữ nguyên, không cần nhánh nào cả.\n\n## return sớm\n\nTrong hàm, `return` kết thúc hàm ngay lập tức. Tận dụng điều này, nhiều người viết các trường hợp đặc biệt lên đầu rồi return luôn, phần còn lại của hàm chỉ lo trường hợp bình thường. Code đọc dễ hơn hẳn so với nhiều tầng if lồng vào nhau.\n\n## Tư duy của người làm sản phẩm\n\nNếu bạn từng thiết kế luồng chăm sóc khách hàng kiểu \"nếu khách chưa mở app 7 ngày thì gửi push, còn nếu 30 ngày thì gửi email kèm voucher\", bạn đã nghĩ bằng if/elif/else rồi. Code chỉ là cách viết logic đó ra cho máy làm theo. Điều cần luyện là cẩn thận với ranh giới và thứ tự nhánh.",
+  "terms": [
+   {
+    "en": "if statement",
+    "vi": "câu lệnh rẽ nhánh theo điều kiện"
+   },
+   {
+    "en": "elif",
+    "vi": "còn nếu, nhánh điều kiện tiếp theo"
+   },
+   {
+    "en": "else",
+    "vi": "nhánh cho mọi trường hợp còn lại"
+   },
+   {
+    "en": "indentation",
+    "vi": "thụt lề, cho biết dòng thuộc khối nào"
+   },
+   {
+    "en": "IndentationError",
+    "vi": "lỗi thụt lề sai"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Với hàm rank ở trên, rank(6.5) trả về gì?",
+    "choices": [
+     "\"Giỏi\"",
+     "\"Trung bình\"",
+     "\"Yếu\"",
+     "\"Khá\""
+    ],
+    "answer": 3,
+    "why": "6.5 không >= 8 nên bỏ qua nhánh đầu, nhưng 6.5 >= 6.5 đúng nên trả \"Khá\" và dừng."
+   },
+   {
+    "q": "Một bạn đặt if score >= 5 lên đầu, rồi elif score >= 8 bên dưới. Lỗi gì xảy ra?",
+    "choices": [
+     "Điểm 9 bị xếp vào nhánh của điều kiện >= 5 vì nhánh đó được xét trước",
+     "Python báo lỗi cú pháp",
+     "Không có gì sai, thứ tự không quan trọng",
+     "Điểm 9 bị xếp vào nhánh else"
+    ],
+    "answer": 0,
+    "why": "Python dừng ở nhánh đúng đầu tiên. 9 >= 5 đúng nên nhánh khắt khe hơn bên dưới không bao giờ được xét."
+   },
+   {
+    "q": "Vì sao Python cần thụt lề các dòng bên trong if?",
+    "choices": [
+     "Chỉ để code nhìn đẹp, máy không quan tâm",
+     "Để biết những dòng nào thuộc về nhánh đó",
+     "Để code chạy nhanh hơn",
+     "Để đánh dấu đó là comment"
+    ],
+    "answer": 1,
+    "why": "Indentation trong Python có ý nghĩa: nó xác định khối lệnh thuộc if, elif hay else."
+   },
+   {
+    "q": "Khi nào có thể bỏ nhánh else?",
+    "choices": [
+     "Không bao giờ, if luôn phải có else",
+     "Chỉ khi có ít nhất hai elif",
+     "Khi trường hợp còn lại không cần làm gì thêm",
+     "Khi điều kiện là phép so sánh chuỗi"
+    ],
+    "answer": 2,
+    "why": "else là tuỳ chọn. Ví dụ chỉ giảm giá khi là thành viên, không phải thì giá giữ nguyên."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm grade(score) xếp loại điểm thi thang 10: từ 9 trở lên là \"Xuất sắc\", từ 8 đến dưới 9 là \"Giỏi\", từ 6.5 đến dưới 8 là \"Khá\", từ 5 đến dưới 6.5 là \"Trung bình\", dưới 5 là \"Yếu\". Ví dụ: grade(8.5) trả về \"Giỏi\", grade(4.9) trả về \"Yếu\".",
+   "starter": "def grade(score):\n    # TODO: use if / elif / else, strictest condition first\n    pass\n",
+   "solution": "def grade(score):\n    if score >= 9:\n        return \"Xuất sắc\"\n    elif score >= 8:\n        return \"Giỏi\"\n    elif score >= 6.5:\n        return \"Khá\"\n    elif score >= 5:\n        return \"Trung bình\"\n    else:\n        return \"Yếu\"\n",
+   "tests": "assert grade(9.5) == 'Xuất sắc', 'grade(9.5) phải là Xuất sắc'\nassert grade(9) == 'Xuất sắc', 'Đúng 9 điểm là Xuất sắc'\nassert grade(8.5) == 'Giỏi', 'grade(8.5) phải là Giỏi'\nassert grade(6.5) == 'Khá', 'Đúng 6.5 điểm là Khá'\nassert grade(6.4) == 'Trung bình', 'grade(6.4) phải là Trung bình'\nassert grade(5) == 'Trung bình', 'Đúng 5 điểm là Trung bình'\nassert grade(4.9) == 'Yếu', 'grade(4.9) phải là Yếu'\nassert grade(0) == 'Yếu', 'grade(0) phải là Yếu'\n",
+   "hint": "Bắt đầu bằng điều kiện khắt khe nhất (>= 9), rồi lần lượt elif xuống dần. Nhánh cuối dùng else."
+  },
+  "takeaway": "Python xét các nhánh từ trên xuống và dừng ở nhánh đúng đầu tiên, nên điều kiện khắt khe nhất phải đứng trước."
+ },
+ {
+  "id": "py-09",
+  "track": "py",
+  "unit": "Making decisions",
+  "order": 9,
+  "title": "and, or, not",
+  "title_vi": "Kết hợp nhiều điều kiện",
+  "level": 1,
+  "minutes": 10,
+  "body": "Quyết định ngoài đời hiếm khi chỉ dựa trên một điều kiện. Voucher Shopee thường ghi: \"áp dụng cho đơn từ 100.000đ **hoặc** khách hàng mới, **và** còn hạn sử dụng\". Để viết những luật như vậy, Python có ba logical operator (toán tử logic): `and`, `or`, `not`.\n\n## and: tất cả phải đúng\n\n```\nage = 20\nhas_id = True\ncan_enter = age >= 18 and has_id   # True\n```\n\n`and` chỉ cho True khi **cả hai** vế đều True. Giống quán bar: đủ tuổi mà quên căn cước thì vẫn không vào được.\n\n## or: chỉ cần một cái đúng\n\n```\nis_weekend = False\nis_holiday = True\nday_off = is_weekend or is_holiday   # True\n```\n\n`or` cho True khi **ít nhất một** vế True. Chỉ khi cả hai đều False thì mới False.\n\n## not: đảo ngược\n\n```\nis_expired = False\nprint(not is_expired)   # True\n```\n\n`not` biến True thành False và ngược lại. Hay dùng để đọc cho tự nhiên: `if not is_expired:` đọc là \"nếu chưa hết hạn\".\n\n## Bảng tóm tắt\n\n- `True and True` là True, còn lại `and` đều cho False.\n- `False or False` là False, còn lại `or` đều cho True.\n- `not True` là False, `not False` là True.\n\n## Thứ tự ưu tiên và dấu ngoặc\n\nPython tính `not` trước, rồi `and`, rồi mới tới `or`. Quay lại luật voucher: \"(đơn từ 100k hoặc khách mới) và chưa hết hạn\". Nếu viết không ngoặc:\n\n```\ntotal >= 100000 or is_new and not is_expired\n```\n\nPython sẽ hiểu là `total >= 100000 or (is_new and not is_expired)`. Nghĩa là đơn 200k dù voucher đã hết hạn vẫn được dùng. Đây là một bug thật, kiểu bug có thể làm công ty mất tiền khuyến mãi. Cách đúng là thêm ngoặc cho rõ ý:\n\n```\n(total >= 100000 or is_new) and not is_expired\n```\n\nQuy tắc an toàn: khi trộn `and` với `or`, **luôn dùng ngoặc**, dù bạn có thuộc luật ưu tiên hay không. Người đọc sau (thường là chính bạn) sẽ cảm ơn.\n\n## So sánh liên tiếp\n\nKiểm tra một giá trị nằm trong khoảng, bạn có thể viết `score >= 5 and score <= 10`, hoặc gọn hơn kiểu toán học mà Python cho phép:\n\n```\nvalid = 0 <= score <= 10\n```\n\n## Short-circuit\n\nPython lười một cách thông minh: với `and`, nếu vế trái đã False thì nó không thèm xét vế phải nữa, vì kết quả chắc chắn False. Với `or`, vế trái True thì dừng luôn. Đặc điểm này gọi là short-circuit (tính tắt). Nó hữu ích để tránh lỗi, ví dụ `count > 0 and total / count > 50000` sẽ không bao giờ chia cho 0, vì khi `count` là 0, vế phải không được tính.\n\n## Góc nhìn sản phẩm\n\nLuật nghiệp vụ như điều kiện khuyến mãi, phân khúc khách hàng, quy tắc chống gian lận đều là tổ hợp and/or/not. Khi đọc một tài liệu yêu cầu, hãy tập dịch các chữ \"và\", \"hoặc\", \"trừ khi\", \"không phải\" thành toán tử, rồi đặt ngoặc đúng chỗ. Kỹ năng này dùng được ngay cả khi bạn không viết code, ví dụ lúc viết điều kiện lọc trong công cụ CRM.",
+  "terms": [
+   {
+    "en": "logical operator",
+    "vi": "toán tử logic: and, or, not"
+   },
+   {
+    "en": "and",
+    "vi": "và, mọi vế phải đúng"
+   },
+   {
+    "en": "or",
+    "vi": "hoặc, chỉ cần một vế đúng"
+   },
+   {
+    "en": "not",
+    "vi": "phủ định, đảo đúng thành sai"
+   },
+   {
+    "en": "short-circuit",
+    "vi": "tính tắt, dừng khi đã biết kết quả"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "is_member = False, total = 600000. Biểu thức is_member or total >= 500000 cho gì?",
+    "choices": [
+     "True",
+     "False",
+     "Báo lỗi vì trộn boolean với số",
+     "600000"
+    ],
+    "answer": 0,
+    "why": "or chỉ cần một vế đúng. Vế phải 600000 >= 500000 là True nên cả biểu thức là True."
+   },
+   {
+    "q": "Python hiểu a or b and c theo cách nào?",
+    "choices": [
+     "(a or b) and c",
+     "a or (b and c)",
+     "Báo lỗi, bắt buộc phải có ngoặc",
+     "Tính từ trái sang phải nên là (a or b) and c"
+    ],
+    "answer": 1,
+    "why": "and được ưu tiên hơn or. Vì dễ nhầm, khi trộn and và or hãy luôn tự đặt ngoặc."
+   },
+   {
+    "q": "Luật: \"giảm giá cho sinh viên, trừ khi đơn đã dùng mã khác\". Biểu thức nào đúng?",
+    "choices": [
+     "is_student or not used_other_code",
+     "not is_student and used_other_code",
+     "is_student and not used_other_code",
+     "is_student and used_other_code"
+    ],
+    "answer": 2,
+    "why": "\"Trừ khi\" nghĩa là điều kiện kia không được xảy ra, tức là not. Cả hai ý đều phải thoả nên dùng and."
+   },
+   {
+    "q": "Vì sao count > 0 and total / count > 50000 không bị lỗi chia cho 0 khi count = 0?",
+    "choices": [
+     "Vì Python tự đổi 0 thành 1",
+     "Vì phép chia cho 0 trong Python ra 0",
+     "Vì and luôn tính vế phải trước",
+     "Vì vế trái False nên Python không tính vế phải nữa"
+    ],
+    "answer": 3,
+    "why": "Đây là short-circuit: với and, vế trái False thì kết quả chắc chắn False, vế phải được bỏ qua."
+   }
+  ],
+  "code": {
+   "prompt": "Voucher dùng được khi: (đơn từ 100000 đồng trở lên HOẶC là khách hàng mới) VÀ voucher chưa hết hạn. Viết hàm can_use_voucher(total, is_new_user, is_expired) trả về True hoặc False. Ví dụ: can_use_voucher(150000, False, False) trả về True, can_use_voucher(200000, False, True) trả về False.",
+   "starter": "def can_use_voucher(total, is_new_user, is_expired):\n    # TODO: combine the conditions with or, and, not and parentheses\n    pass\n",
+   "solution": "def can_use_voucher(total, is_new_user, is_expired):\n    return (total >= 100000 or is_new_user) and not is_expired\n",
+   "tests": "assert can_use_voucher(150000, False, False) is True, 'Đơn 150000 và còn hạn thì dùng được'\nassert can_use_voucher(200000, False, True) is False, 'Voucher hết hạn thì không dùng được dù đơn lớn'\nassert can_use_voucher(50000, True, False) is True, 'Khách mới còn hạn thì dùng được dù đơn nhỏ'\nassert can_use_voucher(50000, False, False) is False, 'Đơn nhỏ và không phải khách mới thì không dùng được'\nassert can_use_voucher(100000, False, False) is True, 'Đơn đúng 100000 vẫn dùng được'\nassert can_use_voucher(50000, True, True) is False, 'Khách mới nhưng voucher hết hạn thì không dùng được'\n",
+   "hint": "Dịch từng chữ: HOẶC là or, VÀ là and, chưa hết hạn là not is_expired. Đặt ngoặc quanh phần HOẶC."
+  },
+  "takeaway": "and cần tất cả đúng, or cần một cái đúng, not đảo ngược, và luôn đặt ngoặc khi trộn and với or."
+ },
+ {
+  "id": "py-10",
+  "track": "py",
+  "unit": "Repeating",
+  "order": 10,
+  "title": "for loops and range",
+  "title_vi": "Lặp lại với for và range",
+  "level": 1,
+  "minutes": 11,
+  "body": "Máy tính mạnh nhất ở chỗ làm một việc hàng nghìn lần không biết chán. Công cụ để làm việc lặp lại là loop (vòng lặp). Bài này học vòng lặp `for`.\n\n## for với range\n\n```\nfor i in range(3):\n    print(\"Gửi tin nhắn nhắc khách số\", i)\n```\n\nKết quả:\n\n```\nGửi tin nhắn nhắc khách số 0\nGửi tin nhắn nhắc khách số 1\nGửi tin nhắn nhắc khách số 2\n```\n\n`range(3)` tạo ra dãy số 0, 1, 2. Mỗi vòng, biến `i` lần lượt nhận một giá trị, rồi các dòng thụt lề bên dưới chạy một lần. Mỗi lần chạy như vậy gọi là một iteration (một vòng lặp). Lưu ý: `range(3)` bắt đầu từ 0 và **dừng trước 3**, nên có đúng 3 số. Giống index của string, đếm từ 0 là thói quen chung của Python.\n\n## Các dạng của range\n\n- `range(5)`: 0, 1, 2, 3, 4.\n- `range(1, 6)`: 1, 2, 3, 4, 5 (bắt đầu từ 1, dừng trước 6).\n- `range(0, 20, 5)`: 0, 5, 10, 15 (bước nhảy 5).\n\n## Mẫu accumulator: cộng dồn\n\nMẫu dùng nhiều nhất với vòng lặp là accumulator (biến cộng dồn): tạo một biến bằng 0 trước vòng lặp, mỗi vòng cộng thêm vào.\n\n```\ntotal = 0\nfor day in range(1, 8):\n    total = total + 29000\nprint(total)   # 203000, một tuần mỗi ngày một ly cà phê\n```\n\nViết gọn `total = total + 29000` thành `total += 29000`, ý nghĩa y hệt. Tương tự có `-=`, `*=`.\n\nBa lỗi người mới hay gặp với mẫu này:\n\n- Đặt `total = 0` **bên trong** vòng lặp: mỗi vòng nó bị reset về 0, cuối cùng chỉ còn giá trị của vòng cuối.\n- Đặt `return` bên trong vòng lặp: hàm kết thúc ngay ở vòng đầu tiên.\n- Quên thụt lề dòng cộng dồn: nó chỉ chạy một lần sau khi vòng lặp xong.\n\n## Dùng biến đếm trong phép tính\n\nBiến `i` không chỉ để đếm, bạn có thể dùng nó để tính. Kế hoạch tiết kiệm kiểu \"tuần đầu bỏ heo 10000, mỗi tuần sau bỏ nhiều hơn 5000\":\n\n```\nfor i in range(4):\n    print(10000 + i * 5000)\n```\n\nIn ra 10000, 15000, 20000, 25000. Vì `i` bắt đầu từ 0, tuần đầu không được cộng thêm gì, đúng như ý muốn.\n\n## for với string\n\n`for` cũng đi qua từng ký tự của một chuỗi:\n\n```\nfor ch in \"SPX\":\n    print(ch)\n```\n\nIn ra S, P, X trên ba dòng. Ở bài sau về list, bạn sẽ dùng `for` để đi qua từng đơn hàng, từng điểm thi, từng dòng dữ liệu. Trong AI, quá trình training (huấn luyện mô hình) thực chất cũng là một vòng lặp khổng lồ: lặp qua dữ liệu, mỗi vòng chỉnh mô hình tốt lên một chút.\n\nBài tập: tính tổng số tiền tiết kiệm sau một số tuần theo kế hoạch tăng dần như trên.",
+  "terms": [
+   {
+    "en": "loop",
+    "vi": "vòng lặp, lặp lại một khối lệnh"
+   },
+   {
+    "en": "for loop",
+    "vi": "vòng lặp đi qua từng phần tử của một dãy"
+   },
+   {
+    "en": "range",
+    "vi": "hàm tạo dãy số nguyên"
+   },
+   {
+    "en": "iteration",
+    "vi": "một lần chạy của vòng lặp"
+   },
+   {
+    "en": "accumulator",
+    "vi": "biến cộng dồn qua các vòng lặp"
+   },
+   {
+    "en": "training",
+    "vi": "huấn luyện mô hình"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "range(2, 6) tạo ra dãy nào?",
+    "choices": [
+     "2, 3, 4, 5, 6",
+     "2, 3, 4, 5",
+     "3, 4, 5, 6",
+     "0, 1, 2, 3, 4, 5"
+    ],
+    "answer": 1,
+    "why": "range bắt đầu từ số đầu và dừng trước số sau, nên 6 không có trong dãy."
+   },
+   {
+    "q": "Đoạn code sau in ra gì? total = 0, rồi for i in range(4): total += i, rồi print(total)",
+    "choices": [
+     "10",
+     "4",
+     "6",
+     "3"
+    ],
+    "answer": 2,
+    "why": "i lần lượt là 0, 1, 2, 3. Cộng dồn 0 + 1 + 2 + 3 = 6."
+   },
+   {
+    "q": "Một bạn đặt total = 0 bên trong vòng lặp cộng dồn. Kết quả sẽ thế nào?",
+    "choices": [
+     "Kết quả vẫn đúng như bình thường",
+     "Python báo lỗi cú pháp",
+     "total luôn bằng 0 dù cộng gì",
+     "total bị reset mỗi vòng nên chỉ còn giá trị cộng ở vòng cuối"
+    ],
+    "answer": 3,
+    "why": "Mỗi vòng dòng total = 0 chạy lại, xoá hết phần đã cộng trước đó."
+   },
+   {
+    "q": "Cần in 5 lần dòng \"Nhắc thanh toán hoá đơn\". Cách nào đúng?",
+    "choices": [
+     "for i in range(5): print(\"Nhắc thanh toán hoá đơn\")",
+     "for i in range(1, 5): print(\"Nhắc thanh toán hoá đơn\")",
+     "for i in range(6): print(\"Nhắc thanh toán hoá đơn\")",
+     "print(\"Nhắc thanh toán hoá đơn\", range(5))"
+    ],
+    "answer": 0,
+    "why": "range(5) có đúng 5 số 0 đến 4. range(1, 5) chỉ có 4 số, range(6) có 6 số."
+   }
+  ],
+  "code": {
+   "prompt": "Kế hoạch bỏ heo: tuần đầu bỏ first đồng, mỗi tuần sau bỏ nhiều hơn tuần trước step đồng. Viết hàm savings_plan(weeks, first, step) trả về tổng tiền sau weeks tuần. Ví dụ: savings_plan(3, 10000, 5000) trả về 45000 (10000 + 15000 + 20000). Nếu weeks là 0 thì trả về 0.",
+   "starter": "def savings_plan(weeks, first, step):\n    total = 0\n    # TODO: loop over the weeks with range and add each week's amount to total\n    return None\n",
+   "solution": "def savings_plan(weeks, first, step):\n    total = 0\n    for i in range(weeks):\n        total += first + i * step\n    return total\n",
+   "tests": "assert savings_plan(3, 10000, 5000) == 45000, 'savings_plan(3, 10000, 5000) phải bằng 45000'\nassert savings_plan(0, 10000, 5000) == 0, '0 tuần thì tổng là 0'\nassert savings_plan(1, 20000, 5000) == 20000, 'Chỉ 1 tuần thì tổng bằng số tiền tuần đầu'\nassert savings_plan(4, 50000, 0) == 200000, 'Bước tăng 0 thì mỗi tuần bỏ như nhau: 4 x 50000 = 200000'\nassert savings_plan(52, 10000, 1000) == 1846000, 'Một năm 52 tuần phải ra 1846000'\n",
+   "hint": "Dùng for i in range(weeks). Tiền của tuần thứ i (đếm từ 0) là first cộng i lần step. Cộng dồn vào total rồi return sau khi vòng lặp xong."
+  },
+  "takeaway": "for đi qua từng phần tử của một dãy, và mẫu cộng dồn là: khởi tạo trước vòng lặp, cộng trong vòng lặp, return sau vòng lặp."
+ },
+ {
+  "id": "py-11",
+  "track": "py",
+  "unit": "Repeating",
+  "order": 11,
+  "title": "while loops",
+  "title_vi": "Lặp đến khi đạt điều kiện",
+  "level": 1,
+  "minutes": 11,
+  "body": "Vòng `for` hợp khi bạn biết trước sẽ lặp bao nhiêu lần: 7 ngày, 52 tuần, 100 đơn hàng. Nhưng có những câu hỏi kiểu \"phải tiết kiệm **bao nhiêu tháng** thì mới đủ tiền mua laptop?\". Bạn không biết trước số vòng, chỉ biết điều kiện dừng. Đó là lúc dùng vòng lặp `while`.\n\n```\nsaved = 0\nmonths = 0\nwhile saved < 20000000:\n    saved += 3000000\n    months += 1\nprint(months)   # 7\n```\n\nĐọc là: \"chừng nào tiền tiết kiệm còn dưới 20 triệu thì mỗi tháng bỏ thêm 3 triệu và đếm thêm một tháng\". Python kiểm tra điều kiện **trước mỗi vòng**. Khi điều kiện thành False, vòng lặp dừng và chương trình chạy tiếp các dòng bên dưới.\n\nThử lần theo từng bước: sau tháng 6, saved là 18 triệu, vẫn dưới 20 triệu nên lặp tiếp. Sau tháng 7, saved là 21 triệu, điều kiện sai, dừng. Kết quả 7 tháng. Lần theo từng bước như vậy gọi là trace (dò từng bước chạy), một kỹ năng rất đáng luyện khi code không ra kết quả như mong đợi.\n\n## Nếu điều kiện sai ngay từ đầu\n\nNếu bạn đã có sẵn 25 triệu, `saved < 20000000` sai ngay lần kiểm tra đầu tiên, thân vòng lặp không chạy lần nào và `months` vẫn là 0. Đây là hành vi đúng: đã đủ tiền thì cần 0 tháng. Luôn nghĩ tới trường hợp này khi viết while.\n\n## Vòng lặp vô tận\n\nNguy hiểm lớn nhất của `while` là infinite loop (vòng lặp vô tận): điều kiện không bao giờ thành False. Ví dụ quên dòng `saved += 3000000`, tiền mãi là 0, vòng lặp chạy mãi, trình duyệt treo. Hoặc tháng nào cũng bỏ 0 đồng. Trước khi viết `while`, hãy tự hỏi: **mỗi vòng, cái gì thay đổi để đưa mình lại gần điều kiện dừng?** Nếu không trả lời được, code sẽ treo.\n\nNếu lỡ chạy vòng lặp vô tận trong app, chỉ cần tải lại trang. Trên máy tính thật, bấm Ctrl+C để dừng chương trình.\n\n## while hay for?\n\n- Biết trước số lần, hoặc đi qua một dãy có sẵn: dùng `for`.\n- Lặp đến khi một điều kiện xảy ra, không biết trước bao lâu: dùng `while`.\n\nNhiều bài toán viết được bằng cả hai, nhưng chọn đúng loại làm code dễ đọc hơn.\n\n## Ví dụ có lãi\n\nGửi tiết kiệm 100 triệu, lãi 0.5% mỗi tháng, bao lâu thì tiền vượt 110 triệu?\n\n```\nmoney = 100000000\nmonths = 0\nwhile money < 110000000:\n    money = money * 1.005\n    months += 1\nprint(months)   # 20\n```\n\nMỗi vòng tiền tăng lên một chút, nên chắc chắn có lúc vượt mốc. Kiểu vòng lặp \"lặp đến khi đủ tốt\" cũng xuất hiện trong AI: nhiều quy trình huấn luyện chạy cho đến khi sai số đủ nhỏ, hoặc dừng khi sai số không giảm thêm được nữa.\n\nBài tập: tính số tháng cần để đạt mục tiêu tiết kiệm, khi đã có sẵn một khoản ban đầu.",
+  "terms": [
+   {
+    "en": "while loop",
+    "vi": "vòng lặp chạy khi điều kiện còn đúng"
+   },
+   {
+    "en": "condition",
+    "vi": "điều kiện, biểu thức True/False"
+   },
+   {
+    "en": "infinite loop",
+    "vi": "vòng lặp vô tận, không bao giờ dừng"
+   },
+   {
+    "en": "trace",
+    "vi": "dò từng bước chạy của code"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Khi nào nên chọn while thay vì for?",
+    "choices": [
+     "Khi muốn code chạy nhanh hơn",
+     "Khi cần đi qua từng ký tự của chuỗi",
+     "Khi chỉ biết điều kiện dừng mà không biết trước số vòng lặp",
+     "Khi biết chắc sẽ lặp đúng 10 lần"
+    ],
+    "answer": 2,
+    "why": "while hợp với câu hỏi kiểu \"bao lâu thì đạt\". Biết trước số lần hoặc có sẵn dãy thì for gọn hơn."
+   },
+   {
+    "q": "x = 10, rồi while x > 0: x -= 3. Sau khi vòng lặp dừng, x bằng bao nhiêu?",
+    "choices": [
+     "0",
+     "1",
+     "-3",
+     "-2"
+    ],
+    "answer": 3,
+    "why": "x đi qua 10, 7, 4, 1, -2. Tới -2 thì x > 0 sai nên dừng."
+   },
+   {
+    "q": "Đoạn while saved < goal: months += 1 có vấn đề gì?",
+    "choices": [
+     "saved không bao giờ thay đổi nên vòng lặp chạy mãi nếu saved < goal",
+     "Không có vấn đề gì",
+     "Python báo lỗi vì thiếu else",
+     "months phải là float"
+    ],
+    "answer": 0,
+    "why": "Mỗi vòng phải có thứ gì đó tiến gần tới điều kiện dừng. Ở đây saved đứng yên nên đây là infinite loop."
+   },
+   {
+    "q": "Nếu điều kiện của while sai ngay từ lần kiểm tra đầu, chuyện gì xảy ra?",
+    "choices": [
+     "Thân vòng lặp chạy đúng một lần",
+     "Thân vòng lặp không chạy lần nào, chương trình chạy tiếp bên dưới",
+     "Python báo lỗi",
+     "Vòng lặp chạy vô tận"
+    ],
+    "answer": 1,
+    "why": "while kiểm tra điều kiện trước mỗi vòng, kể cả vòng đầu tiên."
+   }
+  ],
+  "code": {
+   "prompt": "Bạn đang có balance đồng, muốn đạt goal đồng, mỗi tháng bỏ thêm monthly đồng (monthly luôn lớn hơn 0). Viết hàm months_to_goal(balance, goal, monthly) trả về số tháng ít nhất cần để số tiền đạt hoặc vượt goal. Nếu đã đủ thì trả về 0. Ví dụ: months_to_goal(0, 20000000, 3000000) trả về 7, months_to_goal(5000000, 20000000, 5000000) trả về 3.",
+   "starter": "def months_to_goal(balance, goal, monthly):\n    months = 0\n    # TODO: use a while loop that runs while balance is below goal\n    return None\n",
+   "solution": "def months_to_goal(balance, goal, monthly):\n    months = 0\n    while balance < goal:\n        balance += monthly\n        months += 1\n    return months\n",
+   "tests": "assert months_to_goal(0, 20000000, 3000000) == 7, 'months_to_goal(0, 20000000, 3000000) phải bằng 7'\nassert months_to_goal(5000000, 20000000, 5000000) == 3, 'months_to_goal(5000000, 20000000, 5000000) phải bằng 3'\nassert months_to_goal(25000000, 20000000, 1000000) == 0, 'Đã có nhiều hơn mục tiêu thì cần 0 tháng'\nassert months_to_goal(20000000, 20000000, 1000000) == 0, 'Có đúng bằng mục tiêu thì cũng cần 0 tháng'\nassert months_to_goal(0, 1000000, 1000000) == 1, 'Bỏ đúng bằng mục tiêu trong 1 tháng thì cần 1 tháng'\n",
+   "hint": "Điều kiện của while là còn thiếu tiền. Mỗi vòng làm hai việc: tăng balance thêm monthly và tăng months thêm 1. Return months sau vòng lặp."
+  },
+  "takeaway": "while lặp chừng nào điều kiện còn đúng, nên mỗi vòng phải có thứ gì đó thay đổi để tiến tới điểm dừng."
+ },
+ {
+  "id": "py-12",
+  "track": "py",
+  "unit": "Repeating",
+  "order": 12,
+  "title": "break and continue",
+  "title_vi": "Dừng sớm và bỏ qua một vòng",
+  "level": 1,
+  "minutes": 10,
+  "body": "Đôi khi bạn muốn điều khiển vòng lặp tinh hơn: dừng hẳn khi đã tìm thấy thứ cần tìm, hoặc bỏ qua một vài phần tử không hợp lệ. Python có hai lệnh cho việc này: `break` và `continue`.\n\n## break: dừng hẳn vòng lặp\n\n```\nfor ch in \"Mã đơn: 2407#ghi chú\":\n    if ch == \"#\":\n        break\n    print(ch, end=\"\")\n```\n\nVòng lặp đi qua từng ký tự, gặp dấu `#` thì `break` (thoát vòng lặp ngay lập tức), phần sau dấu `#` không được xét nữa. Kết quả in ra `Mã đơn: 2407`. Tham số `end=\"\"` bảo print đừng xuống dòng sau mỗi lần in, để các ký tự nằm liền nhau.\n\nGiống bạn lục ví tìm thẻ ATM: thấy rồi thì dừng, không lục tiếp các ngăn còn lại.\n\n## continue: bỏ qua vòng hiện tại\n\n```\nfor ch in \"0901 234.567\":\n    if ch == \" \" or ch == \".\":\n        continue\n    print(ch, end=\"\")\n```\n\nGặp dấu cách hoặc dấu chấm thì `continue` (nhảy ngay sang vòng tiếp theo), dòng `print` bên dưới bị bỏ qua cho riêng ký tự đó. Kết quả: `0901234567`. Vòng lặp vẫn chạy tiếp tới hết, chỉ là có những vòng bị \"nhảy cóc\".\n\nGiống kiểm hàng: món nào bị móp thì để qua một bên rồi kiểm món tiếp theo, không dừng cả buổi kiểm hàng.\n\n## Phân biệt nhanh\n\n- `break`: \"xong rồi, nghỉ luôn\". Thoát khỏi toàn bộ vòng lặp.\n- `continue`: \"bỏ cái này, làm cái kế\". Chỉ bỏ phần còn lại của vòng hiện tại.\n\nCả hai dùng được trong cả `for` lẫn `while`, và thường đi kèm một câu `if`.\n\n## Kiểm tra ký tự là chữ số\n\nMỗi string có method `isdigit()`, trả về True nếu chuỗi chỉ gồm chữ số:\n\n```\nprint(\"7\".isdigit())   # True\nprint(\"a\".isdigit())   # False\nprint(\" \".isdigit())   # False\n```\n\nKết hợp với `continue`, bạn có thể giữ lại chữ số và bỏ qua mọi thứ khác, gọn hơn nhiều so với liệt kê từng loại ký tự cần bỏ.\n\n## Xây chuỗi kết quả\n\nThay vì in ra, trong hàm ta thường gom kết quả vào một chuỗi rỗng, giống mẫu cộng dồn ở bài for:\n\n```\nresult = \"\"\nfor ch in \"ab1c2\":\n    if not ch.isdigit():\n        continue\n    result += ch\nprint(result)   # \"12\"\n```\n\n## Ứng dụng thật: làm sạch dữ liệu\n\nSố điện thoại khách nhập vào form có đủ kiểu: `0901 234 567`, `0901.234.567`, `0901-234-567 (gọi giờ hành chính)`. Trước khi lưu vào hệ thống CRM hay dùng để huấn luyện mô hình, bạn phải chuẩn hoá về một dạng. Data cleaning (làm sạch dữ liệu) chiếm phần lớn thời gian của người làm dữ liệu và AI, và những vòng lặp nhỏ với `break`, `continue` như thế này là công cụ cơ bản nhất.\n\nMột lưu ý: đừng lạm dụng. Nếu vòng lặp có quá nhiều `break` và `continue` rải rác, code khó theo dõi. Một hai lệnh, đặt ở đầu thân vòng lặp, là dễ đọc nhất.\n\nBài tập: viết hàm làm sạch số điện thoại, chỉ giữ chữ số và dừng khi gặp dấu `#` (phần ghi chú phía sau).",
+  "terms": [
+   {
+    "en": "break",
+    "vi": "thoát khỏi vòng lặp ngay lập tức"
+   },
+   {
+    "en": "continue",
+    "vi": "bỏ qua phần còn lại của vòng hiện tại"
+   },
+   {
+    "en": "isdigit",
+    "vi": "method kiểm tra chuỗi chỉ gồm chữ số"
+   },
+   {
+    "en": "data cleaning",
+    "vi": "làm sạch, chuẩn hoá dữ liệu"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "for i in range(10): nếu i == 3 thì break, còn không thì print(i). Đoạn này in ra những số nào?",
+    "choices": [
+     "0, 1, 2, 3",
+     "0 đến 9 trừ số 3",
+     "Chỉ số 3",
+     "0, 1, 2"
+    ],
+    "answer": 3,
+    "why": "Tới i = 3 thì break thoát hẳn vòng lặp trước khi kịp in, nên chỉ có 0, 1, 2."
+   },
+   {
+    "q": "Đổi break ở câu trên thành continue. Đoạn code in ra gì?",
+    "choices": [
+     "Các số từ 0 đến 9, trừ số 3",
+     "0, 1, 2",
+     "Không in gì cả",
+     "Chỉ số 3"
+    ],
+    "answer": 0,
+    "why": "continue chỉ bỏ qua vòng i = 3, các vòng còn lại vẫn chạy và in bình thường."
+   },
+   {
+    "q": "Bạn tìm đơn hàng đầu tiên bị giao trễ trong danh sách dài. Lệnh nào giúp không phải duyệt hết danh sách?",
+    "choices": [
+     "continue, ngay khi tìm thấy đơn đầu tiên",
+     "break, ngay khi tìm thấy đơn đầu tiên",
+     "Không có cách nào, vòng lặp luôn phải chạy hết",
+     "return 0 ở đầu vòng lặp"
+    ],
+    "answer": 1,
+    "why": "break dừng vòng lặp khi đã có thứ cần tìm, tiết kiệm thời gian với dữ liệu lớn."
+   },
+   {
+    "q": "\"5a\".isdigit() trả về gì?",
+    "choices": [
+     "True",
+     "\"5\"",
+     "False",
+     "Báo lỗi"
+    ],
+    "answer": 2,
+    "why": "isdigit chỉ True khi mọi ký tự trong chuỗi đều là chữ số. Có chữ a nên kết quả là False."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm clean_phone(text) trả về chuỗi chỉ gồm các chữ số trong text, bỏ qua mọi ký tự khác, và dừng hẳn khi gặp dấu #. Ví dụ: clean_phone(\"0901 234.567\") trả về \"0901234567\", clean_phone(\"0912-345-678#ext 12\") trả về \"0912345678\".",
+   "starter": "def clean_phone(text):\n    result = \"\"\n    # TODO: loop over each character, break on '#', skip non-digits with continue\n    return None\n",
+   "solution": "def clean_phone(text):\n    result = \"\"\n    for ch in text:\n        if ch == \"#\":\n            break\n        if not ch.isdigit():\n            continue\n        result += ch\n    return result\n",
+   "tests": "assert clean_phone('0901 234.567') == '0901234567', 'clean_phone(\"0901 234.567\") phải là 0901234567'\nassert clean_phone('0912-345-678#ext 12') == '0912345678', 'Phải dừng ở dấu # và bỏ phần ext 12'\nassert clean_phone('') == '', 'Chuỗi rỗng thì trả về chuỗi rỗng'\nassert clean_phone('#0901234567') == '', 'Dấu # ở đầu thì không giữ lại gì'\nassert clean_phone('(+84) 90 123 4567') == '84901234567', 'Bỏ ngoặc, dấu cộng và dấu cách, chỉ giữ chữ số'\n",
+   "hint": "Trong vòng lặp, kiểm tra dấu # trước và break. Sau đó nếu ký tự không phải chữ số thì continue. Còn lại thì nối ký tự vào result."
+  },
+  "takeaway": "break dừng hẳn vòng lặp, continue chỉ bỏ qua vòng hiện tại rồi chạy tiếp."
+ },
+ {
+  "id": "py-13",
+  "track": "py",
+  "unit": "Collections",
+  "order": 13,
+  "title": "Lists",
+  "title_vi": "Danh sách nhiều giá trị",
+  "level": 1,
+  "minutes": 11,
+  "body": "Tới giờ mỗi biến chỉ chứa một giá trị. Nhưng dữ liệu thật thường là một dãy: điểm thi của cả lớp, giá các món trong giỏ hàng, lịch sử 30 đơn Shopee gần nhất. Kiểu dữ liệu để chứa một dãy có thứ tự là list (danh sách).\n\n```\nscores = [8.5, 6.0, 9.0, 7.5]\ncart = [\"áo thun\", \"dép\", \"ốp lưng\"]\nempty = []\n```\n\nList viết trong cặp ngoặc vuông, các phần tử cách nhau bằng dấu phẩy. Mỗi giá trị trong list gọi là element (phần tử). Một list có thể rỗng.\n\n## Lấy phần tử theo index\n\nGiống string, list đếm vị trí từ 0:\n\n```\nprint(scores[0])    # 8.5\nprint(scores[-1])   # 7.5, phần tử cuối\nprint(len(scores))  # 4\n```\n\nTruy cập vị trí không tồn tại, như `scores[10]`, gây IndexError (lỗi chỉ số vượt quá phạm vi).\n\n## List thay đổi được\n\nKhác string, list là mutable (sửa được sau khi tạo):\n\n```\nscores[1] = 6.5          # sửa phần tử thứ hai\nscores.append(10.0)      # thêm vào cuối\nprint(scores)            # [8.5, 6.5, 9.0, 7.5, 10.0]\n```\n\n`append` là method bạn sẽ dùng nhiều nhất: thêm một phần tử vào cuối list. Nó sửa thẳng list gốc, không cần gán lại.\n\n## Duyệt list bằng for\n\nĐây là lúc vòng `for` phát huy sức mạnh:\n\n```\ntotal = 0\nfor s in scores:\n    total += s\nprint(total / len(scores))   # điểm trung bình\n```\n\nMỗi vòng, `s` lần lượt là từng điểm. Không cần quan tâm index, không cần biết list dài bao nhiêu. Python còn có sẵn các hàm `sum`, `min`, `max`: `sum(scores)` cộng tất cả, `max(scores)` lấy điểm cao nhất. Bạn nên hiểu cách tự viết bằng vòng lặp trước, rồi mới dùng các hàm có sẵn cho nhanh.\n\n## Mẫu lọc: tạo list mới từ list cũ\n\nMột mẫu rất phổ biến: tạo list rỗng, duyệt list gốc, phần tử nào thoả điều kiện thì `append` vào list mới.\n\n```\nprices = [25000, 120000, 45000, 300000]\nexpensive = []\nfor p in prices:\n    if p >= 100000:\n        expensive.append(p)\nprint(expensive)   # [120000, 300000]\n```\n\nĐây là phiên bản thu nhỏ của việc \"lọc khách hàng chi tiêu trên 1 triệu để gửi ưu đãi\" mà bạn từng làm trong công cụ CRM.\n\n## Cẩn thận với list rỗng\n\nTính trung bình của list rỗng bằng `sum(x) / len(x)` sẽ gây ZeroDivisionError (lỗi chia cho 0) vì `len` là 0. Khi viết hàm nhận list, hãy tự hỏi: \"nếu list rỗng thì sao?\" và xử lý trường hợp đó ở đầu hàm bằng một `if` cùng `return` sớm. Kiểm tra list rỗng gọn nhất là `if not scores:`, vì list rỗng được Python coi là False.\n\n## Kiểm tra phần tử có trong list\n\n```\nprint(\"dép\" in cart)   # True\n```\n\n## List trong AI\n\nMột câu văn sau khi qua tokenizer là một list các token. Một bức ảnh nhỏ là list các con số độ sáng. Dữ liệu huấn luyện là list các ví dụ. Hiểu list chắc chắn là bước nền để sau này học NumPy, nơi các \"list số\" được tính toán cực nhanh.\n\nBài tập: lọc ra những điểm thi từ mức trung bình của lớp trở lên.",
+  "terms": [
+   {
+    "en": "list",
+    "vi": "danh sách có thứ tự, sửa được"
+   },
+   {
+    "en": "element",
+    "vi": "phần tử trong list"
+   },
+   {
+    "en": "mutable",
+    "vi": "thay đổi được sau khi tạo"
+   },
+   {
+    "en": "append",
+    "vi": "thêm phần tử vào cuối list"
+   },
+   {
+    "en": "IndexError",
+    "vi": "lỗi chỉ số vượt quá phạm vi"
+   },
+   {
+    "en": "ZeroDivisionError",
+    "vi": "lỗi chia cho 0"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "cart = [\"áo\", \"dép\", \"nón\"]. cart[-1] là gì?",
+    "choices": [
+     "\"nón\"",
+     "\"áo\"",
+     "\"dép\"",
+     "Báo lỗi vì index âm"
+    ],
+    "answer": 0,
+    "why": "Index âm đếm từ cuối, -1 là phần tử cuối cùng."
+   },
+   {
+    "q": "Sau prices = [10, 20] rồi prices.append(30), prices là gì?",
+    "choices": [
+     "[30, 10, 20]",
+     "[10, 20, 30]",
+     "[10, 20]",
+     "[10, 20, [30]]"
+    ],
+    "answer": 1,
+    "why": "append thêm một phần tử vào cuối và sửa thẳng list gốc."
+   },
+   {
+    "q": "Hàm tính trung bình sum(x) / len(x) gặp vấn đề gì với x = []?",
+    "choices": [
+     "Trả về 0 một cách an toàn",
+     "Trả về None",
+     "Lỗi chia cho 0 vì len(x) bằng 0",
+     "Không có vấn đề gì"
+    ],
+    "answer": 2,
+    "why": "len của list rỗng là 0, nên phép chia gây ZeroDivisionError. Cần xử lý list rỗng ở đầu hàm."
+   },
+   {
+    "q": "Điểm khác quan trọng giữa list và string là gì?",
+    "choices": [
+     "List không có index",
+     "String không dùng được với for",
+     "List chỉ chứa được số",
+     "List sửa được phần tử tại chỗ, string thì không"
+    ],
+    "answer": 3,
+    "why": "List là mutable nên gán scores[1] = 6.5 được. String là immutable, muốn đổi phải tạo chuỗi mới."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm above_average(scores) trả về list mới gồm các điểm lớn hơn hoặc bằng điểm trung bình của cả list, giữ nguyên thứ tự ban đầu. Nếu scores rỗng thì trả về list rỗng. Ví dụ: above_average([5, 7, 9]) trả về [7, 9] (trung bình là 7).",
+   "starter": "def above_average(scores):\n    # TODO: handle the empty list, compute the average, then filter with a loop and append\n    return None\n",
+   "solution": "def above_average(scores):\n    if not scores:\n        return []\n    avg = sum(scores) / len(scores)\n    result = []\n    for s in scores:\n        if s >= avg:\n            result.append(s)\n    return result\n",
+   "tests": "assert above_average([5, 7, 9]) == [7, 9], 'above_average([5, 7, 9]) phải là [7, 9]'\nassert above_average([]) == [], 'List rỗng thì trả về list rỗng'\nassert above_average([8, 8, 8]) == [8, 8, 8], 'Mọi điểm bằng trung bình thì giữ lại tất cả'\nassert above_average([9.5, 4.0, 6.5, 8.0]) == [9.5, 8.0], 'Trung bình là 7.0 nên giữ 9.5 và 8.0 theo đúng thứ tự'\nassert above_average([6]) == [6], 'Một điểm duy nhất luôn bằng trung bình'\n",
+   "hint": "Bước 1: nếu list rỗng thì return [] ngay. Bước 2: tính trung bình bằng sum và len. Bước 3: tạo list rỗng, duyệt từng điểm, điểm nào >= trung bình thì append."
+  },
+  "takeaway": "List chứa một dãy có thứ tự, sửa được, và mẫu tạo list rỗng rồi append trong vòng lặp là cách lọc dữ liệu cơ bản nhất."
+ },
+ {
+  "id": "py-14",
+  "track": "py",
+  "unit": "Collections",
+  "order": 14,
+  "title": "List methods and slicing",
+  "title_vi": "Sắp xếp và cắt lát danh sách",
+  "level": 2,
+  "minutes": 12,
+  "body": "Bài trước bạn đã dùng `append`. List còn nhiều method khác, và một cú pháp cực kỳ tiện để lấy một đoạn của list: slicing (cắt lát).\n\n## Một số method hay dùng\n\n```\norders = [250000, 90000, 410000]\norders.insert(0, 150000)   # chèn vào vị trí 0\norders.remove(90000)       # xoá phần tử có giá trị 90000 (lần xuất hiện đầu tiên)\nlast = orders.pop()        # lấy ra và xoá phần tử cuối\nprint(orders, last)        # [150000, 250000] 410000\nprint(orders.count(250000))  # 1\nprint(orders.index(250000))  # 1\n```\n\n- `insert(i, x)`: chèn x vào vị trí i.\n- `remove(x)`: xoá theo giá trị. Không có x trong list thì báo ValueError.\n- `pop()`: lấy ra phần tử cuối, đồng thời xoá nó khỏi list. `pop(0)` lấy phần tử đầu.\n- `count(x)`: đếm số lần x xuất hiện. `index(x)`: vị trí đầu tiên của x.\n\n## Sắp xếp: sort và sorted\n\nCó hai cách, và khác nhau ở một điểm rất quan trọng:\n\n```\nprices = [45000, 29000, 65000]\nprices.sort()                  # sửa thẳng list gốc\nprint(prices)                  # [29000, 45000, 65000]\n\nraw = [45000, 29000, 65000]\nranked = sorted(raw, reverse=True)\nprint(ranked)                  # [65000, 45000, 29000]\nprint(raw)                     # [45000, 29000, 65000], vẫn y nguyên\n```\n\n- `list.sort()` sắp xếp **tại chỗ** và trả về `None`. Viết `x = prices.sort()` là một lỗi kinh điển: x sẽ là None.\n- `sorted(list)` tạo ra một list **mới** đã sắp xếp, list gốc không bị đụng tới.\n- `reverse=True` để sắp từ lớn đến nhỏ.\n\nKhi viết hàm nhận list từ bên ngoài, nên dùng `sorted` để không âm thầm làm thay đổi dữ liệu của người gọi. Thay đổi ngầm như vậy gọi là side effect (tác dụng phụ), và là nguồn của rất nhiều bug khó tìm.\n\n## Slicing: lấy một đoạn\n\nCú pháp `list[start:stop]` lấy các phần tử từ vị trí start đến **trước** stop, giống quy tắc của `range`:\n\n```\ndays = [\"T2\", \"T3\", \"T4\", \"T5\", \"T6\", \"T7\", \"CN\"]\nprint(days[0:5])    # ['T2', 'T3', 'T4', 'T5', 'T6'], ngày làm việc\nprint(days[:3])     # ['T2', 'T3', 'T4'], bỏ start nghĩa là từ đầu\nprint(days[5:])     # ['T7', 'CN'], bỏ stop nghĩa là tới cuối\nprint(days[-2:])    # ['T7', 'CN'], hai phần tử cuối\nprint(days[::-1])   # đảo ngược cả list\n```\n\nĐiểm hay: slicing không bao giờ báo lỗi vì vượt phạm vi. List chỉ có 2 phần tử mà bạn lấy `[:5]` thì nhận về đúng 2 phần tử đó. Slicing luôn tạo list mới, và dùng được y hệt với string: `\"SPX2407\"[:3]` là `\"SPX\"`.\n\n## Kết hợp: top N\n\nMuốn lấy 3 đơn hàng giá trị cao nhất, ghép hai kỹ thuật lại:\n\n```\ntop = sorted(orders, reverse=True)[:3]\n```\n\nSắp xếp giảm dần thành list mới, rồi cắt lấy 3 phần tử đầu. Một dòng, không sửa dữ liệu gốc. Đây đúng là cách các bảng \"sản phẩm bán chạy nhất\" hay \"top khách chi tiêu nhiều nhất\" được tạo ra ở mức đơn giản nhất.\n\n## Trong AI\n\nSlicing có mặt khắp nơi: chia dữ liệu thành phần train (để học) và phần test (để kiểm tra), ví dụ `data[:800]` và `data[800:]`. Hay lấy 5 kết quả có điểm cao nhất từ một hệ thống tìm kiếm, chính là top N như trên. Khi lên NumPy, cú pháp slicing gần như giữ nguyên, chỉ mạnh hơn.",
+  "terms": [
+   {
+    "en": "slicing",
+    "vi": "cắt lát, lấy một đoạn của list hoặc string"
+   },
+   {
+    "en": "sort",
+    "vi": "sắp xếp tại chỗ, sửa list gốc"
+   },
+   {
+    "en": "sorted",
+    "vi": "tạo list mới đã sắp xếp"
+   },
+   {
+    "en": "side effect",
+    "vi": "tác dụng phụ, thay đổi dữ liệu bên ngoài hàm"
+   },
+   {
+    "en": "pop",
+    "vi": "lấy ra và xoá một phần tử"
+   },
+   {
+    "en": "ValueError",
+    "vi": "lỗi giá trị không hợp lệ hoặc không tìm thấy"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "nums = [4, 1, 3]. Sau x = nums.sort(), x là gì?",
+    "choices": [
+     "[1, 3, 4]",
+     "None",
+     "[4, 3, 1]",
+     "[4, 1, 3]"
+    ],
+    "answer": 1,
+    "why": "sort sắp xếp tại chỗ và trả về None. Muốn có list mới đã sắp xếp thì dùng sorted(nums)."
+   },
+   {
+    "q": "days = [\"T2\", \"T3\", \"T4\", \"T5\"]. days[1:3] là gì?",
+    "choices": [
+     "[\"T2\", \"T3\", \"T4\"]",
+     "[\"T3\", \"T4\", \"T5\"]",
+     "[\"T3\", \"T4\"]",
+     "[\"T2\", \"T3\"]"
+    ],
+    "answer": 2,
+    "why": "Slicing lấy từ index 1 đến trước index 3, tức là index 1 và 2."
+   },
+   {
+    "q": "Vì sao trong hàm nên dùng sorted thay vì sort trên list được truyền vào?",
+    "choices": [
+     "Vì sorted luôn nhanh gấp đôi sort",
+     "Vì sort không sắp xếp được số",
+     "Vì sort chỉ dùng được với string",
+     "Để không làm thay đổi ngầm list của người gọi hàm"
+    ],
+    "answer": 3,
+    "why": "sort sửa list gốc, gây side effect. sorted tạo list mới nên dữ liệu bên ngoài được giữ nguyên."
+   },
+   {
+    "q": "orders = [100, 200]. orders[:5] cho kết quả gì?",
+    "choices": [
+     "[100, 200]",
+     "Báo IndexError",
+     "[100, 200, None, None, None]",
+     "[]"
+    ],
+    "answer": 0,
+    "why": "Slicing không báo lỗi khi vượt phạm vi, nó chỉ trả về những phần tử có thật."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm top_orders(orders, n) trả về list n giá trị đơn hàng lớn nhất, sắp từ lớn đến nhỏ. Không được làm thay đổi list orders gốc. Nếu list có ít hơn n đơn thì trả về tất cả (đã sắp xếp). Ví dụ: top_orders([250000, 90000, 410000, 150000], 2) trả về [410000, 250000].",
+   "starter": "def top_orders(orders, n):\n    # TODO: sort into a NEW list from largest to smallest, then slice the first n\n    return None\n",
+   "solution": "def top_orders(orders, n):\n    return sorted(orders, reverse=True)[:n]\n",
+   "tests": "data = [250000, 90000, 410000, 150000]\nassert top_orders(data, 2) == [410000, 250000], 'top_orders(data, 2) phải là [410000, 250000]'\nassert data == [250000, 90000, 410000, 150000], 'List gốc không được bị thay đổi, hãy dùng sorted thay vì sort'\nassert top_orders([50000, 20000], 5) == [50000, 20000], 'Ít hơn n đơn thì trả về tất cả, sắp từ lớn đến nhỏ'\nassert top_orders([], 3) == [], 'List rỗng thì trả về list rỗng'\nassert top_orders([30000, 30000, 10000], 2) == [30000, 30000], 'Giá trị trùng nhau vẫn được giữ đủ'\nassert top_orders([70000, 80000], 0) == [], 'n bằng 0 thì trả về list rỗng'\n",
+   "hint": "Dùng hàm tạo list mới đã sắp xếp với reverse=True, rồi cắt lát từ đầu đến n. Có thể viết trong một dòng."
+  },
+  "takeaway": "sort sửa list gốc còn sorted tạo list mới, và slicing [start:stop] lấy một đoạn mà không bao giờ báo lỗi vượt phạm vi."
+ },
+ {
+  "id": "py-15",
+  "track": "py",
+  "unit": "Collections",
+  "order": 15,
+  "title": "Tuples and sets",
+  "title_vi": "Bộ giá trị cố định và tập hợp không trùng",
+  "level": 2,
+  "minutes": 12,
+  "body": "Bài này giới thiệu hai kiểu dữ liệu nhóm nữa: tuple dùng để gói vài giá trị đi cùng nhau, và set dùng khi bạn chỉ quan tâm \"có những giá trị nào\", không quan tâm trùng lặp hay thứ tự.\n\n## Tuple: gói cố định\n\nTuple (bộ giá trị cố định) giống list nhưng dùng ngoặc tròn và **không sửa được** sau khi tạo:\n\n```\norder = (\"Lan\", \"áo thun\", 150000)\nprint(order[0])     # \"Lan\"\nprint(len(order))   # 3\n```\n\nGán `order[2] = 99000` sẽ báo lỗi, vì tuple là immutable. Tại sao lại muốn thứ không sửa được? Vì có những dữ liệu bản chất là một cụm cố định: toạ độ GPS (vĩ độ, kinh độ), một dòng giao dịch (người mua, món, giá), kích thước ảnh (rộng, cao). Dùng tuple là cách nói với người đọc: \"mấy giá trị này đi chung, đừng đụng vào\".\n\n## Unpacking: mở gói\n\n```\nlat, lng = (10.7769, 106.7009)   # toạ độ trung tâm Sài Gòn\nbuyer, item, price = order\n```\n\nUnpacking (mở gói) gán từng giá trị trong tuple vào từng biến, số biến phải khớp số phần tử. Rất hay dùng trong vòng lặp qua list các tuple:\n\n```\norders = [(\"Lan\", 150000), (\"Huy\", 90000), (\"Lan\", 60000)]\nfor buyer, price in orders:\n    print(buyer, price)\n```\n\n## Hàm trả về nhiều giá trị\n\nMột hàm có thể trả về một tuple, giúp trả nhiều kết quả cùng lúc:\n\n```\ndef min_max(prices):\n    return min(prices), max(prices)\n\nlow, high = min_max([45000, 29000, 65000])\n```\n\nDấu phẩy sau `return` tự tạo ra tuple, không bắt buộc ngoặc. Bên gọi dùng unpacking để nhận từng giá trị.\n\n## Set: tập hợp không trùng\n\nSet (tập hợp) viết bằng ngoặc nhọn, tự động loại bỏ giá trị trùng và không giữ thứ tự:\n\n```\nbuyers = {\"Lan\", \"Huy\", \"Lan\", \"Mai\"}\nprint(buyers)        # {'Lan', 'Huy', 'Mai'}, thứ tự có thể khác\nprint(len(buyers))   # 3\n```\n\nLưu ý: set rỗng phải viết `set()`, vì `{}` là dictionary rỗng (bài sau). Thêm phần tử bằng `add`:\n\n```\nseen = set()\nseen.add(\"Lan\")\nseen.add(\"Lan\")\nprint(len(seen))   # 1\n```\n\nSet có hai điểm mạnh. Thứ nhất, đếm số giá trị khác nhau, ví dụ bao nhiêu khách **khác nhau** đã mua hàng hôm nay. Thứ hai, kiểm tra `x in s` rất nhanh, kể cả khi set có hàng triệu phần tử, nhanh hơn nhiều so với tìm trong list.\n\n## Phép toán tập hợp\n\n```\nweek1 = {\"Lan\", \"Huy\", \"Mai\"}\nweek2 = {\"Huy\", \"Tú\"}\nprint(week1 & week2)   # {'Huy'}: mua cả hai tuần\nprint(week1 | week2)   # tất cả khách của hai tuần\nprint(week1 - week2)   # {'Lan', 'Mai'}: tuần 1 có, tuần 2 không\n```\n\nPhép trừ ở dòng cuối chính là danh sách khách \"rời bỏ\" sau một tuần. Người làm lifecycle sẽ nhận ra ngay đây là nền của phân tích retention (tỉ lệ khách quay lại).\n\n## Chọn kiểu nào\n\n- Dãy có thứ tự, cần sửa, thêm, bớt: list.\n- Một cụm vài giá trị cố định đi cùng nhau: tuple.\n- Chỉ cần biết những giá trị nào có mặt, không trùng: set.\n\nBài tập: từ list đơn hàng dạng tuple, trả về cùng lúc số khách khác nhau và tổng doanh thu.",
+  "terms": [
+   {
+    "en": "tuple",
+    "vi": "bộ giá trị cố định, không sửa được"
+   },
+   {
+    "en": "unpacking",
+    "vi": "mở gói, gán từng phần tử vào từng biến"
+   },
+   {
+    "en": "set",
+    "vi": "tập hợp các giá trị không trùng, không thứ tự"
+   },
+   {
+    "en": "immutable",
+    "vi": "không thay đổi được sau khi tạo"
+   },
+   {
+    "en": "retention",
+    "vi": "tỉ lệ khách quay lại"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "len({\"Lan\", \"Huy\", \"Lan\", \"Lan\"}) bằng bao nhiêu?",
+    "choices": [
+     "4",
+     "3",
+     "2",
+     "1"
+    ],
+    "answer": 2,
+    "why": "Set tự loại bỏ giá trị trùng, chỉ còn Lan và Huy."
+   },
+   {
+    "q": "Vì sao toạ độ GPS (vĩ độ, kinh độ) hợp với tuple hơn list?",
+    "choices": [
+     "Vì tuple chứa được số thực còn list thì không",
+     "Vì list không có index",
+     "Vì tuple tự sắp xếp các giá trị",
+     "Vì đó là một cụm cố định đi cùng nhau, không nên bị sửa từng phần"
+    ],
+    "answer": 3,
+    "why": "Tuple là immutable, thể hiện rõ các giá trị là một khối cố định. List cũng chứa được số thực, nhưng cho phép sửa."
+   },
+   {
+    "q": "Muốn tạo một set rỗng để thêm dần phần tử, viết thế nào?",
+    "choices": [
+     "seen = set()",
+     "seen = {}",
+     "seen = []",
+     "seen = ()"
+    ],
+    "answer": 0,
+    "why": "{} là dictionary rỗng, [] là list rỗng, () là tuple rỗng. Set rỗng phải dùng set()."
+   },
+   {
+    "q": "a = {\"Lan\", \"Huy\"}, b = {\"Huy\", \"Mai\"}. a - b cho kết quả gì?",
+    "choices": [
+     "{\"Huy\"}",
+     "{\"Lan\"}",
+     "{\"Lan\", \"Huy\", \"Mai\"}",
+     "{\"Mai\"}"
+    ],
+    "answer": 1,
+    "why": "a - b giữ những phần tử có trong a mà không có trong b, tức là chỉ Lan."
+   }
+  ],
+  "code": {
+   "prompt": "Mỗi đơn hàng là một tuple (buyer, price). Viết hàm shop_stats(orders) trả về một tuple (số khách khác nhau, tổng doanh thu). Ví dụ: shop_stats([(\"Lan\", 150000), (\"Huy\", 90000), (\"Lan\", 60000)]) trả về (2, 300000). List rỗng trả về (0, 0).",
+   "starter": "def shop_stats(orders):\n    buyers = set()\n    revenue = 0\n    # TODO: loop with unpacking, add each buyer to the set, add each price to revenue\n    return None\n",
+   "solution": "def shop_stats(orders):\n    buyers = set()\n    revenue = 0\n    for buyer, price in orders:\n        buyers.add(buyer)\n        revenue += price\n    return len(buyers), revenue\n",
+   "tests": "assert shop_stats([('Lan', 150000), ('Huy', 90000), ('Lan', 60000)]) == (2, 300000), 'Ví dụ trong đề phải trả về (2, 300000)'\nassert shop_stats([]) == (0, 0), 'Không có đơn nào thì trả về (0, 0)'\nassert shop_stats([('Mai', 50000)]) == (1, 50000), 'Một đơn thì trả về (1, 50000)'\nassert shop_stats([('Tú', 10000), ('Tú', 20000), ('Tú', 30000)]) == (1, 60000), 'Một khách mua 3 lần vẫn tính là 1 khách'\nassert isinstance(shop_stats([('A', 1)]), tuple), 'Kết quả phải là một tuple'\n",
+   "hint": "Dùng for buyer, price in orders để mở gói từng đơn. Thêm buyer vào set bằng add, cộng price vào revenue. Cuối cùng return hai giá trị cách nhau bằng dấu phẩy, giá trị đầu là độ dài của set."
+  },
+  "takeaway": "Tuple gói vài giá trị cố định đi cùng nhau, còn set giữ các giá trị không trùng và kiểm tra có mặt rất nhanh."
+ },
+ {
+  "id": "py-16",
+  "track": "py",
+  "unit": "Collections",
+  "order": 16,
+  "title": "Dictionaries",
+  "title_vi": "Tra cứu theo khoá",
+  "level": 2,
+  "minutes": 13,
+  "body": "List tra cứu theo vị trí: phần tử số 0, số 1. Nhưng nhiều khi bạn muốn tra theo **tên**: giá của món \"bạc xỉu\" là bao nhiêu, điểm của bạn \"Lan\" là mấy. Kiểu dữ liệu cho việc này là dictionary (từ điển), gọi tắt là dict.\n\n```\nmenu = {\"cà phê sữa\": 29000, \"bạc xỉu\": 32000, \"trà đào\": 35000}\nprint(menu[\"bạc xỉu\"])   # 32000\n```\n\nMỗi mục trong dict là một cặp key: value (khoá: giá trị). Key giống chữ trong từ điển, value giống phần giải nghĩa. Key phải là duy nhất và thường là string hoặc số. Value có thể là bất cứ thứ gì, kể cả list hay dict khác.\n\n## Thêm, sửa, xoá\n\n```\nmenu[\"matcha latte\"] = 45000   # key chưa có: thêm mới\nmenu[\"trà đào\"] = 38000        # key đã có: ghi đè giá mới\ndel menu[\"cà phê sữa\"]         # xoá\nprint(len(menu))               # 3\n```\n\nCùng một cú pháp `menu[key] = value` vừa để thêm vừa để sửa. Dict là mutable, giống list.\n\n## Khi key không tồn tại\n\n`menu[\"cacao\"]` khi chưa có key này sẽ gây KeyError (lỗi không tìm thấy khoá). Có hai cách an toàn:\n\n```\nprint(\"cacao\" in menu)          # False, kiểm tra trước\nprint(menu.get(\"cacao\", 0))     # 0, lấy giá trị hoặc dùng mặc định\n```\n\n`get(key, default)` trả về value nếu có key, còn không thì trả về default. Đây là công cụ chính cho mẫu đếm dưới đây.\n\n## Duyệt dict\n\n```\nfor item, price in menu.items():\n    print(item, price)\n```\n\n`items()` cho ra từng cặp (key, value) dưới dạng tuple, và bạn unpacking như bài trước. Ngoài ra `keys()` cho danh sách key, `values()` cho danh sách value: `sum(menu.values())` là tổng giá cả menu. Từ Python 3.7, dict giữ đúng thứ tự bạn thêm key vào.\n\n## Mẫu đếm và cộng dồn theo nhóm\n\nĐây là mẫu quan trọng nhất của bài, bạn sẽ dùng nó suốt đời làm dữ liệu:\n\n```\norders = [(\"bạc xỉu\", 2), (\"trà đào\", 1), (\"bạc xỉu\", 3)]\ntotals = {}\nfor item, qty in orders:\n    totals[item] = totals.get(item, 0) + qty\nprint(totals)   # {'bạc xỉu': 5, 'trà đào': 1}\n```\n\nMỗi vòng: lấy số đang có của món đó (chưa có thì coi là 0), cộng thêm số lượng mới, ghi lại. Đây chính là phép \"group by\" (gom nhóm theo một cột rồi tính tổng) mà bạn từng thấy trong pivot table của Excel hay báo cáo CRM, chỉ là viết bằng tay.\n\n## Dict có mặt khắp nơi\n\n- Dữ liệu từ API (giao diện để các phần mềm nói chuyện với nhau) thường ở dạng JSON, và trong Python JSON được đọc thành dict. Khi gọi một mô hình ngôn ngữ lớn qua API, mỗi tin nhắn là một dict kiểu `{\"role\": \"user\", \"content\": \"...\"}`.\n- Cấu hình mô hình như learning rate, số epoch thường lưu trong dict.\n- Từ vựng của tokenizer là một dict khổng lồ ánh xạ từng token sang một con số.\n\n## Tổng kết chương Collections\n\n- list: dãy có thứ tự, tra theo vị trí.\n- tuple: cụm cố định, không sửa.\n- set: không trùng, kiểm tra có mặt nhanh.\n- dict: tra cứu theo key.\n\nNắm chắc bốn kiểu này, bạn đã có đủ \"đồ nghề\" để đọc phần lớn code Python xử lý dữ liệu. Bài tập cuối: tổng hợp số lượng từng món từ danh sách đơn của quán.",
+  "terms": [
+   {
+    "en": "dictionary",
+    "vi": "từ điển, tra cứu giá trị theo khoá"
+   },
+   {
+    "en": "key",
+    "vi": "khoá, tên dùng để tra cứu"
+   },
+   {
+    "en": "value",
+    "vi": "giá trị gắn với khoá"
+   },
+   {
+    "en": "KeyError",
+    "vi": "lỗi không tìm thấy khoá"
+   },
+   {
+    "en": "group by",
+    "vi": "gom nhóm theo một tiêu chí rồi tính tổng"
+   },
+   {
+    "en": "JSON",
+    "vi": "định dạng dữ liệu dạng chữ, đọc thành dict"
+   },
+   {
+    "en": "API",
+    "vi": "giao diện để các phần mềm trao đổi dữ liệu"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "prices = {\"áo\": 150000}. Sau prices[\"áo\"] = 120000, dict có mấy mục?",
+    "choices": [
+     "2, có hai mục áo với hai giá",
+     "0, vì mục cũ bị xoá",
+     "Báo lỗi vì key đã tồn tại",
+     "1, giá áo được ghi đè thành 120000"
+    ],
+    "answer": 3,
+    "why": "Key trong dict là duy nhất. Gán vào key đã có sẽ ghi đè value cũ."
+   },
+   {
+    "q": "stock = {\"dép\": 5}. stock.get(\"nón\", 0) trả về gì?",
+    "choices": [
+     "0",
+     "Báo KeyError",
+     "None",
+     "5"
+    ],
+    "answer": 0,
+    "why": "get trả về giá trị mặc định khi key không tồn tại, ở đây là 0, thay vì báo lỗi."
+   },
+   {
+    "q": "Muốn tra nhanh số điện thoại theo tên khách, kiểu dữ liệu nào hợp nhất?",
+    "choices": [
+     "list các số điện thoại",
+     "dict với key là tên, value là số điện thoại",
+     "set các tên khách",
+     "tuple gồm tên và số của tất cả khách"
+    ],
+    "answer": 1,
+    "why": "dict được làm ra để tra cứu theo key. Với list bạn phải duyệt từng phần tử mới tìm được."
+   },
+   {
+    "q": "Trong mẫu đếm, dòng totals[item] = totals.get(item, 0) + qty làm gì khi item xuất hiện lần đầu?",
+    "choices": [
+     "Báo KeyError vì item chưa có",
+     "Bỏ qua item đó",
+     "Coi số cũ là 0 rồi lưu qty làm giá trị đầu tiên",
+     "Ghi giá trị None"
+    ],
+    "answer": 2,
+    "why": "get(item, 0) trả về 0 khi chưa có key, nên lần đầu value chính là qty. Các lần sau thì cộng dồn."
+   }
+  ],
+  "code": {
+   "prompt": "Mỗi đơn là một tuple (item, qty). Viết hàm order_summary(orders) trả về dict tổng số lượng của từng món. Bỏ qua những đơn có qty nhỏ hơn hoặc bằng 0 (đơn lỗi). Ví dụ: order_summary([(\"bạc xỉu\", 2), (\"trà đào\", 1), (\"bạc xỉu\", 3)]) trả về {\"bạc xỉu\": 5, \"trà đào\": 1}.",
+   "starter": "def order_summary(orders):\n    totals = {}\n    # TODO: loop with unpacking, skip qty <= 0, add qty to totals[item] using get\n    return None\n",
+   "solution": "def order_summary(orders):\n    totals = {}\n    for item, qty in orders:\n        if qty <= 0:\n            continue\n        totals[item] = totals.get(item, 0) + qty\n    return totals\n",
+   "tests": "assert order_summary([('bạc xỉu', 2), ('trà đào', 1), ('bạc xỉu', 3)]) == {'bạc xỉu': 5, 'trà đào': 1}, 'Ví dụ trong đề phải ra bạc xỉu 5, trà đào 1'\nassert order_summary([]) == {}, 'Không có đơn thì trả về dict rỗng'\nassert order_summary([('cacao', 0), ('cacao', -2)]) == {}, 'Đơn có qty <= 0 phải bị bỏ qua'\nassert order_summary([('trà đào', 1), ('trà đào', 0), ('trà đào', 4)]) == {'trà đào': 5}, 'Chỉ cộng các đơn hợp lệ: 1 + 4 = 5'\nassert order_summary([('A', 1), ('B', 2), ('C', 3)]) == {'A': 1, 'B': 2, 'C': 3}, 'Mỗi món một đơn thì giữ nguyên số lượng'\n",
+   "hint": "Dùng mẫu đếm trong bài: totals[item] = totals.get(item, 0) + qty. Thêm một if với continue ở đầu vòng lặp để bỏ qua đơn lỗi."
+  },
+  "takeaway": "dict tra cứu theo key, và mẫu totals[k] = totals.get(k, 0) + x là cách gom nhóm cộng dồn cơ bản nhất."
+ }
+]

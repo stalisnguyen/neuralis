@@ -1,0 +1,1826 @@
+[
+ {
+  "id": "ml-01",
+  "track": "ml",
+  "unit": "What ML is",
+  "order": 1,
+  "title": "AI vs ML vs Deep Learning",
+  "title_vi": "Ba vòng tròn lồng nhau",
+  "level": 1,
+  "minutes": 8,
+  "body": "Khi đọc tin tức, bạn sẽ thấy ba chữ AI, Machine Learning và Deep Learning được dùng lẫn lộn. Thật ra chúng là ba vòng tròn lồng vào nhau: vòng to nhất là AI, bên trong là Machine Learning, và trong cùng là Deep Learning.\n\n## AI là cái vòng to nhất\nAI (artificial intelligence, trí tuệ nhân tạo) là mọi kỹ thuật giúp máy làm được việc mà ta thường nghĩ cần trí thông minh: chơi cờ, hiểu câu nói, lái xe, gợi ý món ăn. AI không nhất thiết phải \"học\". Một chương trình cờ vua thời xưa chỉ gồm hàng nghìn luật do kỹ sư viết tay vẫn được gọi là AI.\n\nVí dụ ở ngân hàng: hệ thống duyệt thẻ tín dụng kiểu cũ có luật \"nếu thu nhập dưới 8 triệu và đã từng trễ hạn thì từ chối\". Người viết luật là chuyên viên tín dụng. Đó là AI dạng **rule-based** (dựa trên luật viết tay).\n\n## Machine Learning: máy tự rút ra luật từ dữ liệu\nMachine Learning (học máy, máy tự tìm quy luật từ dữ liệu thay vì được viết luật sẵn) đảo ngược cách làm. Thay vì ngồi nghĩ luật, ta đưa cho máy 100.000 hồ sơ vay cũ kèm kết quả \"trả đúng hạn\" hay \"nợ xấu\". Thuật toán tự dò ra quy luật, có khi tinh tế hơn con người nghĩ ra: ví dụ khách đổi số điện thoại ba lần trong năm thì rủi ro cao hơn.\n\nCách dễ nhớ:\n- Lập trình truyền thống: luật + dữ liệu -> kết quả.\n- Machine Learning: dữ liệu + kết quả -> luật (gọi là **model**, mô hình).\n\nModel chỉ là một hàm toán học đã được \"chỉnh\" sao cho khớp với dữ liệu cũ, để dùng cho dữ liệu mới.\n\n## Deep Learning: một nhánh của ML dùng mạng nơ-ron nhiều lớp\nDeep Learning (học sâu, dùng neural network có nhiều lớp xếp chồng) là một họ phương pháp trong ML. Nó mạnh nhất với dữ liệu \"thô\" như ảnh, âm thanh, văn bản, nơi con người khó tự mô tả đặc điểm. Muốn máy nhận ra ảnh con mèo, bạn khó viết luật \"tai nhọn, có ria\". Deep Learning tự học các đặc điểm đó từ hàng triệu ảnh.\n\nCác mô hình như ChatGPT, Claude, Gemini đều là Deep Learning, cụ thể là kiến trúc Transformer mà bạn sẽ gặp ở cuối track này.\n\n## Khi nào dùng cái nào?\n- Bài toán có luật rõ ràng, ít thay đổi (tính thuế, phí ship theo cân nặng): viết luật là đủ, rẻ và dễ giải thích.\n- Bài toán dạng bảng số liệu (dự đoán khách rời bỏ, chấm điểm tín dụng): ML cổ điển như decision tree, logistic regression thường làm rất tốt, nhanh và dễ giải thích với sếp.\n- Bài toán ảnh, giọng nói, ngôn ngữ: Deep Learning gần như là lựa chọn mặc định.\n\nMột hiểu lầm phổ biến là cứ \"AI\" thì phải Deep Learning. Trong doanh nghiệp, tính đến 2026 rất nhiều hệ thống chạy thật vẫn là ML cổ điển trên dữ liệu bảng, vì chúng rẻ, nhanh và kiểm soát được. Một người làm AI product giỏi là người chọn đúng công cụ, không phải công cụ to nhất.\n\n## Bit tóm lại\nBit thích ví thế này: AI là cả ngành \"nấu ăn\". ML là cách nấu bằng việc nếm thử nhiều lần rồi tự điều chỉnh công thức. Deep Learning là một trường phái nấu trong ML, cần rất nhiều nguyên liệu (dữ liệu) và bếp mạnh (GPU), nhưng làm được những món mà công thức viết tay không làm nổi.",
+  "terms": [
+   {
+    "en": "artificial intelligence (AI)",
+    "vi": "trí tuệ nhân tạo"
+   },
+   {
+    "en": "machine learning",
+    "vi": "học máy, máy tự học quy luật từ dữ liệu"
+   },
+   {
+    "en": "deep learning",
+    "vi": "học sâu, dùng mạng nơ-ron nhiều lớp"
+   },
+   {
+    "en": "model",
+    "vi": "mô hình, hàm đã được chỉnh để khớp dữ liệu"
+   },
+   {
+    "en": "rule-based",
+    "vi": "dựa trên luật viết tay"
+   },
+   {
+    "en": "neural network",
+    "vi": "mạng nơ-ron nhân tạo"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Một hệ thống tính phí ship theo bảng cân nặng do nhân viên nhập tay. Nó thuộc loại nào?",
+    "choices": [
+     "AI dạng rule-based hoặc chỉ là lập trình thường, không phải ML",
+     "Machine Learning vì có dữ liệu cân nặng",
+     "Deep Learning vì có nhiều bước tính",
+     "Reinforcement learning vì có phí"
+    ],
+    "answer": 0,
+    "why": "Luật do người viết sẵn, máy không tự rút ra quy luật từ dữ liệu, nên không phải ML."
+   },
+   {
+    "q": "Điểm khác biệt cốt lõi giữa ML và lập trình truyền thống là gì?",
+    "choices": [
+     "ML luôn cần GPU",
+     "ML không cần dữ liệu",
+     "ML chạy nhanh hơn mọi chương trình thường",
+     "ML nhận dữ liệu kèm kết quả rồi tự tìm ra luật"
+    ],
+    "answer": 3,
+    "why": "Lập trình thường: luật + dữ liệu -> kết quả. ML: dữ liệu + kết quả -> luật (model)."
+   },
+   {
+    "q": "Bạn cần dự đoán khách nào sẽ rời bỏ app dựa trên bảng 20 cột hành vi. Lựa chọn khởi đầu hợp lý nhất?",
+    "choices": [
+     "Bắt buộc dùng Deep Learning vì là AI",
+     "Viết tay 500 luật if-else",
+     "Thử ML cổ điển như logistic regression hoặc decision tree trước",
+     "Dùng mô hình nhận diện ảnh"
+    ],
+    "answer": 2,
+    "why": "Với dữ liệu dạng bảng, ML cổ điển thường đủ tốt, rẻ và dễ giải thích."
+   },
+   {
+    "q": "Câu nào đúng về quan hệ giữa ba khái niệm?",
+    "choices": [
+     "Mọi AI đều là Deep Learning",
+     "Mọi Deep Learning đều là ML, mọi ML đều là AI",
+     "ML và Deep Learning là hai ngành tách biệt",
+     "Deep Learning bao trùm cả ML"
+    ],
+    "answer": 1,
+    "why": "Ba vòng tròn lồng nhau: AI chứa ML, ML chứa Deep Learning."
+   }
+  ],
+  "takeaway": "AI là ngành lớn, ML là cách để máy tự rút luật từ dữ liệu, Deep Learning là một nhánh ML dùng mạng nơ-ron nhiều lớp."
+ },
+ {
+  "id": "ml-02",
+  "track": "ml",
+  "unit": "What ML is",
+  "order": 2,
+  "title": "Three Kinds of Learning",
+  "title_vi": "Có thầy, không thầy và học bằng thưởng phạt",
+  "level": 1,
+  "minutes": 9,
+  "body": "Machine Learning có ba kiểu học chính. Phân biệt được chúng là bước đầu tiên khi nhận một bài toán: câu hỏi \"đây là kiểu học nào\" sẽ quyết định dữ liệu cần chuẩn bị và thuật toán nên thử.\n\n## 1. Supervised learning: học có thầy\nSupervised learning (học có giám sát, dữ liệu có sẵn đáp án) giống học sinh làm bài tập có đáp án ở cuối sách. Mỗi dòng dữ liệu có đầu vào và một **label** (nhãn, đáp án đúng). Máy học cách đi từ đầu vào ra nhãn.\n\nVí dụ:\n- Chấm điểm tín dụng: đầu vào là thu nhập, lịch sử trả nợ; nhãn là \"trả đúng hạn\" hay \"nợ xấu\".\n- Dự đoán khách rời bỏ (churn): đầu vào là số lần mở app, lần mua cuối; nhãn là \"đã rời\" hay \"còn ở lại\" sau 30 ngày.\n- Dự đoán doanh thu ngày mai của một quán cà phê.\n\nSupervised chia hai dạng. **Classification** (phân loại, đoán nhóm) khi nhãn là một nhóm như có/không, spam/không spam. **Regression** (hồi quy, đoán một con số) khi nhãn là số liên tục như giá nhà, doanh thu.\n\nPhần lớn ML trong doanh nghiệp là supervised. Điểm khó thường không nằm ở thuật toán mà ở việc có nhãn: muốn biết khách đã rời bỏ, bạn phải định nghĩa \"rời bỏ\" là gì và chờ đủ thời gian để có đáp án.\n\n## 2. Unsupervised learning: học không thầy\nUnsupervised learning (học không giám sát, dữ liệu không có đáp án) là khi bạn chỉ có dữ liệu, không có nhãn. Máy tự tìm cấu trúc ẩn bên trong.\n\nVí dụ quen thuộc với người làm CRM: bạn có hành vi mua hàng của 2 triệu khách Shopee và muốn chia họ thành nhóm để chạy campaign. Không ai nói trước có mấy nhóm. Thuật toán **clustering** (phân cụm) gom những khách giống nhau lại: nhóm săn sale nửa đêm, nhóm mua đồ mẹ và bé đều đặn, nhóm mua một lần rồi biến mất. Việc đặt tên và ý nghĩa cho từng nhóm vẫn là của con người.\n\nUnsupervised còn dùng để phát hiện bất thường, ví dụ một giao dịch khác hẳn thói quen của chủ thẻ.\n\n## 3. Reinforcement learning: học bằng thưởng phạt\nReinforcement learning (học tăng cường, học qua thử sai và phần thưởng) giống dạy chó: làm đúng thì có bánh, làm sai thì không. Ở đây có một **agent** (tác tử, kẻ ra quyết định) hành động trong một môi trường, nhận **reward** (phần thưởng) và dần học chiến lược để tổng thưởng lớn nhất.\n\nVí dụ: robot học đi, AI chơi cờ vây, hệ thống điều chỉnh giá theo thời gian thực. Reinforcement learning cũng là một bước quan trọng khi tinh chỉnh các LLM để trả lời hữu ích hơn. Kiểu học này mạnh nhưng khó dựng, vì cần môi trường để thử sai mà không gây thiệt hại thật.\n\n## Cách nhận diện nhanh\n- Có đáp án đúng cho từng dòng dữ liệu cũ? -> supervised.\n- Không có đáp án, muốn tìm nhóm hay điểm lạ? -> unsupervised.\n- Có chuỗi hành động và phần thưởng đến sau? -> reinforcement.\n\nRanh giới không phải lúc nào cũng cứng. Các LLM hiện nay được huấn luyện qua nhiều giai đoạn kết hợp cả ba ý tưởng. Nhưng với bài toán business hằng ngày, câu hỏi \"mình có nhãn không\" giải quyết được 80% việc định hướng.",
+  "terms": [
+   {
+    "en": "supervised learning",
+    "vi": "học có giám sát, có đáp án"
+   },
+   {
+    "en": "unsupervised learning",
+    "vi": "học không giám sát, không có đáp án"
+   },
+   {
+    "en": "reinforcement learning",
+    "vi": "học tăng cường qua thưởng phạt"
+   },
+   {
+    "en": "label",
+    "vi": "nhãn, đáp án đúng"
+   },
+   {
+    "en": "classification",
+    "vi": "phân loại vào nhóm"
+   },
+   {
+    "en": "regression",
+    "vi": "hồi quy, dự đoán một con số"
+   },
+   {
+    "en": "clustering",
+    "vi": "phân cụm"
+   },
+   {
+    "en": "reward",
+    "vi": "phần thưởng"
+   }
+  ],
+  "lab": "q-learning",
+  "quiz": [
+   {
+    "q": "Bạn có lịch sử 50.000 khoản vay kèm thông tin khoản nào thành nợ xấu. Muốn dự đoán hồ sơ mới. Đây là kiểu học gì?",
+    "choices": [
+     "Unsupervised learning, dạng clustering",
+     "Supervised learning, dạng classification",
+     "Reinforcement learning",
+     "Supervised learning, dạng regression"
+    ],
+    "answer": 1,
+    "why": "Có nhãn (nợ xấu hay không) và nhãn là nhóm, nên là supervised classification."
+   },
+   {
+    "q": "Đội marketing muốn chia khách thành các nhóm hành vi mà chưa biết trước có bao nhiêu nhóm. Nên nghĩ đến gì?",
+    "choices": [
+     "Clustering trong unsupervised learning",
+     "Regression",
+     "Reinforcement learning",
+     "Classification với nhãn có sẵn"
+    ],
+    "answer": 0,
+    "why": "Không có nhãn, mục tiêu là tìm nhóm tự nhiên, đó là clustering."
+   },
+   {
+    "q": "Dự đoán doanh thu tuần tới của một cửa hàng (một con số) thuộc dạng nào?",
+    "choices": [
+     "Classification",
+     "Clustering",
+     "Không phải ML",
+     "Regression"
+    ],
+    "answer": 3,
+    "why": "Nhãn là một số liên tục nên là regression."
+   },
+   {
+    "q": "Vì sao reinforcement learning ít gặp trong các bài toán CRM thông thường hơn supervised?",
+    "choices": [
+     "Vì nó không dùng dữ liệu",
+     "Vì nó chỉ dùng cho ảnh",
+     "Vì cần môi trường để thử sai và phần thưởng, khó dựng và tốn kém",
+     "Vì nó luôn kém chính xác hơn"
+    ],
+    "answer": 2,
+    "why": "Reinforcement learning cần agent thử nhiều hành động và nhận thưởng, khó an toàn với khách hàng thật."
+   }
+  ],
+  "takeaway": "Hỏi trước tiên: dữ liệu có nhãn không; có thì supervised, không thì unsupervised, có hành động và thưởng phạt thì reinforcement."
+ },
+ {
+  "id": "ml-03",
+  "track": "ml",
+  "unit": "What ML is",
+  "order": 3,
+  "title": "Data, Features, Labels",
+  "title_vi": "Nguyên liệu của mọi mô hình",
+  "level": 1,
+  "minutes": 10,
+  "body": "Mọi mô hình ML đều bắt đầu từ một cái bảng. Hiểu cái bảng đó gồm những gì thì bạn đọc được bất kỳ tài liệu ML nào.\n\n## Một dòng là một ví dụ\nHãy tưởng tượng file Excel về khách hàng của một app ví điện tử. Mỗi dòng là một khách, gọi là một **sample** (mẫu, một ví dụ dữ liệu) hay một observation. Mỗi cột mô tả một khía cạnh của khách. Ví dụ các cột: số lần mở app mỗi tuần, số giao dịch trong tháng, số ngày từ lần nạp tiền cuối, và cột cuối \"đã rời bỏ?\".\n\n## Features: thông tin đầu vào\nFeature (đặc trưng, một cột thông tin dùng để dự đoán) là các cột mà mô hình được nhìn: số lần mở app, số giao dịch, tuổi tài khoản. Trong sách thường ký hiệu là X. Feature có thể là:\n- Số: thu nhập 12 triệu, 5 giao dịch.\n- Nhóm (categorical, dạng phân loại): thành phố, hệ điều hành iOS hay Android.\n- Văn bản, ảnh: cần xử lý thêm trước khi đưa vào mô hình cổ điển.\n\n## Label: thứ cần đoán\nLabel (nhãn, cột đáp án) là cột \"đã rời bỏ?\" ở cuối, thường ký hiệu là y. Mô hình học mối liên hệ từ X sang y.\n\nĐiều quan trọng: label phải là thứ bạn biết được **sau**, còn feature phải là thứ bạn biết được **trước** thời điểm dự đoán. Nếu bạn lỡ đưa cột \"ngày đóng tài khoản\" vào làm feature để dự đoán churn, mô hình sẽ đạt độ chính xác gần tuyệt đối trong thử nghiệm và vô dụng ngoài đời thật, vì lúc cần dự đoán bạn chưa có cột đó. Lỗi này gọi là **data leakage** (rò rỉ dữ liệu, mô hình vô tình được nhìn trước đáp án). Đây là lỗi kinh điển, cả người làm lâu năm cũng mắc.\n\n## Định nghĩa label là việc của product\n\"Khách rời bỏ\" nghĩa là gì? Không mở app 30 ngày? Không giao dịch 60 ngày? Rút hết tiền? Mỗi định nghĩa cho ra một mô hình khác. Người có nền CRM như bạn thường giỏi phần này hơn kỹ sư, vì bạn hiểu vòng đời khách hàng. Một định nghĩa label tốt phải: đo được từ dữ liệu, có ý nghĩa với business, và đủ sớm để kịp hành động (gửi voucher giữ chân trước khi khách đi hẳn).\n\n## Mất cân bằng nhãn\nTrong nhiều bài toán, nhãn hiếm: chỉ 2% khách rời bỏ mỗi tháng, 0,1% giao dịch là gian lận. Đây gọi là **class imbalance** (mất cân bằng lớp). Bước đầu tiên khi nhận dữ liệu là đếm xem mỗi nhãn chiếm bao nhiêu phần trăm. Nếu 98% là \"ở lại\", một mô hình lười luôn đoán \"ở lại\" đã đúng 98% mà chẳng giúp gì. Bạn sẽ gặp lại chuyện này ở bài về metrics.\n\n```\nlabels = [0, 0, 1, 0, 0, 0, 1, 0, 0, 0]\nchurn_rate = sum(labels) / len(labels)\nprint(churn_rate)  # 0.2\n```\n\n## Bit nhắc\nTrước khi nghĩ đến thuật toán, hãy trả lời được ba câu: mỗi dòng là gì, label là gì và đo thế nào, feature nào thật sự có sẵn tại thời điểm dự đoán.",
+  "terms": [
+   {
+    "en": "sample",
+    "vi": "mẫu, một dòng dữ liệu"
+   },
+   {
+    "en": "feature",
+    "vi": "đặc trưng, cột đầu vào"
+   },
+   {
+    "en": "label",
+    "vi": "nhãn, cột đáp án"
+   },
+   {
+    "en": "categorical",
+    "vi": "dạng phân loại, giá trị là nhóm"
+   },
+   {
+    "en": "data leakage",
+    "vi": "rò rỉ dữ liệu, mô hình vô tình thấy đáp án"
+   },
+   {
+    "en": "class imbalance",
+    "vi": "mất cân bằng lớp, một nhãn rất hiếm"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Bạn dự đoán churn cho tháng tới. Cột nào là data leakage nếu đưa vào làm feature?",
+    "choices": [
+     "Số lần mở app 30 ngày qua",
+     "Tuổi tài khoản",
+     "Lý do đóng tài khoản mà khách điền khi rời đi",
+     "Số giao dịch tháng trước"
+    ],
+    "answer": 2,
+    "why": "Lý do đóng tài khoản chỉ có sau khi khách đã rời, lúc dự đoán chưa có thông tin này."
+   },
+   {
+    "q": "Trong bảng chấm điểm tín dụng, cột 'thành phố' là loại feature gì?",
+    "choices": [
+     "Label",
+     "Categorical feature",
+     "Feature dạng số liên tục",
+     "Sample"
+    ],
+    "answer": 1,
+    "why": "Thành phố là một nhóm, không phải con số, nên là categorical."
+   },
+   {
+    "q": "Chỉ 1% giao dịch là gian lận. Một mô hình luôn đoán 'không gian lận' đúng bao nhiêu phần trăm?",
+    "choices": [
+     "Khoảng 99%, nhưng vô dụng vì không bắt được gian lận nào",
+     "Khoảng 50%",
+     "Khoảng 1%",
+     "Không tính được"
+    ],
+    "answer": 0,
+    "why": "Đây là bẫy class imbalance: độ chính xác cao nhưng không phát hiện được ca cần tìm."
+   },
+   {
+    "q": "Vì sao định nghĩa label 'khách rời bỏ' cần có người hiểu business tham gia?",
+    "choices": [
+     "Vì thuật toán không đọc được số",
+     "Vì label không ảnh hưởng đến kết quả",
+     "Vì label luôn có sẵn trong database",
+     "Vì định nghĩa khác nhau tạo ra mô hình khác nhau và quyết định khi nào kịp hành động"
+    ],
+    "answer": 3,
+    "why": "Label quyết định mô hình học cái gì; nó phải đo được, có ý nghĩa và đủ sớm để can thiệp."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm label_share(labels) nhận một list nhãn (có thể là số hoặc chữ) và trả về dict: mỗi nhãn -> tỉ lệ xuất hiện (làm tròn 3 chữ số). List rỗng thì trả về dict rỗng.\nVí dụ: label_share([0, 0, 1, 0]) -> {0: 0.75, 1: 0.25}\nlabel_share([\"stay\", \"churn\", \"stay\"]) -> {\"stay\": 0.667, \"churn\": 0.333}",
+   "starter": "def label_share(labels):\n    # TODO: count each label, divide by total, round to 3 decimals\n    pass\n",
+   "solution": "def label_share(labels):\n    if not labels:\n        return {}\n    counts = {}\n    for y in labels:\n        counts[y] = counts.get(y, 0) + 1\n    n = len(labels)\n    return {k: round(v / n, 3) for k, v in counts.items()}\n",
+   "tests": "assert label_share([0, 0, 1, 0]) == {0: 0.75, 1: 0.25}, 'label_share([0,0,1,0]) phải là {0: 0.75, 1: 0.25}'\nassert label_share([\"stay\", \"churn\", \"stay\"]) == {\"stay\": 0.667, \"churn\": 0.333}, 'tỉ lệ phải làm tròn 3 chữ số'\nassert label_share([]) == {}, 'list rỗng phải trả về dict rỗng'\nassert label_share([1, 1, 1]) == {1: 1.0}, 'chỉ một nhãn thì tỉ lệ là 1.0'\nr = label_share([0] * 98 + [1] * 2)\nassert r[1] == 0.02, 'dữ liệu mất cân bằng: nhãn 1 phải chiếm 0.02'\n",
+   "hint": "Dùng một dict để đếm số lần mỗi nhãn xuất hiện, rồi chia cho độ dài list. Nhớ xử lý list rỗng trước để tránh chia cho 0."
+  },
+  "takeaway": "Feature là thứ biết trước, label là thứ muốn đoán; trộn lẫn hai thứ này là data leakage."
+ },
+ {
+  "id": "ml-04",
+  "track": "ml",
+  "unit": "What ML is",
+  "order": 4,
+  "title": "The ML Workflow",
+  "title_vi": "Từ bài toán đến lúc chạy thật",
+  "level": 1,
+  "minutes": 10,
+  "body": "Người mới thường nghĩ làm ML là chọn thuật toán. Thực tế, train mô hình chỉ chiếm một phần nhỏ thời gian. Phần lớn là hiểu bài toán, dọn dữ liệu và đưa mô hình vào vận hành. Dưới đây là quy trình bảy bước, lấy ví dụ dự đoán khách rời bỏ của một app gọi xe.\n\n## 1. Định nghĩa bài toán business\nCâu hỏi đúng không phải \"dùng mô hình gì\" mà là \"quyết định nào sẽ thay đổi nhờ mô hình\". Ví dụ: mỗi tuần, đội CRM có ngân sách gửi voucher cho 10.000 tài xế. Mô hình giúp chọn 10.000 người có nguy cơ nghỉ cao nhất. Nếu không có hành động nào đi kèm, mô hình chỉ là đồ trang trí.\n\nCũng cần một **baseline** (mức chuẩn để so sánh): hiện đội CRM chọn người thế nào? Có thể là \"ai không chạy chuyến 7 ngày\". Mô hình phải tốt hơn cách làm đó mới đáng làm.\n\n## 2. Thu thập dữ liệu\nLấy log chuyến đi, thu nhập, đánh giá, khiếu nại. Thường phải ghép nhiều bảng từ nhiều hệ thống, và đây là lúc phát hiện dữ liệu thiếu hoặc sai.\n\n## 3. Làm sạch và khám phá\nEDA (exploratory data analysis, khám phá dữ liệu bằng thống kê và biểu đồ) giúp trả lời: có bao nhiêu dòng thiếu, có giá trị vô lý không (tài xế chạy 400 chuyến một ngày?), tỉ lệ rời bỏ bao nhiêu. Bước này thường tốn nhiều thời gian nhất.\n\n## 4. Feature engineering\nBiến dữ liệu thô thành feature có ý nghĩa: số chuyến 7 ngày gần nhất so với 7 ngày trước đó, tỉ lệ huỷ chuyến, thu nhập trung bình mỗi giờ. Một feature tốt thường giá trị hơn một thuật toán phức tạp.\n\n## 5. Train và đánh giá\nChia dữ liệu thành phần học và phần kiểm tra, train vài mô hình (bắt đầu từ cái đơn giản), so sánh bằng metric phù hợp. Bạn sẽ học kỹ ở unit \"Doing it right\".\n\n## 6. Deployment\nDeployment (triển khai, đưa mô hình vào chạy trong hệ thống thật) có thể đơn giản như một script chạy mỗi sáng thứ Hai, tính điểm rủi ro cho mọi tài xế rồi đẩy danh sách vào công cụ CRM. Hoặc phức tạp như một API trả kết quả trong vài mili giây khi khách bấm nút thanh toán.\n\n## 7. Theo dõi và cập nhật\nThế giới thay đổi: đối thủ tung khuyến mãi, mùa mưa, giá xăng tăng. Mô hình train từ dữ liệu năm ngoái sẽ kém dần. Hiện tượng này gọi là **data drift** (dữ liệu trôi, phân phối dữ liệu mới khác dữ liệu lúc train). Cần theo dõi chỉ số business (tỉ lệ giữ chân có tăng không) và chỉ số mô hình, rồi train lại định kỳ.\n\n## Vòng lặp, không phải đường thẳng\nQuy trình này lặp lại nhiều lần. Đánh giá xong thấy kém, bạn quay lại nghĩ thêm feature. Deploy xong thấy đội CRM không dùng được danh sách, bạn quay lại bước 1. Đây cũng là lý do các role như Forward-Deployed AI Engineer hay AI product manager rất cần người hiểu bước 1 và bước 7, nơi kỹ năng product và lifecycle của bạn phát huy.\n\nNói gọn: **bài toán rõ, dữ liệu sạch, baseline đơn giản, đo đúng, theo dõi sau khi chạy**. Thuật toán đứng sau tất cả những thứ đó.",
+  "terms": [
+   {
+    "en": "baseline",
+    "vi": "mức chuẩn đơn giản để so sánh"
+   },
+   {
+    "en": "EDA",
+    "vi": "khám phá dữ liệu ban đầu"
+   },
+   {
+    "en": "feature engineering",
+    "vi": "chế biến dữ liệu thô thành đặc trưng"
+   },
+   {
+    "en": "deployment",
+    "vi": "triển khai mô hình vào hệ thống thật"
+   },
+   {
+    "en": "data drift",
+    "vi": "dữ liệu trôi, khác với lúc train"
+   },
+   {
+    "en": "pipeline",
+    "vi": "chuỗi các bước xử lý tự động"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Trước khi train mô hình churn, câu hỏi quan trọng nhất là gì?",
+    "choices": [
+     "Nên dùng thư viện nào",
+     "Mô hình có bao nhiêu lớp",
+     "GPU nào nhanh nhất",
+     "Kết quả mô hình sẽ dẫn đến hành động cụ thể nào"
+    ],
+    "answer": 3,
+    "why": "Mô hình chỉ có giá trị khi gắn với một quyết định business cụ thể."
+   },
+   {
+    "q": "Mô hình chấm điểm tín dụng chạy tốt năm ngoái nhưng năm nay kém dần dù không ai sửa code. Nguyên nhân có khả năng nhất?",
+    "choices": [
+     "Máy chủ bị chậm",
+     "Mô hình bị quên do để lâu",
+     "Data drift: hành vi khách và bối cảnh kinh tế đã thay đổi",
+     "Code tự đổi"
+    ],
+    "answer": 2,
+    "why": "Mô hình học từ dữ liệu cũ; khi phân phối dữ liệu thay đổi thì hiệu quả giảm."
+   },
+   {
+    "q": "Vì sao nên có baseline đơn giản trước khi làm mô hình phức tạp?",
+    "choices": [
+     "Vì baseline luôn tốt hơn ML",
+     "Để biết mô hình có thật sự tốt hơn cách làm hiện tại không",
+     "Vì thuật toán phức tạp không chạy được",
+     "Vì sếp yêu cầu"
+    ],
+    "answer": 1,
+    "why": "Không có baseline thì không biết công sức làm ML có đáng hay không."
+   },
+   {
+    "q": "Bước nào thường tốn nhiều thời gian nhất trong một dự án ML thực tế?",
+    "choices": [
+     "Thu thập, làm sạch và khám phá dữ liệu",
+     "Chọn tên mô hình",
+     "Bấm nút train",
+     "Viết slide báo cáo"
+    ],
+    "answer": 0,
+    "why": "Dữ liệu thật thường thiếu, sai, nằm rải rác nhiều hệ thống nên chiếm phần lớn thời gian."
+   }
+  ],
+  "takeaway": "Làm ML là một vòng lặp từ bài toán business đến theo dõi sau triển khai, thuật toán chỉ là một bước giữa."
+ },
+ {
+  "id": "ml-05",
+  "track": "ml",
+  "unit": "Classic models",
+  "order": 5,
+  "title": "Linear Regression and MSE",
+  "title_vi": "Kẻ một đường thẳng và đo độ sai",
+  "level": 1,
+  "minutes": 12,
+  "body": "Linear regression (hồi quy tuyến tính, kẻ đường thẳng khớp nhất với dữ liệu) là mô hình đơn giản nhất và cũng là cửa ngõ để hiểu gần như mọi mô hình khác, kể cả mạng nơ-ron.\n\n## Ví dụ: chi tiêu quảng cáo và doanh thu\nMột shop trên Shopee ghi lại mỗi tuần chi bao nhiêu tiền quảng cáo (x, triệu đồng) và doanh thu (y, triệu đồng). Vẽ lên giấy, các điểm có xu hướng đi lên. Linear regression tìm đường thẳng:\n\ny_dự_đoán = w · x + b\n\nTrong đó w là **weight** (trọng số, độ dốc: chi thêm 1 triệu quảng cáo thì doanh thu tăng bao nhiêu) và b là **bias** (hệ số chặn, doanh thu khi không chạy quảng cáo). Nếu tìm được w = 3, b = 20 thì ý nghĩa là: không chạy quảng cáo vẫn bán khoảng 20 triệu, mỗi triệu quảng cáo mang thêm khoảng 3 triệu doanh thu.\n\nKhi có nhiều feature (quảng cáo, số ngày sale, số review), công thức chỉ dài thêm: y = w₁x₁ + w₂x₂ + w₃x₃ + b. Mỗi weight cho biết feature đó kéo kết quả lên hay xuống bao nhiêu. Đây là lý do linear regression rất được ưa chuộng trong tài chính: dễ giải thích với sếp và với cơ quan quản lý.\n\n## Đường nào là \"khớp nhất\"?\nCó vô số đường thẳng đi qua đám điểm. Để chọn, ta cần một cách đo độ sai, gọi là **loss function** (hàm mất mát, con số cho biết mô hình sai bao nhiêu). Train mô hình chính là tìm w và b làm loss nhỏ nhất.\n\nVới mỗi điểm, **error** (sai số) = giá trị thật trừ giá trị dự đoán. Có điểm sai dương, có điểm sai âm, nên không cộng thẳng được vì chúng triệt tiêu nhau. Cách phổ biến nhất là bình phương rồi lấy trung bình:\n\nMSE = (1/n) · Σ (y_thật - y_dự_đoán)²\n\nMSE (mean squared error, sai số bình phương trung bình) có hai tính chất hay:\n- Luôn không âm, bằng 0 khi dự đoán hoàn hảo.\n- Phạt nặng lỗi lớn: sai 10 thì bị tính 100, sai 2 chỉ tính 4. Mô hình vì thế rất ngại những dự đoán lệch xa.\n\nVì bình phương nên đơn vị của MSE là \"triệu đồng bình phương\", khó hiểu. Người ta hay lấy căn bậc hai, gọi là RMSE, để quay về đơn vị gốc: \"trung bình mô hình lệch khoảng 4 triệu\".\n\nMột lựa chọn khác là MAE (mean absolute error, lấy trị tuyệt đối thay vì bình phương). MAE ít nhạy với vài điểm bất thường hơn, ví dụ tuần có đơn hàng sỉ đột biến.\n\n## Ví dụ tính tay\nDự đoán [22, 26, 31], thực tế [20, 27, 35]. Sai số: 2, -1, -4. Bình phương: 4, 1, 16. MSE = 21 / 3 = 7.\n\n```\ny_true = [20, 27, 35]\ny_pred = [22, 26, 31]\nerrors = [t - p for t, p in zip(y_true, y_pred)]\nprint(sum(e * e for e in errors) / len(errors))  # 7.0\n```\n\n## Giới hạn\nLinear regression giả định quan hệ gần như đường thẳng. Thực tế quảng cáo thường có điểm bão hoà: chi gấp mười chưa chắc doanh thu gấp mười. Khi đó cần feature biến đổi hoặc mô hình khác. Nhưng hãy luôn thử linear regression trước như một baseline.\n\nTrong lab, bạn kéo các điểm và xem đường hồi quy cùng MSE thay đổi theo thời gian thực.",
+  "terms": [
+   {
+    "en": "linear regression",
+    "vi": "hồi quy tuyến tính"
+   },
+   {
+    "en": "weight",
+    "vi": "trọng số, độ dốc"
+   },
+   {
+    "en": "bias",
+    "vi": "hệ số chặn"
+   },
+   {
+    "en": "loss function",
+    "vi": "hàm mất mát, đo mức sai"
+   },
+   {
+    "en": "MSE",
+    "vi": "sai số bình phương trung bình"
+   },
+   {
+    "en": "RMSE",
+    "vi": "căn của MSE, cùng đơn vị với dữ liệu"
+   },
+   {
+    "en": "MAE",
+    "vi": "sai số tuyệt đối trung bình"
+   }
+  ],
+  "lab": "linear-regression",
+  "quiz": [
+   {
+    "q": "Mô hình doanh thu = 3 · quảng_cáo + 20 (đơn vị triệu). Con số 3 nghĩa là gì?",
+    "choices": [
+     "Mỗi 1 triệu quảng cáo thêm ứng với khoảng 3 triệu doanh thu thêm",
+     "Doanh thu khi không quảng cáo là 3 triệu",
+     "Mô hình sai 3 triệu",
+     "Có 3 feature"
+    ],
+    "answer": 0,
+    "why": "w là độ dốc, cho biết y thay đổi bao nhiêu khi x tăng 1 đơn vị."
+   },
+   {
+    "q": "Vì sao không cộng thẳng các sai số để đo độ sai?",
+    "choices": [
+     "Vì cộng số quá chậm",
+     "Vì sai số luôn dương",
+     "Vì tổng luôn quá lớn",
+     "Vì sai số dương và âm triệt tiêu nhau, tổng có thể bằng 0 dù dự đoán rất sai"
+    ],
+    "answer": 3,
+    "why": "Bình phương hoặc trị tuyệt đối giúp mọi sai số đều được tính."
+   },
+   {
+    "q": "Hai mô hình: A sai đều 2 ở mọi điểm, B đúng gần hết nhưng sai 10 ở một điểm. MSE ưu tiên điều gì?",
+    "choices": [
+     "MSE bỏ qua lỗi lớn",
+     "MSE chỉ đếm số điểm sai",
+     "MSE phạt nặng lỗi lớn nên dễ đánh giá B tệ hơn so với MAE",
+     "MSE luôn cho A và B bằng nhau"
+    ],
+    "answer": 2,
+    "why": "Bình phương làm lỗi 10 thành 100, lớn hơn nhiều so với lỗi 2 thành 4."
+   },
+   {
+    "q": "Bạn muốn báo cáo cho sếp 'trung bình mô hình lệch bao nhiêu triệu'. Nên dùng chỉ số nào?",
+    "choices": [
+     "MSE vì có bình phương",
+     "RMSE hoặc MAE vì cùng đơn vị với doanh thu",
+     "Số weight",
+     "Bias"
+    ],
+    "answer": 1,
+    "why": "MSE có đơn vị bình phương, khó hiểu; RMSE và MAE quay về đơn vị gốc."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm mse(y_true, y_pred) trả về sai số bình phương trung bình của hai list cùng độ dài. Nếu list rỗng trả về 0.0.\nVí dụ: mse([20, 27, 35], [22, 26, 31]) -> 7.0\nmse([1, 2], [1, 2]) -> 0.0",
+   "starter": "def mse(y_true, y_pred):\n    # TODO: average of (true - pred) squared\n    pass\n",
+   "solution": "def mse(y_true, y_pred):\n    n = len(y_true)\n    if n == 0:\n        return 0.0\n    return sum((t - p) ** 2 for t, p in zip(y_true, y_pred)) / n\n",
+   "tests": "assert mse([20, 27, 35], [22, 26, 31]) == 7.0, 'mse([20,27,35],[22,26,31]) phải bằng 7.0'\nassert mse([1, 2], [1, 2]) == 0.0, 'dự đoán hoàn hảo thì MSE bằng 0'\nassert mse([], []) == 0.0, 'list rỗng phải trả về 0.0'\nassert mse([0], [10]) == 100.0, 'sai 10 thì bình phương thành 100'\nassert abs(mse([1.5, 2.5], [1.0, 3.0]) - 0.25) < 1e-9, 'phải xử lý được số thập phân'\nassert mse([5, 5], [3, 7]) == 4.0, 'sai số âm và dương không được triệt tiêu nhau'\n",
+   "hint": "Ghép từng cặp bằng zip, tính hiệu, bình phương, cộng lại rồi chia cho số phần tử."
+  },
+  "takeaway": "Linear regression tìm w và b sao cho loss như MSE nhỏ nhất; MSE phạt nặng các lỗi lớn."
+ },
+ {
+  "id": "ml-06",
+  "track": "ml",
+  "unit": "Classic models",
+  "order": 6,
+  "title": "Logistic Regression",
+  "title_vi": "Từ con số sang xác suất có hoặc không",
+  "level": 2,
+  "minutes": 11,
+  "body": "Linear regression đoán một con số. Nhưng nhiều câu hỏi business là có hoặc không: khách này có rời bỏ không, hồ sơ này có nợ xấu không, email này có phải spam không. Đó là bài toán classification (phân loại). Logistic regression (hồi quy logistic, mô hình cho ra xác suất thuộc một lớp) là công cụ kinh điển cho việc này, và vẫn được dùng rộng rãi trong chấm điểm tín dụng.\n\n## Vấn đề của đường thẳng\nNếu dùng w·x + b để đoán \"có nợ xấu\" (1) hay không (0), đầu ra có thể là 1,7 hoặc -0,4. Xác suất thì phải nằm trong khoảng 0 đến 1. Ta cần một hàm \"ép\" mọi con số về khoảng đó.\n\n## Hàm sigmoid\nSigmoid (hàm chữ S, ép mọi số thực về khoảng 0 đến 1):\n\nσ(z) = 1 / (1 + e^(-z))\n\n- z rất lớn (ví dụ 10): σ gần 1.\n- z = 0: σ = 0,5.\n- z rất âm (ví dụ -10): σ gần 0.\n\nLogistic regression làm hai bước: tính điểm z = w·x + b như linear regression, rồi đưa qua sigmoid để thành xác suất p. Ví dụ với chấm điểm tín dụng: số lần trễ hạn có weight dương (càng trễ, z càng lớn, xác suất nợ xấu càng cao), thu nhập ổn định có weight âm.\n\n## Threshold: từ xác suất đến quyết định\nMô hình nói \"khách này có 0,73 khả năng nợ xấu\". Ngân hàng cần quyết định duyệt hay từ chối. Ta chọn **threshold** (ngưỡng quyết định): nếu p ≥ 0,5 thì dự đoán 1. Nhưng 0,5 không phải luật trời. Nếu cho vay sai một người tốn kém hơn nhiều so với từ chối nhầm một người, ngân hàng có thể hạ ngưỡng xuống 0,3 để khắt khe hơn. Chọn ngưỡng là quyết định business, không phải quyết định kỹ thuật.\n\nVới bài toán churn, đội CRM có ngân sách cho 10.000 voucher thì có thể bỏ qua ngưỡng, chỉ cần sắp xếp khách theo xác suất và chọn 10.000 người đứng đầu.\n\n## Loss cho classification\nMSE không hợp với xác suất. Logistic regression dùng **log loss** (còn gọi binary cross-entropy, hàm phạt rất nặng khi mô hình tự tin mà sai). Nếu khách thật sự nợ xấu mà mô hình nói p = 0,01, log loss rất lớn. Nếu mô hình nói p = 0,6, phạt vừa phải. Ý tưởng: không chỉ cần đúng, mà cần tự tin đúng chỗ.\n\n```\nimport math\ndef sigmoid(z):\n    return 1 / (1 + math.exp(-z))\nprint(round(sigmoid(0), 2))   # 0.5\nprint(round(sigmoid(3), 3))   # 0.953\n```\n\n## Vì sao vẫn được yêu thích\n- Dễ giải thích: mỗi weight cho biết feature đẩy rủi ro lên hay xuống.\n- Nhanh, cần ít dữ liệu.\n- Xác suất đầu ra dùng được cho xếp hạng và tính kỳ vọng lãi lỗ.\n\nSigmoid cũng sẽ xuất hiện lại ở unit Deep learning, vì một neuron đơn lẻ dùng sigmoid chính là một logistic regression.",
+  "terms": [
+   {
+    "en": "logistic regression",
+    "vi": "hồi quy logistic, cho ra xác suất"
+   },
+   {
+    "en": "sigmoid",
+    "vi": "hàm chữ S, ép số về 0 đến 1"
+   },
+   {
+    "en": "probability",
+    "vi": "xác suất"
+   },
+   {
+    "en": "threshold",
+    "vi": "ngưỡng quyết định"
+   },
+   {
+    "en": "log loss",
+    "vi": "hàm phạt khi tự tin mà sai"
+   },
+   {
+    "en": "classification",
+    "vi": "phân loại"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Vì sao không dùng thẳng w·x + b để dự đoán xác suất nợ xấu?",
+    "choices": [
+     "Vì công thức quá chậm",
+     "Vì kết quả có thể lớn hơn 1 hoặc âm, không phải xác suất hợp lệ",
+     "Vì không có weight",
+     "Vì nó luôn bằng 0,5"
+    ],
+    "answer": 1,
+    "why": "Sigmoid ép điểm z về khoảng 0 đến 1 để đọc như xác suất."
+   },
+   {
+    "q": "z = 0 thì sigmoid(z) bằng bao nhiêu?",
+    "choices": [
+     "0,5",
+     "0",
+     "1",
+     "Không xác định"
+    ],
+    "answer": 0,
+    "why": "e^0 = 1 nên σ(0) = 1/(1+1) = 0,5."
+   },
+   {
+    "q": "Ngân hàng thấy cho vay nhầm người nợ xấu tốn hơn nhiều so với từ chối nhầm người tốt. Nên chỉnh ngưỡng thế nào?",
+    "choices": [
+     "Tăng threshold lên 0,9",
+     "Giữ 0,5 vì là chuẩn",
+     "Bỏ sigmoid",
+     "Hạ threshold xuống để dễ gắn nhãn rủi ro hơn"
+    ],
+    "answer": 3,
+    "why": "Ngưỡng thấp hơn khiến nhiều hồ sơ bị coi là rủi ro, giảm số khoản vay xấu lọt qua."
+   },
+   {
+    "q": "Log loss phạt nặng nhất trường hợp nào?",
+    "choices": [
+     "Mô hình đoán đúng với p = 0,9",
+     "Mô hình đoán p = 0,5",
+     "Mô hình rất tự tin nhưng đoán sai",
+     "Dữ liệu có nhiều feature"
+    ],
+    "answer": 2,
+    "why": "Log loss tăng rất mạnh khi xác suất gán cho đáp án đúng gần 0."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hai hàm:\n- sigmoid(z): trả về 1 / (1 + e^(-z)).\n- predict(x, w, b, threshold=0.5): x và w là hai list cùng độ dài. Tính z = Σ w_i·x_i + b, p = sigmoid(z). Trả về tuple (p làm tròn 3 chữ số, 1 nếu p >= threshold ngược lại 0).\nVí dụ: sigmoid(0) -> 0.5; predict([2, 1], [1.0, -0.5], 0.0) -> (0.818, 1)",
+   "starter": "import math\n\ndef sigmoid(z):\n    # TODO\n    pass\n\ndef predict(x, w, b, threshold=0.5):\n    # TODO: weighted sum + b, then sigmoid, then compare with threshold\n    pass\n",
+   "solution": "import math\n\ndef sigmoid(z):\n    return 1 / (1 + math.exp(-z))\n\ndef predict(x, w, b, threshold=0.5):\n    z = sum(xi * wi for xi, wi in zip(x, w)) + b\n    p = sigmoid(z)\n    return (round(p, 3), 1 if p >= threshold else 0)\n",
+   "tests": "assert sigmoid(0) == 0.5, 'sigmoid(0) phải bằng 0.5'\nassert sigmoid(10) > 0.99 and sigmoid(-10) < 0.01, 'sigmoid phải gần 1 với z lớn và gần 0 với z rất âm'\nassert predict([2, 1], [1.0, -0.5], 0.0) == (0.818, 1), 'predict([2,1],[1,-0.5],0) phải là (0.818, 1)'\nassert predict([0, 0], [1, 1], -2.0) == (0.119, 0), 'z=-2 cho p=0.119 và nhãn 0'\nassert predict([0, 0], [1, 1], -2.0, threshold=0.1) == (0.119, 1), 'hạ threshold xuống 0.1 thì nhãn thành 1'\nassert predict([1], [0], 0)[1] == 1, 'p=0.5 đúng bằng threshold thì dự đoán 1'\n",
+   "hint": "Tính tổng có trọng số bằng zip, cộng b, đưa vào sigmoid. So sánh p với threshold bằng >=."
+  },
+  "takeaway": "Logistic regression = điểm tuyến tính + sigmoid để ra xác suất, còn ngưỡng quyết định là lựa chọn business."
+ },
+ {
+  "id": "ml-07",
+  "track": "ml",
+  "unit": "Classic models",
+  "order": 7,
+  "title": "Decision Trees and Random Forests",
+  "title_vi": "Chuỗi câu hỏi có hoặc không, rồi cả khu rừng bỏ phiếu",
+  "level": 2,
+  "minutes": 11,
+  "body": "Nếu bạn từng chơi trò \"20 câu hỏi\" thì bạn đã hiểu decision tree (cây quyết định, mô hình hỏi một chuỗi câu hỏi có hoặc không để ra kết luận).\n\n## Một cái cây chấm điểm tín dụng\nHình dung cây quyết định duyệt khoản vay:\n- Câu 1: số lần trễ hạn 12 tháng qua > 2? Nếu có -> rủi ro cao.\n- Nếu không, câu 2: thu nhập tháng > 15 triệu? Nếu có -> rủi ro thấp.\n- Nếu không, câu 3: thời gian làm việc ở công ty hiện tại > 1 năm? Có -> rủi ro trung bình, không -> rủi ro cao.\n\nMỗi điểm hỏi là một **node** (nút), mỗi kết luận cuối là một **leaf** (lá). Đi từ gốc xuống lá là có dự đoán. Cái hay: bạn có thể in cây ra và giải thích cho khách vì sao bị từ chối.\n\n## Cây tự chọn câu hỏi thế nào?\nThuật toán thử mọi cách chia có thể (thu nhập > 10 triệu, > 12 triệu, số lần trễ > 1...) và chọn câu hỏi làm các nhóm con \"thuần\" nhất, tức mỗi nhóm con chủ yếu chỉ một loại nhãn. Độ \"lẫn lộn\" thường đo bằng **Gini impurity** (độ tạp Gini, bằng 0 khi một nhóm chỉ có một nhãn). Nhóm 50% tốt 50% xấu là tạp nhất; nhóm 100% tốt là thuần.\n\nCây làm được cả classification và regression, không cần chuẩn hoá dữ liệu, xử lý được cả feature số lẫn feature nhóm. Rất tiện cho dữ liệu bảng.\n\n## Điểm yếu: cây quá sâu sẽ học thuộc lòng\nNếu để cây hỏi mãi, nó sẽ tạo ra lá chỉ chứa một khách: \"thu nhập 12,3 triệu, sống ở Gò Vấp, 31 tuổi -> nợ xấu\". Đó là học thuộc dữ liệu cũ, gặp khách mới thì đoán bừa. Đây là overfitting, bạn sẽ học kỹ ở bài sau. Cách chữa đơn giản là giới hạn độ sâu hoặc số khách tối thiểu trong mỗi lá.\n\n## Random forest: hỏi ý kiến cả đám đông\nRandom forest (rừng ngẫu nhiên, nhiều cây cùng bỏ phiếu) dựa trên ý tưởng \"trí tuệ đám đông\". Thay vì một cây, ta train hàng trăm cây, mỗi cây:\n- học trên một mẫu ngẫu nhiên của dữ liệu (rút có hoàn lại),\n- ở mỗi nút chỉ được xét một phần ngẫu nhiên các feature.\n\nMỗi cây hơi khác nhau và đều có lỗi riêng, nhưng khi bỏ phiếu (classification) hoặc lấy trung bình (regression), lỗi riêng lẻ triệt tiêu bớt. Kết quả ổn định và chính xác hơn hẳn một cây. Kỹ thuật ghép nhiều mô hình này gọi là **ensemble** (tập hợp mô hình).\n\nHọ hàng gần là **gradient boosting** (XGBoost, LightGBM): các cây được xây lần lượt, cây sau tập trung sửa lỗi của cây trước. Với dữ liệu bảng như churn hay credit scoring, boosting thường là một trong những lựa chọn mạnh nhất, kể cả khi so với deep learning.\n\n## Đánh đổi\nMột cây: dễ giải thích, kém ổn định. Một khu rừng: chính xác hơn, khó giải thích hơn vì không ai đọc nổi 500 cây. Người ta dùng các công cụ đo **feature importance** (mức độ quan trọng của từng feature) để biết mô hình dựa vào gì nhiều nhất.",
+  "terms": [
+   {
+    "en": "decision tree",
+    "vi": "cây quyết định"
+   },
+   {
+    "en": "node",
+    "vi": "nút hỏi trong cây"
+   },
+   {
+    "en": "leaf",
+    "vi": "lá, kết luận cuối"
+   },
+   {
+    "en": "Gini impurity",
+    "vi": "độ tạp Gini"
+   },
+   {
+    "en": "random forest",
+    "vi": "rừng ngẫu nhiên, nhiều cây bỏ phiếu"
+   },
+   {
+    "en": "ensemble",
+    "vi": "ghép nhiều mô hình"
+   },
+   {
+    "en": "gradient boosting",
+    "vi": "cây sau sửa lỗi cây trước"
+   },
+   {
+    "en": "feature importance",
+    "vi": "mức quan trọng của feature"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Cây quyết định chọn câu hỏi ở mỗi nút dựa trên tiêu chí gì?",
+    "choices": [
+     "Câu hỏi đứng đầu bảng",
+     "Feature có tên dài nhất",
+     "Câu hỏi chia dữ liệu thành các nhóm con thuần nhãn nhất",
+     "Ngẫu nhiên hoàn toàn"
+    ],
+    "answer": 2,
+    "why": "Thuật toán thử các cách chia và chọn cách giảm độ tạp (như Gini) nhiều nhất."
+   },
+   {
+    "q": "Một cây rất sâu đạt 100% đúng trên dữ liệu train nhưng kém trên khách mới. Đó là hiện tượng gì?",
+    "choices": [
+     "Underfitting",
+     "Overfitting, cây học thuộc từng khách cũ",
+     "Data drift",
+     "Class imbalance"
+    ],
+    "answer": 1,
+    "why": "Lá quá chi tiết chỉ khớp dữ liệu cũ, không tổng quát hoá."
+   },
+   {
+    "q": "Vì sao random forest thường ổn định hơn một cây?",
+    "choices": [
+     "Nhiều cây khác nhau bỏ phiếu nên lỗi riêng của từng cây triệt tiêu bớt",
+     "Vì mỗi cây sâu hơn",
+     "Vì nó không dùng dữ liệu",
+     "Vì nó chỉ dùng một feature"
+    ],
+    "answer": 0,
+    "why": "Ensemble lấy ý kiến số đông của các cây học trên mẫu và feature ngẫu nhiên."
+   },
+   {
+    "q": "Nhóm 10 khách gồm 10 người trả nợ tốt. Gini impurity bằng bao nhiêu?",
+    "choices": [
+     "0,5",
+     "1",
+     "0,1",
+     "0"
+    ],
+    "answer": 3,
+    "why": "Nhóm chỉ có một nhãn là hoàn toàn thuần, Gini = 1 - 1² = 0."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm gini(labels) tính Gini impurity của một nhóm: 1 - Σ p_k², với p_k là tỉ lệ của nhãn k. List rỗng trả về 0.0. Làm tròn 4 chữ số.\nViết thêm hàm forest_vote(predictions) nhận list dự đoán của các cây (ví dụ [1, 0, 1, 1]) và trả về nhãn xuất hiện nhiều nhất. Nếu hoà, trả về nhãn nhỏ nhất.\nVí dụ: gini([1, 1, 0, 0]) -> 0.5; gini([1, 1, 1]) -> 0.0; forest_vote([1, 0, 1]) -> 1",
+   "starter": "def gini(labels):\n    # TODO: 1 - sum of squared label shares\n    pass\n\ndef forest_vote(predictions):\n    # TODO: majority vote, ties -> smallest label\n    pass\n",
+   "solution": "def gini(labels):\n    n = len(labels)\n    if n == 0:\n        return 0.0\n    counts = {}\n    for y in labels:\n        counts[y] = counts.get(y, 0) + 1\n    return round(1 - sum((c / n) ** 2 for c in counts.values()), 4)\n\ndef forest_vote(predictions):\n    counts = {}\n    for p in predictions:\n        counts[p] = counts.get(p, 0) + 1\n    best = max(counts.values())\n    return min(k for k, v in counts.items() if v == best)\n",
+   "tests": "assert gini([1, 1, 0, 0]) == 0.5, 'nhóm 50/50 có Gini 0.5'\nassert gini([1, 1, 1]) == 0.0, 'nhóm thuần một nhãn có Gini 0'\nassert gini([]) == 0.0, 'list rỗng trả về 0.0'\nassert gini([0, 1, 2]) == 0.6667, 'ba nhãn chia đều có Gini 0.6667'\nassert forest_vote([1, 0, 1]) == 1, 'đa số là 1'\nassert forest_vote([0, 1]) == 0, 'hoà thì chọn nhãn nhỏ nhất'\nassert forest_vote([2, 2, 1, 1, 1]) == 1, 'nhãn 1 có 3 phiếu nên thắng'\n",
+   "hint": "Đếm số lần mỗi nhãn bằng dict. Với gini, cộng bình phương các tỉ lệ rồi lấy 1 trừ đi. Với vote, tìm số phiếu lớn nhất rồi lọc các nhãn đạt số đó."
+  },
+  "takeaway": "Một cây dễ giải thích nhưng dễ học thuộc; random forest và boosting ghép nhiều cây để chính xác và ổn định hơn."
+ },
+ {
+  "id": "ml-08",
+  "track": "ml",
+  "unit": "Classic models",
+  "order": 8,
+  "title": "k-Nearest Neighbours",
+  "title_vi": "Hỏi hàng xóm gần nhất",
+  "level": 2,
+  "minutes": 10,
+  "body": "k-Nearest Neighbours, viết tắt k-NN (k láng giềng gần nhất, dự đoán dựa trên những ví dụ giống nhất), là thuật toán dễ hiểu nhất trong ML. Ý tưởng giống câu \"gần mực thì đen\": muốn đoán một khách mới, hãy nhìn những khách cũ giống họ nhất.\n\n## Cách hoạt động\nGiả sử mỗi khách được mô tả bằng hai feature: số đơn mỗi tháng và giá trị đơn trung bình. Mỗi khách là một điểm trên mặt phẳng. Có khách mới chưa biết sẽ rời bỏ hay không:\n- Tính khoảng cách từ khách mới đến mọi khách cũ.\n- Chọn k khách gần nhất, ví dụ k = 5.\n- Nếu 4 trong 5 người đã rời bỏ, đoán khách mới cũng có khả năng rời bỏ (xác suất khoảng 0,8).\n\nVới regression, lấy trung bình giá trị của k láng giềng. Ví dụ đoán giá một căn hộ bằng trung bình giá 5 căn gần giống nhất về diện tích và vị trí, giống cách môi giới định giá.\n\nk-NN không có bước train thật sự: nó chỉ ghi nhớ toàn bộ dữ liệu. Toàn bộ công sức dồn vào lúc dự đoán. Kiểu này gọi là **lazy learning** (học lười).\n\n## Khoảng cách\nPhổ biến nhất là **Euclidean distance** (khoảng cách Euclid, đường chim bay):\n\nd = √((x₁ - y₁)² + (x₂ - y₂)² + ...)\n\nVới numpy, tính khoảng cách từ một điểm đến cả nghìn điểm chỉ bằng một dòng:\n\n```\nimport numpy as np\nX = np.array([[1.0, 2.0], [3.0, 4.0], [0.0, 0.0]])\nq = np.array([1.0, 1.0])\nd = np.sqrt(((X - q) ** 2).sum(axis=1))\nprint(np.argsort(d))  # indices from nearest to farthest\n```\n\n## Bẫy: đơn vị khác nhau\nNếu một feature là \"số đơn\" (0 đến 30) và feature kia là \"thu nhập\" (5.000.000 đến 50.000.000), khoảng cách gần như chỉ do thu nhập quyết định, vì con số của nó to hơn hàng triệu lần. Phải đưa các feature về cùng thang trước, gọi là **feature scaling** (chuẩn hoá thang đo), ví dụ đưa mọi cột về khoảng 0 đến 1. Bạn sẽ thực hành ở bài feature engineering.\n\n## Chọn k\n- k quá nhỏ (k = 1): nhạy với nhiễu, một khách lạ cũng làm sai dự đoán.\n- k quá lớn: kết quả bị kéo về đa số, mất chi tiết.\nThường chọn k lẻ cho bài toán hai lớp để tránh hoà, và thử vài giá trị trên tập validation.\n\n## Ứng dụng thật\nÝ tưởng \"tìm thứ giống nhất\" xuất hiện khắp nơi: gợi ý sản phẩm (\"khách giống bạn cũng mua\"), tìm bài hát tương tự, và đặc biệt là tìm kiếm trong các hệ thống RAG của LLM, nơi văn bản được đổi thành vector rồi tìm các vector gần nhất. k-NN thuần thì chậm khi có hàng triệu điểm, nên các hệ thống lớn dùng tìm kiếm gần đúng (approximate nearest neighbour) để nhanh hơn.",
+  "terms": [
+   {
+    "en": "k-nearest neighbours",
+    "vi": "k láng giềng gần nhất"
+   },
+   {
+    "en": "Euclidean distance",
+    "vi": "khoảng cách đường chim bay"
+   },
+   {
+    "en": "lazy learning",
+    "vi": "học lười, chỉ ghi nhớ dữ liệu"
+   },
+   {
+    "en": "feature scaling",
+    "vi": "đưa feature về cùng thang đo"
+   },
+   {
+    "en": "numpy",
+    "vi": "thư viện tính toán mảng số của Python"
+   },
+   {
+    "en": "approximate nearest neighbour",
+    "vi": "tìm láng giềng gần đúng cho nhanh"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "k-NN đoán thế nào cho một khách mới?",
+    "choices": [
+     "Vẽ một đường thẳng qua dữ liệu",
+     "Hỏi chuỗi câu có hoặc không",
+     "Chọn ngẫu nhiên",
+     "Nhìn nhãn của k khách cũ giống nhất và lấy đa số"
+    ],
+    "answer": 3,
+    "why": "k-NN dựa hoàn toàn vào các ví dụ gần nhất trong dữ liệu đã có."
+   },
+   {
+    "q": "Feature 'thu nhập' tính bằng đồng và 'số đơn' tính bằng đơn. Chuyện gì xảy ra nếu không scaling?",
+    "choices": [
+     "Không ảnh hưởng gì",
+     "Số đơn quan trọng hơn",
+     "Khoảng cách gần như chỉ do thu nhập quyết định",
+     "Thuật toán báo lỗi"
+    ],
+    "answer": 2,
+    "why": "Số lớn chiếm ưu thế trong công thức khoảng cách, cần đưa về cùng thang."
+   },
+   {
+    "q": "Vì sao k-NN được gọi là lazy learning?",
+    "choices": [
+     "Vì nó chạy chậm khi train",
+     "Vì nó không học tham số nào, chỉ lưu dữ liệu và tính toán lúc dự đoán",
+     "Vì nó chỉ dùng một feature",
+     "Vì nó không cần dữ liệu"
+    ],
+    "answer": 1,
+    "why": "Toàn bộ công việc diễn ra khi có điểm mới cần dự đoán."
+   },
+   {
+    "q": "Chọn k = 1 có rủi ro gì?",
+    "choices": [
+     "Rất nhạy với nhiễu, một điểm lạ có thể làm sai dự đoán",
+     "Luôn hoà",
+     "Không tính được khoảng cách",
+     "Mô hình quá đơn giản và bỏ qua mọi điểm"
+    ],
+    "answer": 0,
+    "why": "Chỉ dựa vào một láng giềng nên một ví dụ bất thường đủ làm lệch kết quả."
+   }
+  ],
+  "code": {
+   "prompt": "Dùng numpy, viết hàm knn_predict(X, y, query, k) với X là mảng 2D (mỗi dòng một khách), y là mảng nhãn 0/1, query là một điểm. Tìm k điểm gần query nhất theo khoảng cách Euclid và trả về nhãn chiếm đa số (int). Nếu hoà, trả về 1 (ưu tiên cảnh báo rủi ro).\nVí dụ: X = [[0,0],[0,1],[5,5],[6,5]], y = [0,0,1,1], query = [0.2, 0.3], k = 3 -> 0",
+   "starter": "import numpy as np\n\ndef knn_predict(X, y, query, k):\n    # TODO: distances, k nearest indices, majority vote\n    pass\n",
+   "solution": "import numpy as np\n\ndef knn_predict(X, y, query, k):\n    X = np.asarray(X, dtype=float)\n    y = np.asarray(y)\n    q = np.asarray(query, dtype=float)\n    d = np.sqrt(((X - q) ** 2).sum(axis=1))\n    idx = np.argsort(d, kind=\"stable\")[:k]\n    ones = int((y[idx] == 1).sum())\n    zeros = len(idx) - ones\n    return 1 if ones >= zeros else 0\n",
+   "tests": "import numpy as np\nX = np.array([[0, 0], [0, 1], [5, 5], [6, 5]])\ny = np.array([0, 0, 1, 1])\nassert knn_predict(X, y, [0.2, 0.3], 3) == 0, 'điểm gần cụm (0,0) phải ra 0'\nassert knn_predict(X, y, [5.5, 5.0], 1) == 1, 'k=1, điểm gần (5,5) phải ra 1'\nassert knn_predict(X, y, [5.5, 5.0], 3) == 1, 'k=3 quanh cụm (5,5) phải ra 1'\nassert knn_predict(X, y, [2.5, 2.5], 4) == 1, 'k=4 hoà 2-2 thì trả về 1'\nassert isinstance(knn_predict(X, y, [0, 0], 1), int), 'kết quả phải là int'\n",
+   "hint": "Trừ query khỏi X (numpy tự broadcast), bình phương, cộng theo axis=1, lấy căn. np.argsort cho thứ tự từ gần đến xa; lấy k phần tử đầu rồi đếm nhãn 1."
+  },
+  "takeaway": "k-NN đoán bằng cách hỏi k ví dụ giống nhất; luôn scale feature trước khi tính khoảng cách."
+ },
+ {
+  "id": "ml-09",
+  "track": "ml",
+  "unit": "Classic models",
+  "order": 9,
+  "title": "Clustering with k-means",
+  "title_vi": "Tự chia khách thành nhóm",
+  "level": 2,
+  "minutes": 11,
+  "body": "Ở bài các kiểu học, bạn đã gặp unsupervised learning: có dữ liệu nhưng không có nhãn. k-means (k trung tâm, chia dữ liệu thành k cụm quanh k điểm trung tâm) là thuật toán clustering phổ biến nhất, và rất gần với công việc segmentation (phân khúc khách hàng) trong CRM.\n\n## Bài toán\nBạn có 500.000 khách của một chuỗi siêu thị, mỗi khách có các feature: số lần mua mỗi tháng, giá trị giỏ hàng trung bình, tỉ lệ mua hàng khuyến mãi. Bạn muốn chia họ thành 4 nhóm để thiết kế 4 kịch bản chăm sóc khác nhau.\n\n## Thuật toán, bốn bước\n- Bước 1: chọn ngẫu nhiên k điểm làm **centroid** (tâm cụm) ban đầu.\n- Bước 2: gán mỗi khách vào centroid gần nhất (dùng khoảng cách Euclid như k-NN).\n- Bước 3: dời mỗi centroid về vị trí trung bình của các khách trong cụm.\n- Bước 4: lặp lại bước 2 và 3 cho đến khi các cụm gần như không đổi.\n\nHình dung bốn chiếc xe bán bánh mì trong một khu dân cư. Mỗi người dân đi đến xe gần nhà nhất. Mỗi tối, chủ xe dời xe đến giữa nhóm khách của mình. Vài ngày sau, bốn xe đứng yên ở bốn vị trí hợp lý. Đó chính là k-means.\n\n```\nimport numpy as np\nX = np.array([[1, 1], [1.2, 0.8], [8, 8], [7.5, 8.2]])\nC = np.array([[0, 0], [10, 10]])\nd = ((X[:, None, :] - C[None, :, :]) ** 2).sum(axis=2)\nprint(d.argmin(axis=1))  # [0 0 1 1]\n```\n\n## Chọn k bao nhiêu?\nk-means không tự biết có mấy nhóm. Hai cách thường dùng:\n- **Elbow method** (phương pháp khuỷu tay): chạy với k = 2, 3, 4... và vẽ tổng khoảng cách từ điểm đến tâm cụm. Tổng này luôn giảm khi k tăng, nhưng đến một điểm nó giảm chậm hẳn, giống khuỷu tay. Đó thường là k hợp lý.\n- Ý nghĩa business: đội marketing có thể vận hành bao nhiêu kịch bản? Nếu chỉ làm nổi 4 campaign, k = 12 dù đẹp về toán cũng vô dụng.\n\n## Những điều cần cẩn thận\n- **Scale trước**: như k-NN, feature có con số lớn sẽ áp đảo.\n- **Khởi tạo ngẫu nhiên**: chạy nhiều lần có thể ra kết quả khác nhau. Thư viện thường dùng cách khởi tạo thông minh (k-means++) và chạy nhiều lần, chọn kết quả tốt nhất.\n- **Hình dạng cụm**: k-means thích cụm tròn, kích thước tương đương. Dữ liệu có cụm hình dài hoặc lồng nhau thì cần thuật toán khác như DBSCAN.\n- **Ngoại lệ**: một khách doanh nghiệp mua sỉ 500 triệu một tháng có thể kéo cả centroid lệch đi.\n\n## Từ cụm số đến persona\nThuật toán chỉ trả về \"cụm 0, cụm 1, cụm 2\". Phần giá trị nằm ở bước sau: xem trung bình feature của từng cụm, đặt tên (\"săn sale\", \"gia đình mua đều\", \"khách VIP ít ghé\"), kiểm tra với dữ liệu khác như tỉ lệ churn của từng cụm, rồi thiết kế hành động. Đây là chỗ một người làm lifecycle marketing biến một kết quả toán học thành chiến lược.",
+  "terms": [
+   {
+    "en": "k-means",
+    "vi": "thuật toán chia k cụm quanh k tâm"
+   },
+   {
+    "en": "centroid",
+    "vi": "tâm cụm"
+   },
+   {
+    "en": "clustering",
+    "vi": "phân cụm"
+   },
+   {
+    "en": "segmentation",
+    "vi": "phân khúc khách hàng"
+   },
+   {
+    "en": "elbow method",
+    "vi": "phương pháp khuỷu tay để chọn k"
+   },
+   {
+    "en": "outlier",
+    "vi": "điểm ngoại lệ, bất thường"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "k-means khác k-NN ở điểm cơ bản nào?",
+    "choices": [
+     "k-means không cần nhãn và tìm nhóm, k-NN cần nhãn để dự đoán",
+     "k-means dùng cây quyết định",
+     "k-NN không dùng khoảng cách",
+     "Hai thuật toán giống hệt nhau"
+    ],
+    "answer": 0,
+    "why": "k-means là unsupervised clustering; k-NN là supervised dựa trên láng giềng có nhãn."
+   },
+   {
+    "q": "Trong mỗi vòng lặp k-means, centroid được dời về đâu?",
+    "choices": [
+     "Điểm xa nhất trong cụm",
+     "Gốc toạ độ",
+     "Một vị trí ngẫu nhiên mới",
+     "Vị trí trung bình của các điểm thuộc cụm đó"
+    ],
+    "answer": 3,
+    "why": "Bước update đặt tâm cụm vào trung bình các thành viên."
+   },
+   {
+    "q": "Elbow method cho thấy k = 6 tối ưu về toán, nhưng đội CRM chỉ vận hành được 3 kịch bản. Nên làm gì?",
+    "choices": [
+     "Bắt buộc dùng 6",
+     "Bỏ clustering",
+     "Cân nhắc dùng k nhỏ hơn hoặc gộp cụm, vì phân khúc phải dùng được",
+     "Tăng lên 20 cụm"
+    ],
+    "answer": 2,
+    "why": "Phân khúc có giá trị khi dẫn đến hành động; ràng buộc vận hành là tiêu chí hợp lệ."
+   },
+   {
+    "q": "Một vài khách mua sỉ cực lớn ảnh hưởng thế nào đến k-means?",
+    "choices": [
+     "Không ảnh hưởng",
+     "Có thể kéo centroid lệch vì trung bình nhạy với outlier",
+     "Làm k-means chạy nhanh hơn",
+     "Tự động bị loại bỏ"
+    ],
+    "answer": 1,
+    "why": "Centroid là trung bình nên dễ bị kéo bởi giá trị cực đoan."
+   }
+  ],
+  "code": {
+   "prompt": "Dùng numpy, viết hai hàm cho một vòng k-means:\n- assign(X, C): trả về mảng chỉ số centroid gần nhất cho từng dòng của X.\n- update(X, labels, k): trả về mảng k x số_feature, mỗi dòng là trung bình các điểm thuộc cụm đó. (Giả định mỗi cụm có ít nhất một điểm.)\nVí dụ: X = [[1,1],[1.2,0.8],[8,8],[7.5,8.2]], C = [[0,0],[10,10]] -> assign cho [0,0,1,1]; update cho [[1.1,0.9],[7.75,8.1]]",
+   "starter": "import numpy as np\n\ndef assign(X, C):\n    # TODO: index of nearest centroid for each row\n    pass\n\ndef update(X, labels, k):\n    # TODO: mean of points in each cluster\n    pass\n",
+   "solution": "import numpy as np\n\ndef assign(X, C):\n    X = np.asarray(X, dtype=float)\n    C = np.asarray(C, dtype=float)\n    d = ((X[:, None, :] - C[None, :, :]) ** 2).sum(axis=2)\n    return d.argmin(axis=1)\n\ndef update(X, labels, k):\n    X = np.asarray(X, dtype=float)\n    labels = np.asarray(labels)\n    return np.array([X[labels == j].mean(axis=0) for j in range(k)])\n",
+   "tests": "import numpy as np\nX = np.array([[1, 1], [1.2, 0.8], [8, 8], [7.5, 8.2]])\nC = np.array([[0, 0], [10, 10]])\nlab = assign(X, C)\nassert list(lab) == [0, 0, 1, 1], 'hai điểm đầu gần (0,0), hai điểm sau gần (10,10)'\nnewC = update(X, lab, 2)\nassert np.allclose(newC, [[1.1, 0.9], [7.75, 8.1]]), 'tâm mới phải là trung bình mỗi cụm'\nassert list(assign(X, np.array([[10, 10], [0, 0]]))) == [1, 1, 0, 0], 'đổi thứ tự centroid thì chỉ số cũng đổi'\nassert list(assign(X, newC)) == [0, 0, 1, 1], 'gán lại với tâm mới thì cụm không đổi'\nassert update(X, np.array([0, 0, 0, 0]), 1).shape == (1, 2), 'k=1 phải trả về mảng 1x2'\n",
+   "hint": "Với assign, dùng broadcasting X[:, None, :] - C[None, :, :] để có mảng khoảng cách n x k, rồi argmin theo axis=1. Với update, lọc X theo labels == j."
+  },
+  "takeaway": "k-means lặp lại hai việc: gán điểm vào tâm gần nhất và dời tâm về trung bình; ý nghĩa của từng cụm do con người đặt."
+ },
+ {
+  "id": "ml-10",
+  "track": "ml",
+  "unit": "Doing it right",
+  "order": 10,
+  "title": "Train, Validation, Test",
+  "title_vi": "Đừng chấm bài bằng chính đề đã ôn",
+  "level": 1,
+  "minutes": 10,
+  "body": "Thử tưởng tượng một giáo viên cho học sinh ôn đúng 50 câu, rồi đề thi cũng là 50 câu đó. Học sinh được 10 điểm, nhưng không ai biết em ấy có hiểu bài không. ML cũng vậy: đánh giá mô hình trên chính dữ liệu nó đã học thì con số đẹp nhưng vô nghĩa.\n\n## Ba phần dữ liệu\nNgười ta chia dữ liệu thành ba phần:\n- **Training set** (tập huấn luyện, phần để mô hình học): thường 60 đến 80%.\n- **Validation set** (tập kiểm định, phần để chọn mô hình và chỉnh tham số): khoảng 10 đến 20%.\n- **Test set** (tập kiểm tra cuối, chỉ dùng một lần để báo cáo kết quả): khoảng 10 đến 20%.\n\nVí dụ với bài toán chấm điểm tín dụng có 100.000 hồ sơ: 70.000 để train, 15.000 để thử các phiên bản mô hình, 15.000 cất kỹ trong ngăn kéo đến khi chốt mô hình.\n\n## Vì sao cần cả validation lẫn test?\nBạn sẽ thử nhiều thứ: cây sâu 3 hay sâu 10, logistic regression hay random forest, thêm feature này hay bỏ feature kia. Mỗi lần chọn phiên bản tốt nhất dựa trên validation, bạn đã vô tình \"học\" từ validation một chút. Sau 50 lần thử, kết quả trên validation trở nên lạc quan hơn thực tế. Test set là phần chưa ai chạm vào, cho một ước lượng trung thực về hiệu quả khi chạy thật.\n\nCác lựa chọn như độ sâu của cây, số k trong k-NN, gọi là **hyperparameter** (siêu tham số, thông số do người chọn chứ không phải mô hình tự học). Validation set chính là nơi chọn hyperparameter.\n\n## Chia thế nào cho đúng\n- **Xáo trộn ngẫu nhiên** trước khi chia, nếu dữ liệu không có yếu tố thời gian. Nếu file sắp xếp theo thành phố, chia thẳng sẽ khiến train toàn Hà Nội, test toàn Sài Gòn.\n- **Stratified split** (chia giữ tỉ lệ nhãn): với dữ liệu gian lận chỉ 1%, chia ngẫu nhiên có thể khiến test set gần như không có ca gian lận nào. Chia stratified giữ tỉ lệ 1% ở mọi phần.\n- **Chia theo thời gian** với bài toán dự báo: train trên dữ liệu tháng 1 đến 9, validation tháng 10, test tháng 11 và 12. Không được để mô hình học từ \"tương lai\". Dự đoán churn hay doanh thu gần như luôn phải chia theo thời gian.\n- **Không để một khách nằm ở cả hai bên**: nếu một khách có nhiều dòng giao dịch, nên chia theo khách, nếu không mô hình sẽ nhận ra người quen.\n\n## Cross-validation\nKhi dữ liệu ít, chia một lần có thể may hoặc rủi. **Cross-validation** (kiểm định chéo) chia dữ liệu thành 5 phần, lần lượt lấy mỗi phần làm validation và 4 phần còn lại để train, rồi lấy trung bình 5 kết quả. Tốn thời gian gấp 5 nhưng con số đáng tin hơn.\n\n```\nimport random\nrows = list(range(10))\nrandom.seed(0)\nrandom.shuffle(rows)\ntrain, test = rows[:8], rows[8:]\nprint(len(train), len(test))  # 8 2\n```\n\n## Bit nhắc\nNếu một báo cáo khoe mô hình đúng 99% mà không nói đánh giá trên tập nào, hãy hỏi ngay câu đó. Đây là câu hỏi đơn giản nhưng lọc được rất nhiều kết quả ảo.",
+  "terms": [
+   {
+    "en": "training set",
+    "vi": "tập huấn luyện"
+   },
+   {
+    "en": "validation set",
+    "vi": "tập kiểm định để chọn mô hình"
+   },
+   {
+    "en": "test set",
+    "vi": "tập kiểm tra cuối"
+   },
+   {
+    "en": "hyperparameter",
+    "vi": "siêu tham số do người chọn"
+   },
+   {
+    "en": "stratified split",
+    "vi": "chia giữ tỉ lệ nhãn"
+   },
+   {
+    "en": "cross-validation",
+    "vi": "kiểm định chéo nhiều lần chia"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Mô hình churn đạt 99% đúng khi đánh giá trên chính dữ liệu train. Kết luận nào hợp lý?",
+    "choices": [
+     "Mô hình đã sẵn sàng triển khai",
+     "Chưa nói lên gì, cần đo trên dữ liệu mô hình chưa thấy",
+     "Mô hình chắc chắn bị underfitting",
+     "Test set là không cần thiết"
+    ],
+    "answer": 1,
+    "why": "Đánh giá trên dữ liệu đã học giống chấm bài bằng đề đã ôn."
+   },
+   {
+    "q": "Validation set dùng để làm gì?",
+    "choices": [
+     "Chọn mô hình và hyperparameter trong quá trình thử nghiệm",
+     "Train mô hình chính",
+     "Báo cáo kết quả cuối cùng một lần",
+     "Lưu trữ dự phòng"
+    ],
+    "answer": 0,
+    "why": "Validation dùng để so sánh các phiên bản; test để giữ lại cho đánh giá cuối."
+   },
+   {
+    "q": "Dự đoán doanh thu tháng tới. Cách chia dữ liệu nào đúng?",
+    "choices": [
+     "Xáo trộn ngẫu nhiên mọi ngày",
+     "Test trên tháng đầu tiên",
+     "Dùng cùng một tập cho train và test",
+     "Train trên các tháng cũ, validation và test trên các tháng sau"
+    ],
+    "answer": 3,
+    "why": "Với bài toán dự báo, phải tôn trọng thời gian để không học từ tương lai."
+   },
+   {
+    "q": "Dữ liệu gian lận chỉ có 0,5% ca dương. Vì sao nên dùng stratified split?",
+    "choices": [
+     "Để tăng số ca gian lận",
+     "Để bỏ ca gian lận ra khỏi test",
+     "Để mọi phần đều giữ đúng tỉ lệ ca gian lận",
+     "Để mô hình train nhanh hơn"
+    ],
+    "answer": 2,
+    "why": "Chia ngẫu nhiên có thể khiến test gần như không có ca gian lận, kết quả đo vô nghĩa."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm split_data(rows, train_frac, val_frac) chia list rows theo đúng thứ tự (không xáo trộn, coi như dữ liệu đã sắp theo thời gian) thành ba list train, val, test. Số dòng train = int(len(rows) * train_frac), số dòng val = int(len(rows) * val_frac), phần còn lại là test. Trả về tuple (train, val, test).\nVí dụ: split_data(list(range(10)), 0.6, 0.2) -> ([0,1,2,3,4,5], [6,7], [8,9])",
+   "starter": "def split_data(rows, train_frac, val_frac):\n    # TODO: slice rows into train, val, test (keep order)\n    pass\n",
+   "solution": "def split_data(rows, train_frac, val_frac):\n    n = len(rows)\n    n_train = int(n * train_frac)\n    n_val = int(n * val_frac)\n    train = rows[:n_train]\n    val = rows[n_train:n_train + n_val]\n    test = rows[n_train + n_val:]\n    return (train, val, test)\n",
+   "tests": "assert split_data(list(range(10)), 0.6, 0.2) == ([0, 1, 2, 3, 4, 5], [6, 7], [8, 9]), 'chia 10 dòng theo 60/20/20 sai'\ntr, va, te = split_data(list(range(7)), 0.7, 0.15)\nassert (len(tr), len(va), len(te)) == (4, 1, 2), 'int(7*0.7)=4, int(7*0.15)=1, còn lại 2 cho test'\nassert split_data([], 0.8, 0.1) == ([], [], []), 'list rỗng trả về ba list rỗng'\ntr, va, te = split_data(list(range(100)), 0.7, 0.15)\nassert tr[-1] < va[0] < te[0], 'phải giữ thứ tự thời gian: train trước, rồi val, rồi test'\nassert len(tr) + len(va) + len(te) == 100, 'không được mất hay trùng dòng nào'\n",
+   "hint": "Tính số dòng mỗi phần bằng int(), rồi dùng slicing rows[a:b] liên tiếp nhau."
+  },
+  "takeaway": "Học trên train, chọn trên validation, chỉ báo cáo trên test, và tôn trọng thứ tự thời gian khi dự báo."
+ },
+ {
+  "id": "ml-11",
+  "track": "ml",
+  "unit": "Doing it right",
+  "order": 11,
+  "title": "Overfitting, Underfitting, Regularisation",
+  "title_vi": "Học vẹt, học sơ sài và cách giữ mô hình vừa phải",
+  "level": 2,
+  "minutes": 13,
+  "body": "Mục tiêu của ML không phải là khớp dữ liệu cũ, mà là đoán đúng dữ liệu mới. Khả năng này gọi là **generalisation** (tổng quát hoá, làm tốt trên dữ liệu chưa từng thấy). Hai cách thất bại đối xứng nhau là underfitting và overfitting.\n\n## Underfitting: học sơ sài\nUnderfitting (mô hình quá đơn giản, không bắt được quy luật) giống người chỉ nhớ \"trời nắng thì bán được nhiều kem\" mà bỏ qua cuối tuần, ngày lễ, giá. Lỗi cao trên cả train lẫn validation. Ví dụ: dùng một đường thẳng cho dữ liệu cong rõ rệt.\n\n## Overfitting: học vẹt\nOverfitting (mô hình học thuộc lòng dữ liệu cũ, kể cả nhiễu, gặp dữ liệu mới thì kém) giống học sinh thuộc lòng đáp án 50 câu nhưng không hiểu, đổi số là sai. Dấu hiệu nhận biết: lỗi train rất thấp, lỗi validation cao hơn hẳn. Ví dụ: cây quyết định sâu 30 tầng, mỗi lá chỉ còn một khách.\n\nOverfitting dễ xảy ra khi:\n- Mô hình quá phức tạp so với lượng dữ liệu.\n- Có quá nhiều feature, đặc biệt feature ngẫu nhiên vô nghĩa (mã khách, giờ tạo tài khoản đến từng giây).\n- Dữ liệu ít, ví dụ chỉ có 200 hồ sơ vay để học.\n\n## Bức tranh độ phức tạp\nKhi tăng độ phức tạp (thêm độ sâu cho cây, bậc cho đa thức), lỗi train giảm đều. Lỗi validation ban đầu giảm theo, đến một điểm thì bắt đầu tăng lại. Điểm thấp nhất của lỗi validation là \"vừa đủ\". Đây là ý nghĩa thực tế của **bias-variance tradeoff** (đánh đổi giữa sai lệch hệ thống và độ nhạy với dữ liệu): mô hình đơn giản sai một cách đều đặn, mô hình phức tạp thay đổi thất thường theo từng mẫu dữ liệu. Lab overfitting cho bạn kéo thanh độ phức tạp và nhìn hai đường lỗi tách nhau.\n\n## Regularisation: phạt sự phức tạp\nRegularisation (điều chuẩn, thêm hình phạt để mô hình không quá phức tạp) là cách chữa overfitting phổ biến nhất. Với các mô hình có weight như linear hay logistic regression, ta đổi loss thành:\n\nloss mới = loss gốc + λ · (hình phạt theo độ lớn các weight)\n\n- **L2 regularisation** (Ridge): hình phạt là Σ w². Weight lớn bị phạt nặng nên mô hình chia đều sự chú ý, không phụ thuộc thái quá vào một feature.\n- **L1 regularisation** (Lasso): hình phạt là Σ |w|. Nó có xu hướng đẩy nhiều weight về đúng 0, tức tự loại bỏ feature vô ích. Hữu ích khi có hàng trăm feature mà nghi chỉ vài chục cái có ý nghĩa.\n\nλ (lambda) là hyperparameter: λ = 0 là không phạt, λ quá lớn thì mô hình bị ép đơn giản đến mức underfitting. Chọn λ bằng validation set.\n\n```\nw = [3.0, -0.5, 0.0, 2.0]\nlam = 0.1\nl2_penalty = lam * sum(x * x for x in w)\nl1_penalty = lam * sum(abs(x) for x in w)\nprint(round(l2_penalty, 3), round(l1_penalty, 3))  # 1.325 0.55\n```\n\n## Các cách khác chống overfitting\n- Thêm dữ liệu: cách tốt nhất nếu làm được.\n- Giới hạn độ sâu cây, số lá tối thiểu.\n- Bỏ bớt feature vô nghĩa.\n- Ensemble như random forest.\n- Với mạng nơ-ron: dropout (tạm tắt ngẫu nhiên một số neuron khi train) và early stopping (dừng train khi lỗi validation bắt đầu tăng).\n\n## Chẩn đoán nhanh\n- Train tệ, validation tệ -> underfitting: thêm feature, mô hình mạnh hơn.\n- Train tốt, validation tệ -> overfitting: regularisation, đơn giản hoá, thêm dữ liệu.\n- Cả hai tốt và gần nhau -> ổn, chuyển sang kiểm tra test.",
+  "terms": [
+   {
+    "en": "generalisation",
+    "vi": "tổng quát hoá cho dữ liệu mới"
+   },
+   {
+    "en": "underfitting",
+    "vi": "học sơ sài, mô hình quá đơn giản"
+   },
+   {
+    "en": "overfitting",
+    "vi": "học vẹt, khớp quá sát dữ liệu train"
+   },
+   {
+    "en": "bias-variance tradeoff",
+    "vi": "đánh đổi sai lệch và độ nhạy"
+   },
+   {
+    "en": "regularisation",
+    "vi": "điều chuẩn, phạt độ phức tạp"
+   },
+   {
+    "en": "L1 / L2",
+    "vi": "hai kiểu phạt theo |w| và w²"
+   },
+   {
+    "en": "early stopping",
+    "vi": "dừng train sớm"
+   }
+  ],
+  "lab": "overfitting",
+  "quiz": [
+   {
+    "q": "Lỗi train 2%, lỗi validation 25%. Đây là dấu hiệu gì?",
+    "choices": [
+     "Underfitting",
+     "Mô hình hoàn hảo",
+     "Overfitting",
+     "Data drift"
+    ],
+    "answer": 2,
+    "why": "Khoảng cách lớn giữa train và validation cho thấy mô hình học thuộc dữ liệu train."
+   },
+   {
+    "q": "Lỗi train 30%, lỗi validation 31%. Nên thử gì trước?",
+    "choices": [
+     "Tăng mạnh regularisation",
+     "Thêm feature tốt hoặc dùng mô hình mạnh hơn",
+     "Bỏ bớt dữ liệu",
+     "Giảm độ sâu cây xuống 1"
+    ],
+    "answer": 1,
+    "why": "Cả hai lỗi đều cao là underfitting; cần mô hình học được nhiều hơn."
+   },
+   {
+    "q": "Bạn có 300 feature và nghi chỉ khoảng 20 cái có ích. Kiểu regularisation nào phù hợp?",
+    "choices": [
+     "L1 vì có xu hướng đưa nhiều weight về 0",
+     "L2 vì làm mọi weight bằng nhau",
+     "Không cần regularisation",
+     "Tăng λ lên vô cực"
+    ],
+    "answer": 0,
+    "why": "L1 (Lasso) tự loại bỏ feature bằng cách đẩy weight về đúng 0."
+   },
+   {
+    "q": "Đặt λ quá lớn thì chuyện gì xảy ra?",
+    "choices": [
+     "Mô hình overfitting nặng hơn",
+     "Không ảnh hưởng gì",
+     "Mô hình học thuộc test set",
+     "Mô hình bị ép quá đơn giản và underfitting"
+    ],
+    "answer": 3,
+    "why": "Hình phạt quá mạnh khiến weight gần 0, mô hình không bắt được quy luật."
+   }
+  ],
+  "takeaway": "So lỗi train với lỗi validation để biết đang học sơ sài hay học vẹt; regularisation phạt độ phức tạp để mô hình tổng quát tốt hơn."
+ },
+ {
+  "id": "ml-12",
+  "track": "ml",
+  "unit": "Doing it right",
+  "order": 12,
+  "title": "Accuracy, Precision, Recall, F1",
+  "title_vi": "Đo đúng cái cần đo, ví dụ bắt gian lận",
+  "level": 2,
+  "minutes": 13,
+  "body": "Hãy quay lại cái bẫy đã nhắc: một ví điện tử có 10.000 giao dịch, trong đó 50 giao dịch gian lận. Mô hình lười luôn trả lời \"không gian lận\" đạt accuracy 99,5%, nhưng không bắt được ca nào. Vì vậy với bài toán nhãn hiếm, cần các chỉ số khác.\n\n## Confusion matrix\nConfusion matrix (ma trận nhầm lẫn, bảng đếm đúng sai theo từng loại) có bốn ô, coi \"gian lận\" là lớp dương (positive):\n- **TP** (true positive): gian lận thật, mô hình báo gian lận. Bắt đúng.\n- **FP** (false positive): giao dịch sạch, mô hình báo gian lận. Báo động nhầm, khách bị khoá thẻ oan.\n- **FN** (false negative): gian lận thật, mô hình bỏ qua. Mất tiền.\n- **TN** (true negative): giao dịch sạch, mô hình cho qua. Bình thường.\n\nGiả sử mô hình mới báo 80 giao dịch là gian lận, trong đó 40 đúng là gian lận. Vậy TP = 40, FP = 40, FN = 10 (50 ca gian lận trừ 40 ca bắt được), TN = 10.000 - 40 - 40 - 10 = 9.910.\n\n## Bốn chỉ số\n- **Accuracy** (độ chính xác tổng) = (TP + TN) / tổng = 9.950 / 10.000 = 99,5%. Bằng đúng mô hình lười. Accuracy không phân biệt được hai mô hình này.\n- **Precision** (độ chuẩn khi báo dương) = TP / (TP + FP) = 40 / 80 = 50%. Trong những lần mô hình báo động, bao nhiêu lần đúng. Precision thấp nghĩa là nhiều khách bị làm phiền oan.\n- **Recall** (độ phủ, tỉ lệ bắt được) = TP / (TP + FN) = 40 / 50 = 80%. Trong các ca gian lận thật, bắt được bao nhiêu. Recall thấp nghĩa là mất tiền.\n- **F1 score** (điểm cân bằng precision và recall) = 2 · P · R / (P + R) = 2 · 0,5 · 0,8 / 1,3 ≈ 0,615. F1 chỉ cao khi cả hai cùng cao.\n\n## Đánh đổi precision và recall\nNhớ lại threshold ở bài logistic regression. Hạ ngưỡng xuống, mô hình báo động nhiều hơn: recall tăng (bắt nhiều gian lận hơn), precision giảm (báo nhầm nhiều hơn). Tăng ngưỡng thì ngược lại. Không có ngưỡng nào tốt nhất cho mọi công ty; nó phụ thuộc chi phí của từng loại lỗi:\n- Gian lận thẻ: một FN có thể mất vài chục triệu, một FP chỉ tốn một cuộc gọi xác minh. Ưu tiên recall.\n- Gửi voucher giữ chân khách (churn): FP là tặng voucher cho người vốn không định rời, tốn ngân sách nhưng nhẹ. FN là mất khách. Thường cân bằng hoặc nghiêng recall.\n- Lọc spam email: FP là thư quan trọng bị vào spam, rất khó chịu. Ưu tiên precision.\n\n## Cách nói với sếp\nThay vì \"F1 bằng 0,615\", hãy nói: \"Cứ 2 lần hệ thống chặn thì 1 lần đúng gian lận, và chúng ta bắt được 8 trên 10 vụ\". Con số gắn với hệ quả business mới giúp mọi người quyết định ngưỡng.\n\n```\ny_true = [1, 0, 1, 1, 0, 0]\ny_pred = [1, 1, 0, 1, 0, 0]\ntp = sum(1 for t, p in zip(y_true, y_pred) if t == 1 and p == 1)\nprint(tp)  # 2\n```\n\nTrong lab confusion-matrix, bạn kéo ngưỡng và quan sát bốn ô cùng precision, recall thay đổi.",
+  "terms": [
+   {
+    "en": "confusion matrix",
+    "vi": "ma trận nhầm lẫn"
+   },
+   {
+    "en": "true positive / false positive",
+    "vi": "báo đúng / báo nhầm"
+   },
+   {
+    "en": "false negative",
+    "vi": "bỏ sót ca dương"
+   },
+   {
+    "en": "accuracy",
+    "vi": "tỉ lệ đúng tổng thể"
+   },
+   {
+    "en": "precision",
+    "vi": "độ chuẩn khi báo dương"
+   },
+   {
+    "en": "recall",
+    "vi": "tỉ lệ bắt được ca dương"
+   },
+   {
+    "en": "F1 score",
+    "vi": "trung bình điều hoà của precision và recall"
+   }
+  ],
+  "lab": "confusion-matrix",
+  "quiz": [
+   {
+    "q": "Mô hình chống gian lận có recall 95% nhưng precision 5%. Hệ quả thực tế là gì?",
+    "choices": [
+     "Bỏ sót phần lớn gian lận",
+     "Mô hình hoàn hảo",
+     "Không có giao dịch nào bị chặn",
+     "Bắt được gần hết gian lận nhưng phần lớn cảnh báo là nhầm, nhiều khách bị làm phiền oan"
+    ],
+    "answer": 3,
+    "why": "Recall cao là bắt được nhiều, precision thấp là đa số lần báo động sai."
+   },
+   {
+    "q": "Với bộ lọc spam email, loại lỗi nào thường đáng sợ hơn và nên ưu tiên chỉ số nào?",
+    "choices": [
+     "False negative, ưu tiên recall",
+     "True negative, ưu tiên accuracy",
+     "False positive (thư thật vào spam), ưu tiên precision",
+     "Không loại nào, chỉ cần accuracy"
+    ],
+    "answer": 2,
+    "why": "Mất một email quan trọng tệ hơn nhận thêm một thư rác."
+   },
+   {
+    "q": "Hạ threshold của mô hình gian lận từ 0,5 xuống 0,2 thường dẫn đến điều gì?",
+    "choices": [
+     "Precision tăng, recall giảm",
+     "Recall tăng, precision giảm",
+     "Cả hai cùng tăng",
+     "Accuracy luôn bằng 100%"
+    ],
+    "answer": 1,
+    "why": "Ngưỡng thấp khiến mô hình báo dương nhiều hơn: bắt nhiều hơn nhưng nhầm nhiều hơn."
+   },
+   {
+    "q": "Vì sao accuracy dễ đánh lừa trong bài toán gian lận?",
+    "choices": [
+     "Vì nhãn dương quá hiếm, đoán toàn âm vẫn được accuracy rất cao",
+     "Vì accuracy khó tính",
+     "Vì accuracy chỉ dùng cho regression",
+     "Vì accuracy luôn thấp"
+    ],
+    "answer": 0,
+    "why": "Khi 99,5% là giao dịch sạch, mô hình lười đã có 99,5% accuracy."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm metrics(y_true, y_pred) với hai list nhãn 0/1 (1 là gian lận). Trả về dict {\"accuracy\", \"precision\", \"recall\", \"f1\"}, mỗi giá trị làm tròn 3 chữ số. Nếu mẫu số bằng 0 thì chỉ số đó là 0.0.\nVí dụ: metrics([1,0,1,1,0,0], [1,1,0,1,0,0]) -> {\"accuracy\": 0.667, \"precision\": 0.667, \"recall\": 0.667, \"f1\": 0.667}",
+   "starter": "def metrics(y_true, y_pred):\n    # TODO: count TP, FP, FN, TN then compute the four metrics\n    pass\n",
+   "solution": "def metrics(y_true, y_pred):\n    tp = fp = fn = tn = 0\n    for t, p in zip(y_true, y_pred):\n        if t == 1 and p == 1:\n            tp += 1\n        elif t == 0 and p == 1:\n            fp += 1\n        elif t == 1 and p == 0:\n            fn += 1\n        else:\n            tn += 1\n    n = tp + fp + fn + tn\n    acc = (tp + tn) / n if n else 0.0\n    prec = tp / (tp + fp) if (tp + fp) else 0.0\n    rec = tp / (tp + fn) if (tp + fn) else 0.0\n    f1 = 2 * prec * rec / (prec + rec) if (prec + rec) else 0.0\n    return {\"accuracy\": round(acc, 3), \"precision\": round(prec, 3), \"recall\": round(rec, 3), \"f1\": round(f1, 3)}\n",
+   "tests": "r = metrics([1, 0, 1, 1, 0, 0], [1, 1, 0, 1, 0, 0])\nassert r == {\"accuracy\": 0.667, \"precision\": 0.667, \"recall\": 0.667, \"f1\": 0.667}, 'ví dụ trong đề phải ra 0.667 cho cả bốn chỉ số'\nlazy = metrics([1] * 5 + [0] * 995, [0] * 1000)\nassert lazy[\"accuracy\"] == 0.995 and lazy[\"recall\"] == 0.0, 'mô hình lười: accuracy 0.995 nhưng recall 0'\nassert lazy[\"precision\"] == 0.0 and lazy[\"f1\"] == 0.0, 'không báo dương lần nào thì precision và f1 là 0.0'\nr2 = metrics([1, 1, 1, 1, 1, 0, 0, 0], [1, 1, 1, 1, 0, 1, 1, 1])\nassert r2[\"precision\"] == 0.571 and r2[\"recall\"] == 0.8, 'TP=4, FP=3, FN=1 nên precision 0.571, recall 0.8'\nassert r2[\"f1\"] == 0.667, 'f1 = 2PR/(P+R) phải bằng 0.667'\n",
+   "hint": "Đi qua từng cặp (thật, dự đoán) để đếm bốn ô TP, FP, FN, TN. Kiểm tra mẫu số trước khi chia."
+  },
+  "takeaway": "Với nhãn hiếm, bỏ qua accuracy và nhìn precision (báo có chuẩn không), recall (bắt được bao nhiêu), rồi chọn ngưỡng theo chi phí lỗi."
+ },
+ {
+  "id": "ml-13",
+  "track": "ml",
+  "unit": "Doing it right",
+  "order": 13,
+  "title": "Data Quality and Bias",
+  "title_vi": "Rác vào thì rác ra, thiên lệch vào thì thiên lệch ra",
+  "level": 2,
+  "minutes": 11,
+  "body": "Câu cửa miệng của dân ML là \"garbage in, garbage out\" (rác vào thì rác ra). Mô hình chỉ học được những gì có trong dữ liệu. Nếu dữ liệu sai, thiếu hoặc lệch, mô hình sẽ sai, thiếu hoặc lệch theo, và còn làm điều đó ở quy mô hàng triệu quyết định mỗi ngày.\n\n## Các lỗi chất lượng dữ liệu thường gặp\n- **Missing values** (giá trị thiếu): khách không điền thu nhập. Bỏ dòng đó có thể làm mất phần lớn dữ liệu; điền bằng trung vị là cách đơn giản. Đôi khi việc thiếu tự nó là thông tin: người không khai thu nhập có thể khác người có khai, nên thêm một cột \"có khai thu nhập hay không\".\n- **Giá trị vô lý**: tuổi 150, số dư âm ở tài khoản không cho thấu chi, đơn hàng 0 đồng. Thường do lỗi nhập liệu hoặc lỗi hệ thống.\n- **Trùng lặp**: một giao dịch bị ghi hai lần do lỗi đồng bộ.\n- **Định nghĩa không thống nhất**: hệ thống A ghi ngày theo giờ Việt Nam, hệ thống B theo giờ UTC; \"khách active\" ở team này là mở app, ở team kia là có giao dịch.\n- **Nhãn sai**: giao dịch gian lận nhưng khách không báo nên vẫn mang nhãn sạch.\n\nTất cả cần được phát hiện ở bước EDA. Một thói quen tốt: đếm số dòng, số giá trị thiếu, giá trị nhỏ nhất và lớn nhất của từng cột trước khi làm gì khác.\n\n## Bias: thiên lệch có hệ thống\nBias (thiên lệch, ở đây là dữ liệu hoặc mô hình đối xử không công bằng hay không đại diện) nguy hiểm hơn lỗi ngẫu nhiên vì nó âm thầm và có hướng.\n\n- **Sampling bias** (thiên lệch chọn mẫu): dữ liệu không đại diện cho nhóm người sẽ dùng mô hình. Một mô hình chấm điểm tín dụng chỉ học từ khách thành thị có tài khoản lương sẽ đánh giá sai người lao động tự do ở nông thôn.\n- **Historical bias** (thiên lệch lịch sử): dữ liệu phản ánh đúng quá khứ, nhưng quá khứ vốn không công bằng. Nếu trước đây ngân hàng ít duyệt vay cho một nhóm nào đó, nhóm đó có ít lịch sử trả nợ tốt, mô hình lại tiếp tục từ chối họ. Vòng lặp tự củng cố.\n- **Survivorship bias** (thiên lệch kẻ sống sót): chỉ nhìn những khách còn lại. Phân tích hành vi khách VIP hiện tại mà quên những người đã rời đi.\n- **Selection bias từ chính mô hình**: chỉ những hồ sơ được duyệt mới có nhãn \"trả nợ hay không\". Những người bị từ chối thì mãi mãi không có nhãn, nên mô hình không bao giờ biết mình từ chối nhầm ai.\n\nMột cái bẫy tinh vi là **proxy** (biến thay thế): dù bạn bỏ cột giới tính hay dân tộc, mô hình vẫn có thể suy ra gián tiếp qua mã bưu chính, tên trường học hay thói quen mua sắm.\n\n## Làm gì trong thực tế\n- Kiểm tra hiệu quả mô hình theo từng nhóm (vùng miền, độ tuổi, kênh đăng ký), không chỉ con số trung bình chung.\n- Hỏi \"ai không có mặt trong dữ liệu này\".\n- Ghi tài liệu nguồn gốc dữ liệu và các giới hạn đã biết.\n- Có người xem xét lại các quyết định quan trọng như từ chối khoản vay.\n- Theo dõi quy định: nhiều nơi trên thế giới, tính đến 2026, đã có hoặc đang hoàn thiện luật về AI rủi ro cao như chấm điểm tín dụng, yêu cầu giải thích và kiểm tra thiên lệch. Chi tiết thay đổi nhanh theo từng quốc gia.\n\nKỹ năng này không đòi hỏi toán sâu, mà đòi hỏi sự tò mò và hiểu khách hàng. Đây là chỗ người làm product và CRM đóng góp rất nhiều cho một đội ML.",
+  "terms": [
+   {
+    "en": "garbage in, garbage out",
+    "vi": "rác vào thì rác ra"
+   },
+   {
+    "en": "missing values",
+    "vi": "giá trị thiếu"
+   },
+   {
+    "en": "bias",
+    "vi": "thiên lệch có hệ thống"
+   },
+   {
+    "en": "sampling bias",
+    "vi": "mẫu không đại diện"
+   },
+   {
+    "en": "historical bias",
+    "vi": "thiên lệch từ quá khứ"
+   },
+   {
+    "en": "survivorship bias",
+    "vi": "chỉ nhìn kẻ sống sót"
+   },
+   {
+    "en": "proxy",
+    "vi": "biến thay thế, gián tiếp lộ thông tin nhạy cảm"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Mô hình chấm điểm tín dụng chỉ train trên khách có tài khoản nhận lương ở thành phố lớn. Rủi ro chính là gì?",
+    "choices": [
+     "Sampling bias: đánh giá sai những nhóm không có trong dữ liệu như lao động tự do",
+     "Overfitting vì quá ít feature",
+     "Data leakage",
+     "Không có rủi ro nào"
+    ],
+    "answer": 0,
+    "why": "Dữ liệu không đại diện cho toàn bộ khách sẽ dùng mô hình."
+   },
+   {
+    "q": "Bạn đã bỏ cột giới tính khỏi dữ liệu. Vì sao mô hình vẫn có thể thiên lệch theo giới tính?",
+    "choices": [
+     "Vì máy tự đoán từ ảnh",
+     "Vì bỏ cột là vô hiệu",
+     "Vì mô hình luôn thiên lệch",
+     "Vì các feature khác có thể là proxy gián tiếp cho giới tính"
+    ],
+    "answer": 3,
+    "why": "Thói quen mua sắm, nghề nghiệp có thể tương quan mạnh với thuộc tính nhạy cảm."
+   },
+   {
+    "q": "Chỉ các hồ sơ được duyệt mới có nhãn 'trả nợ hay không'. Điều này gây ra vấn đề gì?",
+    "choices": [
+     "Mô hình chạy chậm hơn",
+     "Không có vấn đề gì",
+     "Mô hình không bao giờ học được về những người bị từ chối, có thể từ chối nhầm mãi",
+     "Data drift"
+    ],
+    "answer": 2,
+    "why": "Đây là selection bias do chính quyết định cũ tạo ra."
+   },
+   {
+    "q": "Nhiều khách bỏ trống ô thu nhập. Cách xử lý nào hợp lý?",
+    "choices": [
+     "Xoá toàn bộ cột thu nhập",
+     "Điền giá trị như trung vị và thêm cột đánh dấu 'đã khai thu nhập hay không'",
+     "Điền số 0 và không ghi chú gì",
+     "Xoá mọi dòng thiếu dù mất 60% dữ liệu"
+    ],
+    "answer": 1,
+    "why": "Việc thiếu có thể mang thông tin, nên giữ lại dấu hiệu đó."
+   }
+  ],
+  "takeaway": "Mô hình chỉ giỏi bằng dữ liệu của nó: kiểm tra chất lượng, hỏi ai bị thiếu trong dữ liệu và đo hiệu quả theo từng nhóm."
+ },
+ {
+  "id": "ml-14",
+  "track": "ml",
+  "unit": "Doing it right",
+  "order": 14,
+  "title": "Feature Engineering",
+  "title_vi": "Chế biến dữ liệu thô thành tín hiệu",
+  "level": 2,
+  "minutes": 12,
+  "body": "Nếu dữ liệu là nguyên liệu thì feature engineering (kỹ thuật tạo đặc trưng, biến dữ liệu thô thành cột có ý nghĩa cho mô hình) là sơ chế. Cùng một con cá, cắt khúc hay phi lê sẽ cho món khác nhau. Với dữ liệu bảng, một feature hay thường giúp nhiều hơn đổi sang thuật toán phức tạp.\n\n## Từ log thô đến feature\nHệ thống của một app giao đồ ăn lưu từng đơn hàng: thời gian, số tiền, nhà hàng, có dùng voucher không. Mô hình churn cần một dòng cho mỗi khách. Ta tạo:\n- **Recency** (độ gần): số ngày từ đơn cuối.\n- **Frequency** (tần suất): số đơn trong 30 ngày.\n- **Monetary** (giá trị): tổng chi tiêu 30 ngày.\nBộ ba này là RFM, quen thuộc với dân CRM. Thêm vài feature xu hướng:\n- Số đơn 2 tuần gần nhất chia cho số đơn 2 tuần trước đó. Tỉ lệ dưới 1 nghĩa là khách đang nguội dần, một tín hiệu churn rất mạnh.\n- Tỉ lệ đơn có voucher: khách chỉ mua khi có khuyến mãi dễ rời khi hết khuyến mãi.\n\n## Xử lý feature dạng nhóm\nMô hình chỉ hiểu số. Cột \"thành phố\" với giá trị Hà Nội, Đà Nẵng, TP.HCM cần được mã hoá:\n- **One-hot encoding** (mã hoá một-nóng, mỗi giá trị thành một cột 0/1): thêm ba cột is_hanoi, is_danang, is_hcm. Không được gán 1, 2, 3 vì mô hình sẽ hiểu sai là TP.HCM \"lớn gấp ba\" Hà Nội.\n- Khi có quá nhiều giá trị (hàng nghìn mã nhà hàng), có thể gom nhóm nhỏ thành \"khác\" hoặc dùng cách mã hoá khác.\n\n## Feature từ thời gian\nNgày giờ thô ít ý nghĩa. Hãy tách ra: giờ trong ngày, thứ trong tuần, có phải cuối tuần, ngày lễ, ngày lương. Đơn đặt 23 giờ đêm có hành vi khác đơn lúc 11 giờ trưa.\n\n## Scaling: đưa về cùng thang\nBạn đã thấy ở k-NN và k-means: feature có số lớn sẽ áp đảo. Hai cách phổ biến:\n- **Min-max scaling** (chuẩn hoá về 0 đến 1): x_mới = (x - min) / (max - min).\n- **Standardisation** (chuẩn hoá z-score): x_mới = (x - trung bình) / độ lệch chuẩn, đưa cột về trung bình 0, độ lệch chuẩn 1.\nCây quyết định không cần scaling, nhưng k-NN, k-means, logistic regression có regularisation và mạng nơ-ron thì cần.\n\nLưu ý quan trọng: min, max, trung bình phải tính trên training set rồi áp dụng cho validation và test. Nếu tính trên toàn bộ dữ liệu, thông tin từ test đã rò vào train, một dạng data leakage nhẹ.\n\n## Biến đổi phân phối\nThu nhập và chi tiêu thường lệch: đa số vài triệu, một ít người hàng tỉ. Lấy log (log của 1 cộng x) giúp thu hẹp khoảng cách, mô hình tuyến tính học dễ hơn.\n\n```\nspend = [100, 250, 400, 1000]\nlo, hi = min(spend), max(spend)\nprint([round((s - lo) / (hi - lo), 2) for s in spend])  # [0.0, 0.17, 0.33, 1.0]\n```\n\n## Deep learning có cần feature engineering không?\nVới ảnh và văn bản, mạng nơ-ron tự học feature, nên việc tạo feature thủ công giảm hẳn. Với dữ liệu bảng trong doanh nghiệp, tính đến 2026 feature engineering vẫn là nơi tạo ra phần lớn giá trị, và là nơi hiểu biết business của bạn thành lợi thế: biết ngày lương, mùa Tết, hành vi săn sale 11.11 là biết feature nào đáng thử.",
+  "terms": [
+   {
+    "en": "feature engineering",
+    "vi": "tạo đặc trưng từ dữ liệu thô"
+   },
+   {
+    "en": "RFM",
+    "vi": "độ gần, tần suất, giá trị chi tiêu"
+   },
+   {
+    "en": "one-hot encoding",
+    "vi": "mã hoá mỗi nhóm thành một cột 0/1"
+   },
+   {
+    "en": "min-max scaling",
+    "vi": "chuẩn hoá về khoảng 0 đến 1"
+   },
+   {
+    "en": "standardisation",
+    "vi": "chuẩn hoá z-score"
+   },
+   {
+    "en": "log transform",
+    "vi": "lấy log để thu hẹp giá trị lệch"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Vì sao không mã hoá thành phố thành Hà Nội = 1, Đà Nẵng = 2, TP.HCM = 3?",
+    "choices": [
+     "Vì số 3 quá lớn",
+     "Vì mô hình sẽ hiểu nhầm có thứ tự và khoảng cách giữa các thành phố",
+     "Vì mô hình không đọc được số",
+     "Vì sẽ tốn bộ nhớ hơn one-hot"
+    ],
+    "answer": 1,
+    "why": "Các thành phố không có thứ tự; one-hot tránh tạo quan hệ giả."
+   },
+   {
+    "q": "Tính min và max để scaling trên toàn bộ dữ liệu (cả test) gây ra vấn đề gì?",
+    "choices": [
+     "Rò rỉ thông tin từ test vào quá trình train",
+     "Không vấn đề gì",
+     "Mô hình bị underfitting",
+     "Feature trở thành categorical"
+    ],
+    "answer": 0,
+    "why": "Mọi thống kê dùng để biến đổi dữ liệu phải lấy từ training set."
+   },
+   {
+    "q": "Feature 'số đơn 2 tuần gần nhất chia cho 2 tuần trước' có giá trị 0,3. Nó gợi ý gì?",
+    "choices": [
+     "Khách đang mua nhiều hơn",
+     "Khách mới đăng ký",
+     "Dữ liệu bị lỗi chắc chắn",
+     "Khách đang giảm mua mạnh, dấu hiệu có thể sắp rời bỏ"
+    ],
+    "answer": 3,
+    "why": "Tỉ lệ dưới 1 nghĩa là hoạt động gần đây ít hơn trước."
+   },
+   {
+    "q": "Mô hình nào ít cần feature scaling nhất?",
+    "choices": [
+     "k-NN",
+     "k-means",
+     "Decision tree",
+     "Neural network"
+    ],
+    "answer": 2,
+    "why": "Cây chỉ so sánh ngưỡng trong từng feature nên không bị ảnh hưởng bởi thang đo."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hai hàm:\n- min_max_scale(train, values): tính min và max trên list train, rồi trả về list values đã chuẩn hoá (x - min) / (max - min), làm tròn 3 chữ số. Nếu max == min thì trả về list toàn 0.0. Lưu ý values có thể nằm ngoài khoảng của train (vẫn tính theo công thức).\n- one_hot(value, categories): trả về list 0/1 theo thứ tự categories, 1 ở vị trí của value; nếu value không có trong categories thì toàn 0.\nVí dụ: min_max_scale([100, 1000], [100, 550, 1000]) -> [0.0, 0.5, 1.0]; one_hot(\"HCM\", [\"HN\", \"DN\", \"HCM\"]) -> [0, 0, 1]",
+   "starter": "def min_max_scale(train, values):\n    # TODO: use min/max from train only\n    pass\n\ndef one_hot(value, categories):\n    # TODO\n    pass\n",
+   "solution": "def min_max_scale(train, values):\n    lo, hi = min(train), max(train)\n    if hi == lo:\n        return [0.0 for _ in values]\n    return [round((v - lo) / (hi - lo), 3) for v in values]\n\ndef one_hot(value, categories):\n    return [1 if c == value else 0 for c in categories]\n",
+   "tests": "assert min_max_scale([100, 1000], [100, 550, 1000]) == [0.0, 0.5, 1.0], 'chuẩn hoá cơ bản sai'\nassert min_max_scale([0, 10], [20, -5]) == [2.0, -0.5], 'giá trị ngoài khoảng train vẫn tính theo min/max của train'\nassert min_max_scale([5, 5, 5], [5, 7]) == [0.0, 0.0], 'max bằng min thì trả về toàn 0.0'\nassert one_hot(\"HCM\", [\"HN\", \"DN\", \"HCM\"]) == [0, 0, 1], 'HCM phải ở vị trí thứ ba'\nassert one_hot(\"Hue\", [\"HN\", \"DN\", \"HCM\"]) == [0, 0, 0], 'giá trị lạ thì toàn 0'\nassert min_max_scale([1, 4], [2]) == [0.333], 'phải làm tròn 3 chữ số'\n",
+   "hint": "Lấy min và max chỉ từ train. Kiểm tra trường hợp hi == lo trước để tránh chia cho 0. one_hot chỉ cần một list comprehension so sánh từng category."
+  },
+  "takeaway": "Feature tốt đến từ hiểu business; mã hoá nhóm bằng one-hot và scale bằng thống kê của riêng training set."
+ },
+ {
+  "id": "ml-15",
+  "track": "ml",
+  "unit": "Deep learning",
+  "order": 15,
+  "title": "The Neuron and Activation Functions",
+  "title_vi": "Viên gạch nhỏ nhất của mạng nơ-ron",
+  "level": 2,
+  "minutes": 11,
+  "body": "Mạng nơ-ron nghe có vẻ bí ẩn, nhưng viên gạch cơ bản của nó, neuron (nơ-ron nhân tạo, một hàm nhỏ nhận nhiều số và trả ra một số), lại rất quen. Nếu bạn đã hiểu logistic regression thì bạn đã hiểu 90% một neuron.\n\n## Một neuron làm ba việc\n- Nhận các đầu vào x₁, x₂, x₃ (ví dụ số lần mở app, số đơn, số ngày từ đơn cuối).\n- Tính tổng có trọng số cộng bias: z = w₁x₁ + w₂x₂ + w₃x₃ + b.\n- Đưa z qua một **activation function** (hàm kích hoạt, hàm biến đổi phi tuyến quyết định neuron \"bật\" mạnh hay yếu) để ra đầu ra a.\n\nHình dung một nhân viên duyệt hồ sơ: nhìn nhiều thông tin, mỗi thông tin có mức quan trọng riêng (weight), có định kiến ban đầu (bias), rồi đưa ra mức độ \"đồng ý\" của mình (activation). Mạng nơ-ron là cả một công ty gồm hàng nghìn nhân viên như vậy chuyền thông tin cho nhau.\n\nCái tên \"neuron\" lấy cảm hứng từ tế bào thần kinh trong não, nhưng giống nhau chỉ ở mức ý tưởng. Neuron nhân tạo đơn giản hơn nhiều.\n\n## Vì sao cần activation function?\nNếu không có activation, mỗi neuron chỉ là một phép tính tuyến tính. Xếp chồng bao nhiêu lớp tuyến tính thì kết quả vẫn chỉ là một đường thẳng (hay mặt phẳng) lớn. Activation thêm \"độ cong\", giúp mạng học được những quan hệ phức tạp như \"khách mua ít thì có nguy cơ, nhưng mua quá nhiều trong một ngày cũng đáng ngờ\".\n\n## Các activation phổ biến\n- **Sigmoid**: σ(z) = 1 / (1 + e^(-z)), ép về 0 đến 1. Hợp ở lớp cuối khi cần xác suất có hoặc không. Nhược điểm: khi z quá lớn hay quá âm, đường cong gần như phẳng, khiến việc học ở các lớp sâu rất chậm.\n- **Tanh**: giống sigmoid nhưng ra khoảng -1 đến 1, cân đối quanh 0.\n- **ReLU** (rectified linear unit, giữ số dương, biến số âm thành 0): ReLU(z) = max(0, z). Cực kỳ đơn giản, tính nhanh, và giúp mạng sâu học tốt hơn sigmoid. Đây là lựa chọn mặc định cho các lớp ẩn trong nhiều mạng.\n- **Softmax**: dùng ở lớp cuối khi có nhiều lựa chọn (ví dụ gợi ý một trong 5 danh mục sản phẩm). Nó biến một dãy điểm thành các xác suất cộng lại bằng 1. Các LLM cũng dùng softmax để chọn token tiếp theo.\n- Các biến thể như GELU, SiLU được dùng nhiều trong Transformer hiện đại; ý tưởng tương tự ReLU nhưng mượt hơn.\n\n## Ví dụ bằng số\nKhách có x = [3, 1], weight w = [0.8, -1.5], bias b = 0.2. Tính z = 0,8·3 + (-1,5)·1 + 0,2 = 1,1.\n- Với ReLU: a = max(0; 1,1) = 1,1.\n- Với sigmoid: a ≈ 0,75.\n\n```\nimport math\ndef neuron(x, w, b):\n    z = sum(xi * wi for xi, wi in zip(x, w)) + b\n    return max(0.0, z)\nprint(round(neuron([3, 1], [0.8, -1.5], 0.2), 2))  # 1.1\n```\n\n## Neuron làm được gì một mình?\nMột neuron với sigmoid chính là logistic regression: chia dữ liệu bằng một đường thẳng. Nó không giải được bài toán mà ranh giới cong hay chia nhiều vùng. Muốn vậy phải ghép nhiều neuron thành lớp, nhiều lớp thành mạng. Đó là bài tiếp theo.",
+  "terms": [
+   {
+    "en": "neuron",
+    "vi": "nơ-ron nhân tạo"
+   },
+   {
+    "en": "activation function",
+    "vi": "hàm kích hoạt"
+   },
+   {
+    "en": "ReLU",
+    "vi": "giữ số dương, số âm thành 0"
+   },
+   {
+    "en": "sigmoid",
+    "vi": "hàm chữ S ra 0 đến 1"
+   },
+   {
+    "en": "tanh",
+    "vi": "hàm chữ S ra -1 đến 1"
+   },
+   {
+    "en": "softmax",
+    "vi": "biến điểm thành xác suất cộng bằng 1"
+   },
+   {
+    "en": "non-linear",
+    "vi": "phi tuyến, không phải đường thẳng"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Nếu bỏ hết activation function, một mạng nhiều lớp sẽ như thế nào?",
+    "choices": [
+     "Mạnh hơn vì ít phép tính",
+     "Tự động thành random forest",
+     "Tương đương một mô hình tuyến tính duy nhất, không học được quan hệ cong",
+     "Không chạy được"
+    ],
+    "answer": 2,
+    "why": "Ghép nhiều phép tuyến tính vẫn ra một phép tuyến tính."
+   },
+   {
+    "q": "ReLU(-4) bằng bao nhiêu?",
+    "choices": [
+     "-4",
+     "0",
+     "4",
+     "0,5"
+    ],
+    "answer": 1,
+    "why": "ReLU giữ số dương và biến mọi số âm thành 0."
+   },
+   {
+    "q": "Bạn cần lớp cuối chọn 1 trong 5 danh mục sản phẩm để gợi ý. Activation nào hợp?",
+    "choices": [
+     "Softmax",
+     "ReLU",
+     "Không dùng activation",
+     "Sigmoid cho từng lớp riêng rồi lấy max"
+    ],
+    "answer": 0,
+    "why": "Softmax biến 5 điểm thành 5 xác suất cộng lại bằng 1."
+   },
+   {
+    "q": "Một neuron đơn lẻ dùng sigmoid tương đương mô hình nào?",
+    "choices": [
+     "k-means",
+     "Decision tree",
+     "Random forest",
+     "Logistic regression"
+    ],
+    "answer": 3,
+    "why": "Tổng có trọng số cộng bias rồi qua sigmoid chính là logistic regression."
+   }
+  ],
+  "code": {
+   "prompt": "Viết các hàm:\n- relu(z): trả về max(0, z) dưới dạng float.\n- sigmoid(z): 1 / (1 + e^(-z)).\n- neuron(x, w, b, activation): tính z = Σ x_i·w_i + b rồi áp dụng activation (\"relu\" hoặc \"sigmoid\"). Trả về kết quả làm tròn 3 chữ số.\nVí dụ: neuron([3, 1], [0.8, -1.5], 0.2, \"relu\") -> 1.1; neuron([3, 1], [0.8, -1.5], 0.2, \"sigmoid\") -> 0.75",
+   "starter": "import math\n\ndef relu(z):\n    # TODO\n    pass\n\ndef sigmoid(z):\n    # TODO\n    pass\n\ndef neuron(x, w, b, activation):\n    # TODO: weighted sum + bias, then activation\n    pass\n",
+   "solution": "import math\n\ndef relu(z):\n    return float(max(0.0, z))\n\ndef sigmoid(z):\n    return 1 / (1 + math.exp(-z))\n\ndef neuron(x, w, b, activation):\n    z = sum(xi * wi for xi, wi in zip(x, w)) + b\n    a = relu(z) if activation == \"relu\" else sigmoid(z)\n    return round(a, 3)\n",
+   "tests": "assert relu(-3) == 0.0 and relu(2.5) == 2.5, 'relu phải biến số âm thành 0 và giữ số dương'\nassert sigmoid(0) == 0.5, 'sigmoid(0) phải bằng 0.5'\nassert neuron([3, 1], [0.8, -1.5], 0.2, \"relu\") == 1.1, 'ví dụ relu trong đề phải ra 1.1'\nassert neuron([3, 1], [0.8, -1.5], 0.2, \"sigmoid\") == 0.75, 'ví dụ sigmoid trong đề phải ra 0.75'\nassert neuron([1, 1], [-2, -2], 0, \"relu\") == 0.0, 'z âm qua relu phải ra 0.0'\nassert neuron([], [], 0, \"sigmoid\") == 0.5, 'không có đầu vào thì z = b = 0, sigmoid ra 0.5'\n",
+   "hint": "Tính z bằng sum và zip giống bài logistic regression. Chọn hàm activation bằng một câu if."
+  },
+  "takeaway": "Một neuron = tổng có trọng số + bias + activation; activation phi tuyến là thứ cho mạng học được quan hệ phức tạp."
+ },
+ {
+  "id": "ml-16",
+  "track": "ml",
+  "unit": "Deep learning",
+  "order": 16,
+  "title": "Neural Networks and Layers",
+  "title_vi": "Xếp neuron thành lớp, xếp lớp thành mạng",
+  "level": 2,
+  "minutes": 11,
+  "body": "Một neuron chỉ kẻ được một đường thẳng. Ghép nhiều neuron lại, ta có neural network (mạng nơ-ron, nhiều neuron xếp thành các lớp nối với nhau) có thể vẽ được ranh giới phức tạp bất kỳ, nếu đủ lớn và đủ dữ liệu.\n\n## Ba loại lớp\n- **Input layer** (lớp đầu vào): không tính gì, chỉ nhận feature. Bài toán churn với 10 feature thì có 10 đầu vào.\n- **Hidden layers** (các lớp ẩn): nơi mạng \"suy nghĩ\". Mỗi lớp gồm nhiều neuron, mỗi neuron nhận toàn bộ đầu ra của lớp trước. Gọi là ẩn vì ta không trực tiếp quan sát hay gán ý nghĩa cho chúng.\n- **Output layer** (lớp đầu ra): một neuron sigmoid cho bài toán có hoặc không, nhiều neuron softmax cho bài toán nhiều lựa chọn, một neuron không activation cho regression.\n\nMạng mà mọi neuron nối với mọi neuron ở lớp kế tiếp gọi là **fully connected** hay **dense** (kết nối đầy đủ). Một mạng có từ hai lớp ẩn trở lên thường được gọi là \"deep\", và đó là gốc của chữ deep learning.\n\n## Mỗi lớp học một mức trừu tượng\nĐây là ý tưởng quan trọng nhất. Với mạng nhận diện ảnh, lớp đầu học các nét đơn giản như cạnh ngang, cạnh dọc. Lớp giữa ghép nét thành hình như mắt, bánh xe. Lớp sau ghép hình thành khái niệm như khuôn mặt, chiếc xe máy.\n\nVới dữ liệu khách hàng, có thể hình dung lớp đầu tạo ra những tín hiệu kiểu \"đang giảm tần suất\", \"nhạy với khuyến mãi\"; lớp sau kết hợp chúng thành \"khách săn sale đang nguội dần\". Thực tế các neuron ẩn không có nhãn rõ ràng như vậy, đây chỉ là hình ảnh để hiểu. Điểm mạnh là mạng tự tạo ra các feature trung gian, không cần con người thiết kế tay.\n\n## Đếm tham số\nMột lớp dense từ 10 đầu vào sang 16 neuron có 10 x 16 = 160 weight cộng 16 bias, tổng 176 **parameters** (tham số, các con số mô hình học được). Mạng 10 -> 16 -> 8 -> 1 có 176 + (16 x 8 + 8) + (8 x 1 + 1) = 176 + 136 + 9 = 321 tham số. Các LLM hiện đại có từ vài tỉ đến hàng trăm tỉ tham số hoặc hơn, nhưng mỗi tham số vẫn chỉ là một weight hay bias như thế này.\n\n## Forward pass\nForward pass (lan truyền xuôi, tính từ đầu vào đến đầu ra) là đi lần lượt qua từng lớp: nhân với ma trận weight, cộng bias, qua activation, rồi chuyển sang lớp kế. Với numpy, một lớp chỉ là một dòng:\n\n```\nimport numpy as np\nx = np.array([0.5, 1.0, -0.2])\nW = np.array([[0.1, 0.4], [-0.3, 0.2], [0.8, -0.5]])\nb = np.array([0.0, 0.1])\nh = np.maximum(0, x @ W + b)\nprint(h)  # ReLU output of 2 hidden neurons\n```\n\n## Rộng hay sâu?\n- Thêm neuron mỗi lớp (rộng hơn) hay thêm lớp (sâu hơn) đều tăng khả năng học, nhưng cũng tăng nguy cơ overfitting và chi phí tính toán.\n- Với dữ liệu bảng vài nghìn dòng, mạng nơ-ron thường không thắng được gradient boosting. Deep learning toả sáng khi dữ liệu lớn và dạng thô như ảnh, âm thanh, văn bản.\n\n## Còn thiếu một mảnh\nMạng có hàng trăm weight, ban đầu được khởi tạo ngẫu nhiên nên dự đoán lung tung. Làm sao biết phải chỉnh weight nào, theo hướng nào? Đó là việc của backpropagation ở bài sau. Trong lab neural-net, bạn sẽ thấy một mạng nhỏ dần học cách tách hai nhóm điểm 2D mà một đường thẳng không tách được.",
+  "terms": [
+   {
+    "en": "neural network",
+    "vi": "mạng nơ-ron"
+   },
+   {
+    "en": "input layer",
+    "vi": "lớp đầu vào"
+   },
+   {
+    "en": "hidden layer",
+    "vi": "lớp ẩn"
+   },
+   {
+    "en": "output layer",
+    "vi": "lớp đầu ra"
+   },
+   {
+    "en": "dense / fully connected",
+    "vi": "lớp kết nối đầy đủ"
+   },
+   {
+    "en": "parameters",
+    "vi": "tham số mô hình học được"
+   },
+   {
+    "en": "forward pass",
+    "vi": "lan truyền xuôi từ đầu vào đến đầu ra"
+   }
+  ],
+  "lab": "neural-net",
+  "quiz": [
+   {
+    "q": "Một lớp dense nối 4 đầu vào với 3 neuron có bao nhiêu tham số?",
+    "choices": [
+     "12",
+     "7",
+     "3",
+     "15"
+    ],
+    "answer": 3,
+    "why": "4 x 3 = 12 weight cộng 3 bias = 15 tham số."
+   },
+   {
+    "q": "Bài toán dự đoán khách có rời bỏ hay không. Lớp đầu ra nên là gì?",
+    "choices": [
+     "Mười neuron với ReLU",
+     "Một neuron với ReLU",
+     "Một neuron với sigmoid",
+     "Không cần lớp đầu ra"
+    ],
+    "answer": 2,
+    "why": "Một xác suất có hoặc không phù hợp với một neuron sigmoid."
+   },
+   {
+    "q": "Ý tưởng quan trọng của việc xếp nhiều lớp ẩn là gì?",
+    "choices": [
+     "Mỗi lớp lưu một bản sao dữ liệu",
+     "Mỗi lớp tự học feature trung gian ở mức trừu tượng cao dần",
+     "Nhiều lớp thì không cần dữ liệu",
+     "Lớp ẩn để giấu mô hình khỏi người dùng"
+    ],
+    "answer": 1,
+    "why": "Mạng tự xây dựng các đặc trưng từ đơn giản đến phức tạp."
+   },
+   {
+    "q": "Bạn có bảng 3.000 khách, 15 cột. Lựa chọn nào thường hợp lý để bắt đầu?",
+    "choices": [
+     "Thử gradient boosting hoặc logistic regression trước khi nghĩ đến mạng sâu",
+     "Bắt buộc dùng mạng 50 lớp",
+     "Dùng mạng nhận diện ảnh",
+     "Không thể làm ML với dữ liệu này"
+    ],
+    "answer": 0,
+    "why": "Với dữ liệu bảng nhỏ, mô hình cổ điển thường tốt ngang hoặc hơn và rẻ hơn."
+   }
+  ],
+  "takeaway": "Mạng nơ-ron là nhiều lớp neuron nối nhau; mỗi lớp biến đổi đầu ra của lớp trước thành feature trừu tượng hơn."
+ },
+ {
+  "id": "ml-17",
+  "track": "ml",
+  "unit": "Deep learning",
+  "order": 17,
+  "title": "Backpropagation in Plain Words",
+  "title_vi": "Truy trách nhiệm ngược từ lỗi về từng weight",
+  "level": 3,
+  "minutes": 12,
+  "body": "Mạng nơ-ron bắt đầu với weight ngẫu nhiên. Đưa một khách vào, nó đoán xác suất rời bỏ là 0,9 trong khi khách vẫn ở lại. Loss lớn. Câu hỏi: trong hàng nghìn weight, cái nào gây ra lỗi này, và nên chỉnh tăng hay giảm, bao nhiêu? Backpropagation (lan truyền ngược, cách tính xem mỗi weight góp bao nhiêu vào lỗi) trả lời câu hỏi đó một cách hiệu quả.\n\n## Ý tưởng 1: gradient là \"nếu nhích một chút thì sao\"\nGradient (độ dốc, cho biết loss thay đổi bao nhiêu khi nhích một weight một chút) của loss theo weight w viết là ∂L/∂w. Nếu ∂L/∂w = 2, tăng w thêm 0,01 thì loss tăng khoảng 0,02, vậy nên giảm w. Nếu ∂L/∂w = -3, nên tăng w. Nếu gần 0, w này gần như không ảnh hưởng ở thời điểm hiện tại.\n\nHình dung chỉnh vòi nước nóng lạnh khi tắm: nước quá nóng, bạn biết vặn vòi lạnh lên. Gradient chính là cảm giác \"vặn theo hướng nào thì dễ chịu hơn\", cho từng vòi trong hàng nghìn vòi.\n\n## Ý tưởng 2: chain rule, chia trách nhiệm theo chuỗi\nMột weight ở lớp đầu không ảnh hưởng trực tiếp đến loss. Nó ảnh hưởng neuron ở lớp 1, neuron đó ảnh hưởng lớp 2, lớp 2 ảnh hưởng đầu ra, đầu ra quyết định loss. **Chain rule** (quy tắc dây chuyền trong giải tích) nói rằng tác động tổng là tích các tác động từng khâu:\n\n∂L/∂w = (∂L/∂output) · (∂output/∂h) · (∂h/∂w)\n\nVí dụ đời thường: doanh số một cửa hàng giảm. Giám đốc vùng hỏi quản lý cửa hàng, quản lý hỏi trưởng ca, trưởng ca nhìn từng nhân viên. Trách nhiệm được chia ngược theo chuỗi báo cáo, mỗi tầng chỉ cần biết mình ảnh hưởng tầng trên bao nhiêu.\n\n## Ý tưởng 3: đi ngược để không tính lại\nCó thể tính gradient của từng weight riêng rẽ bằng cách nhích từng cái và chạy lại cả mạng, nhưng với hàng triệu weight thì quá chậm. Backpropagation đi một lượt từ lớp cuối về lớp đầu. Ở mỗi lớp, nó tính \"lỗi của lớp này\" một lần rồi tái sử dụng cho mọi weight bên dưới. Nhờ vậy chi phí một lượt ngược chỉ cỡ một lượt xuôi. Đây là lý do có thể train mạng hàng tỉ tham số.\n\n## Toàn bộ một bước học\n- **Forward pass**: đưa dữ liệu qua mạng, ra dự đoán.\n- Tính loss so với nhãn thật.\n- **Backward pass**: backpropagation tính gradient cho mọi weight.\n- **Cập nhật**: mỗi weight nhích ngược hướng gradient một bước nhỏ: w_mới = w - learning_rate · ∂L/∂w. Đây là gradient descent, chi tiết ở bài sau.\n\n## Một ví dụ cực nhỏ\nMô hình y = w · x, với x = 2, nhãn thật y = 10, w hiện tại = 3. Dự đoán 6, loss MSE = (6 - 10)² = 16. Gradient ∂L/∂w = 2 · (dự đoán - thật) · x = 2 · (-4) · 2 = -16. Gradient âm nên tăng w. Với learning rate 0,1: w mới = 3 - 0,1 · (-16) = 4,6. Dự đoán mới 9,2, gần 10 hơn hẳn.\n\n## Bạn có cần tự tính tay không?\nKhông. Các thư viện như PyTorch, JAX, TensorFlow có **autograd** (tự động tính đạo hàm): bạn chỉ viết forward pass, thư viện tự làm backward. Nhưng hiểu ý tưởng giúp bạn chẩn đoán lỗi thường gặp, ví dụ **vanishing gradient** (gradient tiêu biến, nhỏ dần qua từng lớp khiến các lớp đầu gần như không học) khi dùng sigmoid trong mạng sâu. Đó là một lý do ReLU và các kỹ thuật như residual connection trở nên phổ biến.",
+  "terms": [
+   {
+    "en": "backpropagation",
+    "vi": "lan truyền ngược"
+   },
+   {
+    "en": "gradient",
+    "vi": "độ dốc của loss theo weight"
+   },
+   {
+    "en": "chain rule",
+    "vi": "quy tắc dây chuyền"
+   },
+   {
+    "en": "backward pass",
+    "vi": "lượt tính ngược"
+   },
+   {
+    "en": "autograd",
+    "vi": "tự động tính đạo hàm"
+   },
+   {
+    "en": "vanishing gradient",
+    "vi": "gradient tiêu biến qua nhiều lớp"
+   }
+  ],
+  "lab": "neural-net",
+  "quiz": [
+   {
+    "q": "∂L/∂w của một weight đang là +5. Để giảm loss, nên làm gì?",
+    "choices": [
+     "Giảm w một chút",
+     "Tăng w một chút",
+     "Giữ nguyên w",
+     "Đặt w bằng 5"
+    ],
+    "answer": 0,
+    "why": "Gradient dương nghĩa là tăng w làm loss tăng, nên đi ngược lại."
+   },
+   {
+    "q": "Vì sao backpropagation hiệu quả hơn việc nhích từng weight rồi chạy lại mạng?",
+    "choices": [
+     "Vì nó bỏ qua phần lớn weight",
+     "Vì nó không cần tính loss",
+     "Vì nó chỉ cập nhật lớp cuối",
+     "Vì nó đi ngược một lượt và tái sử dụng kết quả trung gian cho mọi weight"
+    ],
+    "answer": 3,
+    "why": "Chain rule cho phép tính gradient của mọi weight với chi phí cỡ một lượt forward."
+   },
+   {
+    "q": "Mô hình y = w·x, x = 1, nhãn thật 4, w = 2, loss MSE. Gradient ∂L/∂w bằng bao nhiêu?",
+    "choices": [
+     "4",
+     "-2",
+     "-4",
+     "0"
+    ],
+    "answer": 2,
+    "why": "∂L/∂w = 2·(dự đoán - thật)·x = 2·(2 - 4)·1 = -4."
+   },
+   {
+    "q": "Vanishing gradient gây ra hậu quả gì?",
+    "choices": [
+     "Mạng học quá nhanh",
+     "Các lớp đầu của mạng sâu học rất chậm hoặc gần như không học",
+     "Loss luôn bằng 0",
+     "Dữ liệu bị mất"
+    ],
+    "answer": 1,
+    "why": "Gradient nhỏ dần khi nhân qua nhiều lớp nên weight ở các lớp đầu gần như không đổi."
+   }
+  ],
+  "takeaway": "Backpropagation dùng chain rule đi ngược từ loss để biết mỗi weight nên nhích theo hướng nào và bao nhiêu."
+ },
+ {
+  "id": "ml-18",
+  "track": "ml",
+  "unit": "Deep learning",
+  "order": 18,
+  "title": "The Training Loop",
+  "title_vi": "Epoch, batch và learning rate",
+  "level": 2,
+  "minutes": 12,
+  "body": "Bạn đã có đủ mảnh ghép: forward pass, loss, backpropagation. Train một mô hình là lặp lại các mảnh này hàng nghìn lần. Bài này giải thích ba khái niệm điều khiển vòng lặp đó: epoch, batch và learning rate.\n\n## Gradient descent: lăn xuống dốc\nGradient descent (đi xuống dốc theo gradient, cách cập nhật weight để loss giảm dần) giống một người bị bịt mắt trên đồi muốn xuống thung lũng. Không nhìn thấy đường, họ dò chân xem hướng nào dốc xuống rồi bước một bước. Lặp lại cho đến khi mặt đất bằng phẳng. Công thức:\n\nw_mới = w - η · ∂L/∂w\n\nη (eta) là **learning rate** (tốc độ học, độ dài mỗi bước).\n\n## Learning rate: bước dài hay bước ngắn\n- Quá nhỏ: bước li ti, xuống dốc mất cả ngày. Train chậm, tốn tiền GPU.\n- Quá lớn: bước quá dài, nhảy qua thung lũng sang sườn bên kia, có khi càng nhảy càng xa. Loss dao động hoặc tăng vọt thành vô cùng.\n- Vừa phải: loss giảm đều rồi chững lại.\nLearning rate thường là hyperparameter quan trọng nhất cần thử. Người ta hay giảm dần learning rate trong quá trình train (learning rate schedule): đầu bước dài cho nhanh, cuối bước ngắn để dừng đúng chỗ. Trong lab gradient-descent, bạn thả quả bóng xuống dốc và đổi learning rate để thấy cả ba trường hợp.\n\n## Batch: học theo từng nhóm\nVới 1 triệu khách, tính gradient trên toàn bộ dữ liệu cho mỗi bước thì quá chậm. Thay vào đó, ta lấy một **batch** (lô, nhóm nhỏ dữ liệu dùng cho một bước cập nhật), ví dụ 256 khách, tính gradient trung bình trên nhóm đó rồi cập nhật. Cách này gọi là mini-batch gradient descent, hay thường được gọi chung là SGD (stochastic gradient descent, gradient descent ngẫu nhiên).\n\nGradient từ 256 khách không hoàn toàn chính xác như từ 1 triệu khách, nó hơi \"nhiễu\", nhưng đủ tốt để đi đúng hướng, và nhanh hơn rất nhiều. Giống khảo sát 1.000 người để đoán ý kiến cả thành phố. Batch size lớn thì ổn định hơn nhưng tốn bộ nhớ GPU hơn.\n\n## Epoch: một vòng qua toàn bộ dữ liệu\n**Epoch** (một lượt mô hình đi qua toàn bộ training set) gồm nhiều batch. 1 triệu khách, batch 250 thì một epoch có 4.000 bước cập nhật. Train 10 epoch là 40.000 bước. Trước mỗi epoch, dữ liệu thường được xáo trộn để các batch khác nhau mỗi vòng.\n\n## Vòng lặp hoàn chỉnh\n```\nfor epoch in range(num_epochs):\n    shuffle(train_data)\n    for batch in split_into_batches(train_data, batch_size):\n        preds = model(batch.x)           # forward pass\n        loss = loss_fn(preds, batch.y)   # how wrong\n        grads = backward(loss)           # backpropagation\n        update(model, grads, lr)         # gradient descent step\n    check_validation_loss(model)\n```\n\n## Theo dõi trong lúc train\nVẽ hai đường loss theo epoch: train loss và validation loss.\n- Cả hai cùng giảm: đang học tốt.\n- Train giảm, validation bắt đầu tăng: overfitting, nên dừng (early stopping) và giữ phiên bản tốt nhất.\n- Loss không giảm: learning rate có thể quá nhỏ hoặc có lỗi trong dữ liệu.\n- Loss tăng vọt hoặc ra NaN (not a number, giá trị lỗi): learning rate quá lớn.\n\nCác optimizer hiện đại như Adam tự điều chỉnh độ dài bước cho từng weight, giúp train ổn định hơn SGD thuần, nhưng ý tưởng gốc vẫn là bước xuống dốc theo gradient.",
+  "terms": [
+   {
+    "en": "gradient descent",
+    "vi": "đi xuống dốc theo gradient"
+   },
+   {
+    "en": "learning rate",
+    "vi": "tốc độ học, độ dài bước"
+   },
+   {
+    "en": "batch",
+    "vi": "lô dữ liệu cho một bước"
+   },
+   {
+    "en": "epoch",
+    "vi": "một lượt qua toàn bộ dữ liệu train"
+   },
+   {
+    "en": "SGD",
+    "vi": "gradient descent ngẫu nhiên theo batch"
+   },
+   {
+    "en": "optimizer",
+    "vi": "thuật toán cập nhật weight, ví dụ Adam"
+   }
+  ],
+  "lab": "gradient-descent",
+  "quiz": [
+   {
+    "q": "Loss tăng vọt và ra NaN sau vài bước. Nghi phạm đầu tiên là gì?",
+    "choices": [
+     "Learning rate quá nhỏ",
+     "Learning rate quá lớn",
+     "Có quá nhiều epoch",
+     "Batch size bằng 1 là bắt buộc lỗi"
+    ],
+    "answer": 1,
+    "why": "Bước quá dài khiến weight nhảy qua lại và phình to."
+   },
+   {
+    "q": "Training set có 50.000 dòng, batch size 500. Một epoch có bao nhiêu bước cập nhật?",
+    "choices": [
+     "100",
+     "500",
+     "50.000",
+     "10"
+    ],
+    "answer": 0,
+    "why": "50.000 / 500 = 100 batch, mỗi batch là một bước."
+   },
+   {
+    "q": "Vì sao dùng mini-batch thay vì toàn bộ dữ liệu cho mỗi bước?",
+    "choices": [
+     "Vì gradient từ toàn bộ dữ liệu luôn sai",
+     "Vì mini-batch không cần loss",
+     "Vì mô hình chỉ đọc được 256 dòng",
+     "Nhanh hơn rất nhiều và gradient từ một nhóm nhỏ đã đủ để đi đúng hướng"
+    ],
+    "answer": 3,
+    "why": "Ước lượng gradient trên một mẫu giống khảo sát đại diện, rẻ mà đủ tốt."
+   },
+   {
+    "q": "Train loss tiếp tục giảm nhưng validation loss bắt đầu tăng từ epoch 12. Nên làm gì?",
+    "choices": [
+     "Tăng gấp đôi số epoch",
+     "Tăng learning rate",
+     "Dừng train và giữ mô hình ở khoảng epoch tốt nhất (early stopping)",
+     "Bỏ validation set"
+    ],
+    "answer": 2,
+    "why": "Đây là dấu hiệu overfitting bắt đầu."
+   }
+  ],
+  "code": {
+   "prompt": "Mô hình y = w·x + b, loss MSE trên một batch. Gradient:\n∂L/∂w = (2/n)·Σ (w·x_i + b - y_i)·x_i\n∂L/∂b = (2/n)·Σ (w·x_i + b - y_i)\nViết hàm gd_step(w, b, xs, ys, lr) thực hiện một bước gradient descent và trả về tuple (w_mới, b_mới), mỗi giá trị làm tròn 4 chữ số.\nVí dụ: gd_step(0.0, 0.0, [1, 2, 3], [2, 4, 6], 0.1) -> (1.8667, 0.8)",
+   "starter": "def gd_step(w, b, xs, ys, lr):\n    # TODO: compute gradients of MSE wrt w and b, then step\n    pass\n",
+   "solution": "def gd_step(w, b, xs, ys, lr):\n    n = len(xs)\n    errs = [w * x + b - y for x, y in zip(xs, ys)]\n    dw = 2 / n * sum(e * x for e, x in zip(errs, xs))\n    db = 2 / n * sum(errs)\n    return (round(w - lr * dw, 4), round(b - lr * db, 4))\n",
+   "tests": "assert gd_step(0.0, 0.0, [1, 2, 3], [2, 4, 6], 0.1) == (1.8667, 0.8), 'ví dụ trong đề phải ra (1.8667, 0.8)'\nassert gd_step(2.0, 0.0, [1, 2, 3], [2, 4, 6], 0.1) == (2.0, 0.0), 'đã khớp hoàn hảo thì gradient bằng 0, không đổi'\nassert gd_step(3.0, 0.0, [2], [10], 0.1) == (4.6, 0.8), 'ví dụ trong bài backprop: w từ 3 lên 4.6'\nw, b = 0.0, 0.0\nfor _ in range(200):\n    w, b = gd_step(w, b, [1, 2, 3, 4], [3, 5, 7, 9], 0.05)\nassert abs(w - 2) < 0.05 and abs(b - 1) < 0.1, 'lặp nhiều bước phải hội tụ về w gần 2, b gần 1'\nassert gd_step(0.0, 0.0, [1, 2, 3], [2, 4, 6], 0.0) == (0.0, 0.0), 'learning rate 0 thì không đổi'\n",
+   "hint": "Tính sai số e_i = w·x_i + b - y_i cho từng điểm trước, rồi dùng chúng cho cả hai gradient. Bước cập nhật là trừ lr nhân gradient."
+  },
+  "takeaway": "Train là lặp lại: lấy batch, forward, tính loss, backprop, bước xuống dốc với learning rate vừa phải, qua nhiều epoch."
+ },
+ {
+  "id": "ml-19",
+  "track": "ml",
+  "unit": "Deep learning",
+  "order": 19,
+  "title": "CNNs for Images",
+  "title_vi": "Mạng tích chập: nhìn ảnh qua từng ô cửa nhỏ",
+  "level": 3,
+  "minutes": 12,
+  "body": "Một ảnh 1000 x 1000 điểm ảnh màu có 3 triệu con số. Đưa thẳng vào mạng dense, chỉ một lớp 1.000 neuron đã cần 3 tỉ weight. Vừa quá tốn, vừa vô lý: một con mèo ở góc trái hay góc phải vẫn là con mèo, nhưng mạng dense phải học lại từ đầu cho từng vị trí. CNN (convolutional neural network, mạng nơ-ron tích chập) giải quyết cả hai vấn đề.\n\n## Ý tưởng: một ô cửa nhỏ trượt khắp ảnh\nThay vì nhìn cả bức ảnh cùng lúc, CNN dùng một **filter** hay **kernel** (bộ lọc, một ô vuông nhỏ chứa weight, thường 3 x 3) trượt qua từng vùng của ảnh. Ở mỗi vị trí, nó nhân các điểm ảnh với weight tương ứng rồi cộng lại, cho ra một con số. Trượt hết ảnh, ta được một **feature map** (bản đồ đặc trưng, cho biết chỗ nào trên ảnh có mẫu hình mà filter tìm kiếm).\n\nHình dung bạn cầm một chiếc kính lúp có in hình một nét gạch dọc, quét khắp tờ báo. Chỗ nào trên báo có nét dọc thì kính \"sáng lên\". Một filter khác tìm nét ngang, filter khác tìm góc cong.\n\nPhép trượt và nhân cộng này là **convolution** (tích chập). Ví dụ 1D cho dễ hình dung:\n\n```\nsignal = [0, 0, 5, 5, 5, 0, 0]\nkernel = [-1, 1]   # detects a jump\nout = [sum(signal[i + j] * kernel[j] for j in range(2)) for i in range(len(signal) - 1)]\nprint(out)  # [0, 5, 0, 0, -5, 0]\n```\nĐầu ra lớn đúng tại chỗ tín hiệu nhảy lên (+5) và nhảy xuống (-5): filter đã \"phát hiện cạnh\".\n\n## Hai lợi ích lớn\n- **Weight sharing** (chia sẻ trọng số): cùng một filter 3 x 3 chỉ có 9 weight nhưng dùng cho mọi vị trí trên ảnh. Số tham số giảm hàng triệu lần.\n- **Translation invariance** (không phụ thuộc vị trí): filter phát hiện nét dọc ở bất kỳ đâu, nên con mèo ở góc nào cũng được nhận ra.\n\n## Xếp lớp: từ nét đến vật thể\nCNN gồm nhiều lớp convolution xếp chồng, xen giữa là **pooling** (gộp, thu nhỏ feature map bằng cách giữ giá trị lớn nhất trong mỗi vùng nhỏ). Pooling giúp ảnh nhỏ dần, mỗi neuron ở lớp sau \"nhìn\" được vùng rộng hơn. Lớp đầu tìm cạnh, lớp giữa tìm hoa văn và bộ phận, lớp cuối nhận ra vật thể. Cuối cùng là vài lớp dense và softmax để phân loại.\n\n## Ứng dụng trong business\n- Thương mại điện tử: tìm sản phẩm bằng ảnh chụp, tự gắn danh mục cho ảnh người bán đăng lên.\n- Ngân hàng, ví điện tử: eKYC (xác minh danh tính điện tử), đọc ảnh căn cước, so khớp khuôn mặt với ảnh chân dung.\n- Sản xuất: phát hiện lỗi sản phẩm trên dây chuyền.\n- Y tế: hỗ trợ đọc ảnh X-quang, luôn cần bác sĩ kiểm tra.\n- Robotics và xe tự lái: nhận diện vật cản, làn đường.\n\n## Vị trí của CNN tính đến 2026\nTừ khoảng 2020, Vision Transformer (áp dụng kiến trúc Transformer cho ảnh bằng cách cắt ảnh thành các mảnh nhỏ) cạnh tranh và nhiều khi vượt CNN khi có dữ liệu cực lớn. Các mô hình đa phương thức hiện nay thường dùng phần mã hoá ảnh dựa trên Transformer. Tuy vậy CNN vẫn rất phổ biến trên thiết bị nhỏ như điện thoại, camera, robot, vì nhẹ và nhanh. Quan trọng hơn, ý tưởng \"học feature cục bộ rồi ghép dần thành khái niệm lớn\" vẫn là nền tảng để hiểu thị giác máy tính.",
+  "terms": [
+   {
+    "en": "CNN",
+    "vi": "mạng nơ-ron tích chập"
+   },
+   {
+    "en": "convolution",
+    "vi": "tích chập, trượt bộ lọc nhân cộng"
+   },
+   {
+    "en": "filter / kernel",
+    "vi": "bộ lọc nhỏ chứa weight"
+   },
+   {
+    "en": "feature map",
+    "vi": "bản đồ đặc trưng"
+   },
+   {
+    "en": "pooling",
+    "vi": "gộp, thu nhỏ feature map"
+   },
+   {
+    "en": "weight sharing",
+    "vi": "dùng chung weight mọi vị trí"
+   },
+   {
+    "en": "Vision Transformer",
+    "vi": "Transformer áp dụng cho ảnh"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "Vì sao không dùng mạng dense cho ảnh lớn?",
+    "choices": [
+     "Vì dense không nhận số",
+     "Vì ảnh không có feature",
+     "Số weight khổng lồ và phải học lại mẫu hình cho từng vị trí trên ảnh",
+     "Vì dense chỉ dùng cho văn bản"
+    ],
+    "answer": 2,
+    "why": "CNN dùng chung filter trên mọi vị trí nên ít tham số và không phụ thuộc vị trí."
+   },
+   {
+    "q": "Một filter 3 x 3 trượt qua ảnh 100 x 100 dùng bao nhiêu weight riêng (không tính bias)?",
+    "choices": [
+     "10.000",
+     "9",
+     "90.000",
+     "300"
+    ],
+    "answer": 1,
+    "why": "Nhờ weight sharing, cùng 9 weight được dùng ở mọi vị trí."
+   },
+   {
+    "q": "Pooling làm gì trong CNN?",
+    "choices": [
+     "Thu nhỏ feature map, giữ thông tin nổi bật và mở rộng vùng nhìn của lớp sau",
+     "Thêm màu cho ảnh",
+     "Tăng số weight lên gấp đôi",
+     "Thay thế hoàn toàn convolution"
+    ],
+    "answer": 0,
+    "why": "Max pooling giữ giá trị lớn nhất mỗi vùng nhỏ, làm ảnh gọn hơn."
+   },
+   {
+    "q": "Ứng dụng nào là đất diễn tự nhiên của CNN?",
+    "choices": [
+     "Dự đoán doanh thu từ bảng số",
+     "Chia khách bằng k-means",
+     "Tính lãi suất khoản vay",
+     "Đọc ảnh căn cước trong quy trình eKYC"
+    ],
+    "answer": 3,
+    "why": "CNN chuyên xử lý ảnh; dữ liệu bảng hợp với mô hình cổ điển hơn."
+   }
+  ],
+  "code": {
+   "prompt": "Viết hàm conv1d(signal, kernel) thực hiện tích chập 1D không đệm (valid): với mỗi vị trí i từ 0 đến len(signal) - len(kernel), đầu ra là Σ signal[i + j]·kernel[j]. Trả về list. Nếu kernel dài hơn signal thì trả về list rỗng.\nVí dụ: conv1d([0, 0, 5, 5, 5, 0, 0], [-1, 1]) -> [0, 5, 0, 0, -5, 0]\nconv1d([1, 2, 3, 4], [1, 1, 1]) -> [6, 9]",
+   "starter": "def conv1d(signal, kernel):\n    # TODO: slide kernel over signal, multiply and sum\n    pass\n",
+   "solution": "def conv1d(signal, kernel):\n    k = len(kernel)\n    n = len(signal)\n    if k > n:\n        return []\n    return [sum(signal[i + j] * kernel[j] for j in range(k)) for i in range(n - k + 1)]\n",
+   "tests": "assert conv1d([0, 0, 5, 5, 5, 0, 0], [-1, 1]) == [0, 5, 0, 0, -5, 0], 'kernel [-1, 1] phải phát hiện chỗ nhảy lên và xuống'\nassert conv1d([1, 2, 3, 4], [1, 1, 1]) == [6, 9], 'kernel cộng 3 phần tử liên tiếp'\nassert conv1d([1, 2], [1, 1, 1]) == [], 'kernel dài hơn signal thì trả về list rỗng'\nassert conv1d([3, 4, 5], [2]) == [6, 8, 10], 'kernel một phần tử là phép nhân từng phần tử'\nassert len(conv1d(list(range(10)), [1, 0, -1])) == 8, 'đầu ra dài len(signal) - len(kernel) + 1'\n",
+   "hint": "Vòng ngoài chạy i qua mọi vị trí bắt đầu hợp lệ, vòng trong cộng signal[i + j] * kernel[j]."
+  },
+  "takeaway": "CNN trượt các bộ lọc nhỏ khắp ảnh để tìm mẫu hình cục bộ, dùng chung weight nên gọn và nhận ra vật ở mọi vị trí."
+ },
+ {
+  "id": "ml-20",
+  "track": "ml",
+  "unit": "Deep learning",
+  "order": 20,
+  "title": "From RNNs to Transformers",
+  "title_vi": "Lịch sử ngắn của việc dạy máy đọc chuỗi",
+  "level": 3,
+  "minutes": 13,
+  "body": "Văn bản, giọng nói, lịch sử giao dịch đều là **sequence** (chuỗi, dữ liệu mà thứ tự có ý nghĩa). \"Chó cắn người\" khác \"người cắn chó\". Bài này kể ngắn gọn hành trình từ RNN đến Transformer, kiến trúc đứng sau hầu hết các LLM tính đến 2026.\n\n## RNN: đọc từng chữ và giữ một trí nhớ nhỏ\nRNN (recurrent neural network, mạng hồi quy, đọc chuỗi từng bước và mang theo một trạng thái nhớ) xử lý từng từ một. Ở mỗi bước, nó nhận từ hiện tại cộng với **hidden state** (trạng thái ẩn, bản tóm tắt những gì đã đọc), rồi cập nhật trạng thái đó. Giống bạn nghe kể chuyện và giữ trong đầu một bản tóm tắt chạy liên tục.\n\nVấn đề: bản tóm tắt có kích thước cố định và bị ghi đè sau mỗi bước. Câu dài 50 từ thì thông tin ở đầu câu mờ dần. Về mặt kỹ thuật, khi backprop qua nhiều bước thời gian, gradient bị vanishing như bạn đã học, nên RNN khó học các phụ thuộc xa.\n\n## LSTM: thêm \"cổng\" để chọn nhớ và quên\nLSTM (long short-term memory, RNN có các cổng điều khiển trí nhớ) ra đời từ cuối thập niên 1990 và phổ biến mạnh vào những năm 2010. Nó có các **gate** (cổng) học cách quyết định: thông tin nào giữ lại, cái gì quên đi, cái gì đưa ra. Giống một người ghi chép giỏi biết gạch chân ý chính. LSTM từng là trụ cột của dịch máy, nhận dạng giọng nói và gợi ý từ trên bàn phím điện thoại.\n\nNhưng RNN và LSTM vẫn có một giới hạn gốc: phải đọc tuần tự. Từ thứ 100 phải chờ xử lý xong 99 từ trước. Không tận dụng được sức mạnh song song của GPU, nên train chậm và khó mở rộng.\n\n## Attention: nhìn thẳng vào chỗ cần nhìn\nKhoảng giữa thập niên 2010, các nhà nghiên cứu thêm cơ chế **attention** (chú ý, cho mô hình nhìn lại mọi vị trí trong chuỗi và tự quyết định chỗ nào quan trọng) vào mô hình dịch. Khi dịch một từ, mô hình được nhìn lại toàn bộ câu gốc và tập trung vào những từ liên quan, thay vì chỉ dựa vào bản tóm tắt cuối.\n\nVí dụ: trong câu \"Khách hàng gọi lên tổng đài vì thẻ của **cô ấy** bị khoá\", để hiểu \"cô ấy\" là ai, mô hình chú ý mạnh vào \"khách hàng\".\n\n## Transformer: chỉ cần attention\nNăm 2017, bài báo \"Attention Is All You Need\" của Google giới thiệu **Transformer** (kiến trúc bỏ hẳn phần hồi quy, chỉ dùng attention và lớp dense). Mỗi từ được biến thành vector, và trong mỗi lớp, mọi từ cùng lúc \"nhìn\" mọi từ khác qua **self-attention** (tự chú ý giữa các phần tử trong cùng một chuỗi). Vì không còn phải đọc tuần tự, toàn bộ chuỗi được xử lý song song trên GPU.\n\nHệ quả rất lớn:\n- Train nhanh hơn nhiều trên phần cứng hiện đại.\n- Mở rộng được lên dữ liệu khổng lồ và số tham số khổng lồ.\n- Người ta phát hiện mô hình càng lớn, dữ liệu càng nhiều thì càng giỏi theo cách khá dễ dự đoán, gọi là **scaling laws** (quy luật mở rộng).\n\nTừ đó ra đời các họ mô hình như BERT, GPT, rồi các LLM như Claude, Gemini, Llama. Transformer cũng lan sang ảnh (Vision Transformer), âm thanh, và cả robotics, nơi robot nhận lệnh bằng lời và hình ảnh rồi sinh ra hành động.\n\n## Không có gì là mãi mãi\nSelf-attention có chi phí tăng theo bình phương độ dài chuỗi, nên ngữ cảnh rất dài vẫn tốn kém. Tính đến 2026, các hướng như state space model và kiến trúc lai đang được nghiên cứu và dùng thử để xử lý chuỗi dài rẻ hơn; lĩnh vực này thay đổi nhanh. Nhưng câu chuyện cốt lõi giữ nguyên: từ đọc tuần tự với trí nhớ hạn chế, sang nhìn toàn bộ chuỗi cùng lúc và tự chọn chỗ chú ý.\n\nTrack LLM sẽ đi sâu vào token, embedding và attention. Lab attention cho bạn xem từ nào chú ý từ nào trong một câu.",
+  "terms": [
+   {
+    "en": "sequence",
+    "vi": "chuỗi dữ liệu có thứ tự"
+   },
+   {
+    "en": "RNN",
+    "vi": "mạng hồi quy đọc từng bước"
+   },
+   {
+    "en": "hidden state",
+    "vi": "trạng thái ẩn, bản tóm tắt đang nhớ"
+   },
+   {
+    "en": "LSTM",
+    "vi": "RNN có cổng nhớ và quên"
+   },
+   {
+    "en": "attention",
+    "vi": "cơ chế chú ý"
+   },
+   {
+    "en": "self-attention",
+    "vi": "tự chú ý trong cùng chuỗi"
+   },
+   {
+    "en": "Transformer",
+    "vi": "kiến trúc dựa trên attention"
+   },
+   {
+    "en": "scaling laws",
+    "vi": "quy luật mở rộng theo quy mô"
+   }
+  ],
+  "lab": "attention",
+  "quiz": [
+   {
+    "q": "Giới hạn lớn nhất khiến RNN và LSTM khó mở rộng lên dữ liệu khổng lồ là gì?",
+    "choices": [
+     "Không dùng được weight",
+     "Không nhận văn bản",
+     "Luôn bị overfitting",
+     "Phải xử lý tuần tự từng bước nên khó tận dụng tính toán song song"
+    ],
+    "answer": 3,
+    "why": "Từ sau phải chờ từ trước, nên GPU không chạy song song được toàn bộ chuỗi."
+   },
+   {
+    "q": "Cơ chế attention giúp mô hình làm gì?",
+    "choices": [
+     "Quên toàn bộ ngữ cảnh",
+     "Đọc chuỗi theo thứ tự ngược",
+     "Nhìn lại mọi vị trí trong chuỗi và tập trung vào phần liên quan",
+     "Giảm số từ trong câu"
+    ],
+    "answer": 2,
+    "why": "Attention cho mỗi từ trọng số chú ý tới các từ khác để lấy thông tin cần thiết."
+   },
+   {
+    "q": "Điểm then chốt của Transformer so với RNN là gì?",
+    "choices": [
+     "Thêm nhiều cổng nhớ hơn LSTM",
+     "Bỏ phần hồi quy, dùng self-attention để xử lý cả chuỗi song song",
+     "Chỉ dùng cho ảnh",
+     "Không cần train"
+    ],
+    "answer": 1,
+    "why": "Song song hoá giúp train nhanh và mở rộng quy mô, mở đường cho LLM."
+   },
+   {
+    "q": "Vì sao người ta vẫn tìm kiến trúc mới sau Transformer?",
+    "choices": [
+     "Chi phí self-attention tăng nhanh theo độ dài chuỗi, ngữ cảnh rất dài vẫn tốn kém",
+     "Transformer không chạy được trên GPU",
+     "Transformer không học được ngôn ngữ",
+     "Transformer bị cấm"
+    ],
+    "answer": 0,
+    "why": "Chi phí bình phương theo độ dài thúc đẩy các hướng như state space model."
+   }
+  ],
+  "takeaway": "Từ RNN đọc tuần tự với trí nhớ nhỏ, ngành chuyển sang Transformer dùng self-attention nhìn cả chuỗi cùng lúc, nền tảng của LLM ngày nay."
+ }
+]
