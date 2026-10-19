@@ -1,0 +1,542 @@
+[
+ {
+  "id": "bug-001",
+  "level": 1,
+  "goal": "Tính tổng các số từ 1 đến n. Ví dụ: sum_to(4) trả về 10.",
+  "code": "def sum_to(n):\n    total = 0\n    for i in range(1, n):\n        total += i\n    return total",
+  "bug_line": 3,
+  "fix": "    for i in range(1, n + 1):",
+  "why": "range(1, n) dừng trước n nên bỏ sót số n. Cần range(1, n + 1)."
+ },
+ {
+  "id": "bug-002",
+  "level": 1,
+  "goal": "Kiểm tra số chẵn. Ví dụ: is_even(4) là True, is_even(3) là False.",
+  "code": "def is_even(n):\n    if n % 2 = 0:\n        return True\n    return False",
+  "bug_line": 2,
+  "fix": "    if n % 2 == 0:",
+  "why": "Dấu = dùng để gán, còn so sánh phải dùng ==. Viết = trong if sẽ bị SyntaxError."
+ },
+ {
+  "id": "bug-003",
+  "level": 1,
+  "goal": "Nhận tuổi dạng chuỗi, trả về tuổi năm sau. Ví dụ: next_year(\"20\") trả về 21.",
+  "code": "def next_year(age_text):\n    age = age_text\n    result = age + 1\n    return result",
+  "bug_line": 2,
+  "fix": "    age = int(age_text)",
+  "why": "age_text là chuỗi, cộng chuỗi với số sẽ gây TypeError. Cần đổi sang số bằng int()."
+ },
+ {
+  "id": "bug-004",
+  "level": 1,
+  "goal": "Tính trung bình hai số. Ví dụ: average(4, 6) trả về 5.",
+  "code": "def average(a, b):\n    total = a + b\n    avg = total * 2\n    return avg",
+  "bug_line": 3,
+  "fix": "    avg = total / 2",
+  "why": "Trung bình là tổng chia 2, không phải nhân 2."
+ },
+ {
+  "id": "bug-005",
+  "level": 1,
+  "goal": "Tính diện tích hình chữ nhật, cạnh âm thì trả về 0. Ví dụ: rect_area(3, 4) trả về 12.",
+  "code": "def rect_area(w, h):\n    if w < 0 or h < 0:\n        return 0\n    area = w * h\n    print(area)",
+  "bug_line": 5,
+  "fix": "    return area",
+  "why": "print chỉ hiện kết quả ra màn hình, hàm vẫn trả về None. Cần return để trả giá trị."
+ },
+ {
+  "id": "bug-006",
+  "level": 1,
+  "goal": "Từ 18 tuổi trở lên là người lớn. Ví dụ: is_adult(18) là True, is_adult(17) là False.",
+  "code": "def is_adult(age):\n    if age > 18:\n        return True\n    else:\n        return False",
+  "bug_line": 2,
+  "fix": "    if age >= 18:",
+  "why": "age > 18 loại mất người đúng 18 tuổi. \"Từ 18 trở lên\" phải dùng >=."
+ },
+ {
+  "id": "bug-007",
+  "level": 1,
+  "goal": "Tính tích các số trong list. Ví dụ: product([2, 3, 4]) trả về 24.",
+  "code": "def product(nums):\n    result = 0\n    for n in nums:\n        result *= n\n    return result",
+  "bug_line": 2,
+  "fix": "    result = 1",
+  "why": "Bắt đầu từ 0 thì nhân gì cũng ra 0. Phép nhân phải bắt đầu từ 1."
+ },
+ {
+  "id": "bug-008",
+  "level": 1,
+  "goal": "Ghép họ và tên, bỏ khoảng trắng thừa. Ví dụ: full_name(\" An \", \"Le\") trả về \"An Le\".",
+  "code": "def full_name(first, last):\n    first = first.strip()\n    last = last.strip()\n    full = first + \" \" + last\n    return name",
+  "bug_line": 5,
+  "fix": "    return full",
+  "why": "Biến name chưa từng được tạo, nên báo NameError. Kết quả nằm trong biến full."
+ },
+ {
+  "id": "bug-009",
+  "level": 1,
+  "goal": "Đổi độ C sang độ F. Ví dụ: to_f(100) trả về 212.",
+  "code": "def to_f(c):\n    f = c * 9 / 5\n    f = f - 32\n    return f",
+  "bug_line": 3,
+  "fix": "    f = f + 32",
+  "why": "Công thức đúng là F = C * 9 / 5 + 32, tức là cộng 32 chứ không trừ."
+ },
+ {
+  "id": "bug-010",
+  "level": 1,
+  "goal": "Tạo lời chào. Ví dụ: greet(\"Mai\") trả về \"Hello, Mai!\".",
+  "code": "def greet(name):\n    message = \"Hello, \" + \"name\"\n    message = message + \"!\"\n    return message",
+  "bug_line": 2,
+  "fix": "    message = \"Hello, \" + name",
+  "why": "\"name\" trong ngoặc kép là chữ name, không phải biến. Bỏ ngoặc kép để dùng giá trị của biến."
+ },
+ {
+  "id": "bug-011",
+  "level": 1,
+  "goal": "Cho biết dấu của số. Ví dụ: sign(-3) là \"negative\", sign(2) là \"positive\", sign(0) là \"zero\".",
+  "code": "def sign(n):\n    if n > 0:\n        return \"positive\"\n    elif n < 0:\n        return \"positive\"\n    return \"zero\"",
+  "bug_line": 5,
+  "fix": "        return \"negative\"",
+  "why": "Nhánh n < 0 trả nhầm chữ \"positive\", phải là \"negative\"."
+ },
+ {
+  "id": "bug-012",
+  "level": 1,
+  "goal": "Lấy chữ số hàng đơn vị. Ví dụ: last_digit(123) trả về 3.",
+  "code": "def last_digit(n):\n    n = abs(n)\n    digit = n // 10\n    return digit",
+  "bug_line": 3,
+  "fix": "    digit = n % 10",
+  "why": "n // 10 bỏ chữ số cuối (ra 12). Muốn lấy chữ số cuối phải dùng phép chia lấy dư % 10."
+ },
+ {
+  "id": "bug-013",
+  "level": 1,
+  "goal": "Đếm ngược từ n về 1. Ví dụ: countdown(3) trả về [3, 2, 1].",
+  "code": "def countdown(n):\n    result = []\n    for i in range(n, 0):\n        result.append(i)\n    return result",
+  "bug_line": 3,
+  "fix": "    for i in range(n, 0, -1):",
+  "why": "range mặc định đếm tăng, nên range(3, 0) rỗng. Cần bước -1 để đếm lùi."
+ },
+ {
+  "id": "bug-014",
+  "level": 1,
+  "goal": "Tạo đường kẻ gồm n dấu gạch. Ví dụ: line(3) trả về \"---\".",
+  "code": "def line(n):\n    if n <= 0:\n        return \"\"\n    return \"-\" + n",
+  "bug_line": 4,
+  "fix": "    return \"-\" * n",
+  "why": "Cộng chuỗi với số gây TypeError. Muốn lặp chuỗi n lần thì dùng dấu *."
+ },
+ {
+  "id": "bug-015",
+  "level": 1,
+  "goal": "Kiểm tra số lẻ. Ví dụ: is_odd(3) là True, is_odd(4) là False.",
+  "code": "def is_odd(n):\n    if n % 2 == 0:\n        return True\n    return False",
+  "bug_line": 2,
+  "fix": "    if n % 2 != 0:",
+  "why": "n % 2 == 0 là điều kiện của số chẵn. Số lẻ có dư khác 0."
+ },
+ {
+  "id": "bug-016",
+  "level": 1,
+  "goal": "Tính giá sau khi giảm theo phần trăm. Ví dụ: final_price(200, 10) trả về 180.",
+  "code": "def final_price(price, percent):\n    discount = price * percent\n    final = price - discount\n    return final",
+  "bug_line": 2,
+  "fix": "    discount = price * percent / 100",
+  "why": "percent là số phần trăm (10 nghĩa là 10%), phải chia 100. Không chia thì giảm tới 2000."
+ },
+ {
+  "id": "bug-017",
+  "level": 1,
+  "goal": "Kiểm tra x có nằm trong khoảng 1 đến 10 không. Ví dụ: in_range(5) là True, in_range(20) là False.",
+  "code": "def in_range(x):\n    if x >= 1 or x <= 10:\n        return True\n    return False",
+  "bug_line": 2,
+  "fix": "    if x >= 1 and x <= 10:",
+  "why": "Với or, chỉ cần một điều kiện đúng là True, nên số nào cũng lọt. Phải dùng and để cả hai cùng đúng."
+ },
+ {
+  "id": "bug-018",
+  "level": 1,
+  "goal": "Mật khẩu từ 8 ký tự trở lên là \"ok\", ngắn hơn là \"too short\". Ví dụ: check_password(\"abc\") là \"too short\".",
+  "code": "def check_password(pw):\n    if len(pw) < 8:\n        return \"ok\"\n    return \"too short\"",
+  "bug_line": 2,
+  "fix": "    if len(pw) >= 8:",
+  "why": "Điều kiện bị ngược: mật khẩu ngắn lại được \"ok\". Phải kiểm tra len(pw) >= 8."
+ },
+ {
+  "id": "bug-019",
+  "level": 1,
+  "goal": "Đổi số phút thành (giờ, phút). Ví dụ: minutes_to_hours(135) trả về (2, 15).",
+  "code": "def minutes_to_hours(m):\n    hours = m // 60\n    rest = m % 60\n    return hours, hours",
+  "bug_line": 4,
+  "fix": "    return hours, rest",
+  "why": "Giá trị thứ hai phải là số phút còn lại (rest), không phải lặp lại hours."
+ },
+ {
+  "id": "bug-020",
+  "level": 1,
+  "goal": "Cộng hai số được nhập dạng chuỗi. Ví dụ: add_text_numbers(\"2\", \"3\") trả về 5.",
+  "code": "def add_text_numbers(a, b):\n    x = int(a)\n    y = b\n    return x + y",
+  "bug_line": 3,
+  "fix": "    y = int(b)",
+  "why": "b vẫn là chuỗi nên cộng với số x bị TypeError. Cần đổi b sang số như a."
+ },
+ {
+  "id": "bug-021",
+  "level": 1,
+  "goal": "Tính bình phương. Ví dụ: square(3) trả về 9, square(-4) trả về 16.",
+  "code": "def square(n):\n    if n < 0:\n        n = -n\n    return n ^ 2",
+  "bug_line": 4,
+  "fix": "    return n ** 2",
+  "why": "Trong Python, ^ là phép XOR trên bit, không phải lũy thừa. Lũy thừa dùng **."
+ },
+ {
+  "id": "bug-022",
+  "level": 1,
+  "goal": "Trả về số lớn hơn trong hai số. Ví dụ: max_of_two(5, 3) trả về 5.",
+  "code": "def max_of_two(a, b):\n    if a > b:\n        return b\n    return b",
+  "bug_line": 3,
+  "fix": "        return a",
+  "why": "Khi a > b thì a mới là số lớn hơn, nhưng code lại trả về b."
+ },
+ {
+  "id": "bug-023",
+  "level": 1,
+  "goal": "Viết hoa chuỗi và thêm dấu chấm than. Ví dụ: shout(\" hi \") trả về \"HI!\".",
+  "code": "def shout(text):\n    text = text.strip()\n    loud = text.upper\n    return loud + \"!\"",
+  "bug_line": 3,
+  "fix": "    loud = text.upper()",
+  "why": "Thiếu dấu () nên upper chưa được gọi, loud chỉ là bản thân hàm. Cộng hàm với chuỗi gây TypeError."
+ },
+ {
+  "id": "bug-024",
+  "level": 1,
+  "goal": "Lấy chữ cái đầu của từ, từ rỗng thì trả về \"\". Ví dụ: first_letter(\"cat\") trả về \"c\".",
+  "code": "def first_letter(word):\n    if len(word) == 0:\n        return \"\"\n    return word[1]",
+  "bug_line": 4,
+  "fix": "    return word[0]",
+  "why": "Vị trí trong chuỗi đếm từ 0, word[1] là chữ thứ hai."
+ },
+ {
+  "id": "bug-025",
+  "level": 1,
+  "goal": "Tính tiền hàng, mua trên 10 món được giảm 10%. Ví dụ: total_cost(10, 2) là 20, total_cost(10, 20) là 180.",
+  "code": "def total_cost(price, qty):\n    cost = price * qty\n    if qty > 10:\n        cost = cost * 0.9\n        return cost",
+  "bug_line": 5,
+  "fix": "    return cost",
+  "why": "return bị thụt vào trong if, nên khi mua 10 món trở xuống hàm trả về None. Đưa return ra ngoài if."
+ },
+ {
+  "id": "bug-026",
+  "level": 2,
+  "goal": "Tìm số lớn nhất trong list. Ví dụ: find_max([-5, -2, -9]) trả về -2.",
+  "code": "def find_max(nums):\n    biggest = 0\n    for n in nums:\n        if n > biggest:\n            biggest = n\n    return biggest",
+  "bug_line": 2,
+  "fix": "    biggest = nums[0]",
+  "why": "Bắt đầu từ 0 thì list toàn số âm sẽ trả về 0. Nên bắt đầu bằng phần tử đầu tiên."
+ },
+ {
+  "id": "bug-027",
+  "level": 2,
+  "goal": "Tính tổng list. Ví dụ: sum_list([1, 2, 3]) trả về 6.",
+  "code": "def sum_list(nums):\n    total = 0\n    for n in nums:\n        total += n\n        return total",
+  "bug_line": 5,
+  "fix": "    return total",
+  "why": "return nằm trong vòng lặp nên hàm thoát ngay sau phần tử đầu tiên. Đưa return ra ngoài vòng for."
+ },
+ {
+  "id": "bug-028",
+  "level": 2,
+  "goal": "Đếm số chẵn trong list. Ví dụ: count_even([2, 4, 5, 6]) trả về 3.",
+  "code": "def count_even(nums):\n    count = 0\n    for n in nums:\n        if n % 2 == 0:\n            count = 1\n    return count",
+  "bug_line": 5,
+  "fix": "            count += 1",
+  "why": "count = 1 gán lại thành 1 mỗi lần, không cộng dồn. Cần count += 1."
+ },
+ {
+  "id": "bug-029",
+  "level": 2,
+  "goal": "Bỏ các số âm khỏi list. Ví dụ: remove_negatives([-1, -2, 3]) trả về [3].",
+  "code": "def remove_negatives(nums):\n    for n in nums:\n        if n < 0:\n            nums.remove(n)\n    return nums",
+  "bug_line": 2,
+  "fix": "    for n in nums[:]:",
+  "why": "Xóa phần tử khi đang duyệt chính list đó làm vòng lặp nhảy cóc, bỏ sót số -2. Duyệt trên bản sao nums[:]."
+ },
+ {
+  "id": "bug-030",
+  "level": 2,
+  "goal": "Lấy 3 phần tử đầu tiên. Ví dụ: first_three([5, 6, 7, 8]) trả về [5, 6, 7].",
+  "code": "def first_three(items):\n    if len(items) < 3:\n        return items\n    return items[1:3]",
+  "bug_line": 4,
+  "fix": "    return items[:3]",
+  "why": "[1:3] bắt đầu từ vị trí 1, bỏ mất phần tử đầu. Lấy 3 phần tử đầu là [:3]."
+ },
+ {
+  "id": "bug-031",
+  "level": 2,
+  "goal": "Tra giá món trong menu, không có thì trả về 0. Ví dụ: get_price({\"pho\": 50}, \"pho\") trả về 50.",
+  "code": "def get_price(menu, dish):\n    if dish in menu:\n        return menu[\"dish\"]\n    return 0",
+  "bug_line": 3,
+  "fix": "        return menu[dish]",
+  "why": "menu[\"dish\"] tìm khóa có tên đúng là chữ dish, gây KeyError. Phải dùng biến dish không có ngoặc kép."
+ },
+ {
+  "id": "bug-032",
+  "level": 2,
+  "goal": "Đếm số lần mỗi từ xuất hiện. Ví dụ: word_count(\"a b a\") trả về {\"a\": 2, \"b\": 1}.",
+  "code": "def word_count(text):\n    counts = {}\n    for w in text.split():\n        counts[w] = counts.get(w, 0)\n    return counts",
+  "bug_line": 4,
+  "fix": "        counts[w] = counts.get(w, 0) + 1",
+  "why": "Dòng này chỉ đọc số đếm cũ rồi gán lại, không tăng lên. Thiếu + 1."
+ },
+ {
+  "id": "bug-033",
+  "level": 2,
+  "goal": "Đảo ngược chuỗi. Ví dụ: reverse(\"abc\") trả về \"cba\".",
+  "code": "def reverse(s):\n    result = \"\"\n    for ch in s:\n        result = result + ch\n    return result",
+  "bug_line": 4,
+  "fix": "        result = ch + result",
+  "why": "Nối ký tự vào cuối thì chuỗi giữ nguyên thứ tự. Phải đặt ký tự mới lên đầu."
+ },
+ {
+  "id": "bug-034",
+  "level": 2,
+  "goal": "Nhân đôi từng phần tử. Ví dụ: double_all([1, 2, 3]) trả về [2, 4, 6].",
+  "code": "def double_all(nums):\n    out = []\n    for i in range(len(nums) + 1):\n        out.append(nums[i] * 2)\n    return out",
+  "bug_line": 3,
+  "fix": "    for i in range(len(nums)):",
+  "why": "Chỉ số hợp lệ đi từ 0 đến len - 1. Thêm + 1 làm vượt ra ngoài list, gây IndexError."
+ },
+ {
+  "id": "bug-035",
+  "level": 2,
+  "goal": "Tính trung bình list. Ví dụ: average([1, 2]) trả về 1.5.",
+  "code": "def average(nums):\n    if not nums:\n        return 0\n    return sum(nums) // len(nums)",
+  "bug_line": 4,
+  "fix": "    return sum(nums) / len(nums)",
+  "why": "// bỏ phần thập phân nên 3 // 2 ra 1. Dùng / để giữ 1.5."
+ },
+ {
+  "id": "bug-036",
+  "level": 2,
+  "goal": "Lấy phần tử cuối, list rỗng thì trả về None. Ví dụ: last_item([4, 5, 6]) trả về 6.",
+  "code": "def last_item(items):\n    if len(items) == 0:\n        return None\n    return items[len(items)]",
+  "bug_line": 4,
+  "fix": "    return items[-1]",
+  "why": "Vị trí cuối là len - 1, còn items[len(items)] vượt ra ngoài và gây IndexError. Cách gọn là items[-1]."
+ },
+ {
+  "id": "bug-037",
+  "level": 2,
+  "goal": "Lọc các từ dài hơn n ký tự. Ví dụ: long_words([\"hi\", \"hello\"], 3) trả về [\"hello\"].",
+  "code": "def long_words(words, n):\n    result = []\n    for w in words:\n        if len(w) > n:\n            result.append(n)\n    return result",
+  "bug_line": 5,
+  "fix": "            result.append(w)",
+  "why": "Code thêm con số n vào list thay vì thêm từ w."
+ },
+ {
+  "id": "bug-038",
+  "level": 2,
+  "goal": "Đếm số chữ số của số nguyên dương. Ví dụ: count_digits(123) trả về 3.",
+  "code": "def count_digits(n):\n    count = 0\n    while n > 0:\n        n = n / 10\n        count += 1\n    return count",
+  "bug_line": 4,
+  "fix": "        n = n // 10",
+  "why": "n / 10 cho số thực (12.3, 1.23, 0.123...) và chỉ về 0 sau hàng trăm lần lặp. Dùng // để bỏ chữ số cuối."
+ },
+ {
+  "id": "bug-039",
+  "level": 2,
+  "goal": "Kiểm tra chuỗi đọc xuôi ngược như nhau, bỏ qua hoa thường và khoảng trắng. Ví dụ: is_palindrome(\"Race car\") là True.",
+  "code": "def is_palindrome(s):\n    s = s.lower()\n    s = s.replace(\" \", \"\")\n    return s == s[::1]",
+  "bug_line": 4,
+  "fix": "    return s == s[::-1]",
+  "why": "Bước 1 giữ nguyên chuỗi nên luôn ra True. Đảo chuỗi phải dùng bước -1."
+ },
+ {
+  "id": "bug-040",
+  "level": 2,
+  "goal": "Đảo khóa và giá trị của dict. Ví dụ: invert({\"a\": 1}) trả về {1: \"a\"}.",
+  "code": "def invert(d):\n    result = {}\n    for k, v in d.items():\n        result[k] = v\n    return result",
+  "bug_line": 4,
+  "fix": "        result[v] = k",
+  "why": "Code chỉ sao chép dict như cũ. Muốn đảo thì giá trị v làm khóa, k làm giá trị."
+ },
+ {
+  "id": "bug-041",
+  "level": 2,
+  "goal": "Cộng các chữ số trong chuỗi. Ví dụ: digit_sum(\"123\") trả về 6.",
+  "code": "def digit_sum(text):\n    total = 0\n    for ch in text:\n        total += ch\n    return total",
+  "bug_line": 4,
+  "fix": "        total += int(ch)",
+  "why": "Mỗi ch là một ký tự chuỗi như \"1\", cộng với số gây TypeError. Cần đổi sang số bằng int(ch)."
+ },
+ {
+  "id": "bug-042",
+  "level": 2,
+  "goal": "Liệt kê số chẵn từ 0 đến n. Ví dụ: evens_up_to(6) trả về [0, 2, 4, 6].",
+  "code": "def evens_up_to(n):\n    result = []\n    for i in range(0, n + 1, 1):\n        result.append(i)\n    return result",
+  "bug_line": 3,
+  "fix": "    for i in range(0, n + 1, 2):",
+  "why": "Bước 1 lấy mọi số. Số chẵn cách nhau 2, nên bước phải là 2."
+ },
+ {
+  "id": "bug-043",
+  "level": 2,
+  "goal": "Đếm số lần một ký tự xuất hiện. Ví dụ: count_char(\"banana\", \"a\") trả về 3.",
+  "code": "def count_char(text, target):\n    count = 0\n    for ch in text:\n        if ch == text:\n            count += 1\n    return count",
+  "bug_line": 4,
+  "fix": "        if ch == target:",
+  "why": "Code so sánh từng ký tự với cả chuỗi text nên gần như không bao giờ bằng. Phải so với target."
+ },
+ {
+  "id": "bug-044",
+  "level": 2,
+  "goal": "Tính tổng số hàng trong kho. Ví dụ: total_stock({\"apple\": 3, \"pear\": 2}) trả về 5.",
+  "code": "def total_stock(stock):\n    total = 0\n    for item in stock:\n        total += item\n    return total",
+  "bug_line": 3,
+  "fix": "    for item in stock.values():",
+  "why": "Duyệt dict trực tiếp sẽ cho ra khóa (tên hàng, là chuỗi), cộng vào số gây TypeError. Cần duyệt stock.values()."
+ },
+ {
+  "id": "bug-045",
+  "level": 2,
+  "goal": "Tạo list bình phương từ 1 đến n. Ví dụ: squares(3) trả về [1, 4, 9].",
+  "code": "def squares(n):\n    result = []\n    for i in range(1, n + 1):\n        result = result.append(i * i)\n    return result",
+  "bug_line": 4,
+  "fix": "        result.append(i * i)",
+  "why": "append sửa list tại chỗ và trả về None. Gán lại vào result làm result thành None ngay vòng đầu."
+ },
+ {
+  "id": "bug-046",
+  "level": 2,
+  "goal": "Chia hết cho 3 và 5 là \"FizzBuzz\", cho 3 là \"Fizz\", cho 5 là \"Buzz\", còn lại là chính số đó. Ví dụ: label(10) là \"Buzz\".",
+  "code": "def label(n):\n    if n % 3 == 0 and n % 5 == 0:\n        return \"FizzBuzz\"\n    if n % 3 == 0:\n        return \"Fizz\"\n    if n % 5 == 0:\n        return \"Fizz\"\n    return str(n)",
+  "bug_line": 7,
+  "fix": "        return \"Buzz\"",
+  "why": "Số chia hết cho 5 phải trả về \"Buzz\", code trả nhầm \"Fizz\"."
+ },
+ {
+  "id": "bug-047",
+  "level": 2,
+  "goal": "Lấy phần tử ở giữa list. Ví dụ: middle([1, 2, 3]) trả về 2.",
+  "code": "def middle(items):\n    if not items:\n        return None\n    mid = len(items) / 2\n    return items[mid]",
+  "bug_line": 4,
+  "fix": "    mid = len(items) // 2",
+  "why": "len(items) / 2 ra số thực 1.5, mà chỉ số list phải là số nguyên nên gây TypeError. Dùng //."
+ },
+ {
+  "id": "bug-048",
+  "level": 3,
+  "goal": "Thêm tag vào list, mỗi lần gọi không truyền list thì bắt đầu list mới. Ví dụ: add_tag(\"a\") rồi add_tag(\"b\") trả về [\"b\"].",
+  "code": "def add_tag(tag, tags=[]):\n    if tags is None:\n        tags = []\n    tags.append(tag)\n    return tags",
+  "bug_line": 1,
+  "fix": "def add_tag(tag, tags=None):",
+  "why": "List mặc định chỉ được tạo một lần và dùng chung giữa các lần gọi. Dùng None làm mặc định để mỗi lần tạo list mới."
+ },
+ {
+  "id": "bug-049",
+  "level": 3,
+  "goal": "Trả về list điểm mới đã cộng 1, không sửa list gốc. Ví dụ: with_bonus([1, 2]) trả về [2, 3], list gốc vẫn [1, 2].",
+  "code": "def with_bonus(scores):\n    new_scores = scores\n    for i in range(len(new_scores)):\n        new_scores[i] += 1\n    return new_scores",
+  "bug_line": 2,
+  "fix": "    new_scores = scores[:]",
+  "why": "new_scores = scores chỉ tạo thêm một tên cho cùng một list, nên list gốc bị sửa theo. Cần bản sao scores[:]."
+ },
+ {
+  "id": "bug-050",
+  "level": 3,
+  "goal": "Tìm tên người trẻ nhất từ list (tên, tuổi). Ví dụ: youngest([(\"Bo\", 30), (\"An\", 25), (\"Cu\", 20)]) trả về \"Cu\".",
+  "code": "def youngest(people):\n    if not people:\n        return None\n    ordered = sorted(people, key=lambda p: p[0])\n    return ordered[0][0]",
+  "bug_line": 4,
+  "fix": "    ordered = sorted(people, key=lambda p: p[1])",
+  "why": "p[0] là tên nên list bị sắp theo ABC. Sắp theo tuổi phải dùng p[1]."
+ },
+ {
+  "id": "bug-051",
+  "level": 3,
+  "goal": "Bình phương các số dương. Ví dụ: positive_squares([-2, 3, 4]) trả về [9, 16].",
+  "code": "def positive_squares(nums):\n    if not nums:\n        return []\n    result = [n * n for n in nums if n < 0]\n    return result",
+  "bug_line": 4,
+  "fix": "    result = [n * n for n in nums if n > 0]",
+  "why": "Điều kiện lọc bị ngược: n < 0 giữ lại số âm. Số dương là n > 0."
+ },
+ {
+  "id": "bug-052",
+  "level": 3,
+  "goal": "Bộ đếm: gọi add() hai lần thì get() trả về 2.",
+  "code": "class Counter:\n    def __init__(self):\n        self.count = 0\n    def add(self):\n        count += 1\n    def get(self):\n        return self.count",
+  "bug_line": 5,
+  "fix": "        self.count += 1",
+  "why": "count không có self. là biến cục bộ chưa có giá trị, gây UnboundLocalError. Thuộc tính của đối tượng phải viết self.count."
+ },
+ {
+  "id": "bug-053",
+  "level": 3,
+  "goal": "Đếm số giá trị khác nhau. Ví dụ: unique_count([1, 2, 2, 3]) trả về 3.",
+  "code": "def unique_count(items):\n    seen = set()\n    for x in items:\n        seen = {x}\n    return len(seen)",
+  "bug_line": 4,
+  "fix": "        seen.add(x)",
+  "why": "seen = {x} tạo set mới chỉ có một phần tử mỗi vòng, xóa hết cái cũ. Cần seen.add(x) để thêm vào set."
+ },
+ {
+  "id": "bug-054",
+  "level": 3,
+  "goal": "Tạo dict tên và độ dài tên. Ví dụ: name_lengths([\"An\", \"Binh\"]) trả về {\"An\": 2, \"Binh\": 4}.",
+  "code": "def name_lengths(names):\n    if not names:\n        return {}\n    result = {len(n): n for n in names}\n    return result",
+  "bug_line": 4,
+  "fix": "    result = {n: len(n) for n in names}",
+  "why": "Khóa và giá trị bị đặt ngược: khóa phải là tên, giá trị là độ dài."
+ },
+ {
+  "id": "bug-055",
+  "level": 3,
+  "goal": "Đổi chuỗi sang số, không đổi được thì trả về 0. Ví dụ: safe_int(\"abc\") trả về 0, safe_int(\"5\") trả về 5.",
+  "code": "def safe_int(text):\n    try:\n        return int(text)\n    except TypeError:\n        return 0",
+  "bug_line": 4,
+  "fix": "    except ValueError:",
+  "why": "int(\"abc\") gây ValueError chứ không phải TypeError, nên except không bắt được và chương trình bị lỗi."
+ },
+ {
+  "id": "bug-056",
+  "level": 3,
+  "goal": "Tính giai thừa bằng đệ quy. Ví dụ: factorial(5) trả về 120.",
+  "code": "def factorial(n):\n    if n == 1:\n        return 0\n    return n * factorial(n - 1)",
+  "bug_line": 3,
+  "fix": "        return 1",
+  "why": "Trường hợp dừng trả về 0 nên cả chuỗi phép nhân thành 0. Giai thừa của 1 là 1."
+ },
+ {
+  "id": "bug-057",
+  "level": 3,
+  "goal": "Nối các số thành chuỗi cách nhau dấu phẩy. Ví dụ: join_numbers([1, 2, 3]) trả về \"1, 2, 3\".",
+  "code": "def join_numbers(nums):\n    if not nums:\n        return \"\"\n    parts = [n for n in nums]\n    return \", \".join(parts)",
+  "bug_line": 4,
+  "fix": "    parts = [str(n) for n in nums]",
+  "why": "join chỉ nối được chuỗi, đưa số vào sẽ gây TypeError. Cần đổi từng số bằng str(n)."
+ },
+ {
+  "id": "bug-058",
+  "level": 3,
+  "goal": "Tạo lưới rows x cols toàn số 0, các hàng độc lập. Ví dụ: sửa g[0][0] không làm đổi g[1][0].",
+  "code": "def make_grid(rows, cols):\n    if rows <= 0 or cols <= 0:\n        return []\n    grid = [[0] * cols] * rows\n    return grid",
+  "bug_line": 4,
+  "fix": "    grid = [[0] * cols for _ in range(rows)]",
+  "why": "* rows lặp lại cùng một list con, nên mọi hàng là một. Comprehension tạo list mới cho từng hàng."
+ },
+ {
+  "id": "bug-059",
+  "level": 3,
+  "goal": "Lấy k điểm cao nhất, từ cao xuống thấp. Ví dụ: top_scores([5, 9, 1, 7], 2) trả về [9, 7].",
+  "code": "def top_scores(scores, k):\n    ordered = sorted(scores)\n    best = ordered[:k]\n    return best",
+  "bug_line": 2,
+  "fix": "    ordered = sorted(scores, reverse=True)",
+  "why": "sorted mặc định sắp tăng dần nên [:k] lấy các điểm thấp nhất. Thêm reverse=True để sắp giảm dần."
+ },
+ {
+  "id": "bug-060",
+  "level": 3,
+  "goal": "Hình chữ nhật tính diện tích. Ví dụ: Rectangle(2, 5).area() trả về 10.",
+  "code": "class Rectangle:\n    def __init__(self, w, h):\n        self.w = w\n        self.h = h\n    def area(self):\n        return self.w * self.w",
+  "bug_line": 6,
+  "fix": "        return self.w * self.h",
+  "why": "Code nhân chiều rộng với chính nó. Diện tích là rộng nhân cao."
+ }
+]

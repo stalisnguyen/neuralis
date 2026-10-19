@@ -7,6 +7,7 @@ out = os.path.join(root, 'data'); os.makedirs(out, exist_ok=True)
 lessons, terms, jobs = [], [], []
 for f in sorted(glob.glob(os.path.join(root, 'content/out/*.json'))):
     name = os.path.basename(f); data = json.load(open(f, encoding='utf-8'))
+    if name.startswith('arcade'): continue
     if name.startswith('terms'): terms += data
     elif name.startswith('jobs'): jobs += data
     else: lessons += data
@@ -20,5 +21,12 @@ assert len(ids) == len(set(ids)), 'duplicate ids'
 for name, arr in [('lessons', lessons), ('terms', terms), ('jobs', jobs)]:
     json.dump(arr, open(os.path.join(out, name + '.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
     print(name, len(arr), os.path.getsize(os.path.join(out, name + '.json')) // 1024, 'KB')
+ar = {'predict': json.load(open(os.path.join(root, 'content/out/arcade_predict.json'), encoding='utf-8')) if os.path.exists(os.path.join(root, 'content/out/arcade_predict.json')) else [],
+      'bugs': json.load(open(os.path.join(root, 'content/out/arcade_bugs.json'), encoding='utf-8')) if os.path.exists(os.path.join(root, 'content/out/arcade_bugs.json')) else []}
+json.dump(ar, open(os.path.join(out, 'arcade.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+import shutil
+shutil.copy(os.path.join(root, 'content/robot_levels.json'), os.path.join(out, 'robot.json'))
+shutil.copy(os.path.join(root, 'content/robot_world.py'), os.path.join(out, 'robot_world.py'))
+print('arcade', len(ar['predict']), len(ar['bugs']))
 from collections import Counter
 print(Counter(l['track'] for l in lessons), 'code', sum(1 for l in lessons if l.get('code')), 'lab', sum(1 for l in lessons if l.get('lab')))

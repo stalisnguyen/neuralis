@@ -1,5 +1,5 @@
 /* ================= PLAN: XP, ranks, daily plan ================= */
-const PL_W={read:5,quiz:2,code:15,lab:8,card:1,cardnew:2,bit:2,project:40};
+const PL_W={read:5,quiz:2,code:15,lab:8,card:1,cardnew:2,bit:2,project:40,game:1,robot:20,po:0,bug:0,term:0,badge:25,quest:50};
 const PL_RANKS=[[0,'Newbie','Mới vào nghề, mọi thứ còn mới toanh.'],[300,'Tinkerer','Thích mày mò, bắt đầu hiểu máy móc nghĩ gì.'],[1000,'Coder','Viết được code chạy thật rồi.'],[2500,'Builder','Tự dựng được sản phẩm nhỏ.'],[5000,'Engineer','Kỹ sư thực thụ, đọc lỗi không còn sợ.'],[9000,'Architect','Nhìn ra cả hệ thống, biết chọn công cụ.'],[15000,'Researcher','Đọc paper như đọc báo sáng.'],[25000,'Pioneer','Người mở đường. Bit đội vương miện.']];
 function plDay(k){P.day=P.day||{};k=k||ymd(Date.now());return P.day[k]=P.day[k]||{xp:0};}
 function plXPTotal(){return Object.values(P.day||{}).reduce((a,d)=>a+(d.xp||0),0);}
@@ -12,6 +12,7 @@ function award(kind,n){
   window.__xpFly&&window.__xpFly(gain);
   if(b!==a){if(window.__rankUp)window.__rankUp(b);else toast('Danh hiệu mới: '+b[1],4000);}
   const goal=plGoalXP(); if(d.xp>=goal&&d.xp-gain<goal){if(window.__goalDone)setTimeout(window.__goalDone,b!==a?2500:600);}
+  if(kind!=='badge')setTimeout(()=>window.__checkBadges&&window.__checkBadges(),80);
 }
 function plCfg(){P.plan=P.plan||{minutes:30,start:today()};return P.plan;}
 function plGoalXP(){return Math.round(plCfg().minutes*2.2);}
@@ -31,6 +32,7 @@ function plTasks(){
   if(m>=45){const other=['robo','llm','ml'].find(k=>k!==ft&&nextLesson(k));if(other){const ol=nextLesson(other);const od=doneToday.some(id=>LI.get(id)&&LI.get(id).track===other);t.push(od?{k:'extra',t:`${TR[other].name}: 1 bài`,sub:'Đã xong',done:true,go:'learn'}:lessonTask(ol,'extra'));}}
   const nCards=Math.min(Math.max(due,5),m>=45?20:12);
   t.push({k:'cards',t:'Ôn thuật ngữ',sub:due?`${due} thẻ đến hạn`:'Thuật ngữ AI và Robotics, tiếng Anh kèm nghĩa',done:(d.card||0)+(d.cardnew||0)>=nCards,go:'cards',n:[(d.card||0)+(d.cardnew||0),nCards]});
+  t.push({k:'game',t:'Chơi 1 game',sub:'Robot Coder, Đoán output, Bug Hunt hoặc Term Rush',done:(d.game||0)+(d.robot||0)>0,go:'arcade'});
   const lab=labOfDay();
   t.push({k:'lab',t:'Lab hôm nay: '+(LABS[lab]?LABS[lab].name:lab),sub:LABS[lab]?LABS[lab].vi:'',done:(d.lab||0)>=1,go:'lab',lab});
   return t;

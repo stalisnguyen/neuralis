@@ -2,12 +2,12 @@
 const UI_GROUPS=[
   {k:'today',label:'Hôm nay',icon:'house',views:['home']},
   {k:'learn',label:'Học',icon:'book-open',views:['learn','glossary','jobs']},
-  {k:'labs',label:'Labs',icon:'flask',views:['labs']},
+  {k:'play',label:'Chơi',icon:'gamepad-2',views:['arcade','labs']},
   {k:'practice',label:'Luyện',icon:'code',views:['python','cards','bit']},
   {k:'me',label:'Tôi',icon:'user-round',views:['progress','friends','settings']},
 ];
-const UI_ALIAS={lesson:'learn',lab:'labs'};
-const UI_V={home:['Hôm nay','house'],learn:['Lộ trình','map'],glossary:['Thuật ngữ','book-a'],jobs:['Nghề nghiệp','briefcase'],labs:['Labs','flask'],
+const UI_ALIAS={lesson:'learn',lab:'labs',robot:'arcade',predict:'arcade',bughunt:'arcade',termrush:'arcade',badges:'arcade'};
+const UI_V={home:['Hôm nay','house'],learn:['Lộ trình','map'],glossary:['Thuật ngữ','book-a'],jobs:['Nghề nghiệp','briefcase'],arcade:['Arcade','gamepad-2'],labs:['Labs','flask'],
   python:['Python','code'],cards:['Thẻ thuật ngữ','layers'],bit:['Hỏi Bit','sparkles'],progress:['Tiến độ','trophy'],friends:['Bạn học','users'],settings:['Cài đặt','settings']};
 const uiGroupOf=v=>{v=UI_ALIAS[v]||v;return UI_GROUPS.find(g=>g.views.includes(v))||UI_GROUPS[0];};
 const UI_LAST=store.get('neuralis-lastv',{});
@@ -60,7 +60,7 @@ function uiChips(){
 }
 
 /* ---------- Today ---------- */
-const UI_SHORT={py:'Python',focus:'Nhánh chính',extra:'Nhánh phụ',cards:'Thẻ',lab:'Lab'};
+const UI_SHORT={py:'Python',focus:'Nhánh chính',extra:'Nhánh phụ',cards:'Thẻ',lab:'Lab',game:'Game'};
 function uiGreet(){const h=new Date().getHours();return h<11?'Chào buổi sáng':h<14?'Chào buổi trưa':h<18?'Chào buổi chiều':'Chào buổi tối';}
 function uiRing(pct,size){const p=Math.round(Math.min(1,pct)*100);return `<div class="ring-box" style="width:${size}px;height:${size}px"><svg class="ring ${p>=100?'full':''}" viewBox="0 0 72 72" width="${size}" height="${size}" role="img" aria-label="${p}% mục tiêu"><circle cx="36" cy="36" r="30" class="ring-track"/><circle cx="36" cy="36" r="30" class="ring-fill" pathLength="100" style="stroke-dasharray:${p} 100;${p?'':'opacity:0'}"/></svg><span class="ring-n num">${p>=100?ic('check'):p+'%'}</span></div>`;}
 function uiWeek(){
@@ -86,11 +86,12 @@ VIEWS.home=el=>{
       <div class="sess-top"><div><div class="sess-k">Buổi học hôm nay</div><div class="sess-x"><b class="num">${d.xp||0}</b> / ${goal} XP</div><div class="sess-s">${doneN}/${tasks.length} việc, khoảng ${plCfg().minutes} phút</div></div>${uiRing((d.xp||0)/goal,76)}</div>
       <ol class="path">${tasks.map(t=>`<li class="${t.done?'on':''} ${t===next?'cur':''}"><i></i><span>${UI_SHORT[t.k]||t.k}</span></li>`).join('')}</ol>
       <button class="btn sess-go" id="hmGo"><span class="sg-t">${esc(label)}</span> ${ic('chevron-right')}</button></section>
-     <div class="tasks">${tasks.map((t,i)=>`<button class="task ${t.done?'done':''}" data-i="${i}"><span class="tk-c">${t.done?ic('check'):ic(t.k==='lab'?'flask':t.k==='cards'?'layers':t.lesson&&t.lesson.code?'code':'book-open')}</span><span class="tk-t"><span><b>${esc(t.t)}</b>${t.n?` <span class="num muted small">${Math.min(t.n[0],t.n[1])}/${t.n[1]}</span>`:''}</span><span class="small muted">${esc(t.sub||'')}</span></span>${ic('chevron-right','tk-a')}</button>`).join('')}</div>
+     <div class="tasks">${tasks.map((t,i)=>`<button class="task ${t.done?'done':''}" data-i="${i}"><span class="tk-c">${t.done?ic('check'):ic(t.k==='game'?'gamepad-2':t.k==='lab'?'flask':t.k==='cards'?'layers':t.lesson&&t.lesson.code?'code':'book-open')}</span><span class="tk-t"><span><b>${esc(t.t)}</b>${t.n?` <span class="num muted small">${Math.min(t.n[0],t.n[1])}/${t.n[1]}</span>`:''}</span><span class="small muted">${esc(t.sub||'')}</span></span>${ic('chevron-right','tk-a')}</button>`).join('')}</div>
      ${dn===0?mcSay('idea','Bắt đầu với bài Python đầu tiên, chỉ khoảng 8 phút. Không cần cài gì, code chạy ngay trên trình duyệt.',56):''}
    </div><div class="hm-side">
      <button class="mini" data-go="learn"><span class="mini-n num">${dn}<span class="small muted">/${tot}</span></span><span class="mini-l">bài đã xong</span><span class="tr-mini">${TRACKS.map(t=>{const a=trackLessons(t.k),x=a.filter(l=>lesDone(l.id)).length;return `<span title="${t.name}"><i style="background:${t.color};width:${a.length?Math.max(4,x/a.length*100):0}%"></i></span>`;}).join('')}</span><span class="mini-a">Mở lộ trình ${ic('chevron-right')}</span></button>
      <button class="mini rank" data-go="progress"><span class="seal-rk">${r[1]}</span><span class="mini-l">${esc(r[2])}</span><span class="bar-track"><i style="width:${Math.round(pr*100)}%"></i></span><span class="small muted num">${nx?`${xpT-r[0]}/${lo} XP lên ${nx[1]}`:'Danh hiệu cao nhất'}</span></button>
+     ${(()=>{try{const {w,key,qs}=weekQuests();const cl=(P.quests||{})[key]||{};const dn=qs.filter(([id,,g,f])=>cl[id]||f(w)>=g).length;return `<button class="mini" data-go="arcade"><span class="mini-n num">${dn}<span class="small muted">/3</span></span><span class="mini-l">nhiệm vụ tuần, ${Object.keys(P.badges||{}).length} huy hiệu</span><span class="mini-a">Vào Arcade ${ic('chevron-right')}</span></button>`;}catch(e){return '';}})()}
      <button class="panel cul-inv" data-go="bit"><span class="cul-ic">${ic('sparkles')}</span><span style="min-width:0"><span class="label">Bí chỗ nào?</span><b class="cul-t">Hỏi Bit, giải thích bằng tiếng Việt</b></span>${ic('chevron-right')}</button>
    </div></div></div>`;
   $('#hmGo').onclick=()=>{if(next)uiTaskGo(next);else go('learn');};
