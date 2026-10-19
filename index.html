@@ -4,7 +4,7 @@
 <meta property="og:type" content="website"><meta property="og:site_name" content="Neuralis">
 <meta property="og:title" content="Neuralis - học AI và Robotics cùng Bit">
 <meta property="og:description" content="Stalis's AI & Robotics: Python, toán cho AI, Machine Learning, LLM và GenAI, Robotics, 17 lab tương tác, bài code chấm tự động, trợ lý AI giải thích bằng tiếng Việt.">
-<meta property="og:url" content="https://neuralis.vercel.app/"><meta property="og:image" content="https://neuralis.vercel.app/icons/og.png">
+<meta property="og:url" content="https://neuralis-rho.vercel.app/"><meta property="og:image" content="https://neuralis-rho.vercel.app/icons/og.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
@@ -2363,7 +2363,7 @@ async function setProfile(name,pin,key){
   route();return true;
 }
 function profileForm(fresh){
-  return `<div class="pf"><label class="pf-l">Tên của bạn<input type="text" id="pfN" maxlength="30" placeholder="Ví dụ: Thy" value="${fresh?'':esc(WHO?WHO.name:'')}"></label>
+  return `<div class="pf"><label class="pf-l">Tên của bạn<input type="text" id="pfN" maxlength="30" placeholder="Ví dụ: Stalis" value="${fresh?'':esc(WHO?WHO.name:'')}"></label>
     <label class="pf-l">Mã PIN riêng (4 đến 6 số)<input type="password" inputmode="numeric" id="pfP" maxlength="6" placeholder="Để giữ tiến độ của riêng bạn"></label>
     ${getKey()?'':`<label class="pf-l">Mật khẩu nhóm (để đồng bộ giữa các máy)<input type="password" id="pfK" autocomplete="current-password" placeholder="Mật khẩu chung của nhóm"></label>`}
     <p class="pf-n">Dùng đúng tên, PIN và mật khẩu nhóm này trên máy khác là mở lại đúng tiến độ của bạn.</p></div>`;
@@ -2387,7 +2387,7 @@ function boardRows(list){
     .sort((a,b)=>b.wxp-a.wxp||b.streak-a.streak);
 }
 VIEWS.friends=async el=>{
-  const link=location.origin&&location.protocol.startsWith('http')?location.origin:'https://neuralis.vercel.app';
+  const link=location.origin&&location.protocol.startsWith('http')?location.origin:'https://neuralis-rho.vercel.app';
   const invite=`<div class="panel"><h3>Mời người thân cùng học</h3>
     <ol class="inv"><li>Gửi link <b>${esc(link.replace(/^https?:\/\//,''))}</b> và mật khẩu nhóm (mật khẩu bạn đang dùng để mở trợ lý Bit).</li><li>Họ mở link, Bit hỏi tên, họ đặt một mã PIN riêng.</li><li>Nhập mật khẩu nhóm một lần là có đồng bộ, trợ lý AI và có mặt trên bảng này.</li></ol>
     <div class="row"><button class="btn sm" id="frCopy">${ic('repeat')} Sao chép lời mời</button><button class="btn ghost sm" id="frSw">Đổi người học trên máy này</button></div></div>`;

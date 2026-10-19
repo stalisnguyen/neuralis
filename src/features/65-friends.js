@@ -37,7 +37,7 @@ async function setProfile(name,pin,key){
   route();return true;
 }
 function profileForm(fresh){
-  return `<div class="pf"><label class="pf-l">Tên của bạn<input type="text" id="pfN" maxlength="30" placeholder="Ví dụ: Thy" value="${fresh?'':esc(WHO?WHO.name:'')}"></label>
+  return `<div class="pf"><label class="pf-l">Tên của bạn<input type="text" id="pfN" maxlength="30" placeholder="Ví dụ: Stalis" value="${fresh?'':esc(WHO?WHO.name:'')}"></label>
     <label class="pf-l">Mã PIN riêng (4 đến 6 số)<input type="password" inputmode="numeric" id="pfP" maxlength="6" placeholder="Để giữ tiến độ của riêng bạn"></label>
     ${getKey()?'':`<label class="pf-l">Mật khẩu nhóm (để đồng bộ giữa các máy)<input type="password" id="pfK" autocomplete="current-password" placeholder="Mật khẩu chung của nhóm"></label>`}
     <p class="pf-n">Dùng đúng tên, PIN và mật khẩu nhóm này trên máy khác là mở lại đúng tiến độ của bạn.</p></div>`;
@@ -61,7 +61,7 @@ function boardRows(list){
     .sort((a,b)=>b.wxp-a.wxp||b.streak-a.streak);
 }
 VIEWS.friends=async el=>{
-  const link=location.origin&&location.protocol.startsWith('http')?location.origin:'https://neuralis.vercel.app';
+  const link=location.origin&&location.protocol.startsWith('http')?location.origin:'https://neuralis-rho.vercel.app';
   const invite=`<div class="panel"><h3>Mời người thân cùng học</h3>
     <ol class="inv"><li>Gửi link <b>${esc(link.replace(/^https?:\/\//,''))}</b> và mật khẩu nhóm (mật khẩu bạn đang dùng để mở trợ lý Bit).</li><li>Họ mở link, Bit hỏi tên, họ đặt một mã PIN riêng.</li><li>Nhập mật khẩu nhóm một lần là có đồng bộ, trợ lý AI và có mặt trên bảng này.</li></ol>
     <div class="row"><button class="btn sm" id="frCopy">${ic('repeat')} Sao chép lời mời</button><button class="btn ghost sm" id="frSw">Đổi người học trên máy này</button></div></div>`;
