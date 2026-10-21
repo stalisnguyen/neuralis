@@ -148,7 +148,7 @@ VIEWS.settings=el=>{
    <div class="panel"><h3>Lộ trình</h3><p class="small" style="margin:0"><b>${c.minutes} phút</b> mỗi ngày, nhánh chính: <b>${TR[focusTrack()].name}</b> (song song với Python).</p><div class="row"><button class="btn sm" id="stPlan">Đổi lộ trình</button></div></div>
    <div class="panel"><h3>Hiển thị và âm thanh</h3><div class="tg-list">${uiToggleHTML()}</div></div>
    <div class="panel"><h3>Đồng bộ và trợ lý AI</h3><div class="kv"><span>Đồng bộ tiến độ</span><b>${syTxt}</b></div><div class="kv"><span>Bit (AI)</span><b>${aiTxt}</b></div>
-     ${WEB&&(!getKey()||syncState==='off')?'<button class="btn primary sm" id="stKey" style="align-self:flex-start">Nhập mật khẩu nhóm</button>':''}
+     ${WEB&&(!getKey()||syncState==='off')?'<button class="btn primary sm" id="stKey" style="align-self:flex-start">Nhập mã mời hoặc mật khẩu nhóm</button>':''}
      ${WEB&&getKey()?'<button class="btn ghost sm" id="stOut" style="align-self:flex-start">Quên mật khẩu trên máy này</button>':''}
      <details class="adv"><summary>Nâng cao</summary><p class="note">Bit chạy qua Groq, đồng bộ qua Upstash Redis, cấu hình bằng biến môi trường trên Vercel: APP_PASSWORD, GROQ_API_KEY, KV_REST_API_URL, KV_REST_API_TOKEN. Python chạy bằng Pyodide ngay trong trình duyệt.</p></details></div>
    <div class="panel"><h3>Khác</h3><div class="row"><button class="btn sm" id="stHi">Gặp lại Bit</button><button class="btn sm" id="stReset">Xoá toàn bộ tiến độ</button></div>
