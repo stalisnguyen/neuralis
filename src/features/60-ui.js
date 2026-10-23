@@ -149,13 +149,14 @@ VIEWS.settings=el=>{
    <div class="panel"><h3>Hiển thị và âm thanh</h3><div class="tg-list">${uiToggleHTML()}</div></div>
    <div class="panel"><h3>Đồng bộ và trợ lý AI</h3><div class="kv"><span>Đồng bộ tiến độ</span><b>${syTxt}</b></div><div class="kv"><span>Bit (AI)</span><b>${aiTxt}</b></div>
      ${WEB&&(!getKey()||syncState==='off')?'<button class="btn primary sm" id="stKey" style="align-self:flex-start">Nhập mã mời hoặc mật khẩu nhóm</button>':''}
-     ${WEB&&getKey()?'<button class="btn ghost sm" id="stOut" style="align-self:flex-start">Quên mật khẩu trên máy này</button>':''}
+     ${WEB&&getKey()?'<div class="row" style="gap:8px"><button class="btn sm" id="stChg">Đổi mật khẩu hoặc mã trên máy này</button><button class="btn ghost sm" id="stOut">Xóa mật khẩu khỏi máy này</button></div>':''}
      <details class="adv"><summary>Nâng cao</summary><p class="note">Bit chạy qua Groq, đồng bộ qua Upstash Redis, cấu hình bằng biến môi trường trên Vercel: APP_PASSWORD, GROQ_API_KEY, KV_REST_API_URL, KV_REST_API_TOKEN. Python chạy bằng Pyodide ngay trong trình duyệt.</p></details></div>
    <div class="panel"><h3>Khác</h3><div class="row"><button class="btn sm" id="stHi">Gặp lại Bit</button><button class="btn sm" id="stReset">Xoá toàn bộ tiến độ</button></div>
      <p class="note">Neuralis, Stalis's AI & Robotics. Bài học, bài tập và lab do Neuralis tự soạn. Thông tin về công cụ, công ty và thị trường thay đổi nhanh, nên đối chiếu thêm nguồn mới khi cần.</p></div></div>`;
   $('#stPlan').onclick=plSettings;$('#stWho').onclick=switchProfile;uiToggles(el);
   const k=$('#stKey');if(k)k.onclick=async()=>{const ok=await askPassword(false);if(ok){await initPlatform();VIEWS.settings(el);}};
-  const o=$('#stOut');if(o)o.onclick=()=>{setKey('');toast('Đã xoá mật khẩu trên máy này.');VIEWS.settings(el);};
+  const ch=$('#stChg');if(ch)ch.onclick=async()=>{const ok=await askPassword(false);if(ok){await initPlatform();VIEWS.settings(el);toast('Đã đổi. Máy này giờ dùng mật khẩu hoặc mã mới.');}};
+  const o=$('#stOut');if(o)o.onclick=()=>{if(!confirm('Máy này sẽ không dùng được AI và đồng bộ cho tới khi nhập lại mật khẩu hoặc mã. Tiến độ đã lưu trên máy không bị mất. Xóa không?'))return;setKey('');toast('Đã xoá mật khẩu trên máy này.');VIEWS.settings(el);};
   $('#stHi').onclick=()=>uiIntro(true);
   $('#stReset').onclick=async()=>{if(!await confirmBox('Xoá toàn bộ tiến độ?','Xoá bài đã học, code, thẻ, XP của '+esc(uiName())+' trên mọi máy. Không hoàn tác được.','Xoá hết','Giữ lại'))return;
     const keep={settings:P.settings,plan:P.plan};P=Object.assign(structuredClone(DEFAULT),keep);P.upd=Date.now();P.reset=Date.now();store.set(PKEY(),P);
