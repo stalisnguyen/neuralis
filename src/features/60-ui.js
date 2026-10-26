@@ -148,7 +148,7 @@ VIEWS.settings=el=>{
    <div class="panel"><h3>Lộ trình</h3><p class="small" style="margin:0"><b>${c.minutes} phút</b> mỗi ngày, nhánh chính: <b>${TR[focusTrack()].name}</b> (song song với Python).</p><div class="row"><button class="btn sm" id="stPlan">Đổi lộ trình</button></div></div>
    <div class="panel"><h3>Hiển thị và âm thanh</h3><div class="tg-list">${uiToggleHTML()}</div></div>
    <div class="panel"><h3>Đồng bộ và trợ lý AI</h3><div class="kv"><span>Đồng bộ tiến độ</span><b>${syTxt}</b></div><div class="kv"><span>Bit (AI)</span><b>${aiTxt}</b></div>
-     ${WEB&&(!getKey()||syncState==='off')?'<button class="btn primary sm" id="stKey" style="align-self:flex-start">Nhập mã mời hoặc mật khẩu nhóm</button>':''}
+     ${WEB&&(!getKey()||syncState==='off')?'<button class="btn primary sm" id="stKey" style="align-self:flex-start">Nhập mã mời</button>':''}
      ${WEB&&getKey()?'<div class="row" style="gap:8px"><button class="btn sm" id="stChg">Đổi mật khẩu hoặc mã trên máy này</button><button class="btn ghost sm" id="stOut">Xóa mật khẩu khỏi máy này</button></div>':''}
      <details class="adv"><summary>Nâng cao</summary><p class="note">Bit chạy qua Groq, đồng bộ qua Upstash Redis, cấu hình bằng biến môi trường trên Vercel: APP_PASSWORD, GROQ_API_KEY, KV_REST_API_URL, KV_REST_API_TOKEN. Python chạy bằng Pyodide ngay trong trình duyệt.</p></details></div>
    <div class="panel"><h3>Khác</h3><div class="row"><button class="btn sm" id="stHi">Gặp lại Bit</button><button class="btn sm" id="stReset">Xoá toàn bộ tiến độ</button></div>
@@ -219,9 +219,9 @@ function uiIntro(force){
       <button class="btn cele-btn" id="inGo" style="margin-top:10px">Học bài đầu tiên</button>`;},
   ];
   let i=noName?0:1; const m=uiCele('','intro'+(noName?' locked':''));const box=$('.cele-in',m.el);
-  const draw=()=>{box.innerHTML=steps[i]();
-    const nm=$('#inName',box);if(nm)nm.onclick=async()=>{const n=$('#pfN',box).value.trim(),p=$('#pfP',box).value.trim();if(!slugOf(n)){toast('Nhập tên của bạn trước nhé.');return;}if(p&&p.length<4){toast('PIN cần 4 đến 6 số.');return;}
-      const k=$('#pfK',box);await setProfile(n,p,k&&k.value.trim());m.el.classList.remove('locked');i=1;draw();};
+  const draw=()=>{if(i==='g'){introSignIn(box,()=>{i=1;draw();});return;}box.innerHTML=steps[i]();
+    const nm=$('#inName',box);if(nm)nm.onclick=async()=>{const n=$('#pfN',box).value.trim();if(!slugOf(n)){toast('Nhập tên của bạn trước nhé.');return;}
+      await setProfile(n,'');m.el.classList.remove('locked');i=typeof introAuthWanted==='function'&&introAuthWanted()?'g':1;draw();};
     const n=$('#inNext',box);if(n)n.onclick=()=>{i=2;draw();};
     $$('[data-mn]',box).forEach(b=>b.onclick=()=>{plCfg().minutes=+b.dataset.mn;touch('main');$$('[data-mn]',box).forEach(x=>x.setAttribute('aria-pressed',x===b));});
     $$('[data-fc]',box).forEach(b=>b.onclick=()=>{P.settings.focus=b.dataset.fc;touch('main');$$('[data-fc]',box).forEach(x=>x.setAttribute('aria-pressed',x===b));});
