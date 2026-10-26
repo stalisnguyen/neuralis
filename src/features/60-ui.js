@@ -79,7 +79,7 @@ VIEWS.home=el=>{
   const tot=LESSONS.length, dn=LESSONS.filter(l=>lesDone(l.id)).length;
   el.innerHTML=`<div class="view home2">
    <div class="hm-hello">${mascot(doneN===tasks.length?'yay':'hi',64)}<div><h2 class="hm-greet">${uiGreet()}, ${esc(uiName())}</h2><p class="note">${doneN===tasks.length?'Xong hết việc hôm nay. Bit tự hào lắm!':doneN?`Đã xong ${doneN}/${tasks.length} việc hôm nay.`:'Mỗi ngày một chút. Hôm nay mình học gì nào?'}</p></div></div>
-   ${SYNC==='web'&&syncState==='off'?`<div class="vbanner">${mcSay('hmm','Tiến độ đang chỉ lưu trên máy này. Nhập mật khẩu nhóm để đồng bộ giữa các máy.',48)}<div class="row"><button class="btn primary sm" id="hmSync">Nhập mật khẩu nhóm</button></div></div>`:''}
+   ${SYNC==='web'&&syncState==='off'?`<div class="vbanner">${mcSay('hmm','Tiến độ đang chỉ lưu trên máy này. Đăng nhập Google (hoặc nhập mã mời) để đồng bộ giữa các máy.',48)}<div class="row"><button class="btn primary sm" id="hmSync">Đăng nhập hoặc nhập mã</button></div></div>`:''}
    ${uiWeek()}
    <div class="hm-grid"><div class="hm-main">
      <section class="sess" aria-label="Buổi học hôm nay">
@@ -141,8 +141,8 @@ function uiAaSheet(){
 }
 VIEWS.settings=el=>{
   const c=plCfg();
-  const aiTxt=AI?'Đang bật':WEB?(WEB.ai?'Cần nhập mật khẩu':'Chưa cấu hình trên máy chủ'):'Không kết nối được máy chủ';
-  const syTxt=syncState==='on'?'Đã đồng bộ':syncState==='err'?'Lỗi đồng bộ, đang lưu trên máy':syncState==='off'?'Chưa bật (cần mật khẩu)':'Chỉ lưu trên máy này';
+  const aiTxt=AI?'Đang bật':WEB?(WEB.ai?'Cần đăng nhập':'Chưa cấu hình trên máy chủ'):'Không kết nối được máy chủ';
+  const syTxt=syncState==='on'?'Đã đồng bộ':syncState==='err'?'Lỗi đồng bộ, đang lưu trên máy':syncState==='off'?'Chưa bật (cần đăng nhập)':'Chỉ lưu trên máy này';
   el.innerHTML=`<div class="view set">
    <div class="panel"><div class="spread"><h3>Người học</h3><button class="btn sm" id="stWho">Đổi người học</button></div><div class="kv"><span>Đang học với tên</span><b>${esc(uiName())}</b></div></div>
    <div class="panel"><h3>Lộ trình</h3><p class="small" style="margin:0"><b>${c.minutes} phút</b> mỗi ngày, nhánh chính: <b>${TR[focusTrack()].name}</b> (song song với Python).</p><div class="row"><button class="btn sm" id="stPlan">Đổi lộ trình</button></div></div>

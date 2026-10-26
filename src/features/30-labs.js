@@ -114,7 +114,7 @@ Nhân viên mới được đào tạo 2 tuần, tuần đầu học pha chế c
 LABS['prompt-lab']={name:'Prompt lab',vi:'So sánh hai cách viết prompt',track:'llm',run(box){
   box.innerHTML=`<div class="grid2"><div><label class="label">Prompt A</label><textarea class="lab-ta pa" rows="5">Viết email chào mừng khách hàng mới.</textarea></div>
     <div><label class="label">Prompt B</label><textarea class="lab-ta pb" rows="5">Bạn là chuyên viên CRM của một app học tiếng Anh. Viết email chào mừng (tối đa 90 từ, tiếng Việt, giọng thân thiện) cho người vừa đăng ký nhưng chưa học bài nào. Mục tiêu: họ học bài đầu tiên trong 24 giờ. Có 1 tiêu đề, 1 nút kêu gọi hành động. Trả về dạng: Tiêu đề / Nội dung / Nút.</textarea></div></div>
-    <div class="row"><button class="btn primary sm pl-go need-ai" ${AI?'':'hidden'}>${ic('sparkles')} Chạy cả hai</button>${AI?'':'<span class="note">Cần mật khẩu nhóm để gọi AI.</span>'}</div><div class="pl-out"></div>`;
+    <div class="row"><button class="btn primary sm pl-go need-ai" ${AI?'':'hidden'}>${ic('sparkles')} Chạy cả hai</button>${AI?'':'<span class="note">Cần đăng nhập để gọi AI.</span>'}</div><div class="pl-out"></div>`;
   const b=$('.pl-go',box);if(b)b.onclick=async()=>{const o=$('.pl-out',box);o.innerHTML='<p class="note">Bit đang chạy hai prompt...</p>';
     try{const [x,y]=await Promise.all([ask($('.pa',box).value,{modelTier:'quick'}),ask($('.pb',box).value,{modelTier:'quick'})]);
       o.innerHTML=`<div class="grid2"><div class="panel"><b>Kết quả A</b><div class="small">${mdBody(x.text)}</div></div><div class="panel"><b>Kết quả B</b><div class="small">${mdBody(y.text)}</div></div></div>`;award('bit',1);}catch(e){o.innerHTML=`<p class="note">${esc(aiError(e))}</p>`;}};

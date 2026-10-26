@@ -21,7 +21,7 @@ VIEWS.bit=el=>{
   BITC=BITC||store.get(bitKey(),[]);
   const draw=()=>{
     el.innerHTML=`<div class="view tutor">
-      ${!AI?mcSay('hmm',WEB&&WEB.ai?'Nhập mật khẩu nhóm để nói chuyện với Bit.':'Trợ lý AI chưa bật trên máy chủ (cần GROQ_API_KEY và APP_PASSWORD trong Vercel).',56)+(WEB&&WEB.ai?'<button class="btn primary" id="btKey" style="align-self:flex-start">Nhập mật khẩu nhóm</button>':''):''}
+      ${!AI?mcSay('hmm',WEB&&WEB.ai?'Đăng nhập Google (hoặc nhập mã mời) để nói chuyện với Bit.':'Trợ lý AI chưa bật trên máy chủ (cần GROQ_API_KEY và APP_PASSWORD trong Vercel).',56)+(WEB&&WEB.ai?'<button class="btn primary" id="btKey" style="align-self:flex-start">Đăng nhập hoặc nhập mã</button>':''):''}
       <div class="chat-box big" id="btBox">${BITC.length?BITC.map(m=>`<div class="cm ${m.role==='assistant'?'max':'me'}">${m.role==='assistant'?`<span class="cm-av">${botSVG('calm',30,mcRankIdx())}</span>`:''}<div class="cm-b">${m.role==='assistant'?mdBody(m.content):esc(m.content).replace(/\n/g,'<br>')}</div></div>`).join(''):mcSay('hi','Chào bạn, mình là Bit. Hỏi mình bất cứ gì về AI, Robotics, Python, hoặc con đường vào nghề. Mình giải thích bằng tiếng Việt, giữ thuật ngữ tiếng Anh.',60)}</div>
       <div class="row am-q">${['Giải thích Transformer như cho người mới','Ra cho mình 1 bài Python vừa sức','RAG khác fine-tuning thế nào?','Robot hình người học kiểu gì?','Mình nên học gì tiếp theo?'].map(t=>`<button class="chip sm" data-p="${esc(t)}">${t}</button>`).join('')}</div>
       <form class="row composer" id="btF"><textarea id="btI" rows="2" placeholder="Hỏi Bit" style="flex:1 1 220px"></textarea><button class="btn primary" aria-label="Gửi">${ic('send')}</button></form>

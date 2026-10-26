@@ -852,6 +852,11 @@ mark{background:var(--orange-soft);color:inherit;border-radius:4px;padding:0 2px
 #gIn{display:flex;justify-content:center;min-height:44px;margin:6px 0}
 #gOr{text-align:center;margin:4px 0 8px}
 #acG iframe,#gIn iframe{color-scheme:light;clip-path:inset(2px 3px round 20px)}
+.ac-nudge{display:block!important}
+.ac-nudge-t p{margin:4px 0 0}
+.ac-nudge .ac-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:10px}
+.ac-nudge #acNG{min-height:40px;display:flex;align-items:center}
+.g-inapp{border:1px dashed var(--line,#ccc);border-radius:12px;padding:10px 12px;text-align:left}.g-inapp p{margin:0 0 6px}
 
 /* ===== Calculis: question screens, charts, tables, calculator, mocks, lessons, cards, tutor ===== */
 .bf{background:var(--orange-soft);color:var(--orange-ink);font-weight:700;border-radius:4px;padding:0 3px}
@@ -1297,8 +1302,8 @@ async function initPlatform(){
 }
 function askPassword(wrong){
   return new Promise(res=>{
-    const m=modal(`<h2>Mã mời hoặc mật khẩu nhóm</h2>
-      <p class="note">${wrong?'Mật khẩu chưa đúng. Nhập lại nhé.':'Nhập mã mời hoặc mật khẩu nhóm để mở trợ lý Bit (AI) và đồng bộ tiến độ giữa các máy. Mỗi máy chỉ cần nhập một lần.'}</p>
+    const m=modal(`<h2>Đăng nhập để mở AI và đồng bộ</h2>
+      <p class="note">${wrong?'Mật khẩu chưa đúng. Nhập lại nhé.':'Đăng nhập Google rồi nhập mã mời (hoặc mật khẩu nhóm) để mở trợ lý Bit (AI) và đồng bộ tiến độ giữa các máy. Chỉ cần nhập một lần.'}</p>
       <div id="gIn"></div><p class="small muted" id="gOr"></p>
       <form id="pwF" class="row"><input type="password" id="pwI" autocomplete="current-password" placeholder="Mã mời hoặc mật khẩu" style="flex:1 1 200px"><button class="btn primary" type="submit">Mở khóa</button></form><p class="small" id="pwMsg" style="color:var(--bad,#c33)"></p>`);
     let done=false; const fin=v=>{if(done)return;done=true;res(v);};
@@ -1350,7 +1355,7 @@ async function askJSON(prompt,opts={}){ if(!AI)throw {code:'no_ai'}; return AI.j
 function aiError(e){
   const c=e&&e.code;
   if(c==='no_ai')return 'Trợ lý AI chưa bật trên máy chủ (cần APP_PASSWORD và GROQ_API_KEY trong Vercel).';
-  if(c==='not_granted')return 'Cần nhập mật khẩu nhóm để dùng phần này.';
+  if(c==='not_granted')return 'Cần đăng nhập (hoặc nhập mã mời) để dùng phần này.';
   if(c==='daily_limit')return `Hôm nay bạn đã dùng hết ${(e.data&&e.data.limit)||50} lượt AI. Lượt mới mở lại lúc 0 giờ.`;
   if(c==='inactive')return 'Tài khoản này hiện chưa có quyền dùng trợ lý AI.';
   if(c==='rate_limited')return 'Đã chạm giới hạn lượt dùng miễn phí. Đợi một lúc rồi thử lại.';
@@ -1857,7 +1862,7 @@ Nhân viên mới được đào tạo 2 tuần, tuần đầu học pha chế c
 LABS['prompt-lab']={name:'Prompt lab',vi:'So sánh hai cách viết prompt',track:'llm',run(box){
   box.innerHTML=`<div class="grid2"><div><label class="label">Prompt A</label><textarea class="lab-ta pa" rows="5">Viết email chào mừng khách hàng mới.</textarea></div>
     <div><label class="label">Prompt B</label><textarea class="lab-ta pb" rows="5">Bạn là chuyên viên CRM của một app học tiếng Anh. Viết email chào mừng (tối đa 90 từ, tiếng Việt, giọng thân thiện) cho người vừa đăng ký nhưng chưa học bài nào. Mục tiêu: họ học bài đầu tiên trong 24 giờ. Có 1 tiêu đề, 1 nút kêu gọi hành động. Trả về dạng: Tiêu đề / Nội dung / Nút.</textarea></div></div>
-    <div class="row"><button class="btn primary sm pl-go need-ai" ${AI?'':'hidden'}>${ic('sparkles')} Chạy cả hai</button>${AI?'':'<span class="note">Cần mật khẩu nhóm để gọi AI.</span>'}</div><div class="pl-out"></div>`;
+    <div class="row"><button class="btn primary sm pl-go need-ai" ${AI?'':'hidden'}>${ic('sparkles')} Chạy cả hai</button>${AI?'':'<span class="note">Cần đăng nhập để gọi AI.</span>'}</div><div class="pl-out"></div>`;
   const b=$('.pl-go',box);if(b)b.onclick=async()=>{const o=$('.pl-out',box);o.innerHTML='<p class="note">Bit đang chạy hai prompt...</p>';
     try{const [x,y]=await Promise.all([ask($('.pa',box).value,{modelTier:'quick'}),ask($('.pb',box).value,{modelTier:'quick'})]);
       o.innerHTML=`<div class="grid2"><div class="panel"><b>Kết quả A</b><div class="small">${mdBody(x.text)}</div></div><div class="panel"><b>Kết quả B</b><div class="small">${mdBody(y.text)}</div></div></div>`;award('bit',1);}catch(e){o.innerHTML=`<p class="note">${esc(aiError(e))}</p>`;}};
@@ -2380,7 +2385,7 @@ VIEWS.bit=el=>{
   BITC=BITC||store.get(bitKey(),[]);
   const draw=()=>{
     el.innerHTML=`<div class="view tutor">
-      ${!AI?mcSay('hmm',WEB&&WEB.ai?'Nhập mật khẩu nhóm để nói chuyện với Bit.':'Trợ lý AI chưa bật trên máy chủ (cần GROQ_API_KEY và APP_PASSWORD trong Vercel).',56)+(WEB&&WEB.ai?'<button class="btn primary" id="btKey" style="align-self:flex-start">Nhập mật khẩu nhóm</button>':''):''}
+      ${!AI?mcSay('hmm',WEB&&WEB.ai?'Đăng nhập Google (hoặc nhập mã mời) để nói chuyện với Bit.':'Trợ lý AI chưa bật trên máy chủ (cần GROQ_API_KEY và APP_PASSWORD trong Vercel).',56)+(WEB&&WEB.ai?'<button class="btn primary" id="btKey" style="align-self:flex-start">Đăng nhập hoặc nhập mã</button>':''):''}
       <div class="chat-box big" id="btBox">${BITC.length?BITC.map(m=>`<div class="cm ${m.role==='assistant'?'max':'me'}">${m.role==='assistant'?`<span class="cm-av">${botSVG('calm',30,mcRankIdx())}</span>`:''}<div class="cm-b">${m.role==='assistant'?mdBody(m.content):esc(m.content).replace(/\n/g,'<br>')}</div></div>`).join(''):mcSay('hi','Chào bạn, mình là Bit. Hỏi mình bất cứ gì về AI, Robotics, Python, hoặc con đường vào nghề. Mình giải thích bằng tiếng Việt, giữ thuật ngữ tiếng Anh.',60)}</div>
       <div class="row am-q">${['Giải thích Transformer như cho người mới','Ra cho mình 1 bài Python vừa sức','RAG khác fine-tuning thế nào?','Robot hình người học kiểu gì?','Mình nên học gì tiếp theo?'].map(t=>`<button class="chip sm" data-p="${esc(t)}">${t}</button>`).join('')}</div>
       <form class="row composer" id="btF"><textarea id="btI" rows="2" placeholder="Hỏi Bit" style="flex:1 1 220px"></textarea><button class="btn primary" aria-label="Gửi">${ic('send')}</button></form>
@@ -2485,7 +2490,7 @@ VIEWS.home=el=>{
   const tot=LESSONS.length, dn=LESSONS.filter(l=>lesDone(l.id)).length;
   el.innerHTML=`<div class="view home2">
    <div class="hm-hello">${mascot(doneN===tasks.length?'yay':'hi',64)}<div><h2 class="hm-greet">${uiGreet()}, ${esc(uiName())}</h2><p class="note">${doneN===tasks.length?'Xong hết việc hôm nay. Bit tự hào lắm!':doneN?`Đã xong ${doneN}/${tasks.length} việc hôm nay.`:'Mỗi ngày một chút. Hôm nay mình học gì nào?'}</p></div></div>
-   ${SYNC==='web'&&syncState==='off'?`<div class="vbanner">${mcSay('hmm','Tiến độ đang chỉ lưu trên máy này. Nhập mật khẩu nhóm để đồng bộ giữa các máy.',48)}<div class="row"><button class="btn primary sm" id="hmSync">Nhập mật khẩu nhóm</button></div></div>`:''}
+   ${SYNC==='web'&&syncState==='off'?`<div class="vbanner">${mcSay('hmm','Tiến độ đang chỉ lưu trên máy này. Đăng nhập Google (hoặc nhập mã mời) để đồng bộ giữa các máy.',48)}<div class="row"><button class="btn primary sm" id="hmSync">Đăng nhập hoặc nhập mã</button></div></div>`:''}
    ${uiWeek()}
    <div class="hm-grid"><div class="hm-main">
      <section class="sess" aria-label="Buổi học hôm nay">
@@ -2547,8 +2552,8 @@ function uiAaSheet(){
 }
 VIEWS.settings=el=>{
   const c=plCfg();
-  const aiTxt=AI?'Đang bật':WEB?(WEB.ai?'Cần nhập mật khẩu':'Chưa cấu hình trên máy chủ'):'Không kết nối được máy chủ';
-  const syTxt=syncState==='on'?'Đã đồng bộ':syncState==='err'?'Lỗi đồng bộ, đang lưu trên máy':syncState==='off'?'Chưa bật (cần mật khẩu)':'Chỉ lưu trên máy này';
+  const aiTxt=AI?'Đang bật':WEB?(WEB.ai?'Cần đăng nhập':'Chưa cấu hình trên máy chủ'):'Không kết nối được máy chủ';
+  const syTxt=syncState==='on'?'Đã đồng bộ':syncState==='err'?'Lỗi đồng bộ, đang lưu trên máy':syncState==='off'?'Chưa bật (cần đăng nhập)':'Chỉ lưu trên máy này';
   el.innerHTML=`<div class="view set">
    <div class="panel"><div class="spread"><h3>Người học</h3><button class="btn sm" id="stWho">Đổi người học</button></div><div class="kv"><span>Đang học với tên</span><b>${esc(uiName())}</b></div></div>
    <div class="panel"><h3>Lộ trình</h3><p class="small" style="margin:0"><b>${c.minutes} phút</b> mỗi ngày, nhánh chính: <b>${TR[focusTrack()].name}</b> (song song với Python).</p><div class="row"><button class="btn sm" id="stPlan">Đổi lộ trình</button></div></div>
@@ -2677,7 +2682,7 @@ function profileForm(fresh){
   return `<div class="pf"><label class="pf-l">Tên của bạn<input type="text" id="pfN" maxlength="30" placeholder="Ví dụ: Stalis" value="${fresh?'':esc(WHO?WHO.name:'')}"></label>
     <label class="pf-l">Mã PIN riêng (4 đến 6 số)<input type="password" inputmode="numeric" id="pfP" maxlength="6" placeholder="Để giữ tiến độ của riêng bạn"></label>
     ${getKey()?'':`<label class="pf-l">Mật khẩu nhóm (để đồng bộ giữa các máy)<input type="password" id="pfK" autocomplete="current-password" placeholder="Mật khẩu chung của nhóm"></label>`}
-    <p class="pf-n">Dùng đúng tên, PIN và mật khẩu nhóm này trên máy khác là mở lại đúng tiến độ của bạn.</p></div>`;
+    <p class="pf-n">Đăng nhập cùng tài khoản Google trên máy khác là mở lại đúng tiến độ của bạn.</p></div>`;
 }
 function switchProfile(){
   const m=modal(`<h2>Đổi người học</h2><p class="note">Máy dùng chung thì mỗi người nhập tên và PIN của mình. Tiến độ của từng người lưu riêng.</p>${profileForm(true)}<div class="row"><button class="btn primary" id="pfGo">Vào học</button></div>`);
@@ -2700,11 +2705,11 @@ function boardRows(list){
 VIEWS.friends=async el=>{
   const link=location.origin&&location.protocol.startsWith('http')?location.origin:'https://neuralis-rho.vercel.app';
   const invite=`<div class="panel"><h3>Mời người thân cùng học</h3>
-    <ol class="inv"><li>Gửi link <b>${esc(link.replace(/^https?:\/\//,''))}</b> và mật khẩu nhóm (mật khẩu bạn đang dùng để mở trợ lý Bit).</li><li>Họ mở link, Bit hỏi tên, họ đặt một mã PIN riêng.</li><li>Nhập mật khẩu nhóm một lần là có đồng bộ, trợ lý AI và có mặt trên bảng này.</li></ol>
+    <ol class="inv"><li>Gửi link <b>${esc(link.replace(/^https?:\/\//,''))}</b> và mã mời (hoặc mật khẩu nhóm). Họ đăng nhập Google rồi nhập mã một lần.</li><li>Họ mở link, Bit hỏi tên, họ đặt một mã PIN riêng.</li><li>Nhập mật khẩu nhóm một lần là có đồng bộ, trợ lý AI và có mặt trên bảng này.</li></ol>
     <div class="row"><button class="btn sm" id="frCopy">${ic('repeat')} Sao chép lời mời</button><button class="btn ghost sm" id="frSw">Đổi người học trên máy này</button></div></div>`;
   if(!WEB||!WEB.sync){
     el.innerHTML=`<div class="view">${mcSay('idea','Bảng bạn học cần đồng bộ trên máy chủ. Khi máy chủ bật đồng bộ, cả nhóm sẽ thấy nhau ở đây.',64)}${invite}</div>`;bindInv();return;}
-  if(!getKey()){el.innerHTML=`<div class="view">${mcSay('hi','Nhập mật khẩu nhóm để xem cả nhóm đang học thế nào.',64)}<button class="btn primary" id="frKey" style="align-self:flex-start">Nhập mật khẩu nhóm</button>${invite}</div>`;
+  if(!getKey()){el.innerHTML=`<div class="view">${mcSay('hi','Đăng nhập Google (hoặc nhập mã mời) để xem cả nhóm đang học thế nào.',64)}<button class="btn primary" id="frKey" style="align-self:flex-start">Đăng nhập hoặc nhập mã</button>${invite}</div>`;
     $('#frKey').onclick=async()=>{if(await askPassword(false)){await initPlatform();VIEWS.friends(el);}};bindInv();return;}
   el.innerHTML='<div class="view"><p class="note">Đang tải bảng...</p></div>';
   const list=boardRows((await boardLoad(true))||[]);
@@ -2875,6 +2880,13 @@ const AUTH_T={loc:"vi",
   slow:"Bạn thử nhiều lần quá. Đợi một lúc rồi thử lại.",
   again:"Phiên đăng nhập đã hết. Đóng hộp này rồi đăng nhập lại nhé.",
   noGis:"Không tải được nút đăng nhập Google. Kiểm tra mạng hoặc trình chặn quảng cáo rồi tải lại trang.",
+  nudgeTitle:"Đăng nhập để học liền mạch",
+  nudgeText:"Lưu quyền dùng trợ lý AI và đồng bộ tiến độ trên mọi máy. Phần học miễn phí vẫn dùng được khi chưa đăng nhập.",
+  later:"Để sau",
+  inAppTitle:"Đăng nhập Google không chạy trong trình duyệt của Facebook, Messenger hay Zalo.",
+  inAppSteps:"Bấm dấu ba chấm ở góc màn hình, chọn \"Mở bằng trình duyệt\" (hoặc Safari, Chrome), rồi đăng nhập ở đó. Hoặc chép link và dán vào trình duyệt.",
+  copyLink:"Chép link",
+  linkCopied:"Đã chép link. Dán vào Safari hoặc Chrome nhé.",
   adm:"Tài khoản Google",
   admTrial:"Số ngày dùng thử cho tài khoản mới (0 = tắt, để 0 trong giai đoạn beta)",
   admLimit:"Lượt AI mỗi người mỗi ngày",
@@ -2902,7 +2914,13 @@ async function authPost(action,extra){
   return {ok:r.ok,status:r.status,j:await r.json().catch(()=>({}))};
 }
 /* Google button in box; onAcct(acct) once the server has accepted the sign-in */
+/* Facebook, Messenger, Instagram, Zalo, Line... open links in their own browser, where Google refuses to sign in */
+const authInApp=()=>/FBAN|FBAV|FB_IAB|FBIOS|Messenger|Instagram|Zalo|Line\/|MicroMessenger|TikTok|musical_ly|BytedanceWebview/i.test(navigator.userAgent||'');
+function authInAppHTML(){return `<div class="g-inapp"><p class="small"><b>${AUTH_T.inAppTitle}</b></p><p class="small">${AUTH_T.inAppSteps}</p>
+  <button class="btn sm" type="button" data-cplink>${AUTH_T.copyLink}</button></div>`;}
 async function authButton(box,onAcct,onErr){
+  if(authInApp()){box.innerHTML=authInAppHTML();const b=$('[data-cplink]',box);if(b)b.onclick=()=>{const u=location.origin+location.pathname;
+    try{navigator.clipboard.writeText(u);toast(AUTH_T.linkCopied);}catch(e){prompt('',u);}};return;}
   try{await loadGIS();}catch(e){box.innerHTML=`<p class="small">${AUTH_T.noGis}</p>`;return;}
   /* phones and home-screen apps: full-page redirect, because the popup window cannot report back there */
   const redirect=navigator.standalone===true||matchMedia('(display-mode: standalone)').matches||matchMedia('(pointer: coarse)').matches;
@@ -3002,6 +3020,20 @@ async function authAdmin(host){
       if(!r.ok||!r.j.token){toast(r.status===429?AUTH_T.slow:AUTH_T.fail,5000);return;}
       setKey(r.j.token);acctSet(r.j.acct);toast(r.j.acct.active?AUTH_T.hi(r.j.acct.name||r.j.acct.email):AUTH_T.signedNeed,4500);
       await initPlatform();go('settings');},300);}}
+/* Home: a gentle invitation to sign in (not required for the free parts). "Later" hides it for 7 days. */
+function authNudge(el){
+  if(!WEB||acctGet()||!document.body.contains(el))return;
+  const host=$('.view',el)||el;if($('#acNudge',host))return;
+  let until=0;try{until=+localStorage.getItem('neuralis-nudge')||0;}catch(e){}
+  if(Date.now()<until)return;
+  const p=document.createElement('div');p.className='panel ac-nudge';p.id='acNudge';
+  p.innerHTML=`<div class="ac-nudge-t"><b>${AUTH_T.nudgeTitle}</b><p class="small">${AUTH_T.nudgeText}</p></div><div class="ac-row"><div id="acNG"></div><button class="btn ghost sm" type="button" id="acNL">${AUTH_T.later}</button></div>`;
+  host.insertBefore(p,host.firstChild);
+  $('#acNL',p).onclick=()=>{try{localStorage.setItem('neuralis-nudge',String(Date.now()+7*864e5));}catch(e){}p.remove();};
+  authButton($('#acNG',p),async acct=>{toast(acct.active?AUTH_T.hi(acct.name||acct.email):AUTH_T.signedNeed,4000);p.remove();await initPlatform();if(current==='home')route();},e=>toast(e,4000));
+}
+{const _home=VIEWS.home;VIEWS.home=function(el){const r=_home.apply(this,arguments);
+  Promise.resolve(r).then(async()=>{for(let i=0;i<40&&WEB===null;i++)await new Promise(z=>setTimeout(z,150));authNudge(el);});return r;};}
 {const _set=VIEWS.settings;VIEWS.settings=function(el){const r=_set.apply(this,arguments);
   Promise.resolve(r).then(()=>{const host=$('.view',el)||el;authPanel(el,host);authAdmin(host);});return r;};}
 

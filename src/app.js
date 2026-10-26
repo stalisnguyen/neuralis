@@ -101,8 +101,8 @@ async function initPlatform(){
 }
 function askPassword(wrong){
   return new Promise(res=>{
-    const m=modal(`<h2>Mã mời hoặc mật khẩu nhóm</h2>
-      <p class="note">${wrong?'Mật khẩu chưa đúng. Nhập lại nhé.':'Nhập mã mời hoặc mật khẩu nhóm để mở trợ lý Bit (AI) và đồng bộ tiến độ giữa các máy. Mỗi máy chỉ cần nhập một lần.'}</p>
+    const m=modal(`<h2>Đăng nhập để mở AI và đồng bộ</h2>
+      <p class="note">${wrong?'Mật khẩu chưa đúng. Nhập lại nhé.':'Đăng nhập Google rồi nhập mã mời (hoặc mật khẩu nhóm) để mở trợ lý Bit (AI) và đồng bộ tiến độ giữa các máy. Chỉ cần nhập một lần.'}</p>
       <div id="gIn"></div><p class="small muted" id="gOr"></p>
       <form id="pwF" class="row"><input type="password" id="pwI" autocomplete="current-password" placeholder="Mã mời hoặc mật khẩu" style="flex:1 1 200px"><button class="btn primary" type="submit">Mở khóa</button></form><p class="small" id="pwMsg" style="color:var(--bad,#c33)"></p>`);
     let done=false; const fin=v=>{if(done)return;done=true;res(v);};
@@ -154,7 +154,7 @@ async function askJSON(prompt,opts={}){ if(!AI)throw {code:'no_ai'}; return AI.j
 function aiError(e){
   const c=e&&e.code;
   if(c==='no_ai')return 'Trợ lý AI chưa bật trên máy chủ (cần APP_PASSWORD và GROQ_API_KEY trong Vercel).';
-  if(c==='not_granted')return 'Cần nhập mật khẩu nhóm để dùng phần này.';
+  if(c==='not_granted')return 'Cần đăng nhập (hoặc nhập mã mời) để dùng phần này.';
   if(c==='daily_limit')return `Hôm nay bạn đã dùng hết ${(e.data&&e.data.limit)||50} lượt AI. Lượt mới mở lại lúc 0 giờ.`;
   if(c==='inactive')return 'Tài khoản này hiện chưa có quyền dùng trợ lý AI.';
   if(c==='rate_limited')return 'Đã chạm giới hạn lượt dùng miễn phí. Đợi một lúc rồi thử lại.';
